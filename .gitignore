@@ -6,3 +6,6 @@ data/raw/HDFS2/*
 !data/raw/BGL/.gitkeep
 !data/raw/HDFS1/.gitkeep
 !data/raw/HDFS2/.gitkeep
+
+# PyCharm
+.idea/*

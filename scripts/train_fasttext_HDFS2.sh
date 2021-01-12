@@ -1,11 +1,14 @@
 #!/bin/bash
-#SBATCH --time=24:00:00
+#SBATCH --time=04:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1 --cpus-per-task=16
-#SBATCH --mem=50G
-#SBATCH --error=../logs/fasttextHDFS.%j.err
-#SBATCH --out=../logs/fasttextHDFS.%j.out
+#SBATCH --mem=20G
+#SBATCH --error=../../logs/fasttextHDFS2.%j.err
+#SBATCH --out=../../logs/fasttextHDFS2.%j.out
 
-FASTTEXT=~./fasttext/fastText-0.9.2/fasttext
+# clear the environment from any previously loaded modules
+ml purge > /dev/null 2>&1
+
+FASTTEXT=~/./fasttext/fastText-0.9.2/fasttext
 DATADIR=../data/raw/HDFS2
 OUTPUTDIR=../models/embeddings
 

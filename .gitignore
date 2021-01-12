@@ -1,8 +1,8 @@
 # ignore data sets in data folder
-data/BGL/*
-data/HDFS1/*
-data/HDFS2/*
+data/raw/BGL/*
+data/raw/HDFS1/*
+data/raw/HDFS2/*
 # except
-!data/BGL/.gitkeep
-!data/HDFS1/.gitkeep
-!data/HDFS2/.gitkeep
+!data/raw/BGL/.gitkeep
+!data/raw/HDFS1/.gitkeep
+!data/raw/HDFS2/.gitkeep

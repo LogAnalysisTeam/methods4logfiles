@@ -9,3 +9,8 @@ data/raw/HDFS2/*
 
 # PyCharm
 .idea/*
+
+# ignore models in models folder
+models/embeddings/*
+# except
+!models/embeddings/.gitkeep

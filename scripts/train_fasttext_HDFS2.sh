@@ -21,6 +21,6 @@ cat ${DATADIR}/*.log > ${SCRATCH_DIR}/data.log
 
 # train FastText
 ml GCC
-${FASTTEXT} skipgram -input ${SCRATCH_DIR}/data.log -output ${OUTPUTDIR}/fasttext-skipgram-hdfs-d100-n1-1 -dim 100 -minn 1 -maxn 1 -minCount 10000 -thread 16
+${FASTTEXT} skipgram -input ${SCRATCH_DIR}/data.log -output ${OUTPUTDIR}/fasttext-skipgram-hdfs-d100-n3-6 -dim 100 -minn 3 -maxn 6 -minCount 10000 -thread 16
 
 rm -rf ${SCRATCH_DIR}

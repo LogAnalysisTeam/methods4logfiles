@@ -2,10 +2,12 @@
 data/raw/BGL/*
 data/raw/HDFS1/*
 data/raw/HDFS2/*
+data/interim/HDFS1/*
 # except
 !data/raw/BGL/.gitkeep
 !data/raw/HDFS1/.gitkeep
 !data/raw/HDFS2/.gitkeep
+!data/interim/HDFS1/.gitkeep
 
 # PyCharm
 .idea/*

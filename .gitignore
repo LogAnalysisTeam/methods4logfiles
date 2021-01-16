@@ -14,3 +14,6 @@ data/raw/HDFS2/*
 models/embeddings/*
 # except
 !models/embeddings/.gitkeep
+
+# generated files by Python
+src/data/__pycache__/*

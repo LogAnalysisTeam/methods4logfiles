@@ -5,6 +5,9 @@
 #SBATCH --error=../../logs/fasttextBGL.%j.err
 #SBATCH --out=../../logs/fasttextBGL.%j.out
 
+# THIS DOES NOT WORK! - THERE IS A MISTAKE IN METHODOLOGY, THE BGL.log FILE CONTAINS LOGS TOGETHER WITH LABELS!!!
+# BE CAREFUL - FIX THIS BUG FIRST!
+
 # clear the environment from any previously loaded modules
 ml purge > /dev/null 2>&1
 

@@ -33,9 +33,8 @@ def find_block_id_in_log(regex: re.Pattern, line: str) -> str:
 
 def save_logs_to_file(data: Dict, file_path: str):
     with open(file_path, 'w') as f:
-        for val in data.values():
-            logs = '\n'.join(val)
-            f.write(logs)
+        for logs in data.values():
+            f.writelines(logs)
 
 
 def get_data_by_indices(data: Union[defaultdict, Dict], labels: pd.DataFrame) -> Dict:

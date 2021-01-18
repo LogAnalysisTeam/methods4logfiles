@@ -16,6 +16,5 @@ OUTPUTDIR=../models/embeddings
 ml GCC
 for i in $(seq 1 $1)
 do
-    ${FASTTEXT} skipgram -input ${DATADIR}/train-data-HDFS1-cv-${i}-${1}.log -output ${OUTPUTDIR}/fasttext-skipgram-hdfs1-d100-n3-6-cv-${i}-${1} -dim 100 -minn 3 -maxn 6 -minCount 10000 -thread 
-16
+    ${FASTTEXT} skipgram -input ${DATADIR}/train-data-HDFS1-cv-${i}-${1}.log -output ${OUTPUTDIR}/fasttext-skipgram-hdfs1-d100-n3-6-cv-${i}-${1} -dim 100 -minn 3 -maxn 6 -minCount 10000 -thread 16
 done

@@ -20,7 +20,8 @@ def get_number_of_splits(filename: str) -> int:
 
 
 def get_embeddings_of_logs(data: defaultdict, model: fasttext.FastText) -> np.ndarray:
-    embeddings = [model.get_sentence_vector(log) for logs in data.values() for log in logs]
+    # create embeddings per log but at first remove '\n' (newline character) from the end
+    embeddings = [model.get_sentence_vector(log.rstrip()) for logs in data.values() for log in logs]
     return np.asarray(embeddings)
 
 
@@ -28,10 +29,14 @@ def get_labels_from_keys(data: defaultdict, labels: pd.DataFrame) -> np.array:
     size = sum(len(logs) for logs in data.values())
     ground_truth = np.zeros(shape=size, dtype=np.float32)
     idx = 0
-    for block_id, is_anomalous in labels.iterrows():
+    for row in labels.itertuples(index=False):
+        block_id = row.BlockId
+        is_anomalous = row.Label
+        block_len = len(data[block_id])
+
         if is_anomalous:
-            ground_truth[idx:idx + len(data[block_id])] = 1  # mark all affected logs belonging to the trace as anomaly
-        idx += len(data[block_id])
+            ground_truth[idx:idx + block_len] = 1  # mark all affected logs belonging to the trace as anomaly
+        idx += block_len
     return ground_truth
 
 
@@ -44,8 +49,15 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str):
     n_folds = get_number_of_splits(fasttext_model_path)
     model = fasttext.load_model(fasttext_model_path)
 
-    for fold in ['val']:  # ['train', 'val']:
-        for data, labels in load_fold_pairs(data_dir, n_folds, fold):
+    for fold in ['train', 'val']:
+        for idx, (data, labels) in enumerate(load_fold_pairs(data_dir, n_folds, fold), start=1):
+            # temporal check
             # check data.keys() and labels['BlockId'] are in the same order
             check_order(data.keys(), labels['BlockId'])
-            pass
+
+            embeddings = get_embeddings_of_logs(data, model)
+            ground_truth = get_labels_from_keys(data, labels)
+
+            print(np.unique(ground_truth, return_counts=True))
+            np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv-{idx}-{n_folds}.npy'), embeddings)
+            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv-{idx}-{n_folds}.csv'), ground_truth)

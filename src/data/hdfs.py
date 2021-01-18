@@ -38,8 +38,7 @@ def save_logs_to_file(data: Dict, file_path: str):
 
 
 def save_labels_to_file(data: pd.DataFrame, file_path: str):
-    data.replace({True: 'Anomaly', False: 'Normal'}, inplace=True)
-    data.to_csv(file_path, index=False)
+    data.replace({True: 'Anomaly', False: 'Normal'}).to_csv(file_path, index=False)
 
 
 def get_data_by_indices(data: Union[defaultdict, Dict], labels: pd.DataFrame) -> Dict:

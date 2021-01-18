@@ -97,7 +97,7 @@ def prepare_and_save_splits(data_dir: str, output_dir: str, n_folds: int):
     train_data, _, train_labels, _ = process_raw_hdfs(data_dir, output_dir)
     splits = get_train_val_hdfs(train_data, train_labels, n_folds)
     for idx, (train_data, test_data, train_labels, test_labels) in enumerate(splits, start=1):
-        save_logs_to_file(train_data, os.path.join(output_dir, f'train-data-HDFS1-cv-{idx}-{n_folds}.log'))
-        save_logs_to_file(test_data, os.path.join(output_dir, f'val-data-HDFS1-cv-{idx}-{n_folds}.log'))
-        save_labels_to_file(train_labels, os.path.join(output_dir, f'train-labels-HDFS1-cv-{idx}-{n_folds}.csv'))
-        save_labels_to_file(test_labels, os.path.join(output_dir, f'val-labels-HDFS1-cv-{idx}-{n_folds}.csv'))
+        save_logs_to_file(train_data, os.path.join(output_dir, f'train-data-HDFS1-cv{idx}-{n_folds}.log'))
+        save_logs_to_file(test_data, os.path.join(output_dir, f'val-data-HDFS1-cv{idx}-{n_folds}.log'))
+        save_labels_to_file(train_labels, os.path.join(output_dir, f'train-labels-HDFS1-cv{idx}-{n_folds}.csv'))
+        save_labels_to_file(test_labels, os.path.join(output_dir, f'val-labels-HDFS1-cv{idx}-{n_folds}.csv'))

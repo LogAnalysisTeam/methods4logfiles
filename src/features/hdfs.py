@@ -10,8 +10,8 @@ from src.data.hdfs import SEED, load_data, load_labels
 
 def load_fold_pairs(data_dir: str, n_folds: int, fold: str) -> Generator:
     for i in range(1, n_folds + 1):
-        data_filename = f'{fold}-data-HDFS1-cv-{i}-{n_folds}.log'
-        labels_filename = f'{fold}-labels-HDFS1-cv-{i}-{n_folds}.csv'
+        data_filename = f'{fold}-data-HDFS1-cv{i}-{n_folds}.log'
+        labels_filename = f'{fold}-labels-HDFS1-cv{i}-{n_folds}.csv'
         yield load_data(os.path.join(data_dir, data_filename)), load_labels(os.path.join(data_dir, labels_filename))
 
 
@@ -59,5 +59,5 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str):
             ground_truth = get_labels_from_keys(data, labels)
 
             print(np.unique(ground_truth, return_counts=True))
-            np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv-{idx}-{n_folds}.npy'), embeddings)
-            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv-{idx}-{n_folds}.csv'), ground_truth)
+            np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}.npy'), embeddings)
+            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}.csv'), ground_truth)

@@ -19,4 +19,5 @@ models/embeddings/*
 
 # generated files by Python
 src/data/__pycache__/*
+src/features/__pycache__/*
 src/__pycache__/*

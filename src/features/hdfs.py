@@ -60,4 +60,4 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str):
 
             print(np.unique(ground_truth, return_counts=True))
             np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}.npy'), embeddings)
-            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}.csv'), ground_truth)
+            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}.npy'), ground_truth)

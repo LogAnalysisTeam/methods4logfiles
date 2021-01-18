@@ -1,6 +1,6 @@
 import argparse
 
-from hdfs import prepare_and_save_splits
+from src.data.hdfs import prepare_and_save_splits
 
 
 def custom_int_type(x: str) -> int:
@@ -14,10 +14,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process HDFS1 data set and split data into training, validation and '
                                                  'testing sets.')
     parser.add_argument('n_folds', action='store', type=custom_int_type, help='a number of cross validation splits')
-    parser.add_argument('-in', type=str, metavar='PATH/TO/FOLDER', default='../../data/raw/HDFS1',
+    parser.add_argument('-in', type=str, metavar='PATH/TO/FOLDER', dest='input', default='../../data/raw/HDFS1',
                         help='a location with HDFS1 data (HDFS.log and anomaly_label.csv) '
                              '(default: ../../data/raw/HDFS1)')
-    parser.add_argument('-out', type=str, metavar='PATH/TO/FOLDER', default='../../data/interim/HDFS1',
+    parser.add_argument('-out', type=str, metavar='PATH/TO/FOLDER', dest='output', default='../../data/interim/HDFS1',
                         help='a location where all intermediate data will be saved (default: ../../data/interim/HDFS1)')
 
     args = parser.parse_args()

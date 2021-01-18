@@ -53,7 +53,7 @@ def stratified_train_test_split(data: Union[defaultdict, Dict], labels: pd.DataF
     return train_data, test_data, train_labels, test_labels
 
 
-def process_hdfs(data_dir: str, output_dir: str = None, save_to_file: bool = True, test_size: float = 0.1) -> tuple:
+def process_raw_hdfs(data_dir: str, output_dir: str = None, save_to_file: bool = True, test_size: float = 0.1) -> tuple:
     """
     The logs are sliced into traces according to block ids. Then each trace associated with a specific block id is
     assigned a ground-truth label.
@@ -87,7 +87,7 @@ def get_train_val_hdfs(data: Dict, labels: pd.DataFrame, n_folds: int, test_size
 
 
 def prepare_and_save_splits(data_dir: str, output_dir: str, n_folds: int):
-    train_data, _, train_labels, _ = process_hdfs(data_dir, output_dir)
+    train_data, _, train_labels, _ = process_raw_hdfs(data_dir, output_dir)
     splits = get_train_val_hdfs(train_data, train_labels, n_folds)
     for idx, (train_data, test_data, train_labels, test_labels) in enumerate(splits, start=1):
         save_logs_to_file(train_data, os.path.join(output_dir, f'train-data-HDFS1-cv-{idx}-{n_folds}.log'))

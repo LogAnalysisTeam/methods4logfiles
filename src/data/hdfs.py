@@ -37,6 +37,11 @@ def save_logs_to_file(data: Dict, file_path: str):
             f.writelines(logs)
 
 
+def save_labels_to_file(data: pd.DataFrame, file_path: str):
+    data.replace({True: 'Anomaly', False: 'Normal'}, inplace=True)
+    data.to_csv(file_path, index=False)
+
+
 def get_data_by_indices(data: Union[defaultdict, Dict], labels: pd.DataFrame) -> Dict:
     ret = {block_id: data[block_id] for block_id in labels['BlockId']}
     return ret
@@ -47,6 +52,9 @@ def stratified_train_test_split(data: Union[defaultdict, Dict], labels: pd.DataF
     # assumes that one block is one label, otherwise it would generate more data
     train_labels, test_labels = model_selection.train_test_split(labels, stratify=labels['Label'], test_size=test_size,
                                                                  random_state=seed)
+    # temporal check
+    # print('train', len(train_labels), train_labels['Label'].value_counts())
+    # print('test', len(test_labels), test_labels['Label'].value_counts())
 
     train_data = get_data_by_indices(data, train_labels)
     test_data = get_data_by_indices(data, test_labels)
@@ -68,8 +76,8 @@ def process_raw_hdfs(data_dir: str, output_dir: str = None, save_to_file: bool =
     if save_to_file and output_dir:
         save_logs_to_file(train_data, os.path.join(output_dir, 'train-data-HDFS1.log'))
         save_logs_to_file(test_data, os.path.join(output_dir, 'test-data-HDFS1.log'))
-        train_labels.to_csv(os.path.join(output_dir, 'train-labels-HDFS1.csv'), index=False)
-        test_labels.to_csv(os.path.join(output_dir, 'test-labels-HDFS1.csv'), index=False)
+        save_labels_to_file(train_labels, os.path.join(output_dir, 'train-labels-HDFS1.csv'))
+        save_labels_to_file(test_labels, os.path.join(output_dir, 'test-labels-HDFS1.csv'))
     return train_data, test_data, train_labels, test_labels
 
 
@@ -92,5 +100,5 @@ def prepare_and_save_splits(data_dir: str, output_dir: str, n_folds: int):
     for idx, (train_data, test_data, train_labels, test_labels) in enumerate(splits, start=1):
         save_logs_to_file(train_data, os.path.join(output_dir, f'train-data-HDFS1-cv-{idx}-{n_folds}.log'))
         save_logs_to_file(test_data, os.path.join(output_dir, f'val-data-HDFS1-cv-{idx}-{n_folds}.log'))
-        train_labels.to_csv(os.path.join(output_dir, f'train-labels-HDFS1-cv-{idx}-{n_folds}.csv'), index=False)
-        test_labels.to_csv(os.path.join(output_dir, f'val-labels-HDFS1-cv-{idx}-{n_folds}.csv'), index=False)
+        save_labels_to_file(train_labels, os.path.join(output_dir, f'train-labels-HDFS1-cv-{idx}-{n_folds}.csv'))
+        save_labels_to_file(test_labels, os.path.join(output_dir, f'val-labels-HDFS1-cv-{idx}-{n_folds}.csv'))

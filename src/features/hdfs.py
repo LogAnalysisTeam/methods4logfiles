@@ -5,7 +5,7 @@ import pandas as pd
 from typing import Generator, Iterable
 from collections import defaultdict
 
-from src.data.hdfs import SEED, load_data, load_labels
+from src.data.hdfs import load_data, load_labels
 
 
 def load_fold_pairs(data_dir: str, n_folds: int, fold: str) -> Generator:

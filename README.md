@@ -1,12 +1,11 @@
 # Anomaly Detection Methods for Log Files
-This is going to be Martin's repo of his diploma thesis. 
+This is Martin's repo of his diploma thesis. 
 
 # Project Organization
 ```
     ├── LICENSE
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
     │   ├── interim        <- Intermediate data that has been transformed.
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.

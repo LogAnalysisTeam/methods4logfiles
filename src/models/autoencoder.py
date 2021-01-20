@@ -72,14 +72,14 @@ class AutoEncoder(sklearn.base.OutlierMixin):
 
         self._model.eval()
         with torch.no_grad():
-            return sum(loss_function(self._model(e), e).item() for (e, ) in test_dl) / len(X)
+            return sum(loss_function(self._model(e), e).item() for (e,) in test_dl) / len(X)
             # for example in test_dl:
             #     pred = self._model(example)
 
-    def fit_predict(self, X: np.ndarray, y: np.array = None) -> np.array:
-        # Returns -1 for outliers and 1 for inliers.
-        # train only using normal data examples
-        return self.fit(X[y == 0, :]).predict(X)
+    # def fit_predict(self, X: np.ndarray, y: np.array = None) -> np.array:
+    #     # Returns -1 for outliers and 1 for inliers.
+    #     # train only using normal data examples
+    #     return self.fit(X[y == 0, :]).predict(X)
 
     def _initialize_model(self, input_shape: tuple):
         self._model = AutoEncoderPyTorch(input_dim=input_shape[1])
@@ -88,6 +88,8 @@ class AutoEncoder(sklearn.base.OutlierMixin):
     def _get_loss_function(self) -> nn.Module:
         if self.loss == 'mean_squared_error':
             return nn.MSELoss(reduction='sum')  # avoid division by number of examples in mini batch
+        elif self.loss == 'kullback_leibler_divergence':
+            return nn.KLDivLoss(reduction='sum')  # avoid division by number of examples in mini batch
         else:
             raise NotImplementedError(f'"{self.loss}" is not implemented.')
 

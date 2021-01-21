@@ -6,6 +6,8 @@ from torch.nn import functional as F
 from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
 import sklearn
+from tqdm import tqdm
+import sys
 
 from src.models.utils import time_decorator
 
@@ -18,22 +20,22 @@ torch.manual_seed(SEED)
 class AutoEncoderPyTorch(nn.Module):
     def __init__(self, input_dim: int):
         super().__init__()
-        self.encoder_hidden_layer = nn.Linear(in_features=input_dim, out_features=64)
-        self.encoder_output_layer = nn.Linear(in_features=64, out_features=32)
-        self.decoder_hidden_layer = nn.Linear(in_features=32, out_features=64)
-        self.decoder_output_layer = nn.Linear(in_features=64, out_features=input_dim)
+        self.l1 = nn.Linear(in_features=input_dim, out_features=16)
+        self.l2 = nn.Linear(in_features=16, out_features=8)
+        self.l3 = nn.Linear(in_features=8, out_features=16)
+        self.l4 = nn.Linear(in_features=16, out_features=input_dim)
 
     def forward(self, x: torch.Tensor):
-        x = F.relu(self.encoder_hidden_layer(x))
-        x = F.relu(self.encoder_output_layer(x))
-        x = F.relu(self.decoder_hidden_layer(x))
-        x = self.decoder_output_layer(x)
+        x = F.relu(self.l1(x))
+        x = F.relu(self.l2(x))
+        x = F.relu(self.l3(x))
+        x = self.l4(x)
         return x
 
 
 class AutoEncoder(sklearn.base.OutlierMixin):
     def __init__(self, epochs: int = 1, batch_size: int = 32, optimizer: str = 'adam',
-                 loss: str = 'mean_squared_error', learning_rate: float = 0.01, verbose: int = True):
+                 loss: str = 'mean_squared_error', learning_rate: float = 0.001, verbose: int = True):
         # add dictionary with architecture of the model i.e., number of layers, hidden units per layer etc.
         self.epochs = epochs
         self.batch_size = batch_size
@@ -62,7 +64,9 @@ class AutoEncoder(sklearn.base.OutlierMixin):
             loss, execution_time = self._train_epoch(train_dl, opt, loss_function)
 
             if self.verbose:
-                print(f'Epoch: {epoch + 1}/{self.epochs}, loss: {loss / len(X):.5f}, time: {execution_time:.5f} s')
+                digits = int(np.log10(self.epochs)) + 1
+                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss / len(X):.5f}, '
+                      f'time: {execution_time:.5f} s')
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -108,14 +112,16 @@ class AutoEncoder(sklearn.base.OutlierMixin):
     @time_decorator
     def _train_epoch(self, train_dl: DataLoader, optimizer: torch.optim.Optimizer, criterion: nn.Module) -> float:
         loss = 0
-        for (batch,) in train_dl:
+        train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
+        for idx, (batch,) in enumerate(train_dl, start=1):
             optimizer.zero_grad()
 
             pred = self._model(batch)
-            tmp_loss = criterion(pred, batch)
+            batch_loss = criterion(pred, batch)
 
-            tmp_loss.backward()
+            batch_loss.backward()
             optimizer.step()
 
-            loss += tmp_loss.item()
+            loss += batch_loss.item()
+            train_dl.set_postfix({'loss': loss / (idx * self.batch_size)})
         return loss

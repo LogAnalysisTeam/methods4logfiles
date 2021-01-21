@@ -1,6 +1,9 @@
 import numpy as np
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.autoencoder import AutoEncoder
+
+np.random.seed(160121)
 
 if __name__ == '__main__':
     # change to X_train -> this is only debugging
@@ -9,9 +12,10 @@ if __name__ == '__main__':
 
     # do standardization, normalization here!!!!
 
-    X = X_val[y_val == 0, :][:10_000]  # get only normal training examples
+    sc = StandardScaler()
+    X = sc.fit_transform(X_val)
+    X = X[y_val == 0, :][np.random.randint(0, 900000, size=100000)]  # get only normal training examples
 
     model = AutoEncoder(epochs=10)
     model.fit(X)
     print(model.predict(X_val[y_val == 1, :]))
-

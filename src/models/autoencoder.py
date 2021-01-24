@@ -77,8 +77,6 @@ class AutoEncoder(sklearn.base.OutlierMixin):
         self._model.eval()
         with torch.no_grad():
             return sum(loss_function(self._model(e), e).item() for (e,) in test_dl) / len(X)
-            # for example in test_dl:
-            #     pred = self._model(example)
 
     # def fit_predict(self, X: np.ndarray, y: np.array = None) -> np.array:
     #     # Returns -1 for outliers and 1 for inliers.

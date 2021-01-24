@@ -74,4 +74,4 @@ Go to `methods4logfiles/src/features` and run `build_features_hdfs.py` as follow
 python build_features_hdfs.py <model> --per-block
 ```
 
-where model is a path to a trained fastText model. The current implementation allows you to use either `--per-block` or `--per-log`. This controls the method of creating the embeddings and labels and saving them as NumPy arrays. 
+where model is a path to a trained fastText model. The current implementation allows you to use either `--per-block` or `--per-log`. This controls the method of creating the embeddings and labels and saving them as NumPy arrays. One can access other options using `-h` or `--help`.

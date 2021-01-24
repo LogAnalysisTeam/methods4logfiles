@@ -47,3 +47,31 @@ This is Martin's repo of his diploma thesis.
 ```
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>.
+
+# Getting Started
+
+## HDFS
+
+After downloading HDFS1 data set, save the data to this path `methods4logfiles/data/raw/HDFS1`. After that, you can execute `prepare_hdfs.py` located in `methods4logfiles/src/data`.
+
+```
+python prepare_hdfs.py <n_folds>
+```
+
+where `<n_folds>` is an integer which specifies the number of folds in CV. If it is equal to 1 then it splits the data (10% testing set, 90% training set). The output can be found in `methods4logfiles/data/interim/HDFS1`. One can access other options using `-h` or `--help`.
+
+Next, train fastText model on training data set. The script is located in `methods4logfiles/scripts`.
+
+```
+sbatch train_fasttext_HDFS1.sh <n_folds>
+```
+
+This command executes fastText training using `SLURM` in the cloud. One can re-use a part of the script to run the training locally.
+
+Go to `methods4logfiles/src/features` and run `build_features_hdfs.py` as follows.
+
+```
+python build_features_hdfs.py <model> --per-block
+```
+
+where model is a path to a trained fastText model. The current implementation allows you to use either `--per-block` or `--per-log`. This controls the method of creating the embeddings and labels and saving them as NumPy arrays. 

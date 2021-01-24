@@ -19,13 +19,17 @@ def get_number_of_splits(filename: str) -> int:
     return int(os.path.splitext(filename)[0][-1])
 
 
-def get_embeddings_of_logs(data: defaultdict, model: fasttext.FastText) -> np.ndarray:
+def get_embeddings_per_log(data: defaultdict, model: fasttext.FastText) -> np.ndarray:
     # create embeddings per log but at first remove '\n' (newline character) from the end
     embeddings = [model.get_sentence_vector(log.rstrip()) for logs in data.values() for log in logs]
     return np.asarray(embeddings)
 
 
-def get_labels_from_keys(data: defaultdict, labels: pd.DataFrame) -> np.array:
+def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText) -> np.ndarray:
+    pass
+
+
+def get_labels_from_keys_per_log(data: defaultdict, labels: pd.DataFrame) -> np.array:
     size = sum(len(logs) for logs in data.values())
     ground_truth = np.zeros(shape=size, dtype=np.float32)
     idx = 0
@@ -40,12 +44,16 @@ def get_labels_from_keys(data: defaultdict, labels: pd.DataFrame) -> np.array:
     return ground_truth
 
 
+def get_labels_from_keys_per_block(data: defaultdict, labels: pd.DataFrame) -> np.array:
+    pass
+
+
 def check_order(keys: Iterable, block_ids: pd.Series):
     if not all(x == y for x, y in zip(keys, block_ids.tolist())):
         raise AssertionError('Data keys and block ids are not in the same order')
 
 
-def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str):
+def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, per_block: bool):
     n_folds = get_number_of_splits(fasttext_model_path)
     model = fasttext.load_model(fasttext_model_path)
 
@@ -55,9 +63,12 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str):
             # check data.keys() and labels['BlockId'] are in the same order
             check_order(data.keys(), labels['BlockId'])
 
-            embeddings = get_embeddings_of_logs(data, model)
-            ground_truth = get_labels_from_keys(data, labels)
+            if per_block:
+                embeddings = get_embeddings_per_block(data, model)
+                ground_truth = get_labels_from_keys_per_block(data, labels)
+            else:
+                embeddings = get_embeddings_per_log(data, model)
+                ground_truth = get_labels_from_keys_per_log(data, labels)
 
-            print(np.unique(ground_truth, return_counts=True))
             np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}.npy'), embeddings)
             np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}.npy'), ground_truth)

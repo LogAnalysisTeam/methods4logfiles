@@ -27,7 +27,8 @@ def get_embeddings_per_log(data: defaultdict, model: fasttext.FastText) -> np.nd
 
 def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText) -> np.ndarray:
     # create embeddings per block but at first remove '\n' (newline character) from the end
-    embeddings = [np.asarray([model.get_sentence_vector(log.rstrip()) for log in logs]) for logs in data.values()]
+    embeddings = [np.asarray([model.get_sentence_vector(log.rstrip()) for log in logs], dtype='object')
+                  for logs in data.values()]
     return np.asarray(embeddings)
 
 
@@ -36,8 +37,7 @@ def get_labels_from_keys_per_log(data: defaultdict, labels: pd.DataFrame) -> np.
     ground_truth = np.zeros(shape=size, dtype=np.int8)
     idx = 0
     for row in labels.itertuples(index=False):
-        block_id = row.BlockId
-        is_anomalous = row.Label
+        block_id, is_anomalous = row
         block_len = len(data[block_id])
 
         if is_anomalous:

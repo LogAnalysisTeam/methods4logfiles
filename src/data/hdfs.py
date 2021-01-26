@@ -109,5 +109,5 @@ def prepare_and_save_splits(data_dir: str, output_dir: str, n_folds: int):
     # save data for baseline methods parsed by Drain3
     splits = get_train_val_hdfs(train_data_drain3, train_labels_logs, n_folds)
     for idx, (train_data, test_data, train_labels, test_labels) in enumerate(splits, start=1):
-        save_drain3_to_file(train_data, os.path.join(output_dir, f'train-data-Drain3-HDFS1-cv{idx}-{n_folds}.log'))
-        save_drain3_to_file(test_data, os.path.join(output_dir, f'val-data-Drain3-HDFS1-cv{idx}-{n_folds}.log'))
+        save_drain3_to_file(train_data, os.path.join(output_dir, f'train-data-Drain3-HDFS1-cv{idx}-{n_folds}.binlog'))
+        save_drain3_to_file(test_data, os.path.join(output_dir, f'val-data-Drain3-HDFS1-cv{idx}-{n_folds}.binlog'))

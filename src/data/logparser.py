@@ -8,14 +8,12 @@ def get_log_templates(clusters: List) -> Dict:
     return ret
 
 
-def get_log_structure(log_lines: List, cluster_ids: List, sorted_clusters: List) -> List:
-    templates = get_log_templates(sorted_clusters)
+def get_log_structure(log_lines: List, cluster_ids: List, clusters: List) -> List:
+    templates = get_log_templates(clusters)
 
     ret_log_structure = []
     for curr_id, log in zip(cluster_ids, log_lines):
-        for cluster in sorted_clusters:
-            if curr_id == cluster.cluster_id:
-                ret_log_structure.append([curr_id, log, templates[cluster.cluster_id]])
+        ret_log_structure.append([curr_id, log, templates[curr_id]])
     return ret_log_structure
 
 
@@ -31,8 +29,7 @@ def parse_file_drain3(file_path: str):
             cluster_ids.append(result['cluster_id'])
             log_lines.append(line)
 
-    sorted_clusters = sorted(template_miner.drain.clusters, key=lambda x: x.size, reverse=True)
-    ret_log_structure = get_log_structure(log_lines, cluster_ids, sorted_clusters)
+    ret_log_structure = get_log_structure(log_lines, cluster_ids, template_miner.drain.clusters)
     return ret_log_structure
 
 

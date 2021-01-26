@@ -3,7 +3,7 @@ import numpy as np
 import os
 from collections import defaultdict
 import re
-from typing import Dict, Union, Generator
+from typing import Dict, Union, Generator, DefaultDict
 from sklearn import model_selection
 
 SEED = 160121
@@ -14,7 +14,7 @@ def load_labels(file_path: str) -> pd.DataFrame:
     return df
 
 
-def load_data(file_path: str) -> defaultdict:
+def load_data(file_path: str) -> DefaultDict:
     traces = defaultdict(list)
 
     regex = re.compile(r'(blk_-?\d+)')  # pattern is eg. blk_-1608999687919862906
@@ -41,12 +41,12 @@ def save_labels_to_file(data: pd.DataFrame, file_path: str):
     data.replace({True: 'Anomaly', False: 'Normal'}).to_csv(file_path, index=False)
 
 
-def get_data_by_indices(data: Union[defaultdict, Dict], labels: pd.DataFrame) -> Dict:
+def get_data_by_indices(data: Union[DefaultDict, Dict], labels: pd.DataFrame) -> Dict:
     ret = {block_id: data[block_id] for block_id in labels['BlockId']}
     return ret
 
 
-def stratified_train_test_split(data: Union[defaultdict, Dict], labels: pd.DataFrame, test_size: float,
+def stratified_train_test_split(data: Union[DefaultDict, Dict], labels: pd.DataFrame, test_size: float,
                                 seed: int) -> tuple:
     # assumes that one block is one label, otherwise it would generate more data
     train_labels, test_labels = model_selection.train_test_split(labels, stratify=labels['Label'], test_size=test_size,
@@ -101,3 +101,5 @@ def prepare_and_save_splits(data_dir: str, output_dir: str, n_folds: int):
         save_logs_to_file(test_data, os.path.join(output_dir, f'val-data-HDFS1-cv{idx}-{n_folds}.log'))
         save_labels_to_file(train_labels, os.path.join(output_dir, f'train-labels-HDFS1-cv{idx}-{n_folds}.csv'))
         save_labels_to_file(test_labels, os.path.join(output_dir, f'val-labels-HDFS1-cv{idx}-{n_folds}.csv'))
+
+    # baseline methods parsed by Drain3

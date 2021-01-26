@@ -6,6 +6,8 @@ import re
 from typing import Dict, Union, Generator, DefaultDict
 from sklearn import model_selection
 
+from src.data.logparser import parse_file_drain3, save_drain3_to_file
+
 SEED = 160121
 
 
@@ -17,7 +19,7 @@ def load_labels(file_path: str) -> pd.DataFrame:
 def load_data(file_path: str) -> DefaultDict:
     traces = defaultdict(list)
 
-    regex = re.compile(r'(blk_-?\d+)')  # pattern is eg. blk_-1608999687919862906
+    regex = re.compile(r'(blk_-?\d+)')  # pattern is to find eg. blk_-1608999687919862906
 
     with open(file_path, 'r') as f:
         for line in f:
@@ -51,9 +53,6 @@ def stratified_train_test_split(data: Union[DefaultDict, Dict], labels: pd.DataF
     # assumes that one block is one label, otherwise it would generate more data
     train_labels, test_labels = model_selection.train_test_split(labels, stratify=labels['Label'], test_size=test_size,
                                                                  random_state=seed)
-    # temporal check
-    # print('train', len(train_labels), train_labels['Label'].value_counts())
-    # print('test', len(test_labels), test_labels['Label'].value_counts())
 
     train_data = get_data_by_indices(data, train_labels)
     test_data = get_data_by_indices(data, test_labels)
@@ -68,16 +67,21 @@ def process_raw_hdfs(data_dir: str, output_dir: str = None, save_to_file: bool =
     """
     labels = load_labels(os.path.join(data_dir, 'anomaly_label.csv'))
     data = load_data(os.path.join(data_dir, 'HDFS.log'))
+    data_drain3 = parse_file_drain3(data)
 
     train_data, test_data, train_labels, test_labels = stratified_train_test_split(data, labels, seed=SEED,
                                                                                    test_size=test_size)
+    train_data_drain3 = get_data_by_indices(data_drain3, train_labels)
+    test_data_drain3 = get_data_by_indices(data_drain3, test_labels)
 
     if save_to_file and output_dir:
         save_logs_to_file(train_data, os.path.join(output_dir, 'train-data-HDFS1.log'))
         save_logs_to_file(test_data, os.path.join(output_dir, 'test-data-HDFS1.log'))
+        save_drain3_to_file(train_data_drain3, os.path.join(output_dir, 'train-data-Drain3-HDFS1.log'))
+        save_drain3_to_file(test_data_drain3, os.path.join(output_dir, 'test-data-Drain3-HDFS1.log'))
         save_labels_to_file(train_labels, os.path.join(output_dir, 'train-labels-HDFS1.csv'))
         save_labels_to_file(test_labels, os.path.join(output_dir, 'test-labels-HDFS1.csv'))
-    return train_data, test_data, train_labels, test_labels
+    return (train_data, test_data, train_labels, test_labels), (train_data_drain3,)
 
 
 def get_train_val_hdfs(data: Dict, labels: pd.DataFrame, n_folds: int, test_size: float = 0.1) -> Generator:
@@ -94,12 +98,16 @@ def get_train_val_hdfs(data: Dict, labels: pd.DataFrame, n_folds: int, test_size
 
 
 def prepare_and_save_splits(data_dir: str, output_dir: str, n_folds: int):
-    train_data, _, train_labels, _ = process_raw_hdfs(data_dir, output_dir)
-    splits = get_train_val_hdfs(train_data, train_labels, n_folds)
+    (train_data_logs, _, train_labels_logs, _), (train_data_drain3,) = process_raw_hdfs(data_dir, output_dir)
+    splits = get_train_val_hdfs(train_data_logs, train_labels_logs, n_folds)
     for idx, (train_data, test_data, train_labels, test_labels) in enumerate(splits, start=1):
         save_logs_to_file(train_data, os.path.join(output_dir, f'train-data-HDFS1-cv{idx}-{n_folds}.log'))
         save_logs_to_file(test_data, os.path.join(output_dir, f'val-data-HDFS1-cv{idx}-{n_folds}.log'))
         save_labels_to_file(train_labels, os.path.join(output_dir, f'train-labels-HDFS1-cv{idx}-{n_folds}.csv'))
         save_labels_to_file(test_labels, os.path.join(output_dir, f'val-labels-HDFS1-cv{idx}-{n_folds}.csv'))
 
-    # baseline methods parsed by Drain3
+    # save data for baseline methods parsed by Drain3
+    splits = get_train_val_hdfs(train_data_drain3, train_labels_logs, n_folds)
+    for idx, (train_data, test_data, train_labels, test_labels) in enumerate(splits, start=1):
+        save_drain3_to_file(train_data, os.path.join(output_dir, f'train-data-Drain3-HDFS1-cv{idx}-{n_folds}.log'))
+        save_drain3_to_file(test_data, os.path.join(output_dir, f'val-data-Drain3-HDFS1-cv{idx}-{n_folds}.log'))

@@ -35,11 +35,10 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
     x_test = fe.transform(x_test)
 
     clf = LocalOutlierFactor(n_jobs=os.cpu_count())
-    params = {'novelty': [True],
-              'n_neighbors': [2, 5, 10, 20, 30, 50],
+    params = {'n_neighbors': [2, 5, 10, 20],
               'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']}
     scores = grid_search((x_train[y_train == 0, :], x_test, None, y_test), clf, params)
-    print(sorted(scores, key=lambda x: -x[1]))
+    print(dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)))
 
 
 def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor], params: Dict) -> Dict:
@@ -51,10 +50,8 @@ def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor], params
 
         model.set_params(**kwargs)
 
-        print(f'Training on {len(x_train)} and validating on {len(x_test)}.')
         print(f'Model (hyper)parameters are: {model.get_params()}.')
-        model.fit(x_train)
-        y_pred = model.predict(x_test)
+        y_pred = model.fit_predict(x_test)
         y_pred = convert_predictions(y_pred)
 
         metrics_report(y_test, y_pred)

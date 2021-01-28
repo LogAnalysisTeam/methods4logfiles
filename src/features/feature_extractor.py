@@ -40,7 +40,7 @@ class FeatureExtractor(TransformerMixin):
         ret = dataframe.to_numpy()  # tf_{x_y} => the frequency of x in y document
 
         if self.method == 'tf-idf':
-            df = np.sum(ret, axis=0)  # the number of documents containing x
+            df = np.sum(ret > 0, axis=0)  # the number of documents containing x
             self._idf = np.log(len(ret) / df)
             ret = ret * self._idf  # tf - idf
 

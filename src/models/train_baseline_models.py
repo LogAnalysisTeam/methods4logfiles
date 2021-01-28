@@ -4,6 +4,7 @@ from typing import Dict, Iterable, Union
 import pandas as pd
 import numpy as np
 import itertools
+import os
 
 from src.features.feature_extractor import FeatureExtractor
 from src.features.hdfs import check_order
@@ -25,11 +26,15 @@ def convert_predictions(y_pred: np.array) -> np.array:
 
 
 def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
+    """
+    Novelty detection represents the detection of anomalous data based on a training set consisting of only
+    the normal data.
+    """
     fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
     x_train = fe.fit_transform(x_train)
     x_test = fe.transform(x_test)
 
-    clf = LocalOutlierFactor()
+    clf = LocalOutlierFactor(n_jobs=os.cpu_count())
     params = {'novelty': [True],
               'n_neighbors': [2, 5, 10, 20, 30, 50],
               'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']}
@@ -37,7 +42,7 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
     print(sorted(scores, key=lambda x: -x[1]))
 
 
-def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor], params: Dict):
+def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor], params: Dict) -> Dict:
     x_train, x_test, y_train, y_test = data_and_labels
 
     scores = {}
@@ -45,6 +50,9 @@ def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor], params
         kwargs = {k: val for k, val in zip(params.keys(), conf)}
 
         model.set_params(**kwargs)
+
+        print(f'Training on {len(x_train)} and validating on {len(x_test)}.')
+        print(f'Model (hyper)parameters are: {model.get_params()}.')
         model.fit(x_train)
         y_pred = model.predict(x_test)
         y_pred = convert_predictions(y_pred)

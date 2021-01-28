@@ -6,16 +6,13 @@ from typing import Generator, Iterable
 from collections import defaultdict
 
 from src.data.hdfs import load_data, load_labels
-from src.data.logparser import load_drain3
 
 
 def load_fold_pairs(data_dir: str, n_folds: int, fold: str) -> Generator:
     for i in range(1, n_folds + 1):
         data_filename = f'{fold}-data-HDFS1-cv{i}-{n_folds}.log'
         labels_filename = f'{fold}-labels-HDFS1-cv{i}-{n_folds}.csv'
-        drain3_filename = f'{fold}-data-Drain3-HDFS1-cv{i}-{n_folds}.binlog'
-        yield load_data(os.path.join(data_dir, data_filename)), load_drain3(
-            os.path.join(data_dir, drain3_filename)), load_labels(os.path.join(data_dir, labels_filename))
+        yield load_data(os.path.join(data_dir, data_filename)), load_labels(os.path.join(data_dir, labels_filename))
 
 
 def get_number_of_splits(filename: str) -> int:
@@ -62,7 +59,7 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
     model = fasttext.load_model(fasttext_model_path)
 
     for fold in ['train', 'val']:
-        for idx, (data, data_drain3, labels) in enumerate(load_fold_pairs(data_dir, n_folds, fold), start=1):
+        for idx, (data, labels) in enumerate(load_fold_pairs(data_dir, n_folds, fold), start=1):
             # temporal check
             # check data.keys() and labels['BlockId'] are in the same order
             check_order(data.keys(), labels['BlockId'])

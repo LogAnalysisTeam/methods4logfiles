@@ -9,7 +9,14 @@
 ***************************************************************************************
 """
 import torch.nn as nn
+import torch
 from torch.nn.utils import weight_norm
+import numpy as np
+
+SEED = 160121
+
+np.random.seed(SEED)
+torch.manual_seed(SEED)
 
 
 class Chomp1d(nn.Module):

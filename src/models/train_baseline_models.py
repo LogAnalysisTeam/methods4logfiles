@@ -1,6 +1,7 @@
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.ensemble import IsolationForest
 from typing import Dict, Iterable, Union
+from collections import namedtuple
 import pandas as pd
 import numpy as np
 import itertools
@@ -60,6 +61,8 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
 def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, IsolationForest], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
+    Hyperparameters = namedtuple('Hyperparameters', params.keys())
+
     scores = {}
     for conf in itertools.product(*params.values()):
         kwargs = {k: val for k, val in zip(params.keys(), conf)}
@@ -76,7 +79,7 @@ def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, Isolati
 
         y_pred = convert_predictions(y_pred)
         metrics_report(y_test, y_pred)
-        scores[conf] = f1_score(y_test, y_pred)
+        scores[Hyperparameters(**conf)] = f1_score(y_test, y_pred)
     return scores
 
 

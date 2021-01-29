@@ -1,7 +1,6 @@
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.ensemble import IsolationForest
-from typing import Dict, Iterable, Union
-from collections import namedtuple
+from typing import Dict, Iterable, Union, List
 import pandas as pd
 import numpy as np
 import itertools
@@ -11,7 +10,7 @@ from src.features.feature_extractor import FeatureExtractor
 from src.features.hdfs import check_order
 from src.data.logparser import load_drain3
 from src.data.hdfs import load_labels
-from src.models.metrics import metrics_report, f1_score
+from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import save_experiment
 
 SEED = 160121
@@ -28,6 +27,13 @@ def convert_predictions(y_pred: np.array) -> np.array:
     y_pred[y_pred == 1] = 0
     y_pred[y_pred == -1] = 1
     return y_pred
+
+
+def create_experiment_report(metrics: Dict, hyperparameters: Dict) -> Dict:
+    return {
+        'metrics': metrics,
+        'hyperparameters': hyperparameters
+    }
 
 
 def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
@@ -62,9 +68,7 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
 def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, IsolationForest], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
-    Hyperparameters = namedtuple('Hyperparameters', params.keys())
-
-    scores = {}
+    scores = []
     for conf in itertools.product(*params.values()):
         kwargs = {k: val for k, val in zip(params.keys(), conf)}
 
@@ -80,8 +84,10 @@ def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, Isolati
 
         y_pred = convert_predictions(y_pred)
         metrics_report(y_test, y_pred)
-        scores[Hyperparameters(**model.get_params())] = f1_score(y_test, y_pred)
-    return scores
+        scores.append(create_experiment_report(get_metrics(y_test, y_pred), model.get_params()))
+    return {
+        'experiments': scores
+    }
 
 
 if __name__ == '__main__':

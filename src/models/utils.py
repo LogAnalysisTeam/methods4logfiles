@@ -1,6 +1,6 @@
 from time import time_ns
 from typing import Callable, Iterable
-import pickle
+import json
 
 
 def time_decorator(function: Callable):
@@ -14,5 +14,5 @@ def time_decorator(function: Callable):
 
 
 def save_experiment(data: Iterable, file_path: str):
-    with open(file_path, 'wb') as f:
-        pickle.dump(data, f)
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4, sort_keys=True)

@@ -29,7 +29,28 @@ def visualize_distribution(y_pred: np.array, to_file: bool = False):
         plt.show()
 
 
+def visualize_distribution_with_labels(y_pred: np.array, labels: np.array, to_file: bool = False):
+    fig, ax = plt.subplots()
+
+    n_bins = get_number_of_bins(y_pred)
+    ax.hist([y_pred[labels == 0], y_pred[labels == 1]], bins=n_bins, edgecolor='black', linewidth=1,
+            label=['Normal', 'Anomalous'])
+
+    ax.grid(linestyle='dashed')
+    ax.set_axisbelow(True)
+
+    ax.set_title('Reconstruction Error Histogram')
+    ax.set_ylabel('Counts')
+    ax.set_xlabel('Reconstruction Error (MSE)')
+    ax.legend()
+    fig.tight_layout()
+
+    if not to_file:
+        plt.show()
+
+
 if __name__ == '__main__':
     tmp = np.random.randint(0, 20, size=500)
+    lab = (np.random.random(500) > 0.5).astype(np.int8)
 
-    visualize_distribution(tmp)
+    visualize_distribution_with_labels(tmp, lab)

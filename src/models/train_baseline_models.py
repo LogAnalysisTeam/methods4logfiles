@@ -39,7 +39,7 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
     x_test = fe.transform(x_test)
 
     clf = LocalOutlierFactor(n_jobs=os.cpu_count())
-    params = {'n_neighbors': np.linspace(5, 750, num=10),
+    params = {'n_neighbors': [int(x) for x in np.linspace(5, 750, num=10)],
               'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']}
     scores = grid_search((None, x_test, None, y_test), clf, params)
     print(dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)))
@@ -51,8 +51,8 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
     x_test = fe.transform(x_test)
 
     clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
-    params = {'n_estimators': [50, 100, 200, 500],
-              'max_samples': np.linspace(0.01, 1, num=7),
+    params = {'n_estimators': [25, 50, 100, 150, 200, 500],
+              'max_samples': [0.001] + list(np.linspace(0.01, 1, num=7)),
               'max_features': [int(x) for x in np.linspace(1, x_train.shape[1], num=7)]}
     scores = grid_search((x_train, x_test, None, y_test), clf, params)
     print(dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)))
@@ -79,7 +79,7 @@ def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, Isolati
 
         y_pred = convert_predictions(y_pred)
         metrics_report(y_test, y_pred)
-        scores[Hyperparameters(**conf)] = f1_score(y_test, y_pred)
+        scores[Hyperparameters(**model.get_params())] = f1_score(y_test, y_pred)
     return scores
 
 

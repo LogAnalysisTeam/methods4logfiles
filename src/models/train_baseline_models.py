@@ -61,7 +61,7 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
 def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, IsolationForest], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
-    Hyperparameters = namedtuple('Hyperparameters', params.keys())
+    Hyperparameters = namedtuple('Hyperparameters', model.get_params().keys())
 
     scores = {}
     for conf in itertools.product(*params.values()):

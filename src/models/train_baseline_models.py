@@ -100,6 +100,6 @@ if __name__ == '__main__':
     y_val = get_labels_from_csv(y_val, x_val.keys())
 
     results = train_lof(x_train, x_val, y_train, y_val)
-    save_experiment(results, '../../models/LOF-hyperparameters-Drain3-HDFS1.bin')
+    save_experiment(results, '../../models/LOF-hyperparameters-Drain3-HDFS1.json')
     results = train_iso_forest(x_train, x_val, y_train, y_val)
-    save_experiment(results, '../../models/IF-hyperparameters-Drain3-HDFS1.bin')
+    save_experiment(results, '../../models/IF-hyperparameters-Drain3-HDFS1.json')

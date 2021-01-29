@@ -1,5 +1,6 @@
 from sklearn import metrics
 import numpy as np
+from typing import Dict
 
 
 def precision(y_true: np.array, y_pred: np.array, **kwargs) -> float:
@@ -20,6 +21,15 @@ def f1_score(y_true: np.array, y_pred: np.array, **kwargs) -> float:
 def mcc_score(y_true: np.array, y_pred: np.array, **kwargs) -> float:
     # range(-1, 1)
     return metrics.matthews_corrcoef(y_true, y_pred, **kwargs)
+
+
+def get_metrics(y_true: np.array, y_pred: np.array, **kwargs) -> Dict:
+    return {
+        'precision': precision(y_true, y_pred, **kwargs),
+        'recall': recall(y_true, y_pred, **kwargs),
+        'f1_score': f1_score(y_true, y_pred, **kwargs),
+        'mcc_score': mcc_score(y_true, y_pred, **kwargs)
+    }
 
 
 def metrics_report(y_true: np.array, y_pred: np.array, **kwargs):

@@ -12,6 +12,7 @@ from src.features.hdfs import check_order
 from src.data.logparser import load_drain3
 from src.data.hdfs import load_labels
 from src.models.metrics import metrics_report, f1_score
+from src.models.utils import save_experiment
 
 SEED = 160121
 np.random.seed(SEED)
@@ -29,7 +30,7 @@ def convert_predictions(y_pred: np.array) -> np.array:
     return y_pred
 
 
-def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
+def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
     """
     Novelty detection represents the detection of anomalous data based on a training set consisting of only
     the normal data.
@@ -41,21 +42,21 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
     clf = LocalOutlierFactor(n_jobs=os.cpu_count())
     params = {'n_neighbors': np.linspace(50, 650, num=10, dtype=np.int32),
               'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']}
-    scores = grid_search((None, x_test, None, y_test), clf, params)
-    print(dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)))
+    evaluated_hyperparams = grid_search((None, x_test, None, y_test), clf, params)
+    return evaluated_hyperparams
 
 
-def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array):
+def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
     fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
     x_train = fe.fit_transform(x_train)
     x_test = fe.transform(x_test)
 
     clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
-    params = {'n_estimators': [25, 50, 100, 150, 200, 500],
-              'max_samples': [0.001] + list(np.linspace(0.01, 1, num=7)),
+    params = {'n_estimators': np.linspace(10, 750, num=8, dtype=np.int32),
+              'max_samples': np.linspace(0.01, 1, num=7),
               'max_features': np.linspace(1, x_train.shape[1], num=10, dtype=np.int32)}
-    scores = grid_search((x_train, x_test, None, y_test), clf, params)
-    print(dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)))
+    evaluated_hyperparams = grid_search((x_train, x_test, None, y_test), clf, params)
+    return evaluated_hyperparams
 
 
 def grid_search(data_and_labels: tuple, model: Union[LocalOutlierFactor, IsolationForest], params: Dict) -> Dict:
@@ -92,5 +93,7 @@ if __name__ == '__main__':
     y_train = get_labels_from_csv(y_train, x_train.keys())
     y_val = get_labels_from_csv(y_val, x_val.keys())
 
-    # train_lof(x_train, x_val, y_train, y_val)
-    train_iso_forest(x_train, x_val, y_train, y_val)
+    results = train_lof(x_train, x_val, y_train, y_val)
+    save_experiment(results, '../../models/LOF-hyperparameters-Drain3-HDFS1.bin')
+    results = train_iso_forest(x_train, x_val, y_train, y_val)
+    save_experiment(results, '../../models/IF-hyperparameters-Drain3-HDFS1.bin')

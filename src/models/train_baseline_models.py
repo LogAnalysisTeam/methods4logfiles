@@ -51,8 +51,8 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
     x_test = fe.transform(x_test)
 
     clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
-    params = {'n_estimators': [25, 50, 100, 150, 200, 500],
-              'max_samples': [0.001] + list(np.linspace(0.01, 1, num=7)),
+    params = {'n_estimators': np.linspace(10, 750, num=8, dtype=np.int32),
+              'max_samples': np.linspace(0.01, 1, num=7),
               'max_features': np.linspace(1, x_train.shape[1], num=10, dtype=np.int32)}
     scores = grid_search((x_train, x_test, None, y_test), clf, params)
     print(dict(sorted(scores.items(), key=lambda item: item[1], reverse=True)))

@@ -46,7 +46,7 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) 
     x_test = fe.transform(x_test)
 
     clf = LocalOutlierFactor(n_jobs=os.cpu_count())
-    params = {'n_neighbors': np.linspace(50, 650, num=10, dtype=np.int32),
+    params = {'n_neighbors': np.linspace(50, 650, num=10, dtype=int),
               'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']}
     evaluated_hyperparams = grid_search((None, x_test, None, y_test), clf, params)
     return evaluated_hyperparams
@@ -58,9 +58,9 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
     x_test = fe.transform(x_test)
 
     clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
-    params = {'n_estimators': np.linspace(10, 750, num=8, dtype=np.int32),
-              'max_samples': np.linspace(0.01, 1, num=7),
-              'max_features': np.linspace(1, x_train.shape[1], num=10, dtype=np.int32)}
+    params = {'n_estimators': np.linspace(10, 750, num=8, dtype=int),
+              'max_samples': np.linspace(0.01, 1, num=7, dtype=float),
+              'max_features': np.linspace(1, x_train.shape[1], num=10, dtype=int)}
     evaluated_hyperparams = grid_search((x_train, x_test, None, y_test), clf, params)
     return evaluated_hyperparams
 

@@ -24,11 +24,12 @@ def mcc_score(y_true: np.array, y_pred: np.array, **kwargs) -> float:
 
 
 def get_metrics(y_true: np.array, y_pred: np.array, **kwargs) -> Dict:
+    # return JSON-serializable object
     return {
-        'precision': precision(y_true, y_pred, **kwargs),
-        'recall': recall(y_true, y_pred, **kwargs),
-        'f1_score': f1_score(y_true, y_pred, **kwargs),
-        'mcc_score': mcc_score(y_true, y_pred, **kwargs)
+        'precision': float(precision(y_true, y_pred, **kwargs)),
+        'recall': float(recall(y_true, y_pred, **kwargs)),
+        'f1_score': float(f1_score(y_true, y_pred, **kwargs)),
+        'mcc_score': float(mcc_score(y_true, y_pred, **kwargs))
     }
 
 

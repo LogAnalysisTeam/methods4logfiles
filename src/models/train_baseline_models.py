@@ -11,7 +11,7 @@ from src.features.hdfs import check_order
 from src.data.logparser import load_drain3
 from src.data.hdfs import load_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import save_experiment
+from src.models.utils import save_experiment, get_json_serializable_array
 
 SEED = 160121
 np.random.seed(SEED)
@@ -46,8 +46,10 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) 
     x_test = fe.transform(x_test)
 
     clf = LocalOutlierFactor(n_jobs=os.cpu_count())
-    params = {'n_neighbors': np.linspace(50, 650, num=10, dtype=int),
-              'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']}
+    params = {
+        'n_neighbors': get_json_serializable_array(np.linspace(50, 650, num=10, dtype=np.int32), int),
+        'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']
+    }
     evaluated_hyperparams = grid_search((None, x_test, None, y_test), clf, params)
     return evaluated_hyperparams
 
@@ -58,9 +60,11 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
     x_test = fe.transform(x_test)
 
     clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
-    params = {'n_estimators': np.linspace(10, 750, num=8, dtype=int),
-              'max_samples': np.linspace(0.01, 1, num=7, dtype=float),
-              'max_features': np.linspace(1, x_train.shape[1], num=10, dtype=int)}
+    params = {
+        'n_estimators': get_json_serializable_array(np.linspace(10, 750, num=8, dtype=np.int32), int),
+        'max_samples': get_json_serializable_array(np.linspace(0.01, 1, num=7, dtype=np.float32), float),
+        'max_features': get_json_serializable_array(np.linspace(1, x_train.shape[1], num=10, dtype=np.int32), int)
+    }
     evaluated_hyperparams = grid_search((x_train, x_test, None, y_test), clf, params)
     return evaluated_hyperparams
 

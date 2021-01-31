@@ -1,7 +1,6 @@
 from time import time_ns
-from typing import Callable, Iterable, List
+from typing import Callable, Iterable
 import json
-import numpy as np
 
 
 def time_decorator(function: Callable):
@@ -17,7 +16,3 @@ def time_decorator(function: Callable):
 def save_experiment(data: Iterable, file_path: str):
     with open(file_path, 'w') as f:
         json.dump(data, f, indent=4, sort_keys=True)
-
-
-def get_json_serializable_array(array: np.array, f_type: Callable) -> List:
-    return [f_type(x) for x in array]

@@ -1,6 +1,6 @@
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.ensemble import IsolationForest
-from typing import Dict, Iterable, Union, List
+from typing import Dict, Iterable, Union
 import pandas as pd
 import numpy as np
 import itertools
@@ -11,7 +11,7 @@ from src.features.hdfs import check_order
 from src.data.logparser import load_drain3
 from src.data.hdfs import load_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import save_experiment, get_json_serializable_array
+from src.models.utils import save_experiment
 
 SEED = 160121
 np.random.seed(SEED)
@@ -47,7 +47,7 @@ def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) 
 
     clf = LocalOutlierFactor(n_jobs=os.cpu_count())
     params = {
-        'n_neighbors': get_json_serializable_array(np.linspace(50, 650, num=10, dtype=np.int32), int),
+        'n_neighbors': np.linspace(50, 650, num=10, dtype=np.int32).tolist(),
         'metric': ['cosine', 'euclidean', 'manhattan', 'chebyshev', 'minkowski']
     }
     evaluated_hyperparams = grid_search((None, x_test, None, y_test), clf, params)
@@ -61,9 +61,9 @@ def train_iso_forest(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.
 
     clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
     params = {
-        'n_estimators': get_json_serializable_array(np.linspace(10, 750, num=8, dtype=np.int32), int),
-        'max_samples': get_json_serializable_array(np.linspace(0.01, 1, num=7, dtype=np.float32), float),
-        'max_features': get_json_serializable_array(np.linspace(1, x_train.shape[1], num=10, dtype=np.int32), int)
+        'n_estimators': np.linspace(10, 750, num=8, dtype=np.int32).tolist(),
+        'max_samples': np.linspace(0.01, 1, num=7, dtype=np.float32).tolist(),
+        'max_features': np.linspace(1, x_train.shape[1], num=10, dtype=np.int32).tolist()
     }
     evaluated_hyperparams = grid_search((x_train, x_test, None, y_test), clf, params)
     return evaluated_hyperparams

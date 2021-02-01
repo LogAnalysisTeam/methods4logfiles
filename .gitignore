@@ -19,6 +19,11 @@ models/embeddings/*
 # except
 !models/embeddings/.gitkeep
 
+# ignore results in reports folder
+reports/figures/*
+# except
+!reports/figures/.gitkeep
+
 # generated files by Python
 src/data/__pycache__/*
 src/features/__pycache__/*

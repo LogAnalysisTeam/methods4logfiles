@@ -47,10 +47,12 @@ def visualize_distribution_with_labels(y_pred: np.array, labels: np.array, to_fi
 
     if not to_file:
         plt.show()
+    else:
+        plt.savefig('../../reports/figures/hist.pdf')
 
 
 if __name__ == '__main__':
     tmp = np.random.randint(0, 20, size=500)
     lab = (np.random.random(500) > 0.5).astype(np.int8)
 
-    visualize_distribution_with_labels(tmp, lab)
+    visualize_distribution_with_labels(tmp, lab, to_file=True)

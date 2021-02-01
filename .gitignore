@@ -15,9 +15,10 @@ data/processed/HDFS1/*
 .idea/*
 
 # ignore models in models folder
-models/embeddings/*
+models/*
 # except
 !models/embeddings/.gitkeep
+!models/.gitkeep
 
 # ignore results in reports folder
 reports/figures/*

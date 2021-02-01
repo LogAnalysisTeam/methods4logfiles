@@ -2,10 +2,16 @@ import numpy as np
 import fasttext
 import os
 import pandas as pd
-from typing import Generator, Iterable
+import pickle
+from typing import Generator, Iterable, List
 from collections import defaultdict
 
 from src.data.hdfs import load_data, load_labels
+
+
+def save_to_file(data: List, file_path: str):
+    with open(file_path, 'wb') as f:
+        pickle.dump(data, f)
 
 
 def load_fold_pairs(data_dir: str, n_folds: int, fold: str) -> Generator:
@@ -25,10 +31,10 @@ def get_embeddings_per_log(data: defaultdict, model: fasttext.FastText) -> np.nd
     return np.asarray(embeddings)
 
 
-def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText) -> np.ndarray:
+def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText) -> List:
     # create embeddings per block but at first remove '\n' (newline character) from the end
     embeddings = [np.asarray([model.get_sentence_vector(log.rstrip()) for log in logs]) for logs in data.values()]
-    return np.asarray(embeddings, dtype='object')
+    return embeddings
 
 
 def get_labels_from_keys_per_log(data: defaultdict, labels: pd.DataFrame) -> np.array:
@@ -67,11 +73,10 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
             if per_block:
                 embeddings = get_embeddings_per_block(data, model)
                 ground_truth = get_labels_from_keys_per_block(labels)
+                save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-block.npy'))
+                np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-block.npy'), ground_truth)
             else:
                 embeddings = get_embeddings_per_log(data, model)
                 ground_truth = get_labels_from_keys_per_log(data, labels)
-
-            method = 'block' if per_block else 'log'
-
-            np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-{method}.npy'), embeddings)
-            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-{method}.npy'), ground_truth)
+                np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-log.npy'), embeddings)
+                np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-log.npy'), ground_truth)

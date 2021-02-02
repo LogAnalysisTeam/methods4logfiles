@@ -35,7 +35,7 @@ class CustomMinMaxScaler(MinMaxScaler):
     def transform(self, X: List) -> np.array:
         # (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
         diff = self.x_max - self.x_min
-        return np.asarray([(x - self.x_min) / diff for x in X])
+        return np.asarray([(x - self.x_min) / diff for x in X], dtype='object')
 
 
 if __name__ == '__main__':
@@ -48,9 +48,9 @@ if __name__ == '__main__':
     X_train = sc.fit_transform(X_train)
     X_val = sc.transform(X_val)
 
-    X = X_train[y_train == 0][np.random.randint(0, 400000, size=1000)]  # get only normal training examples
+    X = X_train[y_train == 0]#[np.random.randint(0, 400000, size=1000)]  # get only normal training examples
 
-    model = VanillaTCN(epochs=1, learning_rate=0.0001)
+    model = VanillaTCN(epochs=15, learning_rate=0.0001)
     model.fit(X)
 
     test_indices = np.random.randint(0, 50000, size=500)

@@ -107,7 +107,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
         self._model.eval()
         with torch.no_grad():
-            return np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
+            return np.asarray([loss_function(self._model(e), e).item() for e in test_dl])
 
     def _initialize_model(self, input_shape: tuple):
         self._model = VanillaTCNPyTorch(100, [10, 20, 100], 5, 0)
@@ -143,7 +143,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
     def _train_epoch(self, train_dl: DataLoader, optimizer: torch.optim.Optimizer, criterion: nn.Module) -> float:
         loss = 0
         train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
-        for idx, (batch,) in enumerate(train_dl, start=1):
+        for idx, batch in enumerate(train_dl, start=1):
             optimizer.zero_grad()
 
             pred = self._model(batch)

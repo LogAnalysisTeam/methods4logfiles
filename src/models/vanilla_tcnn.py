@@ -110,14 +110,14 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             return np.asarray([loss_function(self._model(e), e).item() for e in test_dl])
 
     def _initialize_model(self, input_shape: tuple):
-        self._model = VanillaTCNPyTorch(100, [10, 20, 100], 5, 0)
+        self._model = VanillaTCNPyTorch(100, [100], 5, 0.2)
         self._model.to(self._device)
 
     def _get_loss_function(self) -> nn.Module:
         if self.loss == 'mean_squared_error':
-            return nn.MSELoss(reduction='sum')  # avoid division by number of examples in mini batch
+            return nn.MSELoss()
         elif self.loss == 'kullback_leibler_divergence':
-            return nn.KLDivLoss(reduction='sum')  # avoid division by number of examples in mini batch
+            return nn.KLDivLoss()
         else:
             raise NotImplementedError(f'"{self.loss}" is not implemented.')
 
@@ -153,5 +153,5 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             optimizer.step()
 
             loss += batch_loss.item()
-            train_dl.set_postfix({'loss': loss / (idx * self.batch_size)})
+            train_dl.set_postfix({'loss': loss / idx})
         return loss

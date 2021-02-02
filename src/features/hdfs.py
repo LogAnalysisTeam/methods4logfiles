@@ -73,7 +73,7 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
             if per_block:
                 embeddings = get_embeddings_per_block(data, model)
                 ground_truth = get_labels_from_keys_per_block(labels)
-                save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-block.npy'))
+                save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-block.pickle'))
                 np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-block.npy'), ground_truth)
             else:
                 embeddings = get_embeddings_per_log(data, model)

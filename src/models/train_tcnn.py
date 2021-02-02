@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     X = X_train[y_train == 0]  # [np.random.randint(0, 400000, size=1000)]  # get only normal training examples
 
-    model = VanillaTCN(epochs=15, learning_rate=0.0001)
+    model = VanillaTCN(epochs=3, learning_rate=0.0001)
     model.fit(X)
 
     test_indices = np.random.randint(0, 50000, size=500)

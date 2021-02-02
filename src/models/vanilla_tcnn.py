@@ -23,6 +23,7 @@ torch.manual_seed(SEED)
 class VanillaTCNPyTorch(nn.Module):
     def __init__(self, input_dim: int, layers: List, kernel_size: int, dropout: float):
         super().__init__()
+        assert kernel_size % 2 == 1 and kernel_size > 1
         self.tcn = TemporalConvNet(input_dim, layers, kernel_size=kernel_size, dropout=dropout)
 
     def forward(self, x: torch.Tensor):
@@ -96,7 +97,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
-                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss / len(X):.5f}, '
+                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, '
                       f'time: {execution_time:.5f} s')
         return self
 
@@ -110,7 +111,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             return np.asarray([loss_function(self._model(e), e).item() for e in test_dl])
 
     def _initialize_model(self, input_shape: tuple):
-        self._model = VanillaTCNPyTorch(100, [100], 5, 0.2)
+        self._model = VanillaTCNPyTorch(100, [128, 256, 100], 9, 0.2)
         self._model.to(self._device)
 
     def _get_loss_function(self) -> nn.Module:
@@ -154,4 +155,4 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
             loss += batch_loss.item()
             train_dl.set_postfix({'loss': loss / idx})
-        return loss
+        return loss / len(train_dl)

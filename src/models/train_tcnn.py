@@ -4,9 +4,8 @@ import numpy as np
 from typing import List
 import pickle
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from torch.utils.data import DataLoader
 
-from src.models.vanilla_tcnn import VanillaTCN, EmbeddingDataset
+from src.models.vanilla_tcnn import VanillaTCN
 from src.visualization.visualization import visualize_distribution_with_labels
 
 SEED = 160121
@@ -48,7 +47,7 @@ if __name__ == '__main__':
     X_train = sc.fit_transform(X_train)
     X_val = sc.transform(X_val)
 
-    X = X_train[y_train == 0]#[np.random.randint(0, 400000, size=1000)]  # get only normal training examples
+    X = X_train[y_train == 0]  # [np.random.randint(0, 400000, size=1000)]  # get only normal training examples
 
     model = VanillaTCN(epochs=15, learning_rate=0.0001)
     model.fit(X)

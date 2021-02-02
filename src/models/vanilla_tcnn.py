@@ -127,9 +127,16 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         else:
             raise NotImplementedError(f'"{self.optimizer}" is not implemented.')
 
+    @staticmethod
+    def custom_collate(data: List):
+        # randomly shuffle data within a batch
+        tensor = data[0]
+        indexes = torch.randperm(tensor.shape[0])
+        return tensor[indexes]
+
     def _numpy_to_tensors(self, X: np.ndarray, batch_size: int) -> DataLoader:
         train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
-        train_dl = DataLoader(train_ds, batch_size=1, shuffle=True)
+        train_dl = DataLoader(train_ds, batch_size=1, shuffle=True, collate_fn=self.custom_collate)
         return train_dl
 
     @time_decorator

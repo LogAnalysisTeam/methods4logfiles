@@ -7,7 +7,8 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import sklearn
 from tqdm import tqdm
-from typing import List
+from typing import List, DefaultDict
+from collections import defaultdict
 import sys
 
 from src.models.utils import time_decorator
@@ -30,21 +31,37 @@ class VanillaTCNPyTorch(nn.Module):
 
 
 class EmbeddingDataset(Dataset):
-    def __init__(self, data: np.ndarray, to: str):
+    def __init__(self, data: np.ndarray, to: str = 'cpu', batch_size: int = 8):
         self.data = data
         self.device = to
+        self.batch_size = batch_size
+
+        self.batches = self._prepare_data()
+
+    def _get_occurrences(self) -> DefaultDict:
+        ret = defaultdict(list)
+        for x in self.data:
+            ret[x.shape].append(x)
+        return ret
+
+    def _prepare_data(self) -> List:
+        occurrences = self._get_occurrences()
+
+        tensors = []
+        for logs in occurrences.values():
+            for i in range(0, len(logs), self.batch_size):
+                batch = np.asarray(logs[i:i + self.batch_size])
+                tensor = torch.from_numpy(batch).permute(0, 2, 1)  # transpose each example in the batch
+                tensors.append(tensor.to(self.device))
+        return tensors
 
     def __len__(self):
-        return len(self.data)
+        return len(self.batches)
 
     def __getitem__(self, idx):
         if torch.is_tensor(idx):
             idx = idx.tolist()
-
-        # transpose each example in order to be consistent with TCN implementation
-        tensor = torch.from_numpy(self.data[idx].T)
-        tensor = torch.unsqueeze(tensor, 0)  # add one dimension, only for batch size = 1
-        return tensor.to(self.device)
+        return self.batches[idx]
 
 
 class VanillaTCN(sklearn.base.OutlierMixin):
@@ -52,7 +69,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
                  loss: str = 'mean_squared_error', learning_rate: float = 0.001, verbose: int = True):
         # add dictionary with architecture of the model i.e., number of layers, hidden units per layer etc.
         self.epochs = epochs
-        self.batch_size = 1  # batch_size # each example has different dimensions
+        self.batch_size = batch_size
         self.optimizer = optimizer
         self.loss = loss
         self.learning_rate = learning_rate
@@ -111,8 +128,8 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             raise NotImplementedError(f'"{self.optimizer}" is not implemented.')
 
     def _numpy_to_tensors(self, X: np.ndarray, batch_size: int) -> DataLoader:
-        train_ds = EmbeddingDataset(X, to=self._device)
-        train_dl = DataLoader(train_ds, batch_size=self.batch_size, shuffle=True)
+        train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
+        train_dl = DataLoader(train_ds, batch_size=1, shuffle=True)
         return train_dl
 
     @time_decorator

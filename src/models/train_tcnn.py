@@ -39,10 +39,10 @@ class CustomMinMaxScaler(MinMaxScaler):
 
 
 if __name__ == '__main__':
-    X_train = load_pickle_file('/home/martin/bdip25/data/processed/HDFS1/X-train-HDFS1-cv1-1-block.npy')
-    X_val = load_pickle_file('/home/martin/bdip25/data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
-    y_train = np.load('/home/martin/bdip25/data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
-    y_val = np.load('/home/martin/bdip25/data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
+    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.npy')
+    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
+    y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
+    y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
     sc = CustomMinMaxScaler()
     X_train = sc.fit_transform(X_train)

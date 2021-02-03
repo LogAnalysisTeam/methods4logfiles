@@ -74,7 +74,7 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
     params = {
         'epochs': np.random.choice(np.arange(10), size=n_experiments).tolist(),
         'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
-        'batch_size': np.random.choice([2 ** i for i in range(8)], size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [100] * n_experiments,
         'layers': generate_layer_settings(100, n_experiments),
         'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 8)], size=n_experiments).tolist(),

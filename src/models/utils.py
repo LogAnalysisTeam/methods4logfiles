@@ -1,5 +1,5 @@
 from time import time_ns
-from typing import Callable, Iterable
+from typing import Callable, Iterable, Dict
 import json
 
 
@@ -16,3 +16,10 @@ def time_decorator(function: Callable):
 def save_experiment(data: Iterable, file_path: str):
     with open(file_path, 'w') as f:
         json.dump(data, f, indent=4, sort_keys=True)
+
+
+def create_experiment_report(metrics: Dict, hyperparameters: Dict) -> Dict:
+    return {
+        'metrics': metrics,
+        'hyperparameters': hyperparameters
+    }

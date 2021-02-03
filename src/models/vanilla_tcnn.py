@@ -86,7 +86,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
         # 2. initialize model
         if not self._model:
-            self._initialize_model(X.shape)
+            self._initialize_model(len(X), [len(X)], 3, 0.2)
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
@@ -110,8 +110,14 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         with torch.no_grad():
             return np.asarray([loss_function(self._model(e), e).item() for e in test_dl])
 
-    def _initialize_model(self, input_shape: tuple):
-        self._model = VanillaTCNPyTorch(100, [128, 256, 100], 9, 0.2)
+    def set_params(self, **kwargs):
+        self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['kernel_size'], kwargs['dropout'])
+        self.epochs = kwargs['epochs']
+        self.batch_size = kwargs['batch_size']
+        self.learning_rate = kwargs['learning_rate']
+
+    def _initialize_model(self, input_shape: int, layers_out: List, kernel_size: int, dropout: float):
+        self._model = VanillaTCNPyTorch(input_shape, layers_out, kernel_size, dropout)
         self._model.to(self._device)
 
     def _get_loss_function(self) -> nn.Module:

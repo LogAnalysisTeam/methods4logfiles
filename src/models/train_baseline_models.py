@@ -11,7 +11,7 @@ from src.features.hdfs import check_order
 from src.data.logparser import load_drain3
 from src.data.hdfs import load_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import save_experiment
+from src.models.utils import save_experiment, create_experiment_report
 
 SEED = 160121
 np.random.seed(SEED)
@@ -27,13 +27,6 @@ def convert_predictions(y_pred: np.array) -> np.array:
     y_pred[y_pred == 1] = 0
     y_pred[y_pred == -1] = 1
     return y_pred
-
-
-def create_experiment_report(metrics: Dict, hyperparameters: Dict) -> Dict:
-    return {
-        'metrics': metrics,
-        'hyperparameters': hyperparameters
-    }
 
 
 def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:

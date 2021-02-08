@@ -20,10 +20,10 @@ torch.manual_seed(SEED)
 class AutoEncoderPyTorch(nn.Module):
     def __init__(self, input_dim: int):
         super().__init__()
-        self.l1 = nn.Linear(in_features=input_dim, out_features=16)
-        self.l2 = nn.Linear(in_features=16, out_features=8)
-        self.l3 = nn.Linear(in_features=8, out_features=16)
-        self.l4 = nn.Linear(in_features=16, out_features=input_dim)
+        self.l1 = nn.Linear(in_features=input_dim, out_features=32)
+        self.l2 = nn.Linear(in_features=32, out_features=16)
+        self.l3 = nn.Linear(in_features=16, out_features=64)
+        self.l4 = nn.Linear(in_features=64, out_features=input_dim)
 
     def forward(self, x: torch.Tensor):
         x = F.relu(self.l1(x))
@@ -50,7 +50,7 @@ class AutoEncoder(sklearn.base.OutlierMixin):
 
     def fit(self, X: np.ndarray) -> AutoEncoder:
         # 1. convert to torch Tensor
-        train_dl = self._numpy_to_tensors(X, batch_size=self.batch_size)
+        train_dl = self._numpy_to_tensors(X, batch_size=self.batch_size, shuffle=True)
 
         # 2. initialize model
         if not self._model:
@@ -70,13 +70,13 @@ class AutoEncoder(sklearn.base.OutlierMixin):
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
-        test_dl = self._numpy_to_tensors(X, batch_size=1)
+        test_dl = self._numpy_to_tensors(X, batch_size=1, shuffle=False)
 
         loss_function = self._get_loss_function()
 
         self._model.eval()
         with torch.no_grad():
-            return sum(loss_function(self._model(e), e).item() for (e,) in test_dl) / len(X)
+            return np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
 
     # def fit_predict(self, X: np.ndarray, y: np.array = None) -> np.array:
     #     # Returns -1 for outliers and 1 for inliers.
@@ -89,9 +89,9 @@ class AutoEncoder(sklearn.base.OutlierMixin):
 
     def _get_loss_function(self) -> nn.Module:
         if self.loss == 'mean_squared_error':
-            return nn.MSELoss(reduction='sum')  # avoid division by number of examples in mini batch
+            return nn.MSELoss()
         elif self.loss == 'kullback_leibler_divergence':
-            return nn.KLDivLoss(reduction='sum')  # avoid division by number of examples in mini batch
+            return nn.KLDivLoss()
         else:
             raise NotImplementedError(f'"{self.loss}" is not implemented.')
 
@@ -101,10 +101,10 @@ class AutoEncoder(sklearn.base.OutlierMixin):
         else:
             raise NotImplementedError(f'"{self.optimizer}" is not implemented.')
 
-    def _numpy_to_tensors(self, X: np.ndarray, batch_size: int) -> DataLoader:
+    def _numpy_to_tensors(self, X: np.ndarray, batch_size: int, shuffle: bool) -> DataLoader:
         X_tensor = torch.from_numpy(X).to(self._device)
         train_ds = TensorDataset(X_tensor)
-        train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
+        train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         return train_dl
 
     @time_decorator

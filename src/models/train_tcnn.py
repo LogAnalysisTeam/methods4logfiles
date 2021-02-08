@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from src.models.vanilla_tcnn import VanillaTCN
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import create_experiment_report, save_experiment
+from src.models.utils import create_experiment_report, save_experiment, create_checkpoint
 
 SEED = 160121
 np.random.seed(SEED)
@@ -102,6 +102,7 @@ def random_search(data_and_labels: tuple, model: VanillaTCN, params: Dict) -> Di
         y_pred = convert_predictions(y_pred, theta)
         metrics_report(y_test, y_pred)
         scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
+        create_checkpoint({'experiments': scores}, '../../models/TCN-hyperparameters-embeddings-all-blocks-HDFS1.json')
     return {
         'experiments': scores
     }

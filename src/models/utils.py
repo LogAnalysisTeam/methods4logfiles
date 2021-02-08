@@ -23,3 +23,8 @@ def create_experiment_report(metrics: Dict, hyperparameters: Dict) -> Dict:
         'metrics': metrics,
         'hyperparameters': hyperparameters
     }
+
+
+def create_checkpoint(data: Iterable, file_path: str):
+    save_experiment(data, file_path)
+

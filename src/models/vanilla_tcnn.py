@@ -149,8 +149,9 @@ class VanillaTCN(sklearn.base.OutlierMixin):
     @time_decorator
     def _train_epoch(self, train_dl: DataLoader, optimizer: torch.optim.Optimizer, criterion: nn.Module) -> float:
         loss = 0
+        n_seen_examples = 0
         train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
-        for idx, batch in enumerate(train_dl, start=1):
+        for batch in train_dl:
             optimizer.zero_grad()
 
             pred = self._model(batch)
@@ -159,6 +160,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             batch_loss.backward()
             optimizer.step()
 
-            loss += batch_loss.item()
-            train_dl.set_postfix({'loss': loss / idx})
-        return loss / len(train_dl)
+            loss += batch_loss.item() * batch.size(0)
+            n_seen_examples += batch.size(0)
+            train_dl.set_postfix({'loss': loss / n_seen_examples})
+        return loss / n_seen_examples

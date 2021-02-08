@@ -82,11 +82,11 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
     def fit(self, X: np.ndarray) -> VanillaTCN:
         # 1. convert to torch Tensor
-        train_dl = self._numpy_to_tensors(X, batch_size=self.batch_size)
+        train_dl = self._numpy_to_tensors(X, batch_size=self.batch_size, shuffle=True)
 
         # 2. initialize model
         if not self._model:
-            self._initialize_model(len(X), [len(X)], 3, 0.2)
+            self._initialize_model(X[0].shape[-1], [X[0].shape[-1]], 3, 0.2)
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
@@ -102,7 +102,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
-        test_dl = self._numpy_to_tensors(X, batch_size=1)
+        test_dl = self._numpy_to_tensors(X, batch_size=1, shuffle=False)
 
         loss_function = self._get_loss_function()
 
@@ -141,9 +141,9 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         indexes = torch.randperm(tensor.shape[0])
         return tensor[indexes]
 
-    def _numpy_to_tensors(self, X: np.ndarray, batch_size: int) -> DataLoader:
+    def _numpy_to_tensors(self, X: np.ndarray, batch_size: int, shuffle: bool) -> DataLoader:
         train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
-        train_dl = DataLoader(train_ds, batch_size=1, shuffle=True, collate_fn=self.custom_collate)
+        train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=self.custom_collate)
         return train_dl
 
     @time_decorator

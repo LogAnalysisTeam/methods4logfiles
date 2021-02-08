@@ -162,5 +162,6 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
             loss += batch_loss.item() * batch.size(0)
             n_seen_examples += batch.size(0)
-            train_dl.set_postfix({'loss': loss / n_seen_examples})
+
+            train_dl.set_postfix({'loss': loss / n_seen_examples, 'curr_loss': batch_loss.item()})
         return loss / n_seen_examples

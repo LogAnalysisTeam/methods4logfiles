@@ -97,8 +97,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
-                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, '
-                      f'time: {execution_time:.5f} s')
+                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -108,7 +107,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
         self._model.eval()
         with torch.no_grad():
-            return np.asarray([loss_function(self._model(e), e).item() for e in test_dl])
+            return np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
 
     def set_params(self, **kwargs):
         self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['kernel_size'], kwargs['dropout'])
@@ -139,11 +138,12 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         # randomly shuffle data within a batch
         tensor = data[0]
         indexes = torch.randperm(tensor.shape[0])
-        return tensor[indexes]
+        return [tensor[indexes]]  # must stay persistent with PyTorch API
 
     def _numpy_to_tensors(self, X: np.ndarray, batch_size: int, shuffle: bool) -> DataLoader:
         train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
-        train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=self.custom_collate)
+        collate_fn = self.custom_collate if shuffle else None
+        train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         return train_dl
 
     @time_decorator
@@ -151,7 +151,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         loss = 0
         n_seen_examples = 0
         train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
-        for batch in train_dl:
+        for (batch,) in train_dl:
             optimizer.zero_grad()
 
             pred = self._model(batch)

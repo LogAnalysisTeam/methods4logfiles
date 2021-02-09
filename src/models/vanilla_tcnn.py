@@ -56,24 +56,53 @@ class EmbeddingDataset(Dataset):
                 tensors.append(tensor.to(self.device))
         return tensors
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.batches)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> torch.Tensor:
         if torch.is_tensor(idx):
             idx = idx.tolist()
         return self.batches[idx]
 
 
+class TrimmedDataset(Dataset):
+    def __init__(self, data: np.ndarray, to: str = 'cpu', trimmed_size: int = 15):
+        self.data = data
+        self.device = to
+        self.trimmed_size = trimmed_size
+
+        self.tensor = self._prepare_data()
+
+    def _prepare_data(self) -> torch.Tensor:
+        dims = len(self.data), self.data[0].shape[1], self.trimmed_size
+        tensors = torch.zeros(*dims, dtype=torch.float32, device=self.device)
+
+        for i in range(len(self.data)):
+            block = self.data[i]
+            used_size = self.trimmed_size if len(block) > self.trimmed_size else len(block)
+            tensors[i, :, :used_size] = torch.from_numpy(block[:used_size, :].T)
+        return tensors
+
+    def __len__(self) -> int:
+        return len(self.tensor)
+
+    def __getitem__(self, idx) -> List:
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+        return [self.tensor[idx]]
+
+
 class VanillaTCN(sklearn.base.OutlierMixin):
     def __init__(self, epochs: int = 1, batch_size: int = 32, optimizer: str = 'adam',
-                 loss: str = 'mean_squared_error', learning_rate: float = 0.001, verbose: int = True):
+                 loss: str = 'mean_squared_error', learning_rate: float = 0.001, dataset_type: str = 'cropped',
+                 verbose: int = True):
         # add dictionary with architecture of the model i.e., number of layers, hidden units per layer etc.
         self.epochs = epochs
         self.batch_size = batch_size
         self.optimizer = optimizer
         self.loss = loss
         self.learning_rate = learning_rate
+        self.dataset_type = dataset_type
         self.verbose = verbose
 
         # internal representation of a torch model
@@ -141,9 +170,15 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         return [tensor[indexes]]  # must stay persistent with PyTorch API
 
     def _numpy_to_tensors(self, X: np.ndarray, batch_size: int, shuffle: bool) -> DataLoader:
-        train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
-        collate_fn = self.custom_collate if shuffle else None
-        train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
+        if self.dataset_type == 'variable_sized':
+            train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
+            collate_fn = self.custom_collate if shuffle else None
+            train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
+        elif self.dataset_type == 'cropped':
+            train_ds = TrimmedDataset(X, to=self._device)
+            train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle, collate_fn=None)
+        else:
+            raise NotImplementedError('This dataset preprocessing is not implemented yet.')
         return train_dl
 
     @time_decorator

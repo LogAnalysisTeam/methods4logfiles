@@ -65,21 +65,21 @@ class EmbeddingDataset(Dataset):
         return self.batches[idx]
 
 
-class TrimmedDataset(Dataset):
-    def __init__(self, data: np.ndarray, to: str = 'cpu', trimmed_size: int = 25):
+class CroppedDataset(Dataset):
+    def __init__(self, data: np.ndarray, to: str = 'cpu', window: int = 25):
         self.data = data
         self.device = to
-        self.trimmed_size = trimmed_size
+        self.window = window
 
         self.tensor = self._prepare_data()
 
     def _prepare_data(self) -> torch.Tensor:
-        dims = len(self.data), self.data[0].shape[1], self.trimmed_size
+        dims = len(self.data), self.data[0].shape[1], self.window
         tensors = torch.zeros(*dims, dtype=torch.float32, device=self.device)
 
         for i in range(len(self.data)):
             block = self.data[i]
-            used_size = self.trimmed_size if len(block) > self.trimmed_size else len(block)
+            used_size = self.window if len(block) > self.window else len(block)
             tensors[i, :, :used_size] = torch.from_numpy(block[:used_size, :].T)
         return tensors
 
@@ -175,7 +175,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             collate_fn = self.custom_collate if shuffle else None
             train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         elif self.dataset_type == 'cropped':
-            train_ds = TrimmedDataset(X, to=self._device)
+            train_ds = CroppedDataset(X, to=self._device)
             train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         else:
             raise NotImplementedError('This dataset preprocessing is not implemented yet.')

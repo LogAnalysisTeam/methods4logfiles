@@ -120,20 +120,25 @@ if __name__ == '__main__':
         sc = CustomMinMaxScaler()
         X_train = sc.fit_transform(X_val)
 
-        n, counts = np.unique([x.shape for x in X_train], return_counts=True)
-        print(sorted(zip(n, counts), key=lambda x: -x[1]))
+        # from src.models.vanilla_tcnn import TrimmedDataset
+        # x = TrimmedDataset(X_train)
+        #
+        # n, counts = np.unique([x.shape for x in X_train], return_counts=True)
+        # print(sorted(zip(n, counts), key=lambda x: -x[1]))
+        #
+        # sh = (25, 100)
+        # y_val = np.asarray([y for x, y in zip(X_train, y_val) if x.shape == sh])
+        # X_train = np.asarray([x for x in X_train if x.shape == sh])
+        #
+        # X = X_train[y_val == 0][:2000]
+        X = X_train[y_val == 0][:40000]
 
-        sh = (25, 100)
-        y_val = np.asarray([y for x, y in zip(X_train, y_val) if x.shape == sh])
-        X_train = np.asarray([x for x in X_train if x.shape == sh])
-
-        X = X_train[y_val == 0][:2000]
-
-        model = VanillaTCN(epochs=3, learning_rate=0.0001)
-        model._initialize_model(100, [100, 100], 3, 0.0)
+        model = VanillaTCN(epochs=1, learning_rate=0.00001)
+        # model._initialize_model(100, [100, 100], 3, 0.0)
         model.fit(X)
 
-        test_indices = list(range(2000, len(X_train))) + [i for i in range(len(X_train)) if y_val[i] == 1 and i < 2000]
+        # test_indices = list(range(2000, len(X_train))) + [i for i in range(len(X_train)) if y_val[i] == 1 and i < 2000]
+        test_indices = np.random.randint(45000, 50000, size=500)
         y_pred = model.predict(X_train[test_indices])
 
         for th in sorted(y_pred[y_val[test_indices] == 1]):

@@ -128,6 +128,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
                 print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
+        del train_dl  # free GPU memory
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -137,7 +138,9 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
         self._model.eval()
         with torch.no_grad():
-            return np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
+            ret = np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
+            del test_dl # free GPU memory
+            return ret
 
     def set_params(self, **kwargs):
         self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['kernel_size'], kwargs['dropout'])

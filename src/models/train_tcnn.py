@@ -116,7 +116,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
     scores = []
     for w in range(1, 50, 2):
         print('Window:', w)
-        model = VanillaTCN(epochs=1, window=w)
+        model = VanillaTCN(epochs=3, window=w)
 
         model.fit(x_train[y_train == 0])
         y_pred = model.predict(x_test)  # return reconstruction errors

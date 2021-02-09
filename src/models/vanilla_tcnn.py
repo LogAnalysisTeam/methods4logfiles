@@ -66,7 +66,7 @@ class EmbeddingDataset(Dataset):
 
 
 class TrimmedDataset(Dataset):
-    def __init__(self, data: np.ndarray, to: str = 'cpu', trimmed_size: int = 15):
+    def __init__(self, data: np.ndarray, to: str = 'cpu', trimmed_size: int = 25):
         self.data = data
         self.device = to
         self.trimmed_size = trimmed_size
@@ -176,7 +176,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         elif self.dataset_type == 'cropped':
             train_ds = TrimmedDataset(X, to=self._device)
-            train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle, collate_fn=None)
+            train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         else:
             raise NotImplementedError('This dataset preprocessing is not implemented yet.')
         return train_dl

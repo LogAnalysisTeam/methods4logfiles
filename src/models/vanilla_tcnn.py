@@ -95,7 +95,7 @@ class CroppedDataset(Dataset):
 class VanillaTCN(sklearn.base.OutlierMixin):
     def __init__(self, epochs: int = 1, batch_size: int = 32, optimizer: str = 'adam',
                  loss: str = 'mean_squared_error', learning_rate: float = 0.001, dataset_type: str = 'cropped',
-                 verbose: int = True):
+                 window: int = 25, verbose: int = True):
         # add dictionary with architecture of the model i.e., number of layers, hidden units per layer etc.
         self.epochs = epochs
         self.batch_size = batch_size
@@ -103,6 +103,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         self.loss = loss
         self.learning_rate = learning_rate
         self.dataset_type = dataset_type
+        self.window = window
         self.verbose = verbose
 
         # internal representation of a torch model
@@ -175,7 +176,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             collate_fn = self.custom_collate if shuffle else None
             train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         elif self.dataset_type == 'cropped':
-            train_ds = CroppedDataset(X, to=self._device)
+            train_ds = CroppedDataset(X, to=self._device, window=self.window)
             train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         else:
             raise NotImplementedError('This dataset preprocessing is not implemented yet.')

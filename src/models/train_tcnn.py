@@ -50,7 +50,7 @@ def generate_layer_settings(input_size: int, size: int) -> List:
 
 def find_optimal_threshold(y_true: np.array, y_pred: np.array) -> tuple:
     ret = {}
-    for th in sorted(y_pred[y_true == 1]):
+    for th in set(y_pred[y_true == 1]):
         tmp = np.zeros(shape=y_pred.shape)
         tmp[y_pred > th] = 1
         f1 = get_metrics(y_true, tmp)['f1_score']
@@ -116,7 +116,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
     scores = []
     for w in range(1, 50, 2):
         print('Window:', w)
-        model = VanillaTCN(epochs=3, window=w)
+        model = VanillaTCN(epochs=1, window=w)
 
         model.fit(x_train[y_train == 0])
         y_pred = model.predict(x_test)  # return reconstruction errors
@@ -124,7 +124,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
         theta, f1 = find_optimal_threshold(y_test, y_pred)
         y_pred = convert_predictions(y_pred, theta)
         metrics_report(y_test, y_pred)
-        scores.append(create_experiment_report(get_metrics(y_test, y_pred), {'window': w, 'epochs': 3}))
+        scores.append(create_experiment_report(get_metrics(y_test, y_pred), {'window': w}))
         create_checkpoint({'experiments': scores}, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
     return {
         'experiments': scores
@@ -132,7 +132,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')

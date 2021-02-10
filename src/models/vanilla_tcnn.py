@@ -138,17 +138,17 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
-        test_dl = self._numpy_to_tensors(X, batch_size=1, shuffle=False)
+        test_dl = self._numpy_to_tensors(X, batch_size=64, shuffle=False)
 
-        loss_function = self._get_loss_function()
+        loss_function = self._get_loss_function(reduction='none')
 
         self._model.eval()
         with torch.no_grad():
-            ret = np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
+            ret = [x for (e,) in test_dl for x in torch.mean(loss_function(self._model(e), e), (1, 2)).tolist()]
 
             del test_dl  # free GPU memory
             torch.cuda.empty_cache()
-            return ret
+            return np.asarray(ret)
 
     def set_params(self, **kwargs):
         self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['kernel_size'], kwargs['dropout'])
@@ -160,11 +160,11 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         self._model = VanillaTCNPyTorch(input_shape, layers_out, kernel_size, dropout)
         self._model.to(self._device)
 
-    def _get_loss_function(self) -> nn.Module:
+    def _get_loss_function(self, reduction: str = 'mean') -> nn.Module:
         if self.loss == 'mean_squared_error':
-            return nn.MSELoss()
+            return nn.MSELoss(reduction=reduction)
         elif self.loss == 'kullback_leibler_divergence':
-            return nn.KLDivLoss()
+            return nn.KLDivLoss(reduction=reduction)
         else:
             raise NotImplementedError(f'"{self.loss}" is not implemented.')
 

@@ -132,7 +132,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = True
+    debug = False
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')

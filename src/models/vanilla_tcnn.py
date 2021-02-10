@@ -133,8 +133,14 @@ class VanillaTCN(sklearn.base.OutlierMixin):
                 digits = int(np.log10(self.epochs)) + 1
                 print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
 
+        print('before')
+        print(torch.cuda.memory_allocated())
+        print(torch.cuda.memory_reserved())
         del train_dl  # free GPU memory
         torch.cuda.empty_cache()
+        print('after')
+        print(torch.cuda.memory_allocated())
+        print(torch.cuda.memory_reserved())
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -144,10 +150,19 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
         self._model.eval()
         with torch.no_grad():
-            ret = [x for (e,) in test_dl for x in torch.mean(loss_function(self._model(e), e), (1, 2)).tolist()]
+            ret = []
+            for (batch,) in test_dl:
+                batch = batch.to(self._device)
+                ret.extend(torch.mean(loss_function(self._model(batch), batch), (1, 2)).tolist())
 
+            print('before')
+            print(torch.cuda.memory_allocated())
+            print(torch.cuda.memory_reserved())
             del test_dl  # free GPU memory
             torch.cuda.empty_cache()
+            print('after')
+            print(torch.cuda.memory_allocated())
+            print(torch.cuda.memory_reserved())
             return np.asarray(ret)
 
     def set_params(self, **kwargs):
@@ -183,11 +198,11 @@ class VanillaTCN(sklearn.base.OutlierMixin):
 
     def _numpy_to_tensors(self, X: np.ndarray, batch_size: int, shuffle: bool) -> DataLoader:
         if self.dataset_type == 'variable_sized':
-            train_ds = EmbeddingDataset(X, to=self._device, batch_size=batch_size)
+            train_ds = EmbeddingDataset(X, batch_size=batch_size)
             collate_fn = self.custom_collate if shuffle else None
             train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         elif self.dataset_type == 'cropped':
-            train_ds = CroppedDataset(X, to=self._device, window=self.window)
+            train_ds = CroppedDataset(X, window=self.window)
             train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         else:
             raise NotImplementedError('This dataset preprocessing is not implemented yet.')
@@ -199,6 +214,8 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         n_seen_examples = 0
         train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
         for (batch,) in train_dl:
+            batch = batch.to(self._device)
+
             optimizer.zero_grad()
 
             pred = self._model(batch)

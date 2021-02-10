@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import torch
 import torch.nn as nn
-from torch.nn import functional as F
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import sklearn
@@ -33,20 +32,20 @@ class VanillaTCNPyTorch(nn.Module):
 
 class EmbeddingDataset(Dataset):
     def __init__(self, data: np.ndarray, to: str = 'cpu', batch_size: int = 8):
-        self.data = data
         self.device = to
         self.batch_size = batch_size
 
-        self.batches = self._prepare_data()
+        self.batches = self._prepare_data(data)
 
-    def _get_occurrences(self) -> DefaultDict:
+    @staticmethod
+    def _get_occurrences(data: np.ndarray) -> DefaultDict:
         ret = defaultdict(list)
-        for x in self.data:
+        for x in data:
             ret[x.shape].append(x)
         return ret
 
-    def _prepare_data(self) -> List:
-        occurrences = self._get_occurrences()
+    def _prepare_data(self, data: np.ndarray) -> List:
+        occurrences = self._get_occurrences(data)
 
         tensors = []
         for logs in occurrences.values():
@@ -55,6 +54,9 @@ class EmbeddingDataset(Dataset):
                 tensor = torch.from_numpy(batch).permute(0, 2, 1)  # transpose each example in the batch
                 tensors.append(tensor.to(self.device))
         return tensors
+
+    def __del__(self):
+        del self.batches
 
     def __len__(self) -> int:
         return len(self.batches)
@@ -67,21 +69,23 @@ class EmbeddingDataset(Dataset):
 
 class CroppedDataset(Dataset):
     def __init__(self, data: np.ndarray, to: str = 'cpu', window: int = 25):
-        self.data = data
         self.device = to
         self.window = window
 
-        self.tensor = self._prepare_data()
+        self.tensor = self._prepare_data(data)
 
-    def _prepare_data(self) -> torch.Tensor:
-        dims = len(self.data), self.data[0].shape[1], self.window
+    def _prepare_data(self, data: np.ndarray) -> torch.Tensor:
+        dims = len(data), data[0].shape[1], self.window
         tensors = torch.zeros(*dims, dtype=torch.float32, device=self.device)
 
-        for i in range(len(self.data)):
-            block = self.data[i]
+        for i in range(len(data)):
+            block = data[i]
             used_size = self.window if len(block) > self.window else len(block)
             tensors[i, :, :used_size] = torch.from_numpy(block[:used_size, :].T)
         return tensors
+
+    def __del__(self):
+        del self.tensor
 
     def __len__(self) -> int:
         return len(self.tensor)
@@ -128,7 +132,9 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
                 print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
+
         del train_dl  # free GPU memory
+        torch.cuda.empty_cache()
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -139,7 +145,9 @@ class VanillaTCN(sklearn.base.OutlierMixin):
         self._model.eval()
         with torch.no_grad():
             ret = np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
-            del test_dl # free GPU memory
+
+            del test_dl  # free GPU memory
+            torch.cuda.empty_cache()
             return ret
 
     def set_params(self, **kwargs):

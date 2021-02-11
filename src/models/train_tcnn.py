@@ -13,6 +13,8 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
+EXPERIMENT_PATH = '../../models/TCN-hyperparameters-embeddings-window-7-HDFS1.json'
+
 
 def load_pickle_file(file_path: str) -> List:
     with open(file_path, 'rb') as f:
@@ -102,7 +104,7 @@ def random_search(data_and_labels: tuple, model: VanillaTCN, params: Dict) -> Di
         y_pred = convert_predictions(y_pred, theta)
         metrics_report(y_test, y_pred)
         scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
-        create_checkpoint({'experiments': scores}, '../../models/TCN-hyperparameters-embeddings-all-blocks-HDFS1.json')
+        create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
     return {
         'experiments': scores
     }
@@ -180,8 +182,8 @@ if __name__ == '__main__':
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-    results = train_window(X_train, X_val, y_train, y_val)
-    save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
+    # results = train_window(X_train, X_val, y_train, y_val)
+    # save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
 
     results = train_tcnn(X_train, X_val, y_train, y_val)
-    save_experiment(results, '../../models/TCN-hyperparameters-embeddings-all-blocks-HDFS1.json')
+    save_experiment(results, EXPERIMENT_PATH)

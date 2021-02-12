@@ -134,18 +134,19 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-        train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
+        # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
         # train_tcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
         X_train = sc.fit_transform(X_val)
+        # X_train = np.asarray(X_val)
 
         # from src.models.vanilla_tcnn import TrimmedDataset
         # x = TrimmedDataset(X_train)

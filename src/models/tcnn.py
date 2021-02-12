@@ -20,8 +20,9 @@ torch.manual_seed(SEED)
 
 
 class TemporalBlock(nn.Module):
-    def __init__(self, n_inputs, n_outputs, kernel_size, stride, dilation, padding, dropout=0.2):
+    def __init__(self, n_inputs, n_outputs, kernel_size, stride, dilation, padding, dropout=0.2, is_last=False):
         super(TemporalBlock, self).__init__()
+        self.is_last_block = is_last
         self.conv1 = weight_norm(nn.Conv1d(n_inputs, n_outputs, kernel_size,
                                            stride=stride, padding=padding, dilation=dilation))
         self.relu1 = nn.ReLU()
@@ -51,7 +52,7 @@ class TemporalBlock(nn.Module):
     def forward(self, x):
         out = self.net(x)
         res = x if self.downsample is None else self.downsample(x)
-        return self.relu(out + res)
+        return self.relu(out + res) if not self.is_last_block else (out + res)
 
 
 class TemporalConvNet(nn.Module):
@@ -63,8 +64,10 @@ class TemporalConvNet(nn.Module):
             dilation_size = 2 ** i
             in_channels = num_inputs if i == 0 else num_channels[i - 1]
             out_channels = num_channels[i]
+            is_last_block = i == num_levels - 1
             layers += [TemporalBlock(in_channels, out_channels, kernel_size, stride=1, dilation=dilation_size,
-                                     padding=((kernel_size - 1) * dilation_size) // 2, dropout=dropout)]
+                                     padding=((kernel_size - 1) * dilation_size) // 2, dropout=dropout,
+                                     is_last=is_last_block)]
 
         self.network = nn.Sequential(*layers)
 

@@ -52,7 +52,7 @@ def train_autoencoder(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
         'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
-        'input_dim': [39] * n_experiments,
+        'input_dim': [48] * n_experiments,
         'layers': generate_layer_settings(n_experiments),
         'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
     }

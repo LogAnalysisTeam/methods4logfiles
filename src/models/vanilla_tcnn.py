@@ -132,8 +132,6 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
                 print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
-
-        torch.cuda.empty_cache()
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -147,8 +145,6 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             for (batch,) in test_dl:
                 batch = batch.to(self._device)
                 ret.extend(torch.mean(loss_function(self._model(batch), batch), (1, 2)).tolist())
-
-            torch.cuda.empty_cache()
             return np.asarray(ret)
 
     def set_params(self, **kwargs):

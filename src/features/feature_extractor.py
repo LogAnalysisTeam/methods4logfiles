@@ -37,15 +37,15 @@ class FeatureExtractor(TransformerMixin):
 
         self.feature_names = dataframe.columns
 
-        ret = dataframe.to_numpy()  # tf_{x_y} => the frequency of x in y document
+        ret = dataframe.to_numpy(dtype=np.float32)  # tf_{x_y} => the frequency of x in y document
 
         if self.method == 'tf-idf':
             df = np.sum(ret > 0, axis=0)  # the number of documents containing x
-            self._idf = np.log(len(ret) / df)
+            self._idf = np.log(len(ret) / df).astype(np.float32)
             ret = ret * self._idf  # tf - idf
 
         if self.preprocessing == 'mean':
-            self._mu = ret.mean(axis=0)
+            self._mu = ret.mean(axis=0, dtype=np.float32)
             ret -= self._mu
         return ret
 
@@ -56,7 +56,7 @@ class FeatureExtractor(TransformerMixin):
         dataframe = self._create_dataframe(data)
 
         self._add_missing_columns(dataframe)
-        ret = dataframe[self.feature_names].to_numpy()
+        ret = dataframe[self.feature_names].to_numpy(dtype=np.float32)
 
         if self.method == 'tf-idf':
             ret = ret * self._idf  # tf - idf

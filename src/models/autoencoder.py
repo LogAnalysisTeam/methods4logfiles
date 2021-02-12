@@ -8,6 +8,7 @@ import numpy as np
 import sklearn
 from tqdm import tqdm
 import sys
+from typing import List
 
 from src.models.utils import time_decorator
 
@@ -18,18 +19,21 @@ torch.manual_seed(SEED)
 
 
 class AutoEncoderPyTorch(nn.Module):
-    def __init__(self, input_dim: int):
+    def __init__(self, input_dim: int, layer_configurations: List, dropout: float):
         super().__init__()
-        self.l1 = nn.Linear(in_features=input_dim, out_features=32)
-        self.l2 = nn.Linear(in_features=32, out_features=16)
-        self.l3 = nn.Linear(in_features=16, out_features=64)
-        self.l4 = nn.Linear(in_features=64, out_features=input_dim)
+
+        layers = [nn.Linear(in_features=input_dim, out_features=layer_configurations[0]), nn.ReLU(),
+                  nn.Dropout(dropout)]
+        for i in range(1, len(layer_configurations)):
+            layers.append(nn.Linear(in_features=layer_configurations[i - 1], out_features=layer_configurations[i]))
+            layers.append(nn.ReLU())
+            layers.append(nn.Dropout(dropout))
+        layers.append(nn.Linear(in_features=layer_configurations[-1], out_features=input_dim))
+
+        self.net = nn.Sequential(*layers)
 
     def forward(self, x: torch.Tensor):
-        x = F.relu(self.l1(x))
-        x = F.relu(self.l2(x))
-        x = F.relu(self.l3(x))
-        x = self.l4(x)
+        x = self.net(x)
         return x
 
 
@@ -54,7 +58,7 @@ class AutoEncoder(sklearn.base.OutlierMixin):
 
         # 2. initialize model
         if not self._model:
-            self._initialize_model(X.shape)
+            self._initialize_model(X.shape[1], [64, 64], 0.2)
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
@@ -65,33 +69,36 @@ class AutoEncoder(sklearn.base.OutlierMixin):
 
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
-                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss / len(X):.5f}, '
-                      f'time: {execution_time:.5f} s')
+                print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
-        test_dl = self._numpy_to_tensors(X, batch_size=1, shuffle=False)
+        test_dl = self._numpy_to_tensors(X, batch_size=64, shuffle=False)
 
-        loss_function = self._get_loss_function()
+        loss_function = self._get_loss_function(reduction='none')
 
         self._model.eval()
         with torch.no_grad():
-            return np.asarray([loss_function(self._model(e), e).item() for (e,) in test_dl])
+            ret = []
+            for (batch,) in test_dl:
+                ret.extend(torch.mean(loss_function(self._model(batch), batch), 1).tolist())
+        return np.asarray(ret)
 
-    # def fit_predict(self, X: np.ndarray, y: np.array = None) -> np.array:
-    #     # Returns -1 for outliers and 1 for inliers.
-    #     # train only using normal data examples
-    #     return self.fit(X[y == 0, :]).predict(X)
+    def set_params(self, **kwargs):
+        self._initialize_model(kwargs['input_dim'], kwargs['layers'], kwargs['dropout'])
+        self.epochs = kwargs['epochs']
+        self.batch_size = kwargs['batch_size']
+        self.learning_rate = kwargs['learning_rate']
 
-    def _initialize_model(self, input_shape: tuple):
-        self._model = AutoEncoderPyTorch(input_dim=input_shape[1])
+    def _initialize_model(self, input_dim: int, layers: List, dropout: float):
+        self._model = AutoEncoderPyTorch(input_dim, layers, dropout)
         self._model.to(self._device)
 
-    def _get_loss_function(self) -> nn.Module:
+    def _get_loss_function(self, reduction: str = 'mean') -> nn.Module:
         if self.loss == 'mean_squared_error':
-            return nn.MSELoss()
+            return nn.MSELoss(reduction=reduction)
         elif self.loss == 'kullback_leibler_divergence':
-            return nn.KLDivLoss()
+            return nn.KLDivLoss(reduction=reduction)
         else:
             raise NotImplementedError(f'"{self.loss}" is not implemented.')
 
@@ -110,8 +117,9 @@ class AutoEncoder(sklearn.base.OutlierMixin):
     @time_decorator
     def _train_epoch(self, train_dl: DataLoader, optimizer: torch.optim.Optimizer, criterion: nn.Module) -> float:
         loss = 0
+        n_seen_examples = 0
         train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
-        for idx, (batch,) in enumerate(train_dl, start=1):
+        for (batch,) in train_dl:
             optimizer.zero_grad()
 
             pred = self._model(batch)
@@ -120,6 +128,8 @@ class AutoEncoder(sklearn.base.OutlierMixin):
             batch_loss.backward()
             optimizer.step()
 
-            loss += batch_loss.item()
-            train_dl.set_postfix({'loss': loss / (idx * self.batch_size)})
-        return loss
+            loss += batch_loss.item() * batch.size(0)
+            n_seen_examples += batch.size(0)
+
+            train_dl.set_postfix({'loss': loss / n_seen_examples, 'curr_loss': batch_loss.item()})
+        return loss / n_seen_examples

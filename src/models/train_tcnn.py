@@ -8,17 +8,13 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from src.models.vanilla_tcnn import VanillaTCN
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import create_experiment_report, save_experiment, create_checkpoint
+from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
+    find_optimal_threshold, convert_predictions
 
 SEED = 160121
 np.random.seed(SEED)
 
 EXPERIMENT_PATH = '../../models/TCN-hyperparameters-embeddings-window-7-HDFS1.json'
-
-
-def load_pickle_file(file_path: str) -> List:
-    with open(file_path, 'rb') as f:
-        return pickle.load(f)
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -41,28 +37,12 @@ class CustomMinMaxScaler(MinMaxScaler):
         return np.asarray([(x - self.x_min) / diff for x in X], dtype='object')
 
 
-def generate_layer_settings(input_size: int, size: int) -> List:
+def generate_layer_settings(input_dim: int, size: int) -> List:
     ret = []
     for n in np.random.randint(1, 6, size=size):
         tmp = np.random.randint(50, 301, size=n).tolist()
-        tmp[-1] = input_size
+        tmp[-1] = input_dim
         ret.append(tmp)
-    return ret
-
-
-def find_optimal_threshold(y_true: np.array, y_pred: np.array) -> tuple:
-    ret = {}
-    for th in set(y_pred[y_true == 1]):
-        tmp = np.zeros(shape=y_pred.shape)
-        tmp[y_pred > th] = 1
-        f1 = get_metrics(y_true, tmp)['f1_score']
-        ret[th] = f1
-    return max(ret.items(), key=lambda x: x[1])
-
-
-def convert_predictions(y_pred: np.array, theta: float) -> np.array:
-    ret = np.zeros(shape=y_pred.shape)
-    ret[y_pred > theta] = 1
     return ret
 
 
@@ -74,7 +54,7 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
     model = VanillaTCN()
     n_experiments = 100
     params = {
-        'epochs': np.random.choice(np.arange(10), size=n_experiments).tolist(),
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
         'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [100] * n_experiments,

@@ -14,7 +14,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/TCN-hyperparameters-embeddings-window-7-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCN-bottleneck-hyperparameters-embeddings-window-15-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -39,10 +39,21 @@ class CustomMinMaxScaler(MinMaxScaler):
 
 def generate_layer_settings(input_dim: int, size: int) -> List:
     ret = []
-    for n in np.random.randint(1, 6, size=size):
-        tmp = np.random.randint(50, 301, size=n).tolist()
-        tmp[-1] = input_dim
-        ret.append(tmp)
+    for i in range(size):
+        layers = []
+
+        n_encoder = np.random.randint(1, 4)
+        layers_encoder = np.random.randint(16, 301, size=n_encoder)
+        layers_encoder.sort(kind='mergesort')
+        layers.extend(layers_encoder.tolist()[::-1])  # descending
+
+        n_decoder = np.random.randint(1, 4)
+        layers_decoder = np.random.randint(16, 301, size=n_decoder)
+        layers_decoder.sort(kind='mergesort')
+        layers.extend(layers_decoder.tolist())  # ascending
+        layers[-1] = input_dim
+
+        ret.append(layers)
     return ret
 
 
@@ -114,7 +125,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = True
+    debug = False
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')

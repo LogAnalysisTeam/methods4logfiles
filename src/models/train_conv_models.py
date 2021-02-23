@@ -48,7 +48,7 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         layers.extend(layers_encoder.tolist()[::-1])  # descending
 
         n_decoder = np.random.randint(1, 4)
-        layers_decoder = np.random.randint(16, 301, size=n_decoder)
+        layers_decoder = np.random.randint(16, 101, size=n_decoder)
         layers_decoder.sort(kind='mergesort')
         layers.extend(layers_decoder.tolist())  # ascending
         layers[-1] = input_dim

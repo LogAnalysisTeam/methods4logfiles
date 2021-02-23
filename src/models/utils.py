@@ -41,8 +41,7 @@ def load_pickle_file(file_path: str) -> Union[List, Dict]:
 def find_optimal_threshold(y_true: np.array, y_pred: np.array) -> tuple:
     ret = {}
     for th in set(y_pred[y_true == 1]):
-        tmp = np.zeros(shape=y_pred.shape)
-        tmp[y_pred > th] = 1
+        tmp = convert_predictions(y_pred, th)
         f1 = get_metrics(y_true, tmp)['f1_score']
         ret[th] = f1
     return max(ret.items(), key=lambda x: x[1])
@@ -50,5 +49,12 @@ def find_optimal_threshold(y_true: np.array, y_pred: np.array) -> tuple:
 
 def convert_predictions(y_pred: np.array, theta: float) -> np.array:
     ret = np.zeros(shape=y_pred.shape)
-    ret[y_pred > theta] = 1
+    ret[y_pred >= theta] = 1
     return ret
+
+
+def get_encoder_size(layers: List):
+    idx = 0
+    while idx < len(layers) - 1 and layers[idx] > layers[idx + 1]:
+        idx += 1
+    return idx + 1

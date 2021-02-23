@@ -51,3 +51,10 @@ def convert_predictions(y_pred: np.array, theta: float) -> np.array:
     ret = np.zeros(shape=y_pred.shape)
     ret[y_pred >= theta] = 1
     return ret
+
+
+def get_encoder_size(layers: List):
+    idx = 0
+    while idx < len(layers) - 1 and layers[idx] > layers[idx + 1]:
+        idx += 1
+    return idx + 1

@@ -103,12 +103,12 @@ class CNN1D(sklearn.base.OutlierMixin):
             return np.asarray(ret)
 
     def set_params(self, **kwargs):
-        self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['encoder_kernel_size'],
-                               kwargs['decoder_kernel_size'])
         self.epochs = kwargs['epochs']
         self.batch_size = kwargs['batch_size']
         self.learning_rate = kwargs['learning_rate']
         self.window = kwargs['window']
+        self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['encoder_kernel_size'],
+                               kwargs['decoder_kernel_size'])
 
     def _initialize_model(self, input_shape: int, layers_out: List, encoder_kernel_size: int, decoder_kernel_size: int):
         self._model = CNN1DPyTorch(input_shape, self.window, layers_out, encoder_kernel_size, decoder_kernel_size)

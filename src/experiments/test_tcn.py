@@ -5,7 +5,7 @@ from math import gcd
 
 from src.models.vanilla_tcnn import VanillaTCN
 from src.visualization.visualization import visualize_distribution_with_labels, visualize_distribution
-from src.models.train_tcnn import CustomMinMaxScaler
+from src.models.train_conv_models import CustomMinMaxScaler
 from src.models.metrics import metrics_report, get_metrics
 
 np.random.seed(1)

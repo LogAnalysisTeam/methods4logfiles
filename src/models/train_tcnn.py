@@ -1,15 +1,15 @@
 from __future__ import annotations
 
 import numpy as np
-from typing import List, Dict
-import pickle
+from typing import List, Dict, Union
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
+from src.models.autoencoder_cnn import CNN1D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
-    find_optimal_threshold, convert_predictions
+    find_optimal_threshold, convert_predictions, get_encoder_size
 
 SEED = 160121
 np.random.seed(SEED)
@@ -57,6 +57,29 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
     return ret
 
 
+def get_min_window_size(kernel: int, maxpool: int, n_encoder_layers: int):
+    # time complexity might be improved with binary search O(log(n)) instead of O(n)
+    for input_dim in range(1, 500):
+        output_dim = input_dim
+        for _ in range(n_encoder_layers):
+            output_dim = output_dim - kernel + 1  # Conv1d
+            output_dim //= maxpool  # MaxPool1d
+
+        if output_dim > 0:
+            return input_dim
+
+
+def get_window_size(encoder_kernels: List, layers: List) -> List:
+    maxpool = 2  # fixed also in the PyTorch model
+
+    windows = []
+    for i, kernel in enumerate(encoder_kernels):
+        n_encoder_layers = get_encoder_size(layers[i])
+        min_window_size = get_min_window_size(kernel, maxpool, n_encoder_layers)
+        windows.append(np.random.randint(min_window_size, min_window_size + 32))
+    return windows
+
+
 def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
     x_train = sc.fit_transform(x_train)
@@ -77,7 +100,32 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: VanillaTCN, params: Dict) -> Dict:
+def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    # sc = CustomMinMaxScaler()
+    # x_train = sc.fit_transform(x_train)
+    # x_test = sc.transform(x_test)
+
+    model = CNN1D()
+    n_experiments = 100
+    embeddings_dim = 100
+
+    encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
+    layers = generate_layer_settings(embeddings_dim, n_experiments)
+    params = {
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': layers,
+        'encoder_kernel_size': encoder_kernel_sizes,
+        'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
+        'window': get_window_size(encoder_kernel_sizes, layers)
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
+
+def random_search(data_and_labels: tuple, model: Union[VanillaTCN, CNN1D], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
     scores = []
@@ -125,7 +173,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
@@ -134,6 +182,8 @@ if __name__ == '__main__':
 
         # train_tcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
+
+        train_cnn1d(None, None, None, None)
 
         sc = CustomMinMaxScaler()
         X_train = sc.fit_transform(X_val)
@@ -152,8 +202,9 @@ if __name__ == '__main__':
         # X = X_train[y_val == 0][:2000]
         X = X_train[y_val == 0][:40000]
 
-        model = VanillaTCN(epochs=1, learning_rate=0.00001)
-        # model._initialize_model(100, [100, 100], 3, 0.0)
+        # model = VanillaTCN(epochs=1, learning_rate=0.00001)
+        model = CNN1D(epochs=3, learning_rate=0.001)
+        # model._initialize_model(100, [64, 32, 64], 3, 6)
         model.fit(X)
 
         # test_indices = list(range(2000, len(X_train))) + [i for i in range(len(X_train)) if y_val[i] == 1 and i < 2000]

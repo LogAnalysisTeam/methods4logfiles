@@ -47,11 +47,10 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         layers_encoder.sort(kind='mergesort')
         layers.extend(layers_encoder.tolist()[::-1])  # descending
 
-        n_decoder = np.random.randint(1, 4)
+        n_decoder = np.random.randint(0, 3)  # one layer is always added in the end of the model
         layers_decoder = np.random.randint(16, 101, size=n_decoder)
         layers_decoder.sort(kind='mergesort')
         layers.extend(layers_decoder.tolist())  # ascending
-        layers[-1] = input_dim
 
         ret.append(layers)
     return ret
@@ -183,8 +182,6 @@ if __name__ == '__main__':
         # train_tcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
-        train_cnn1d(None, None, None, None)
-
         sc = CustomMinMaxScaler()
         X_train = sc.fit_transform(X_val)
         # X_train = np.asarray(X_val)
@@ -204,7 +201,7 @@ if __name__ == '__main__':
 
         # model = VanillaTCN(epochs=1, learning_rate=0.00001)
         model = CNN1D(epochs=3, learning_rate=0.001)
-        # model._initialize_model(100, [64, 32, 64], 3, 6)
+        model._initialize_model(100, [56, 54], 7, 9)
         model.fit(X)
 
         # test_indices = list(range(2000, len(X_train))) + [i for i in range(len(X_train)) if y_val[i] == 1 and i < 2000]

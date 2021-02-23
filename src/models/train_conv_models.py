@@ -101,9 +101,9 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
 
 
 def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    # sc = CustomMinMaxScaler()
-    # x_train = sc.fit_transform(x_train)
-    # x_test = sc.transform(x_test)
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
 
     model = CNN1D()
     n_experiments = 100

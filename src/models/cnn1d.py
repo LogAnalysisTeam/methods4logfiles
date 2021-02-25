@@ -10,7 +10,7 @@ from typing import List
 import sys
 
 from src.models.utils import time_decorator, get_encoder_size
-from src.models.vanilla_tcnn import EmbeddingDataset, CroppedDataset
+from src.models.datasets import EmbeddingDataset, CroppedDataset
 
 SEED = 160121
 
@@ -44,7 +44,6 @@ class CNN1DPyTorch(nn.Module):
         layers.append(nn.Upsample(size=window))  # it works also reversely if Tensor is greater than the window!
 
         self.net = nn.Sequential(*layers)
-
 
     def forward(self, x: torch.Tensor):
         x = self.net(x)

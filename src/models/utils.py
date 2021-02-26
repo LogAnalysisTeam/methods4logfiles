@@ -55,6 +55,6 @@ def convert_predictions(y_pred: np.array, theta: float) -> np.array:
 
 def get_encoder_size(layers: List):
     idx = 0
-    while idx < len(layers) - 1 and layers[idx] > layers[idx + 1]:
+    while idx < len(layers) - 1 and layers[idx] < layers[idx + 1]:  # the sign is set by shape of channels
         idx += 1
     return idx + 1

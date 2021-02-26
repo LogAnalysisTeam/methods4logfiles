@@ -10,7 +10,7 @@ from typing import List
 import sys
 
 from src.models.utils import time_decorator, get_encoder_size
-from src.models.datasets import EmbeddingDataset, CroppedDataset
+from src.models.datasets import EmbeddingDataset, CroppedDataset1D
 
 SEED = 160121
 
@@ -86,6 +86,7 @@ class CNN1D(sklearn.base.OutlierMixin):
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
                 print(f'Epoch: {epoch + 1:{digits}}/{self.epochs}, loss: {loss:.5f}, time: {execution_time:.5f} s')
+        del train_dl  # free the memory
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
@@ -99,6 +100,7 @@ class CNN1D(sklearn.base.OutlierMixin):
             for (batch,) in test_dl:
                 batch = batch.to(self._device)
                 ret.extend(torch.mean(loss_function(self._model(batch), batch), (1, 2)).tolist())
+            del test_dl  # free the memory
             return np.asarray(ret)
 
     def set_params(self, **kwargs):
@@ -140,10 +142,11 @@ class CNN1D(sklearn.base.OutlierMixin):
             collate_fn = self.custom_collate if shuffle else None
             train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         elif self.dataset_type == 'cropped':
-            train_ds = CroppedDataset(X, window=self.window)
+            train_ds = CroppedDataset1D(X, window=self.window)
             train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         else:
             raise NotImplementedError('This dataset preprocessing is not implemented yet.')
+        del train_ds  # free the memory
         return train_dl
 
     @time_decorator

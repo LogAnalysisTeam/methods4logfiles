@@ -5,7 +5,8 @@ from typing import List, Dict, Union
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
-from src.models.autoencoder_cnn import CNN1D
+from src.models.cnn1d import CNN1D
+from src.models.cnn2d import CNN2D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
@@ -123,6 +124,30 @@ def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
     evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
     return evaluated_hyperparams
 
+def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = CNN1D()
+    n_experiments = 100
+    embeddings_dim = 100
+
+    encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
+    layers = generate_layer_settings(embeddings_dim, n_experiments)
+    params = {
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': layers,
+        'encoder_kernel_size': encoder_kernel_sizes,
+        'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
+        'window': get_window_size(encoder_kernel_sizes, layers)
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
 
 def random_search(data_and_labels: tuple, model: Union[VanillaTCN, CNN1D], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
@@ -200,7 +225,7 @@ if __name__ == '__main__':
         X = X_train[y_val == 0][:40000]
 
         # model = VanillaTCN(epochs=1, learning_rate=0.00001)
-        model = CNN1D(epochs=3, learning_rate=0.001)
+        model = CNN1D(epochs=1, learning_rate=0.001)
         model._initialize_model(100, [56, 54], 7, 9)
         model.fit(X)
 

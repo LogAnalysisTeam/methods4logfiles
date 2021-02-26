@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
 from src.models.cnn1d import CNN1D
-#from src.models.cnn2d import CNN2D
+# from src.models.cnn2d import CNN2D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
@@ -15,7 +15,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/CNN1D-bottleneck-hyperparameters-embeddings-HDFS1.json'
+EXPERIMENT_PATH = '../../models/CNN1D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -44,14 +44,14 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         layers = []
 
         n_encoder = np.random.randint(1, 4)
-        layers_encoder = np.random.randint(16, 301, size=n_encoder)
+        layers_encoder = np.random.randint(50, 301, size=n_encoder)
         layers_encoder.sort(kind='mergesort')
-        layers.extend(layers_encoder.tolist()[::-1])  # descending
+        layers.extend(layers_encoder.tolist())  # ascending
 
         n_decoder = np.random.randint(0, 3)  # one layer is always added in the end of the model
-        layers_decoder = np.random.randint(16, 101, size=n_decoder)
+        layers_decoder = np.random.randint(50, layers_encoder[-1], size=n_decoder)
         layers_decoder.sort(kind='mergesort')
-        layers.extend(layers_decoder.tolist())  # ascending
+        layers.extend(layers_decoder.tolist()[::-1])  # descending
 
         ret.append(layers)
     return ret
@@ -123,6 +123,7 @@ def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
     }
     evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
     return evaluated_hyperparams
+
 
 def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
@@ -204,7 +205,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        # train_tcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        # train_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -226,7 +227,7 @@ if __name__ == '__main__':
 
         # model = VanillaTCN(epochs=1, learning_rate=0.00001)
         model = CNN1D(epochs=1, learning_rate=0.001)
-        model._initialize_model(100, [56, 54], 7, 9)
+        model._initialize_model(100, [16, 32, 64, 32, 16], 3, 7)
         model.fit(X)
 
         # test_indices = list(range(2000, len(X_train))) + [i for i in range(len(X_train)) if y_val[i] == 1 and i < 2000]

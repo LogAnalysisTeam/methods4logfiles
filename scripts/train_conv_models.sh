@@ -2,7 +2,7 @@
 #SBATCH --partition=gpulong
 #SBATCH --time=72:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1 --cpus-per-task=4
-#SBATCH --mem=50G
+#SBATCH --mem=100G
 #SBATCH --gres=gpu:1
 #SBATCH --error=../../logs/tcnnHDFS1.%j.err
 #SBATCH --out=../../logs/tcnnHDFS1.%j.out
@@ -15,4 +15,4 @@ export PYTHONPATH=$PYTHONPATH:/home/korytmar/methods4logfiles
 
 # train TCN model and evaluate hyperparameters on random search
 cd /home/korytmar/methods4logfiles/src/models
-python train_tcnn.py
+python train_conv_models.py

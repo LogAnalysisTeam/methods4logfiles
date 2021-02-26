@@ -11,7 +11,7 @@ import sys
 
 from src.models.utils import time_decorator
 from src.models.tcnn import TemporalConvNet
-from src.models.datasets import CroppedDataset, EmbeddingDataset
+from src.models.datasets import CroppedDataset1D, EmbeddingDataset
 
 SEED = 160121
 
@@ -118,7 +118,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             collate_fn = self.custom_collate if shuffle else None
             train_dl = DataLoader(train_ds, batch_size=1, shuffle=shuffle, collate_fn=collate_fn)
         elif self.dataset_type == 'cropped':
-            train_ds = CroppedDataset(X, window=self.window)
+            train_ds = CroppedDataset1D(X, window=self.window)
             train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=shuffle)
         else:
             raise NotImplementedError('This dataset preprocessing is not implemented yet.')

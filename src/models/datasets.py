@@ -42,7 +42,7 @@ class EmbeddingDataset(Dataset):
         return self.batches[idx]
 
 
-class CroppedDataset(Dataset):
+class CroppedDataset1D(Dataset):
     def __init__(self, data: np.ndarray, to: str = 'cpu', window: int = 25):
         self.device = to
         self.window = window
@@ -57,6 +57,35 @@ class CroppedDataset(Dataset):
             block = data[i]
             used_size = self.window if len(block) > self.window else len(block)
             tensors[i, :, :used_size] = torch.from_numpy(block[:used_size, :].T)
+        return tensors
+
+    def __del__(self):
+        del self.tensor
+
+    def __len__(self) -> int:
+        return len(self.tensor)
+
+    def __getitem__(self, idx) -> List:
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+        return [self.tensor[idx]]
+
+
+class CroppedDataset2D(Dataset):
+    def __init__(self, data: np.ndarray, to: str = 'cpu', window: int = 25):
+        self.device = to
+        self.window = window
+
+        self.tensor = self._prepare_data(data)
+
+    def _prepare_data(self, data: np.ndarray) -> torch.Tensor:
+        dims = len(data), 1, data[0].shape[1], self.window
+        tensors = torch.zeros(*dims, dtype=torch.float32, device=self.device)
+
+        for i in range(len(data)):
+            block = data[i]
+            used_size = self.window if len(block) > self.window else len(block)
+            tensors[i, 0, :, :used_size] = torch.from_numpy(block[:used_size, :].T)
         return tensors
 
     def __del__(self):

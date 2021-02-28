@@ -111,7 +111,7 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
     n_experiments = 100
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [100] * n_experiments,
         'layers': generate_layer_settings(100, n_experiments),
@@ -135,7 +135,7 @@ def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
     layers = generate_layer_settings(embeddings_dim, n_experiments)
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [embeddings_dim] * n_experiments,
         'layers': layers,
@@ -156,14 +156,14 @@ def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
     n_experiments = 100
     embeddings_dim = 100
 
-    encoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(1, 7)], [2 * i + 1 for i in range(1, 4)],
+    encoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(1, 5)], [2 * i + 1 for i in range(1, 4)],
                                           n_experiments)
-    decoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(2, 10)], [2 * i + 1 for i in range(2, 7)],
+    decoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(2, 8)], [2 * i + 1 for i in range(1, 5)],
                                           n_experiments)
     layers = generate_layer_settings(embeddings_dim, n_experiments)
     params = {
-        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
+        'epochs': np.random.choice(np.arange(1, 6), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [embeddings_dim] * n_experiments,
         'layers': layers,

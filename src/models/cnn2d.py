@@ -38,7 +38,6 @@ class CNN2DPyTorch(nn.Module):
             layers.append(nn.Upsample(scale_factor=upsampling_factor))
 
         layers.append(nn.ConvTranspose2d(layer_configurations[-1], 1, kernel_size=decoder_kernel))
-        layers.append(nn.ReLU())
         # it works also reversely if Tensor is greater than the window!
         layers.append(nn.Upsample(size=(input_dim, window)))
 

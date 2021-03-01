@@ -40,7 +40,6 @@ class CNN1DPyTorch(nn.Module):
             layers.append(nn.Upsample(scale_factor=upsampling_factor))
 
         layers.append(nn.ConvTranspose1d(layer_configurations[-1], input_dim, kernel_size=decoder_kernel_size))
-        layers.append(nn.ReLU())
         layers.append(nn.Upsample(size=window))  # it works also reversely if Tensor is greater than the window!
 
         self.net = nn.Sequential(*layers)

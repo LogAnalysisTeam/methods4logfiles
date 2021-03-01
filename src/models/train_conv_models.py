@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import numpy as np
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Callable
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
 from src.models.cnn1d import CNN1D
 from src.models.cnn2d import CNN2D
+from src.models.tcnn_cnn1d import TCNCNN1D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
@@ -15,7 +16,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/CNN2D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -44,14 +45,18 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         layers = []
 
         n_encoder = np.random.randint(1, 4)
-        layers_encoder = np.random.randint(16, 301, size=n_encoder)
+        layers_encoder = np.random.randint(50, 501, size=n_encoder)
         layers_encoder.sort(kind='mergesort')
-        layers.extend(layers_encoder.tolist())  # ascending
+        layers.append(layers_encoder.tolist())  # ascending
+
+        n_tcnn = np.random.randint(1, 4)
+        layers_tcnn = np.random.randint(50, 501, size=n_tcnn)
+        layers.append(layers_tcnn.tolist())
 
         n_decoder = np.random.randint(0, 3)  # one layer is always added in the end of the model
-        layers_decoder = np.random.randint(16, layers_encoder[-1], size=n_decoder)
+        layers_decoder = np.random.randint(50, 501, size=n_decoder)
         layers_decoder.sort(kind='mergesort')
-        layers.extend(layers_decoder.tolist()[::-1])  # descending
+        layers.append(layers_decoder.tolist()[::-1])  # descending
 
         ret.append(layers)
     return ret
@@ -69,12 +74,12 @@ def get_min_window_size(kernel: int, maxpool: int, n_encoder_layers: int):
             return input_dim
 
 
-def get_1d_window_size(encoder_kernels: List, layers: List) -> List:
+def get_1d_window_size(encoder_kernels: List, layers: List, get_number_of_encoder_layers: Callable) -> List:
     maxpool = 2  # fixed also in the PyTorch model
 
     windows = []
     for i, kernel in enumerate(encoder_kernels):
-        n_encoder_layers = get_encoder_size(layers[i])
+        n_encoder_layers = get_number_of_encoder_layers(layers[i])
         min_window_size = get_min_window_size(kernel, maxpool, n_encoder_layers)
         windows.append(np.random.randint(min_window_size, min_window_size + 32))
     return windows
@@ -141,7 +146,7 @@ def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
         'layers': layers,
         'encoder_kernel_size': encoder_kernel_sizes,
         'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
-        'window': get_1d_window_size(encoder_kernel_sizes, layers)
+        'window': get_1d_window_size(encoder_kernel_sizes, layers, get_encoder_size)
     }
     evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
     return evaluated_hyperparams
@@ -175,7 +180,34 @@ def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: Union[VanillaTCN, CNN1D, CNN2D], params: Dict) -> Dict:
+def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = TCNCNN1D()
+    n_experiments = 100
+    embeddings_dim = 100
+
+    encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
+    layers = generate_layer_settings(embeddings_dim, n_experiments)
+    params = {
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': layers,
+        'encoder_kernel_size': encoder_kernel_sizes,
+        'tcn_kernel_size': np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist(),
+        'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
+        'window': get_1d_window_size(encoder_kernel_sizes, layers, lambda x: len(x[0])),
+        'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
+
+def random_search(data_and_labels: tuple, model: Union[VanillaTCN, CNN1D, CNN2D, TCNCNN1D], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
     scores = []
@@ -230,7 +262,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        # train_cnn2d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_tcnn_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -251,7 +283,11 @@ if __name__ == '__main__':
         X = X_train[y_val == 0][:40000]
 
         # model = VanillaTCN(epochs=1, learning_rate=0.00001)
-        model = CNN2D(epochs=1, learning_rate=0.001)
+
+        # from torchsummary import summary
+        model = TCNCNN1D(epochs=1, learning_rate=0.001)
+        # model = TCNCNN1DPyTorch(100, 35, [], 0, 0)
+        # print(summary(model, (100, 35)))
         # model._initialize_model(100, [16, 32, 64, 32, 16], 3, 7)
         model.fit(X)
 
@@ -282,5 +318,8 @@ if __name__ == '__main__':
     # results = train_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_cnn2d(X_train, X_val, y_train, y_val)
+    # results = train_cnn2d(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

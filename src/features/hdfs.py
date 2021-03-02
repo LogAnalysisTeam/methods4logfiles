@@ -34,15 +34,20 @@ def extract_datetime_from_line(regex: re.Pattern, line: str) -> str:
     return res.group()
 
 
-def get_timestamp(timestamp: str) -> float:
+def get_datetime(timestamp: str) -> datetime:
     datetime_object = datetime.strptime(timestamp, '%y%m%d %H%M%S')
-    return datetime_object.timestamp()
+    return datetime_object
+
+
+def to_seconds(timedelta: np.array) -> np.array:
+    return np.vectorize(lambda x: int(x.total_seconds()))(timedelta)
 
 
 def get_timedeltas(timestamps: np.array) -> np.array:
-    timedeltas = np.zeros(shape=timestamps.shape, dtype=np.float32)
-    timedeltas[1:] = timestamps[1:] - timestamps[:-1]
+    timedeltas = np.zeros(shape=timestamps.shape, dtype=np.int32)
+    timedeltas[1:] = to_seconds(timestamps[1:] - timestamps[:-1])
     timedeltas[timedeltas == 0] = 1  # due to undefined behaviour of log10
+    # timedeltas += 1 # we don't lose the information about difference 1
     timedeltas = np.log10(timedeltas)  # decrease importance of large time differences
     return timedeltas
 
@@ -50,10 +55,10 @@ def get_timedeltas(timestamps: np.array) -> np.array:
 def get_timestamps(block_of_logs: List) -> np.array:
     regex = re.compile(r'(^\d{6} \d{6})')
 
-    timestamps = np.zeros(shape=(len(block_of_logs),), dtype=np.float32)
+    timestamps = np.empty(shape=(len(block_of_logs),), dtype=np.object)
     for i, log in enumerate(block_of_logs):
         str_timestamp = extract_datetime_from_line(regex, log)
-        timestamps[i] = get_timestamp(str_timestamp)
+        timestamps[i] = get_datetime(str_timestamp)
 
     timedeltas = get_timedeltas(timestamps)
     return timedeltas
@@ -114,13 +119,12 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
     n_folds = get_number_of_splits(fasttext_model_path)
     model = fasttext.load_model(fasttext_model_path)
 
-    for fold in ['val']:  # ['train', 'val']:
+    for fold in ['train', 'val']:
         for idx, (data, labels) in enumerate(load_fold_pairs(data_dir, n_folds, fold), start=1):
             # check data.keys() and labels['BlockId'] are in the same order
             check_order(data.keys(), labels['BlockId'])
 
             if per_block:
-                print(data[list(data.keys())[0]])
                 embeddings = get_embeddings_per_block(data, model, with_timestamp)
                 ground_truth = get_labels_from_keys_per_block(labels)
                 save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-block.pickle'))

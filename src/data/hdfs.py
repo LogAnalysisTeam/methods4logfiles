@@ -19,7 +19,7 @@ def load_labels(file_path: str) -> pd.DataFrame:
 def load_data(file_path: str) -> DefaultDict:
     traces = defaultdict(list)
 
-    regex = re.compile(r'(blk_-?\d+)')  # pattern is to find eg. blk_-1608999687919862906
+    regex = re.compile(r'(blk_-?\d+)')  # pattern eg. blk_-1608999687919862906
 
     with open(file_path, 'r') as f:
         for line in f:

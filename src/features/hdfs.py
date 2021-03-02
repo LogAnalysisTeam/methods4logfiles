@@ -57,7 +57,7 @@ def get_labels_from_keys_per_block(labels: pd.DataFrame) -> np.array:
 
 def check_order(keys: Iterable, block_ids: pd.Series):
     if not all(x == y for x, y in zip(keys, block_ids.tolist())):
-        raise AssertionError('Data keys and block ids are not in the same order')
+        raise AssertionError('Data keys and block ids are not in the same order!')
 
 
 def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, per_block: bool):
@@ -66,7 +66,6 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
 
     for fold in ['train', 'val']:
         for idx, (data, labels) in enumerate(load_fold_pairs(data_dir, n_folds, fold), start=1):
-            # temporal check
             # check data.keys() and labels['BlockId'] are in the same order
             check_order(data.keys(), labels['BlockId'])
 

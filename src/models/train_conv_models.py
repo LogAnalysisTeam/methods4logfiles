@@ -16,7 +16,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-standard-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -45,9 +45,15 @@ class CustomStandardScaler(StandardScaler):
         self.std = None
         self.mean = None
 
+    @staticmethod
+    def _flatten_dataset(dataset: List) -> np.array:
+        ret = np.array([embedding for block in dataset for embedding in block])
+        return ret
+
     def fit(self, X: List, y=None) -> CustomStandardScaler:
-        self.std = 1
-        self.mean = 0
+        data = self._flatten_dataset(X)
+        self.std = data.std(axis=0)
+        self.mean = data.mean(axis=0)
         return self
 
     def fit_transform(self, X: List, y: np.array = None, **fit_params) -> np.array:
@@ -202,7 +208,7 @@ def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
 
 
 def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    sc = CustomMinMaxScaler()
+    sc = CustomStandardScaler()  # CustomMinMaxScaler()
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
@@ -276,7 +282,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = True
+    debug = False
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
@@ -325,8 +331,8 @@ if __name__ == '__main__':
         visualize_distribution_with_labels(y_pred, y_val[test_indices], to_file=False)
         exit()
 
-    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.npy')
-    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
+    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
+    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 

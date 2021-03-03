@@ -39,6 +39,25 @@ class CustomMinMaxScaler(MinMaxScaler):
         return np.asarray([(x - self.x_min) / diff for x in X], dtype='object')
 
 
+class CustomStandardScaler(StandardScaler):
+    def __init__(self):
+        super().__init__()
+        self.std = None
+        self.mean = None
+
+    def fit(self, X: List, y=None) -> CustomStandardScaler:
+        self.std = 1
+        self.mean = 0
+        return self
+
+    def fit_transform(self, X: List, y: np.array = None, **fit_params) -> np.array:
+        return self.fit(X).transform(X)
+
+    def transform(self, X: List, copy=None) -> np.array:
+        # (X - X.mean(axis=0)) / X.std(axis=0)
+        return np.asarray([(x - self.mean) / self.std for x in X], dtype='object')
+
+
 def generate_layer_settings(input_dim: int, size: int) -> List:
     ret = []
     for i in range(size):
@@ -114,12 +133,14 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
 
     model = VanillaTCN()
     n_experiments = 100
+    embeddings_dim = x_train[0].shape[1]
+
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
         'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
-        'input_shape': [100] * n_experiments,
-        'layers': generate_layer_settings(100, n_experiments),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': generate_layer_settings(embeddings_dim, n_experiments),
         'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 8)], size=n_experiments).tolist(),
         'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
     }
@@ -134,7 +155,7 @@ def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
 
     model = CNN1D()
     n_experiments = 100
-    embeddings_dim = 100
+    embeddings_dim = x_train[0].shape[1]
 
     encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
     layers = generate_layer_settings(embeddings_dim, n_experiments)
@@ -159,7 +180,7 @@ def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
 
     model = CNN2D()
     n_experiments = 100
-    embeddings_dim = 100
+    embeddings_dim = x_train[0].shape[1]
 
     encoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(1, 5)], [2 * i + 1 for i in range(1, 4)],
                                           n_experiments)
@@ -187,7 +208,7 @@ def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.
 
     model = TCNCNN1D()
     n_experiments = 100
-    embeddings_dim = 100
+    embeddings_dim = x_train[0].shape[1]
 
     encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
     layers = generate_layer_settings(embeddings_dim, n_experiments)
@@ -255,7 +276,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')

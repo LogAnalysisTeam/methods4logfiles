@@ -16,7 +16,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-standard-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-timedeltas-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -208,7 +208,7 @@ def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
 
 
 def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    sc = CustomStandardScaler()  # CustomMinMaxScaler()
+    sc = CustomMinMaxScaler()
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
@@ -289,7 +289,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        train_tcnn_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_tcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()

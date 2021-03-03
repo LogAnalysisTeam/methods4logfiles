@@ -43,7 +43,7 @@ def to_seconds(timedelta: np.array) -> np.array:
     return np.vectorize(lambda x: int(x.total_seconds()))(timedelta)
 
 
-def get_timedeltas(timestamps: np.array) -> np.array:
+def calculate_timedeltas_from_timestamps(timestamps: np.array) -> np.array:
     timedeltas = np.zeros(shape=timestamps.shape, dtype=np.int32)
     timedeltas[1:] = to_seconds(timestamps[1:] - timestamps[:-1])
     timedeltas[timedeltas == 0] = 1  # due to undefined behaviour of log10
@@ -52,7 +52,7 @@ def get_timedeltas(timestamps: np.array) -> np.array:
     return timedeltas
 
 
-def get_timestamps(block_of_logs: List) -> np.array:
+def get_timedeltas(block_of_logs: List) -> np.array:
     regex = re.compile(r'(^\d{6} \d{6})')
 
     timestamps = np.empty(shape=(len(block_of_logs),), dtype=np.object)
@@ -60,18 +60,18 @@ def get_timestamps(block_of_logs: List) -> np.array:
         str_timestamp = extract_datetime_from_line(regex, log)
         timestamps[i] = get_datetime(str_timestamp)
 
-    timedeltas = get_timedeltas(timestamps)
+    timedeltas = calculate_timedeltas_from_timestamps(timestamps)
     return timedeltas
 
 
-def get_embeddings_per_block_with_timestamps(data: defaultdict, model: fasttext.FastText) -> List:
+def get_embeddings_with_timedeltas_per_block(data: defaultdict, model: fasttext.FastText) -> List:
     embeddings = []
     for logs in data.values():
         numpy_block = np.zeros(shape=(len(logs), model.get_dimension() + 1), dtype=np.float32)
 
         for i, log in enumerate(logs):
             numpy_block[i, 1:] = model.get_sentence_vector(log.rstrip())
-        numpy_block[:, 0] = get_timestamps(logs)
+        numpy_block[:, 0] = get_timedeltas(logs)
 
         embeddings.append(numpy_block)
     return embeddings
@@ -83,10 +83,10 @@ def get_embeddings_per_log(data: defaultdict, model: fasttext.FastText) -> np.nd
     return np.asarray(embeddings)
 
 
-def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText, with_timestamp: bool) -> List:
+def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText, with_timedelta: bool) -> List:
     # create embeddings per block but at first remove '\n' (newline character) from the end
-    if with_timestamp:
-        embeddings = get_embeddings_per_block_with_timestamps(data, model)
+    if with_timedelta:
+        embeddings = get_embeddings_with_timedeltas_per_block(data, model)
     else:
         embeddings = [np.asarray([model.get_sentence_vector(log.rstrip()) for log in logs]) for logs in data.values()]
     return embeddings
@@ -115,7 +115,7 @@ def check_order(keys: Iterable, block_ids: pd.Series):
         raise AssertionError('Data keys and block ids are not in the same order!')
 
 
-def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, per_block: bool, with_timestamp: bool):
+def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, per_block: bool, with_timedelta: bool):
     n_folds = get_number_of_splits(fasttext_model_path)
     model = fasttext.load_model(fasttext_model_path)
 
@@ -125,7 +125,7 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
             check_order(data.keys(), labels['BlockId'])
 
             if per_block:
-                embeddings = get_embeddings_per_block(data, model, with_timestamp)
+                embeddings = get_embeddings_per_block(data, model, with_timedelta)
                 ground_truth = get_labels_from_keys_per_block(labels)
                 save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-block.pickle'))
                 np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-block.npy'), ground_truth)

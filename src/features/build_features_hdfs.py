@@ -10,7 +10,7 @@ if __name__ == '__main__':
                         help='a location with HDFS1 training data (default: ../../data/interim/HDFS1)')
     parser.add_argument('-out', type=str, metavar='PATH/TO/FOLDER', dest='output', default='../../data/processed/HDFS1',
                         help='a location where all processed data will be saved (default: ../../data/processed/HDFS1)')
-    parser.add_argument('--timestamp', action='store_true', dest='timestamp',
+    parser.add_argument('--timedelta', action='store_true', dest='timedelta',
                         help='if provided a new feature will be generated which keeps information about time (available'
                              ' only for --per-block option)')
 
@@ -22,4 +22,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    create_embeddings(args.input, args.output, args.model, args.per_block, args.timestamp)
+    create_embeddings(args.input, args.output, args.model, args.per_block, args.timedelta)

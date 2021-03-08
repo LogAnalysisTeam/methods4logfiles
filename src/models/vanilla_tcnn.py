@@ -82,6 +82,7 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             return np.asarray(ret)
 
     def set_params(self, **kwargs):
+        self.window = kwargs['window']
         self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['kernel_size'], kwargs['dropout'])
         self.epochs = kwargs['epochs']
         self.batch_size = kwargs['batch_size']

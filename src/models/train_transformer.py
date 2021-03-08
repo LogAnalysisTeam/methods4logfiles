@@ -68,14 +68,14 @@ def train_transformer(x_train: List, x_test: List, y_train: np.array, y_test: np
 
     divisors = get_all_divisors(embeddings_dim)
     params = {
-        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'epochs': np.random.choice(np.arange(1, 5), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-5, -1), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_dim': [embeddings_dim] * n_experiments,
         'heads': np.random.choice(divisors, size=n_experiments, p=get_dist(divisors)).tolist(),
-        'n_encoders': np.random.randint(1, 10, size=n_experiments).tolist(),
-        'n_decoders': np.random.randint(1, 10, size=n_experiments).tolist(),
-        'dim_feedforward': np.random.randint(50, 500, size=n_experiments).tolist(),
+        'n_encoders': np.random.randint(1, 5, size=n_experiments).tolist(),
+        'n_decoders': np.random.randint(1, 5, size=n_experiments).tolist(),
+        'dim_feedforward': np.random.randint(100, 2000, size=n_experiments).tolist(),
         'window': np.random.randint(10, 100, size=n_experiments).tolist(),
         'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
     }

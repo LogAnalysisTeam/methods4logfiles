@@ -16,7 +16,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-timedeltas-plus-one-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCN-hyperparameters-embeddings-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -65,6 +65,8 @@ class CustomStandardScaler(StandardScaler):
 
 
 def generate_layer_settings(input_dim: int, size: int) -> List:
+    return [np.random.randint(100, 2000, size=np.random.randint(1, 4)).tolist() + [100] for _ in range(size)]
+
     ret = []
     for i in range(size):
         layers = []
@@ -143,11 +145,12 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
 
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-5, -1), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [embeddings_dim] * n_experiments,
         'layers': generate_layer_settings(embeddings_dim, n_experiments),
-        'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 8)], size=n_experiments).tolist(),
+        'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 6)], size=n_experiments).tolist(),
+        'window': np.random.randint(10, 100, size=n_experiments).tolist(),        
         'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
     }
     evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
@@ -339,8 +342,8 @@ if __name__ == '__main__':
     # results = train_window(X_train, X_val, y_train, y_val)
     # save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
 
-    # results = train_tcnn(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = train_tcnn(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
@@ -348,5 +351,5 @@ if __name__ == '__main__':
     # results = train_cnn2d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)

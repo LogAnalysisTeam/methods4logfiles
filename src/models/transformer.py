@@ -58,7 +58,7 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
         return self
 
     def predict(self, X: np.ndarray) -> np.array:
-        test_dl = self._numpy_to_tensors(X, batch_size=512, shuffle=False)
+        test_dl = self._numpy_to_tensors(X, batch_size=128, shuffle=False)
 
         loss_function = self._get_loss_function(reduction='none')
 

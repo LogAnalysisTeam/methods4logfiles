@@ -16,7 +16,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-timedeltas-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-timedeltas-plus-one-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):

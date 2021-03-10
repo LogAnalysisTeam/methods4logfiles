@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import torch
 import torch.nn as nn
+from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data import DataLoader
 import numpy as np
 import sklearn
@@ -46,10 +47,11 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
+        scheduler = self._get_warmup_optimizer(opt, n_steps=int(0.1 * len(train_dl) * self.epochs))
 
         for epoch in range(self.epochs):
             self._model.train()
-            loss, execution_time = self._train_epoch(train_dl, opt, loss_function)
+            loss, execution_time = self._train_epoch(train_dl, opt, loss_function, scheduler)
 
             if self.verbose:
                 digits = int(np.log10(self.epochs)) + 1
@@ -101,6 +103,10 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
             raise NotImplementedError(f'"{self.optimizer}" is not implemented.')
 
     @staticmethod
+    def _get_warmup_optimizer(optimizer: torch.optim.Optimizer, n_steps: int) -> LambdaLR:
+        return LambdaLR(optimizer, lambda step: (step / max(1, n_steps)) if step < n_steps else 1)
+
+    @staticmethod
     def custom_collate(data: List) -> List:
         # randomly shuffle data within a batch
         tensor = data[0]
@@ -121,7 +127,8 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
         return train_dl
 
     @time_decorator
-    def _train_epoch(self, train_dl: DataLoader, optimizer: torch.optim.Optimizer, criterion: nn.Module) -> float:
+    def _train_epoch(self, train_dl: DataLoader, optimizer: torch.optim.Optimizer, criterion: nn.Module,
+                     scheduler: LambdaLR) -> float:
         loss = 0
         n_seen_examples = 0
         train_dl = tqdm(train_dl, file=sys.stdout, ascii=True, unit='batch')
@@ -136,6 +143,7 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
 
             batch_loss.backward()
             optimizer.step()
+            scheduler.step()
 
             loss += batch_loss.item() * batch.size(0)
             n_seen_examples += batch.size(0)

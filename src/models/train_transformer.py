@@ -69,7 +69,7 @@ def train_transformer(x_train: List, x_test: List, y_train: np.array, y_test: np
     divisors = get_all_divisors(embeddings_dim)
     params = {
         'epochs': np.random.choice(np.arange(1, 5), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-5, -1), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_dim': [embeddings_dim] * n_experiments,
         'heads': np.random.choice(divisors, size=n_experiments, p=get_dist(divisors)).tolist(),
@@ -111,14 +111,17 @@ def random_search(data_and_labels: tuple, model: TransformerAutoEncoder, params:
 
 
 if __name__ == '__main__':
+    if False:
+        X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
+        y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
+
+        results = train_transformer(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        exit()
+
     X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
     X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-    # X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
-    # y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
-
-    # results = train_autoencoder(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
     results = train_transformer(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

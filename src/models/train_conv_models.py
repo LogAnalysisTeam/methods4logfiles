@@ -16,7 +16,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/TCN-hyperparameters-embeddings-HDFS1.json'
+EXPERIMENT_PATH = '../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-standard-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -65,7 +65,7 @@ class CustomStandardScaler(StandardScaler):
 
 
 def generate_layer_settings(input_dim: int, size: int) -> List:
-    return [np.random.randint(100, 2000, size=np.random.randint(1, 4)).tolist() + [100] for _ in range(size)]
+    # return [np.random.randint(100, 2000, size=np.random.randint(1, 4)).tolist() + [100] for _ in range(size)]
 
     ret = []
     for i in range(size):
@@ -211,7 +211,7 @@ def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
 
 
 def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    sc = CustomMinMaxScaler()
+    sc = CustomStandardScaler()
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
@@ -342,8 +342,8 @@ if __name__ == '__main__':
     # results = train_window(X_train, X_val, y_train, y_val)
     # save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
 
-    results = train_tcnn(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_tcnn(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
@@ -351,5 +351,5 @@ if __name__ == '__main__':
     # results = train_cnn2d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)

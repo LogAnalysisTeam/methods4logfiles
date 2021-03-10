@@ -139,6 +139,8 @@ class VanillaTCN(sklearn.base.OutlierMixin):
             batch_loss = criterion(pred, batch)
 
             batch_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self._model.parameters(), 1)
+            # torch.nn.utils.clip_grad_value_(self._model.parameters(), 0.5)
             optimizer.step()
 
             loss += batch_loss.item() * batch.size(0)

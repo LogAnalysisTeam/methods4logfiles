@@ -47,7 +47,8 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
-        scheduler = self._get_warmup_optimizer(opt, n_steps=int(0.1 * len(train_dl) * self.epochs))
+        total_steps = len(train_dl) * self.epochs
+        scheduler = self._get_warmup_optimizer(opt, int(0.2 * total_steps), total_steps)
 
         for epoch in range(self.epochs):
             self._model.train()
@@ -103,8 +104,19 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
             raise NotImplementedError(f'"{self.optimizer}" is not implemented.')
 
     @staticmethod
-    def _get_warmup_optimizer(optimizer: torch.optim.Optimizer, n_steps: int) -> LambdaLR:
-        return LambdaLR(optimizer, lambda step: (step / max(1, n_steps)) if step < n_steps else 1)
+    def _get_warmup_optimizer(optimizer: torch.optim.Optimizer, n_warmup_steps: int, n_total_steps: int,
+                              sch_type: str = 'cosine') -> LambdaLR:
+        # inspired on website: https://huggingface.co/transformers/_modules/transformers/optimization.html
+        if sch_type == 'constant':
+            return LambdaLR(optimizer, lambda step: (step / max(1, n_warmup_steps)) if step < n_warmup_steps else 1)
+        elif sch_type == 'cosine':
+            def lr_lambda(step):
+                if step < n_warmup_steps:
+                    return step / max(1, n_warmup_steps)
+                progress = float(step - n_warmup_steps) / float(max(1, n_total_steps - n_warmup_steps))
+                return max(0, 0.5 * (1 + np.cos(np.pi * progress)))
+
+            return LambdaLR(optimizer, lr_lambda)
 
     @staticmethod
     def custom_collate(data: List) -> List:
@@ -144,6 +156,7 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
             batch_loss.backward()
             optimizer.step()
             scheduler.step()
+            # print(scheduler.state_dict())
 
             loss += batch_loss.item() * batch.size(0)
             n_seen_examples += batch.size(0)

@@ -41,16 +41,17 @@ def is_val_in_range(val: int, lower: int, upper: int) -> bool:
 
 
 def get_dist(divisors: List) -> List:
-    n_in_range = get_number_of_items_within_range(divisors, 2, 20)
+    low, high = 2, 20
+    n_in_range = get_number_of_items_within_range(divisors, low, high)
     n_total = len(divisors)
 
     norm_dist = 1 / n_total
-    higher_prob_budget = 1.1 * norm_dist * n_in_range
+    higher_prob_budget = 1.2 * norm_dist * n_in_range
     lower_prob_budget = 1 - higher_prob_budget
 
     dist = []
     for i in divisors:
-        if is_val_in_range(i, 2, 20):
+        if is_val_in_range(i, low, high):
             dist.append(higher_prob_budget / n_in_range)
         else:
             dist.append(lower_prob_budget / (n_total - n_in_range))

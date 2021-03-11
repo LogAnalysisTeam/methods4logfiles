@@ -65,7 +65,8 @@ class CustomStandardScaler(StandardScaler):
 
 
 def generate_layer_settings(input_dim: int, size: int) -> List:
-    return [np.random.randint(100, 2000, size=np.random.randint(1, 4)).tolist() + [100] for _ in range(size)]
+    return [[100, 100, 100]] * size
+    return [np.random.randint(10, 100, size=np.random.randint(1, 3)).tolist() + [100] for _ in range(size)]
 
     ret = []
     for i in range(size):

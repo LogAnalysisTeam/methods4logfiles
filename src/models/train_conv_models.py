@@ -5,6 +5,7 @@ from typing import List, Dict, Union, Callable
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
+from src.models.autoencoder_tcnn import AETCN
 from src.models.cnn1d import CNN1D
 from src.models.cnn2d import CNN2D
 from src.models.tcnn_cnn1d import TCNCNN1D
@@ -65,9 +66,6 @@ class CustomStandardScaler(StandardScaler):
 
 
 def generate_layer_settings(input_dim: int, size: int) -> List:
-    return [[100, 100, 100]] * size
-    return [np.random.randint(10, 100, size=np.random.randint(1, 3)).tolist() + [100] for _ in range(size)]
-
     ret = []
     for i in range(size):
         layers = []
@@ -75,16 +73,16 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         n_encoder = np.random.randint(1, 4)
         layers_encoder = np.random.randint(50, 501, size=n_encoder)
         layers_encoder.sort(kind='mergesort')
-        layers.append(layers_encoder.tolist())  # ascending
+        layers.append(layers_encoder.tolist()[::-1])  # descending
 
-        n_tcnn = np.random.randint(1, 4)
-        layers_tcnn = np.random.randint(50, 501, size=n_tcnn)
-        layers.append(layers_tcnn.tolist())
+        bottleneck = np.random.randint(100, 2001)
+        layers.append(int(bottleneck))
 
-        n_decoder = np.random.randint(0, 3)  # one layer is always added in the end of the model
+        n_decoder = np.random.randint(1, 4)
         layers_decoder = np.random.randint(50, 501, size=n_decoder)
         layers_decoder.sort(kind='mergesort')
-        layers.append(layers_decoder.tolist()[::-1])  # descending
+        layers_decoder[-1] = input_dim
+        layers.append(layers_decoder.tolist())  # ascending
 
         ret.append(layers)
     return ret
@@ -151,7 +149,30 @@ def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array)
         'input_shape': [embeddings_dim] * n_experiments,
         'layers': generate_layer_settings(embeddings_dim, n_experiments),
         'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 6)], size=n_experiments).tolist(),
-        'window': np.random.randint(10, 100, size=n_experiments).tolist(),        
+        'window': np.random.randint(10, 100, size=n_experiments).tolist(),
+        'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
+
+def train_aetcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = AETCN()
+    n_experiments = 100
+    embeddings_dim = x_train[0].shape[1]
+
+    params = {
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': generate_layer_settings(embeddings_dim, n_experiments),
+        'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 6)], size=n_experiments).tolist(),
+        'window': np.random.randint(10, 100, size=n_experiments).tolist(),
         'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
     }
     evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
@@ -238,7 +259,8 @@ def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: Union[VanillaTCN, CNN1D, CNN2D, TCNCNN1D], params: Dict) -> Dict:
+def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D],
+                  params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
     scores = []
@@ -286,14 +308,14 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        train_tcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_aetcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -343,8 +365,8 @@ if __name__ == '__main__':
     # results = train_window(X_train, X_val, y_train, y_val)
     # save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
 
-    results = train_tcnn(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_tcnn(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
@@ -354,3 +376,6 @@ if __name__ == '__main__':
 
     # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_aetcnn(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)

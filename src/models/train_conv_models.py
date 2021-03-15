@@ -9,6 +9,7 @@ from src.models.autoencoder_tcnn import AETCN
 from src.models.cnn1d import CNN1D
 from src.models.cnn2d import CNN2D
 from src.models.tcnn_cnn1d import TCNCNN1D
+from src.models.sa_cnn1d import SACNN1D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
@@ -308,14 +309,14 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        train_aetcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        # train_aetcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -338,7 +339,7 @@ if __name__ == '__main__':
         # model = VanillaTCN(epochs=1, learning_rate=0.00001)
 
         # from torchsummary import summary
-        model = TCNCNN1D(epochs=1, learning_rate=0.001)
+        model = SACNN1D(epochs=1, learning_rate=0.001)
         # model = TCNCNN1DPyTorch(100, 35, [], 0, 0)
         # print(summary(model, (100, 35)))
         # model._initialize_model(100, [16, 32, 64, 32, 16], 3, 7)

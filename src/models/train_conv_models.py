@@ -19,7 +19,7 @@ from src.models.utils import create_experiment_report, save_experiment, create_c
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/AETCN-hyperparameters-embeddings-clipping-HDFS1.json'
+EXPERIMENT_PATH = '../../models/SACNN1D-hyperparameters-embeddings-clipping-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -270,7 +270,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
 
 
 if __name__ == '__main__':
-    debug = True
+    debug = False
     if debug:
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
@@ -339,5 +339,8 @@ if __name__ == '__main__':
     # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_aetcnn(X_train, X_val, y_train, y_val)
+    # results = train_aetcnn(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

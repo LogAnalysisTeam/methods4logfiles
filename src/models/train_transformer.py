@@ -7,55 +7,12 @@ from src.models.metrics import metrics_report, get_metrics
 from src.models.transformer import TransformerAutoEncoder
 from src.models.train_conv_models import CustomMinMaxScaler
 from src.models.utils import load_pickle_file, find_optimal_threshold, convert_predictions, create_checkpoint, \
-    create_experiment_report, save_experiment
+    create_experiment_report, save_experiment, get_all_divisors, get_normal_dist
 
 SEED = 160121
 np.random.seed(SEED)
 
 EXPERIMENT_PATH = '../../models/TAE-hyperparameters-embeddings-HDFS1.json'
-
-
-def get_all_divisors(input_dim: int) -> List:
-    # return sorted array of all divisors of `input_dim` in O(2 * sqrt(n)) time
-    # a naive solution would take 0(n + n * log(n)) time
-    divisors = []
-    for i in range(1, int(np.sqrt(input_dim))):
-        if input_dim % i == 0:
-            divisors.append(i)
-    for i in range(int(np.sqrt(input_dim)), 0, -1):
-        if input_dim % i == 0:
-            divisors.append(input_dim // i)
-    return divisors
-
-
-def get_number_of_items_within_range(divisors: List, lower: int, upper: int) -> int:
-    ret = 0
-    for i in divisors:
-        if is_val_in_range(i, lower, upper):
-            ret += 1
-    return ret
-
-
-def is_val_in_range(val: int, lower: int, upper: int) -> bool:
-    return lower <= val <= upper
-
-
-def get_dist(divisors: List) -> List:
-    low, high = 2, 20
-    n_in_range = get_number_of_items_within_range(divisors, low, high)
-    n_total = len(divisors)
-
-    norm_dist = 1 / n_total
-    higher_prob_budget = 1.2 * norm_dist * n_in_range
-    lower_prob_budget = 1 - higher_prob_budget
-
-    dist = []
-    for i in divisors:
-        if is_val_in_range(i, low, high):
-            dist.append(higher_prob_budget / n_in_range)
-        else:
-            dist.append(lower_prob_budget / (n_total - n_in_range))
-    return dist
 
 
 def train_transformer(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
@@ -73,7 +30,7 @@ def train_transformer(x_train: List, x_test: List, y_train: np.array, y_test: np
         'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_dim': [embeddings_dim] * n_experiments,
-        'heads': np.random.choice(divisors, size=n_experiments, p=get_dist(divisors)).tolist(),
+        'heads': np.random.choice(divisors, size=n_experiments, p=get_normal_dist(divisors)).tolist(),
         'n_encoders': np.random.randint(1, 5, size=n_experiments).tolist(),
         'n_decoders': np.random.randint(1, 5, size=n_experiments).tolist(),
         'dim_feedforward': np.random.randint(100, 2000, size=n_experiments).tolist(),

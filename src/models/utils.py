@@ -3,6 +3,7 @@ from typing import Callable, Iterable, Dict, List, Union
 import json
 import pickle
 import numpy as np
+from scipy import stats
 
 from src.models.metrics import get_metrics
 
@@ -58,3 +59,125 @@ def get_encoder_size(layers: List):
     while idx < len(layers) - 1 and layers[idx] < layers[idx + 1]:  # the sign is set by shape of channels
         idx += 1
     return idx + 1
+
+
+def get_all_divisors(input_dim: int) -> List:
+    # return sorted array of all divisors of `input_dim` in O(2 * sqrt(n)) time
+    # a naive solution would take 0(n + n * log(n)) time
+    divisors = []
+    for i in range(1, int(np.sqrt(input_dim))):
+        if input_dim % i == 0:
+            divisors.append(i)
+    for i in range(int(np.sqrt(input_dim)), 0, -1):
+        if input_dim % i == 0:
+            divisors.append(input_dim // i)
+    return divisors
+
+
+def get_number_of_items_within_range(divisors: List, lower: int, upper: int) -> int:
+    ret = 0
+    for i in divisors:
+        if is_val_in_range(i, lower, upper):
+            ret += 1
+    return ret
+
+
+def is_val_in_range(val: int, lower: int, upper: int) -> bool:
+    return lower <= val <= upper
+
+
+def get_normal_dist(divisors: List) -> List:
+    if len(divisors) == 2:
+        return [0.5, 0.5]
+
+    x = np.asarray(divisors)
+    x_upper, x_lower = x + 0.5, x - 0.5
+    prob = stats.norm.cdf(x_upper, scale=5, loc=20) - stats.norm.cdf(x_lower, scale=5, loc=20)
+    dist = prob / prob.sum()
+    return dist.tolist()
+
+
+def generate_layer_settings(input_dim: int, size: int) -> List:
+    ret = []
+    for i in range(size):
+        layers = []
+
+        n_encoder = np.random.randint(1, 4)
+        layers_encoder = np.random.randint(100, 501, size=n_encoder)
+        layers_encoder.sort(kind='mergesort')
+        layers.extend(layers_encoder.tolist())  # ascending
+
+        n_decoder = np.random.randint(0, 3)  # one layer is already included in the architecture itself
+        layers_decoder = np.random.randint(100, layers[-1], size=n_decoder)
+        layers_decoder.sort(kind='mergesort')
+        layers.extend(layers_decoder.tolist()[::-1])  # descending
+
+        ret.append(layers)
+    return ret
+
+
+def get_min_window_size(kernel: int, maxpool: int, n_encoder_layers: int):
+    # time complexity might be improved with binary search O(log(n)) instead of O(n)
+    for input_dim in range(1, 500):
+        output_dim = input_dim
+        for _ in range(n_encoder_layers):
+            output_dim = output_dim - kernel + 1  # Conv1d
+            output_dim //= maxpool  # MaxPool1d
+
+        if output_dim > 0:
+            return input_dim
+
+
+def get_1d_window_size(encoder_kernels: List, layers: List, get_number_of_encoder_layers: Callable) -> List:
+    maxpool = 2  # fixed also in the PyTorch model
+
+    windows = []
+    for i, kernel in enumerate(encoder_kernels):
+        n_encoder_layers = get_number_of_encoder_layers(layers[i])
+        min_window_size = get_min_window_size(kernel, maxpool, n_encoder_layers)
+        windows.append(np.random.randint(min_window_size, min_window_size + 32))
+    return windows
+
+
+def get_2d_window_size(encoder_kernels: List, layers: List) -> List:
+    maxpool = 2  # fixed also in the PyTorch model
+
+    windows = []
+    for i, kernel in enumerate(encoder_kernels):
+        n_encoder_layers = get_encoder_size(layers[i])
+        x_min_window_size = get_min_window_size(kernel[0], maxpool, n_encoder_layers)
+        y_min_window_size = get_min_window_size(kernel[1], maxpool, n_encoder_layers)
+
+        if x_min_window_size > 100:  # embeddings dimension
+            raise AssertionError('Kernel needs greater embeddings dimension!')
+
+        windows.append(np.random.randint(y_min_window_size, y_min_window_size + 32))
+    return windows
+
+
+def get_2d_kernels(x_choice: List, y_choice: List, n_experiments: int) -> List:
+    x = np.random.choice(x_choice, size=n_experiments).tolist()
+    y = np.random.choice(y_choice, size=n_experiments).tolist()
+    return list(zip(x, y))
+
+
+def get_encoder_heads(layers: List) -> List:
+    ret = []
+    for config in layers:
+        n_encoder_layers = min(get_encoder_size(config), 2)
+        divisors = get_all_divisors(config[n_encoder_layers - 1])
+        ret.append(int(np.random.choice(divisors, p=get_normal_dist(divisors))))
+    return ret
+
+
+def get_decoder_heads(layers: List) -> List:
+    ret = []
+    for config in layers:
+        n_decoder_layers = len(config) - get_encoder_size(config)
+
+        if n_decoder_layers == 0:
+            ret.append(None)
+        else:
+            divisors = get_all_divisors(config[-1])
+            ret.append(int(np.random.choice(divisors, p=get_normal_dist(divisors))))
+    return ret

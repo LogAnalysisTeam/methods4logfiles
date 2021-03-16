@@ -20,51 +20,75 @@ torch.manual_seed(SEED)
 
 class SACNN1DPyTorch(nn.Module):
     def __init__(self, input_dim: int, window: int, layer_configurations: List, encoder_kernel_size: int,
-                 decoder_kernel_size: int, maxpool: int = 2, upsampling_factor: int = 2):
+                 decoder_kernel_size: int, n_encoder_heads: int, n_decoder_heads: int, dropout: float, maxpool: int = 2,
+                 upsampling_factor: int = 2):
         super().__init__()
 
-        self.cnn = nn.Conv1d(input_dim, 128, kernel_size=3)
-        self.relu = nn.ReLU()
-        self.max_pool = nn.MaxPool1d(2)
-        self.cnn2 = nn.Conv1d(128, 256, kernel_size=3)
-        self.self_attn = nn.MultiheadAttention(256, 16, dropout=0.1)
-        self.norm1 = nn.LayerNorm(256)
-        self.decnn = nn.ConvTranspose1d(256, input_dim, kernel_size=5)
-        self.upsampling = nn.Upsample(scale_factor=2)
-        self.final_upsampling = nn.Upsample(window)
+        n_encoder_layers = get_encoder_size(layer_configurations)
 
-        # n_encoder_layers = get_encoder_size(layer_configurations)
-        #
-        # layers = [nn.Conv1d(input_dim, layer_configurations[0], kernel_size=encoder_kernel_size), nn.ReLU(),
-        #           nn.MaxPool1d(maxpool)]
-        # for i in range(1, n_encoder_layers):
-        #     layers.append(
-        #         nn.Conv1d(layer_configurations[i - 1], layer_configurations[i], kernel_size=encoder_kernel_size))
-        #     layers.append(nn.ReLU())
-        #     layers.append(nn.MaxPool1d(maxpool))
-        #
-        # for i in range(n_encoder_layers, len(layer_configurations)):
-        #     layers.append(nn.ConvTranspose1d(layer_configurations[i - 1], layer_configurations[i],
-        #                                      kernel_size=decoder_kernel_size))
-        #     layers.append(nn.ReLU())
-        #     layers.append(nn.Upsample(scale_factor=upsampling_factor))
-        #
-        # layers.append(nn.ConvTranspose1d(layer_configurations[-1], input_dim, kernel_size=decoder_kernel_size))
-        # layers.append(nn.Upsample(size=window))  # it works also reversely if Tensor is greater than the window!
-        #
-        # self.net = nn.Sequential(*layers)
+        encoder_layers = [nn.Conv1d(input_dim, layer_configurations[0], kernel_size=encoder_kernel_size), nn.ReLU(),
+                          nn.MaxPool1d(maxpool)]
+        for i in range(1, min(n_encoder_layers, 2)):  # two CNN layers followed by self-attention
+            encoder_layers.append(
+                nn.Conv1d(layer_configurations[i - 1], layer_configurations[i], kernel_size=encoder_kernel_size))
+            encoder_layers.append(nn.ReLU())
+            encoder_layers.append(nn.MaxPool1d(maxpool))
+
+        # remove ReLU before self-attention, for more details see: M. Li, W. Hsu, X. Xie, J. Cong and W. Gao,
+        # "SACNN: Self-Attention Convolutional Neural Network for Low-Dose CT Denoising With Self-Supervised Perceptual
+        # Loss Network," in IEEE Transactions on Medical Imaging, vol. 39, no. 7, pp. 2289-2301, July 2020,
+        # doi: 10.1109/TMI.2020.2968472.
+        del encoder_layers[-2]
+        self.encoder = nn.Sequential(*encoder_layers)
+
+        attention_dim = layer_configurations[min(n_encoder_layers, 2) - 1]
+        self.encoder_self_attention = nn.MultiheadAttention(attention_dim, n_encoder_heads, dropout=dropout)
+        self.norm_layer1 = nn.LayerNorm(attention_dim)
+
+        self.cnn = None
+        if n_encoder_layers > 2:
+            self.cnn = nn.Sequential(nn.Conv1d(attention_dim, layer_configurations[2], kernel_size=encoder_kernel_size),
+                                     nn.ReLU(), nn.MaxPool1d(maxpool))
+
+        decoder_layers = []
+        for i in range(n_encoder_layers, len(layer_configurations)):
+            decoder_layers.append(nn.ConvTranspose1d(layer_configurations[i - 1], layer_configurations[i],
+                                                     kernel_size=decoder_kernel_size))
+            decoder_layers.append(nn.ReLU())
+            decoder_layers.append(nn.Upsample(scale_factor=upsampling_factor))
+
+        self.decoder_self_attention = None
+        if n_encoder_layers < len(layer_configurations):
+            del decoder_layers[-2]  # see explanation above
+            self.decoder = nn.Sequential(*decoder_layers)
+
+            self.decoder_self_attention = nn.MultiheadAttention(layer_configurations[-1], n_decoder_heads,
+                                                                dropout=dropout)
+            self.norm_layer2 = nn.LayerNorm(layer_configurations[-1])
+
+        self.final_layers = nn.Sequential(
+            nn.ConvTranspose1d(layer_configurations[-1], input_dim, kernel_size=decoder_kernel_size),
+            nn.Upsample(size=window))  # it works also reversely if Tensor is greater than the window!
 
     def forward(self, x: torch.Tensor):
-        x = self.relu(self.cnn(x))
-        x = self.max_pool(x)
-        x = self.cnn2(x)
+        x = self.encoder(x)
+
         x = x.permute(2, 0, 1)
-        att_out, attn_output_weights = self.self_attn(x, x, x)
-        x = self.norm1(x + att_out)
+        att_out, _ = self.encoder_self_attention(x, x, x)
+        x = self.norm_layer1(x + att_out)
         x = x.permute(1, 2, 0)
-        x = self.decnn(x)
-        x = self.upsampling(x)
-        x = self.final_upsampling(x)
+
+        x = self.cnn(x) if self.cnn else x
+
+        if self.decoder_self_attention:
+            x = self.decoder(x)
+
+            x = x.permute(2, 0, 1)
+            att_out, _ = self.decoder_self_attention(x, x, x)
+            x = self.norm_layer2(x + att_out)
+            x = x.permute(1, 2, 0)
+
+        x = self.final_layers(x)
         return x
 
 
@@ -92,7 +116,7 @@ class SACNN1D(sklearn.base.OutlierMixin):
 
         # 2. initialize model
         if not self._model:
-            self._initialize_model(X[0].shape[-1], [X[0].shape[-1]], 3, 5)
+            self._initialize_model(X[0].shape[-1], [X[0].shape[-1]], 3, 5, 1, 1, 0.2)
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
@@ -127,10 +151,13 @@ class SACNN1D(sklearn.base.OutlierMixin):
         self.learning_rate = kwargs['learning_rate']
         self.window = kwargs['window']
         self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['encoder_kernel_size'],
-                               kwargs['decoder_kernel_size'])
+                               kwargs['decoder_kernel_size'], kwargs['encoder_heads'], kwargs['decoder_heads'],
+                               kwargs['dropout'])
 
-    def _initialize_model(self, input_shape: int, layers_out: List, encoder_kernel_size: int, decoder_kernel_size: int):
-        self._model = SACNN1DPyTorch(input_shape, self.window, layers_out, encoder_kernel_size, decoder_kernel_size)
+    def _initialize_model(self, input_shape: int, layers_out: List, encoder_kernel_size: int, decoder_kernel_size: int,
+                          n_encoder_heads: int, n_decoder_heads: int, dropout: float):
+        self._model = SACNN1DPyTorch(input_shape, self.window, layers_out, encoder_kernel_size, decoder_kernel_size,
+                                     n_encoder_heads, n_decoder_heads, dropout)
         self._model.to(self._device)
 
     def _get_loss_function(self, reduction: str = 'mean') -> nn.Module:

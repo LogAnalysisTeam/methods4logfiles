@@ -13,7 +13,8 @@ from src.models.sa_cnn1d import SACNN1D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
-    find_optimal_threshold, convert_predictions, get_encoder_size
+    find_optimal_threshold, convert_predictions, get_encoder_size, generate_layer_settings, get_1d_window_size, \
+    get_2d_kernels, get_2d_window_size, get_encoder_heads, get_decoder_heads
 
 SEED = 160121
 np.random.seed(SEED)
@@ -64,74 +65,6 @@ class CustomStandardScaler(StandardScaler):
     def transform(self, X: List, copy=None) -> np.array:
         # (X - X.mean(axis=0)) / X.std(axis=0)
         return np.asarray([(x - self.mean) / self.std for x in X], dtype='object')
-
-
-def generate_layer_settings(input_dim: int, size: int) -> List:
-    ret = []
-    for i in range(size):
-        layers = []
-
-        n_encoder = np.random.randint(1, 4)
-        layers_encoder = np.random.randint(50, 501, size=n_encoder)
-        layers_encoder.sort(kind='mergesort')
-        layers.append(layers_encoder.tolist()[::-1])  # descending
-
-        bottleneck = np.random.randint(100, 2001)
-        layers.append(int(bottleneck))
-
-        n_decoder = np.random.randint(1, 4)
-        layers_decoder = np.random.randint(50, 501, size=n_decoder)
-        layers_decoder.sort(kind='mergesort')
-        layers_decoder[-1] = input_dim
-        layers.append(layers_decoder.tolist())  # ascending
-
-        ret.append(layers)
-    return ret
-
-
-def get_min_window_size(kernel: int, maxpool: int, n_encoder_layers: int):
-    # time complexity might be improved with binary search O(log(n)) instead of O(n)
-    for input_dim in range(1, 500):
-        output_dim = input_dim
-        for _ in range(n_encoder_layers):
-            output_dim = output_dim - kernel + 1  # Conv1d
-            output_dim //= maxpool  # MaxPool1d
-
-        if output_dim > 0:
-            return input_dim
-
-
-def get_1d_window_size(encoder_kernels: List, layers: List, get_number_of_encoder_layers: Callable) -> List:
-    maxpool = 2  # fixed also in the PyTorch model
-
-    windows = []
-    for i, kernel in enumerate(encoder_kernels):
-        n_encoder_layers = get_number_of_encoder_layers(layers[i])
-        min_window_size = get_min_window_size(kernel, maxpool, n_encoder_layers)
-        windows.append(np.random.randint(min_window_size, min_window_size + 32))
-    return windows
-
-
-def get_2d_window_size(encoder_kernels: List, layers: List) -> List:
-    maxpool = 2  # fixed also in the PyTorch model
-
-    windows = []
-    for i, kernel in enumerate(encoder_kernels):
-        n_encoder_layers = get_encoder_size(layers[i])
-        x_min_window_size = get_min_window_size(kernel[0], maxpool, n_encoder_layers)
-        y_min_window_size = get_min_window_size(kernel[1], maxpool, n_encoder_layers)
-
-        if x_min_window_size > 100:  # embeddings dimension
-            raise AssertionError('Kernel needs greater embeddings dimension!')
-
-        windows.append(np.random.randint(y_min_window_size, y_min_window_size + 32))
-    return windows
-
-
-def get_2d_kernels(x_choice: List, y_choice: List, n_experiments: int) -> List:
-    x = np.random.choice(x_choice, size=n_experiments).tolist()
-    y = np.random.choice(y_choice, size=n_experiments).tolist()
-    return list(zip(x, y))
 
 
 def train_tcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
@@ -260,7 +193,35 @@ def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D],
+def train_sa_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = SACNN1D()
+    n_experiments = 100
+    embeddings_dim = x_train[0].shape[1]
+
+    encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
+    layers = generate_layer_settings(embeddings_dim, n_experiments)
+    params = {
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': layers,
+        'encoder_kernel_size': encoder_kernel_sizes,
+        'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
+        'encoder_heads': get_encoder_heads(layers),
+        'decoder_heads': get_decoder_heads(layers),
+        'window': get_1d_window_size(encoder_kernel_sizes, layers, get_encoder_size),
+        'dropout': np.random.uniform(0, 0.3, size=n_experiments).tolist()
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
+
+def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D, SACNN1D],
                   params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
@@ -316,7 +277,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        # train_aetcnn(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_sa_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()

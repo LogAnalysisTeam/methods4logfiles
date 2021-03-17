@@ -10,6 +10,7 @@ from src.models.cnn1d import CNN1D
 from src.models.cnn2d import CNN2D
 from src.models.tcnn_cnn1d import TCNCNN1D
 from src.models.sa_cnn1d import SACNN1D
+from src.models.sa_cnn2d import SACNN2D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
@@ -277,7 +278,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        train_sa_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        # train_sa_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -300,7 +301,7 @@ if __name__ == '__main__':
         # model = VanillaTCN(epochs=1, learning_rate=0.00001)
 
         # from torchsummary import summary
-        model = SACNN1D(epochs=1, learning_rate=0.001)
+        model = SACNN2D(epochs=1, learning_rate=0.001)
         # model = TCNCNN1DPyTorch(100, 35, [], 0, 0)
         # print(summary(model, (100, 35)))
         # model._initialize_model(100, [16, 32, 64, 32, 16], 3, 7)
@@ -342,5 +343,20 @@ if __name__ == '__main__':
     # results = train_aetcnn(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
+
+    sc = CustomMinMaxScaler()
+    X_train = sc.fit_transform(X_train)
+    X_val = sc.transform(X_val)
+
+    model = SACNN2D(epochs=1, learning_rate=0.001)
+    model.fit(X_train)
+
+    y_pred = model.predict(X_val)
+
+    for th in sorted(y_pred[y_val == 1]):
+        tmp = np.zeros(shape=y_pred.shape)
+        tmp[y_pred > th] = 1
+        print('Threshold:', th)
+        metrics_report(y_val, tmp)

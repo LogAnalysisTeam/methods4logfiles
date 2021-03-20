@@ -103,12 +103,12 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         layers = []
 
         n_encoder = np.random.randint(1, 4)
-        layers_encoder = np.random.randint(100, 501, size=n_encoder)
+        layers_encoder = np.random.randint(10, 501, size=n_encoder)
         layers_encoder.sort(kind='mergesort')
         layers.extend(layers_encoder.tolist())  # ascending
 
         n_decoder = np.random.randint(0, 3)  # one layer is already included in the architecture itself
-        layers_decoder = np.random.randint(100, layers[-1], size=n_decoder)
+        layers_decoder = np.random.randint(10, layers[-1], size=n_decoder)
         layers_decoder.sort(kind='mergesort')
         layers.extend(layers_decoder.tolist()[::-1])  # descending
 
@@ -181,3 +181,14 @@ def get_decoder_heads(layers: List) -> List:
             divisors = get_all_divisors(config[-1])
             ret.append(int(np.random.choice(divisors, p=get_normal_dist(divisors))))
     return ret
+
+
+def get_bottleneck_dim(layers: List) -> List:
+    ret = []
+    for config in layers:
+        n_encoder_layers = get_encoder_size(config)
+
+        n_channels = config[n_encoder_layers - 1]
+        ret.append(int(np.random.randint(1, n_channels + 1)))
+    return ret
+

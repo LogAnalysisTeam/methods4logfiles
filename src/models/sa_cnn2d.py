@@ -24,10 +24,9 @@ class SelfAttention2D(nn.Module):
     # Imaging, vol. 39, no. 7, pp. 2289-2301, July 2020, doi: 10.1109/TMI.2020.2968472 and: X. Wang, R. Girshick,
     # A. Gupta and K. He, "Non-local Neural Networks," 2018 IEEE/CVF Conference on Computer Vision and Pattern
     # Recognition, Salt Lake City, UT, USA, 2018, pp. 7794-7803, doi: 10.1109/CVPR.2018.00813.
+    # The implementation is adjusted in order to support 2D convolutions instead of 3D.
     def __init__(self, input_dim: int, bottleneck_dim: int):
         super().__init__()
-
-        # try to add ReLU after each CNN layer!!
 
         self.bottleneck_dim = bottleneck_dim
         self.keys = nn.Conv2d(input_dim, bottleneck_dim, kernel_size=(1, 1))
@@ -48,57 +47,45 @@ class SelfAttention2D(nn.Module):
         x_v = self.values(x).reshape((batch_size, self.bottleneck_dim, -1)).permute(0, 2, 1)
         x_qkv = torch.einsum('bij,bjk->bik', soft_qk, x_v)
         x_qkv = x_qkv.permute(0, 2, 1).reshape((batch_size, self.bottleneck_dim, height, width))
-        
+
         y = self.upscale(x_qkv)
         return x + y
 
 
 class SACNN2DPyTorch(nn.Module):
     def __init__(self, input_dim: int, window: int, layer_configurations: List, encoder_kernel: tuple,
-                 decoder_kernel: tuple, maxpool: int = 2, upsampling_factor: int = 2):
+                 decoder_kernel: tuple, bottleneck_dim: int, maxpool: int = 2, upsampling_factor: int = 2):
         super().__init__()
 
-        encoder = [
-            nn.Conv2d(1, 32, kernel_size=(5, 3)),
-            nn.ReLU(),
-            nn.MaxPool2d(maxpool),
-            nn.Conv2d(32, 64, kernel_size=(5, 5)),
-            nn.ReLU(),
-            nn.MaxPool2d(maxpool)
-        ]
+        n_encoder_layers = get_encoder_size(layer_configurations)
 
-        self.attn = SelfAttention2D(64, 50)
+        encoder_layers = [nn.Conv2d(1, layer_configurations[0], kernel_size=encoder_kernel), nn.ReLU(),
+                          nn.MaxPool2d(maxpool)]
+        for i in range(1, n_encoder_layers):
+            encoder_layers.append(
+                nn.Conv2d(layer_configurations[i - 1], layer_configurations[i], kernel_size=encoder_kernel))
+            encoder_layers.append(nn.ReLU())
+            encoder_layers.append(nn.MaxPool2d(maxpool))
 
-        decoder = [
-            nn.ConvTranspose2d(64, 32, kernel_size=(9, 5)),
-            nn.ReLU(),
-            nn.Upsample(scale_factor=upsampling_factor),
-            nn.ConvTranspose2d(32, 1, kernel_size=(7, 7)),
-            nn.ReLU(),
-            nn.Upsample((input_dim, window))
-        ]
+        self.attn = SelfAttention2D(layer_configurations[n_encoder_layers - 1], bottleneck_dim)
 
-        self.encoder = nn.Sequential(*encoder)
-        self.decoder = nn.Sequential(*decoder)
+        decoder_layers = []
+        for i in range(n_encoder_layers, len(layer_configurations)):
+            decoder_layers.append(
+                nn.ConvTranspose2d(layer_configurations[i - 1], layer_configurations[i], kernel_size=decoder_kernel))
+            decoder_layers.append(nn.ReLU())
+            decoder_layers.append(nn.Upsample(scale_factor=upsampling_factor))
+
+        decoder_layers.append(nn.ConvTranspose2d(layer_configurations[-1], 1, kernel_size=decoder_kernel))
+        # it works also reversely if Tensor is greater than the window!
+        decoder_layers.append(nn.Upsample(size=(input_dim, window)))
+
+        self.encoder = nn.Sequential(*encoder_layers)
+        self.decoder = nn.Sequential(*decoder_layers)
 
     def forward(self, x: torch.Tensor):
-        # # relu = nn.ReLU()
-        #
         x = self.encoder(x)
-
         x = self.attn(x)
-        #
-        # # this bottleneck does not have positive impact on F1 score!!!
-        # # org_shape = x.size()
-        # # x = torch.flatten(x, start_dim=1)
-        # # flat_shape = x.size()
-        # # min_dim = 2048
-        # # bottleneck = nn.Linear(flat_shape[1], min_dim)
-        # # x = relu(bottleneck(x))
-        # # fc = nn.Linear(min_dim, flat_shape[1])
-        # # x = relu(fc(x))
-        # # x = torch.reshape(x, shape=org_shape)
-        #
         x = self.decoder(x)
         return x
 
@@ -127,7 +114,7 @@ class SACNN2D(sklearn.base.OutlierMixin):
 
         # 2. initialize model
         if not self._model:
-            self._initialize_model(X[0].shape[-1], [32, 64, 32], (12, 3), (7, 5))
+            self._initialize_model(X[0].shape[-1], [32, 64, 32], (12, 3), (7, 5), 16)
 
         loss_function = self._get_loss_function()
         opt = self._get_optimizer()
@@ -162,10 +149,12 @@ class SACNN2D(sklearn.base.OutlierMixin):
         self.learning_rate = kwargs['learning_rate']
         self.window = kwargs['window']
         self._initialize_model(kwargs['input_shape'], kwargs['layers'], kwargs['encoder_kernel_size'],
-                               kwargs['decoder_kernel_size'])
+                               kwargs['decoder_kernel_size'], kwargs['bottleneck_dim'])
 
-    def _initialize_model(self, input_shape: int, layers_out: List, encoder_kernel: tuple, decoder_kernel: tuple):
-        self._model = SACNN2DPyTorch(input_shape, self.window, layers_out, encoder_kernel, decoder_kernel)
+    def _initialize_model(self, input_shape: int, layers_out: List, encoder_kernel: tuple, decoder_kernel: tuple,
+                          bottleneck_dim: int):
+        self._model = SACNN2DPyTorch(input_shape, self.window, layers_out, encoder_kernel, decoder_kernel,
+                                     bottleneck_dim)
         self._model.to(self._device)
 
     def _get_loss_function(self, reduction: str = 'mean') -> nn.Module:

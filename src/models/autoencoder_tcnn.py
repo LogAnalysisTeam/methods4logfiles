@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 import numpy as np
 import sklearn
 from tqdm import tqdm
-from typing import List
+from typing import List, Callable
 import sys
 
 from src.models.utils import time_decorator
@@ -20,7 +20,7 @@ torch.manual_seed(SEED)
 
 
 class AETCNPyTorch(nn.Module):
-    def __init__(self, input_dim: int, window:int, layers: List, kernel_size: int, dropout: float):
+    def __init__(self, input_dim: int, window: int, layers: List, kernel_size: int, dropout: float):
         super().__init__()
         assert kernel_size % 2 == 1 and kernel_size > 1
         self.encoder = TemporalConvNet(input_dim, layers[0], kernel_size, dropout, include_last_relu=True)
@@ -63,6 +63,7 @@ class AETCN(sklearn.base.OutlierMixin):
 
         # internal representation of a torch model
         self._model = None
+        self._selected_features = None
         self._device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     def fit(self, X: np.ndarray) -> AETCN:
@@ -96,6 +97,26 @@ class AETCN(sklearn.base.OutlierMixin):
             for (batch,) in test_dl:
                 batch = batch.to(self._device)
                 ret.extend(torch.mean(loss_function(self._model(batch), batch), (1, 2)).tolist())
+            return np.asarray(ret)
+
+    def forward_hook(self) -> Callable:
+        def hook(module, model_input, output):
+            self._selected_features = output
+
+        return hook
+
+    def extract_features(self, X: np.ndarray) -> np.array:
+        test_dl = self._numpy_to_tensors(X, batch_size=128, shuffle=False)
+
+        self._model.fc1.register_forward_hook(self.forward_hook())
+
+        self._model.eval()
+        with torch.no_grad():
+            ret = []
+            for (batch,) in test_dl:
+                batch = batch.to(self._device)
+                _ = self._model(batch)
+                ret.extend(self._selected_features.tolist())
             return np.asarray(ret)
 
     def set_params(self, **kwargs):

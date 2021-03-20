@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
-from typing import List, Dict, Union, Callable
+from typing import List, Dict, Union
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
@@ -13,14 +13,14 @@ from src.models.sa_cnn1d import SACNN1D
 from src.models.sa_cnn2d import SACNN2D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import create_experiment_report, save_experiment, create_checkpoint, load_pickle_file, \
+from src.models.utils import create_experiment_report, create_checkpoint, save_experiment, load_pickle_file, \
     find_optimal_threshold, convert_predictions, get_encoder_size, generate_layer_settings, get_1d_window_size, \
-    get_2d_kernels, get_2d_window_size, get_encoder_heads, get_decoder_heads
+    get_2d_kernels, get_2d_window_size, get_encoder_heads, get_decoder_heads, get_bottleneck_dim
 
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/SACNN1D-hyperparameters-embeddings-clipping-HDFS1.json'
+EXPERIMENT_PATH = '../../models/SACNN2D-hyperparameters-embeddings-clipping-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -222,7 +222,36 @@ def train_sa_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.ar
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D, SACNN1D],
+def train_sa_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = SACNN2D()
+    n_experiments = 100
+    embeddings_dim = x_train[0].shape[1]
+
+    encoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(1, 5)], [2 * i + 1 for i in range(1, 4)],
+                                          n_experiments)
+    decoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(2, 8)], [2 * i + 1 for i in range(1, 5)],
+                                          n_experiments)
+    layers = generate_layer_settings(embeddings_dim, n_experiments)
+    params = {
+        'epochs': np.random.choice(np.arange(1, 6), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': layers,
+        'encoder_kernel_size': encoder_kernel_sizes,
+        'decoder_kernel_size': decoder_kernel_sizes,
+        'bottleneck_dim': get_bottleneck_dim(layers),
+        'window': get_2d_window_size(encoder_kernel_sizes, layers)
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
+
+def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D, SACNN1D, SACNN2D],
                   params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
@@ -278,7 +307,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        # train_sa_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_sa_cnn2d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -346,17 +375,5 @@ if __name__ == '__main__':
     # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    sc = CustomMinMaxScaler()
-    X_train = sc.fit_transform(X_train)
-    X_val = sc.transform(X_val)
-
-    model = SACNN2D(epochs=1, learning_rate=0.001)
-    model.fit(X_train)
-
-    y_pred = model.predict(X_val)
-
-    for th in sorted(y_pred[y_val == 1]):
-        tmp = np.zeros(shape=y_pred.shape)
-        tmp[y_pred > th] = 1
-        print('Threshold:', th)
-        metrics_report(y_val, tmp)
+    results = train_sa_cnn2d(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)

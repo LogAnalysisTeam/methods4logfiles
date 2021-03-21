@@ -5,7 +5,7 @@ import numpy as np
 import uuid
 import os
 from typing import List, Dict, Union
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
 from src.models.autoencoder_tcnn import AETCN
@@ -14,7 +14,6 @@ from src.models.cnn2d import CNN2D
 from src.models.tcnn_cnn1d import TCNCNN1D
 from src.models.sa_cnn1d import SACNN1D
 from src.models.sa_cnn2d import SACNN2D
-from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, create_checkpoint, save_experiment, load_pickle_file, \
     find_optimal_threshold, convert_predictions, get_encoder_size, generate_layer_settings, get_1d_window_size, \
@@ -24,7 +23,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/tcn'
+DIR_TO_EXPERIMENTS = '../../models/aetcn'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -66,20 +65,9 @@ def train_aetcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
     x_test = sc.transform(x_test)
 
     model = AETCN()
-    n_experiments = 100
-    embeddings_dim = x_train[0].shape[1]
 
-    params = {
-        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
-        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
-        'input_shape': [embeddings_dim] * n_experiments,
-        'layers': generate_layer_settings(embeddings_dim, n_experiments),
-        'kernel_size': np.random.choice([2 * i + 1 for i in range(1, 6)], size=n_experiments).tolist(),
-        'window': np.random.randint(10, 100, size=n_experiments).tolist(),
-        'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
-    }
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    experiments = load_experiment('../../models/AETCN-hyperparameters-embeddings-clipping-HDFS1.json')
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
     return evaluated_hyperparams
 
 
@@ -253,8 +241,8 @@ if __name__ == '__main__':
     # results = train_window(X_train, X_val, y_train, y_val)
     # save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
 
-    results = train_tcnn(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_tcnn(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
@@ -265,8 +253,8 @@ if __name__ == '__main__':
     # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    # results = train_aetcnn(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = train_aetcnn(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)

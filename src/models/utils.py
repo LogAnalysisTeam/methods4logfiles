@@ -1,6 +1,8 @@
 from time import time_ns
+from pathlib import Path
 from typing import Callable, Iterable, Dict, List, Union
 import json
+import os
 import pickle
 import numpy as np
 from scipy import stats
@@ -23,11 +25,23 @@ def save_experiment(data: Iterable, file_path: str):
         json.dump(data, f, indent=4, sort_keys=True)
 
 
-def create_experiment_report(metrics: Dict, hyperparameters: Dict) -> Dict:
+def load_experiment(file_path: str) -> Dict:
+    with open(file_path, 'r') as f:
+        return json.load(f)
+
+
+def create_experiment_report(metrics: Dict, hyperparameters: Dict, theta: float, file_path: str) -> Dict:
     return {
         'metrics': metrics,
-        'hyperparameters': hyperparameters
+        'hyperparameters': hyperparameters,
+        'threshold': theta,
+        'model_path': file_path
     }
+
+
+def create_model_path(dir_path: str, unique_name: str) -> str:
+    Path(dir_path).mkdir(parents=True, exist_ok=True)
+    return os.path.join(dir_path, unique_name)
 
 
 def create_checkpoint(data: Iterable, file_path: str):
@@ -191,4 +205,3 @@ def get_bottleneck_dim(layers: List) -> List:
         n_channels = config[n_encoder_layers - 1]
         ret.append(int(np.random.randint(1, n_channels + 1)))
     return ret
-

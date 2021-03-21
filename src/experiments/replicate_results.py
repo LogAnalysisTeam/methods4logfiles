@@ -23,7 +23,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/aetcn'
+DIR_TO_EXPERIMENTS = '../../models/cnn1d'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 

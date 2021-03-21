@@ -41,7 +41,7 @@ def create_experiment_report(metrics: Dict, hyperparameters: Dict, theta: float,
 
 def create_model_path(dir_path: str, unique_name: str) -> str:
     Path(dir_path).mkdir(parents=True, exist_ok=True)
-    return os.path.join(dir_path, unique_name)
+    return os.path.join(dir_path, f'{unique_name}.pt')
 
 
 def create_checkpoint(data: Iterable, file_path: str):

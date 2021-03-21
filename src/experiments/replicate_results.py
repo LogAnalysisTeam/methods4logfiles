@@ -238,14 +238,11 @@ if __name__ == '__main__':
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-    # results = train_window(X_train, X_val, y_train, y_val)
-    # save_experiment(results, '../../models/TCN-cropped-window-embeddings-HDFS1.json')
-
     # results = train_tcnn(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    # results = train_cnn1d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = train_cnn1d(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_cnn2d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
@@ -253,8 +250,8 @@ if __name__ == '__main__':
     # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_aetcnn(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_aetcnn(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)

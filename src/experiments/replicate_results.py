@@ -23,7 +23,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/cnn2d'
+DIR_TO_EXPERIMENTS = '../../models/cnn1d_tcn'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -101,24 +101,9 @@ def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.
     x_test = sc.transform(x_test)
 
     model = TCNCNN1D()
-    n_experiments = 100
-    embeddings_dim = x_train[0].shape[1]
 
-    encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
-    layers = generate_layer_settings(embeddings_dim, n_experiments)
-    params = {
-        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
-        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
-        'input_shape': [embeddings_dim] * n_experiments,
-        'layers': layers,
-        'encoder_kernel_size': encoder_kernel_sizes,
-        'tcn_kernel_size': np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist(),
-        'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
-        'window': get_1d_window_size(encoder_kernel_sizes, layers, lambda x: len(x[0])),
-        'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
-    }
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    experiments = load_experiment('../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json')
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
     return evaluated_hyperparams
 
 
@@ -215,7 +200,7 @@ if __name__ == '__main__':
         X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
         y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-        train_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_tcnn_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
 
     X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
     X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
@@ -228,11 +213,11 @@ if __name__ == '__main__':
     # results = train_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_cnn2d(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
-
-    # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
+    # results = train_cnn2d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_aetcnn(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)

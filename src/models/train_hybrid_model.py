@@ -5,9 +5,8 @@ import torch
 from typing import List, Dict
 
 from src.models.metrics import metrics_report, get_metrics
-from src.features.feature_extractor import FeatureExtractor
+from src.models.autoencoder import AutoEncoder
 from src.models.train_conv_models import CustomMinMaxScaler
-from src.models.train_baseline_models import get_labels_from_csv
 from src.models.utils import load_pickle_file, find_optimal_threshold, convert_predictions, create_checkpoint, \
     create_experiment_report, save_experiment
 
@@ -17,20 +16,35 @@ np.random.seed(SEED)
 EXPERIMENT_PATH = '../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json'
 
 
-def train_hybrid_model(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
-    fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
-    y_train = get_labels_from_csv(y_train, x_train.keys())
-    y_test = get_labels_from_csv(y_test, x_test.keys())
-    x_train = fe.fit_transform(x_train)
-    x_test = fe.transform(x_test)
+def generate_layer_settings(n_experiments: int) -> List:
+    ret = []
+    for i in range(n_experiments):
+        layers = []
 
+        n_encoder = np.random.randint(1, 6)
+        layers_encoder = np.random.randint(10, 501, size=n_encoder)
+        layers_encoder.sort(kind='mergesort')
+        layers.extend(layers_encoder.tolist()[::-1])  # descending
+
+        n_decoder = np.random.randint(1, 6)
+        layers_decoder = np.random.randint(10, 501, size=n_decoder)
+        layers_decoder.sort(kind='mergesort')
+        layers.extend(layers_decoder.tolist())  # ascending
+
+        ret.append(layers)
+    return ret
+
+
+def train_hybrid_model(x_train: np.ndarray, x_test: np.ndarray, y_train: np.array, y_test: np.array) -> Dict:
     model = AutoEncoder()
     n_experiments = 100
+    embeddings_dim = x_train[0].shape[1]
+
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
         'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
-        'input_dim': [48] * n_experiments,
+        'input_dim': [embeddings_dim] * n_experiments,
         'layers': generate_layer_settings(n_experiments),
         'dropout': np.random.uniform(0, 0.5, size=n_experiments).tolist()
     }
@@ -91,5 +105,5 @@ if __name__ == '__main__':
     np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
     np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
 
-    # results = train_hybrid_model(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = train_hybrid_model(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)

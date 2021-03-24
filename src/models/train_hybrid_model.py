@@ -13,7 +13,7 @@ from src.models.utils import load_pickle_file, find_optimal_threshold, convert_p
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json'
+EXPERIMENT_PATH = '../../models/AE-AETCN-hybrid-hyperparameters-HDFS1.json'
 
 
 def generate_layer_settings(n_experiments: int) -> List:

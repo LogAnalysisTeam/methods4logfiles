@@ -89,7 +89,7 @@ if __name__ == '__main__':
     X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
 
     np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
-    np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_val)
+    np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
 
     # results = train_hybrid_model(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
     # save_experiment(results, EXPERIMENT_PATH)

@@ -16,14 +16,12 @@ from src.models.sa_cnn1d import SACNN1D
 from src.models.sa_cnn2d import SACNN2D
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, create_checkpoint, save_experiment, load_pickle_file, \
-    find_optimal_threshold, convert_predictions, get_encoder_size, generate_layer_settings, get_1d_window_size, \
-    get_2d_kernels, get_2d_window_size, get_encoder_heads, get_decoder_heads, get_bottleneck_dim, load_experiment, \
-    create_model_path
+    find_optimal_threshold, convert_predictions, load_experiment, create_model_path
 
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/sa_cnn1d'
+DIR_TO_EXPERIMENTS = '../../models/sa_cnn2d'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -125,26 +123,9 @@ def train_sa_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.ar
     x_test = sc.transform(x_test)
 
     model = SACNN2D()
-    n_experiments = 100
-    embeddings_dim = x_train[0].shape[1]
 
-    encoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(1, 5)], [2 * i + 1 for i in range(1, 4)],
-                                          n_experiments)
-    decoder_kernel_sizes = get_2d_kernels([2 * i + 1 for i in range(2, 8)], [2 * i + 1 for i in range(1, 5)],
-                                          n_experiments)
-    layers = generate_layer_settings(embeddings_dim, n_experiments)
-    params = {
-        'epochs': np.random.choice(np.arange(1, 6), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
-        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
-        'input_shape': [embeddings_dim] * n_experiments,
-        'layers': layers,
-        'encoder_kernel_size': encoder_kernel_sizes,
-        'decoder_kernel_size': decoder_kernel_sizes,
-        'bottleneck_dim': get_bottleneck_dim(layers),
-        'window': get_2d_window_size(encoder_kernel_sizes, layers)
-    }
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    experiments = load_experiment('../../models/SACNN2D-hyperparameters-embeddings-clipping-HDFS1.json')
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
     return evaluated_hyperparams
 
 
@@ -206,8 +187,8 @@ if __name__ == '__main__':
     # results = train_aetcnn(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
-
-    # results = train_sa_cnn2d(X_train, X_val, y_train, y_val)
+    # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_sa_cnn2d(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)

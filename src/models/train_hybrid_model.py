@@ -37,8 +37,9 @@ def generate_layer_settings(n_experiments: int) -> List:
 
 def train_hybrid_model(x_train: np.ndarray, x_test: np.ndarray, y_train: np.array, y_test: np.array) -> Dict:
     model = AutoEncoder()
+
     n_experiments = 100
-    embeddings_dim = x_train[0].shape[1]
+    embeddings_dim = x_train.shape[1]
 
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
@@ -88,22 +89,24 @@ def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_tes
     test_features = model.extract_features(x_test)
 
     theta, f1 = find_optimal_threshold(y_test, y_pred)
-    print(theta)
     y_pred = convert_predictions(y_pred, theta)
     metrics_report(y_test, y_pred)
     return train_features, test_features
 
 
 if __name__ == '__main__':
-    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
-    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
+    # X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
+    # X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-    X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
-
-    np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
-    np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
+    # X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+    # 
+    # np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
+    # np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
+    
+    X_train = np.load('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy')
+    X_val = np.load('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy')
 
     results = train_hybrid_model(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

@@ -70,8 +70,9 @@ def random_search(data_and_labels: tuple, model: AutoEncoder, params: Dict) -> D
         theta, f1 = find_optimal_threshold(y_test, y_pred)
         y_pred = convert_predictions(y_pred, theta)
         metrics_report(y_test, y_pred)
-        scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
-        create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
+        print('not saved!')
+        # scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
+        # create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
     return {
         'experiments': scores
     }
@@ -85,8 +86,8 @@ def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_tes
     model = torch.load('../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt')
 
     y_pred = model.predict(x_test)  # return reconstruction errors
-    train_features = model.extract_features(x_train)
-    test_features = model.extract_features(x_test)
+    train_features = model.extract_features(x_train).astype(dtype=np.float32)
+    test_features = model.extract_features(x_test).astype(dtype=np.float32)
 
     theta, f1 = find_optimal_threshold(y_test, y_pred)
     y_pred = convert_predictions(y_pred, theta)
@@ -95,18 +96,18 @@ def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_tes
 
 
 if __name__ == '__main__':
-    # X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
-    # X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
+    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
+    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-    # X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
-    # 
-    # np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
-    # np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
+    X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+
+    np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
+    np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
     
-    X_train = np.load('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy')
-    X_val = np.load('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy')
+    # X_train = np.load('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy')
+    # X_val = np.load('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy')
 
     results = train_hybrid_model(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

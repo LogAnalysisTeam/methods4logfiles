@@ -1,14 +1,10 @@
 from __future__ import annotations
 
 import numpy as np
+import torch
 from typing import List, Dict
-import pickle
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
-from src.models.autoencoder_tcnn import AETCN
 from src.models.metrics import metrics_report, get_metrics
-from src.visualization.visualization import visualize_distribution_with_labels
-from src.data.hdfs import load_labels
 from src.features.feature_extractor import FeatureExtractor
 from src.models.train_conv_models import CustomMinMaxScaler
 from src.models.train_baseline_models import get_labels_from_csv
@@ -18,10 +14,10 @@ from src.models.utils import load_pickle_file, find_optimal_threshold, convert_p
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/AE-hyperparameters-Drain3-HDFS1.json'
+EXPERIMENT_PATH = '../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json'
 
 
-def train_autoencoder(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
+def train_hybrid_model(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
     fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
     y_train = get_labels_from_csv(y_train, x_train.keys())
     y_test = get_labels_from_csv(y_test, x_test.keys())
@@ -67,30 +63,18 @@ def random_search(data_and_labels: tuple, model: AutoEncoder, params: Dict) -> D
 
 
 def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_test: np.array):
-    hyperparameters = {'batch_size': 128,
-                       'dropout': 0.3793000483025081,
-                       'epochs': 9,
-                       'input_shape': 100,
-                       'kernel_size': 5,
-                       'layers': [[330], 1187, [432, 433, 100]],
-                       'learning_rate': 0.0007196856730011522,
-                       'window': 64}
-
     sc = CustomMinMaxScaler()
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
-    model = AETCN()
+    model = torch.load('../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt')
 
-    model.set_params(**hyperparameters)
-    print(f'Model current hyperparameters are: {hyperparameters}.')
-
-    model.fit(x_train)
     y_pred = model.predict(x_test)  # return reconstruction errors
     train_features = model.extract_features(x_train)
     test_features = model.extract_features(x_test)
 
     theta, f1 = find_optimal_threshold(y_test, y_pred)
+    print(theta)
     y_pred = convert_predictions(y_pred, theta)
     metrics_report(y_test, y_pred)
     return train_features, test_features

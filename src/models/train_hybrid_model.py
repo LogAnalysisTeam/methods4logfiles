@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 import torch
+import os
 from typing import List, Dict
 
 from src.models.metrics import metrics_report, get_metrics
@@ -35,7 +36,7 @@ def generate_layer_settings(n_experiments: int) -> List:
     return ret
 
 
-def train_hybrid_model(x_train: np.ndarray, x_test: np.ndarray, y_train: np.array, y_test: np.array) -> Dict:
+def train_hybrid_model_ae(x_train: np.ndarray, x_test: np.ndarray, y_train: np.array, y_test: np.array) -> Dict:
     model = AutoEncoder()
 
     n_experiments = 100
@@ -64,15 +65,15 @@ def random_search(data_and_labels: tuple, model: AutoEncoder, params: Dict) -> D
 
         print(f'Model current hyperparameters are: {kwargs}.')
 
-        model.fit(x_train)
-        y_pred = model.predict(x_test)  # return reconstruction errors
-
-        theta, f1 = find_optimal_threshold(y_test, y_pred)
-        y_pred = convert_predictions(y_pred, theta)
-        metrics_report(y_test, y_pred)
-        print('not saved!')
+        # model.fit(x_train)
+        # y_pred = model.predict(x_test)  # return reconstruction errors
+        #
+        # theta, f1 = find_optimal_threshold(y_test, y_pred)
+        # y_pred = convert_predictions(y_pred, theta)
+        # metrics_report(y_test, y_pred)
+        scores.append({'hyperparameters': kwargs})
         # scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
-        # create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
+        create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
     return {
         'experiments': scores
     }
@@ -101,13 +102,16 @@ if __name__ == '__main__':
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
-    X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+    train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
+    val_path = '../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy'
 
-    np.save('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy', X_train)
-    np.save('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy', X_val)
-    
-    # X_train = np.load('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy')
-    # X_val = np.load('../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy')
+    if os.path.exists(train_path) and os.path.exists(val_path):
+        X_train = np.load(train_path)
+        X_val = np.load(val_path)
+    else:
+        X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+        np.save(train_path, X_train)
+        np.save(val_path, X_val)
 
-    results = train_hybrid_model(X_train, X_val, y_train, y_val)
+    results = train_hybrid_model_ae(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

@@ -23,7 +23,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/hybrid_ae'
+DIR_TO_EXPERIMENTS = '../../models/hybrid_ae_relu'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -136,9 +136,6 @@ def train_hybrid_model_ae(x_train: List, x_test: List, y_train: np.array, y_test
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
-    print(EXPERIMENT_PATH)
-    print(x_train.mean(axis=0), x_train.std(axis=0), x_test.mean(axis=0), x_test.std(axis=0))
-
     model = AutoEncoder()
 
     experiments = load_experiment('../../models/AE-AETCN-hybrid-hyperparameters-HDFS1.json')
@@ -218,6 +215,10 @@ if __name__ == '__main__':
         X_val = np.load(val_path)
     else:
         X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+
+    # apply ReLU
+    X_train[X_train < 0] = 0
+    X_val[X_val < 0] = 0
 
     results = train_hybrid_model_ae(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

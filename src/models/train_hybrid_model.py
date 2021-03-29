@@ -44,7 +44,7 @@ def train_hybrid_model_ae(x_train: np.ndarray, x_test: np.ndarray, y_train: np.a
 
     params = {
         'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
-        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.1), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -1), size=n_experiments).tolist(),
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_dim': [embeddings_dim] * n_experiments,
         'layers': generate_layer_settings(n_experiments),

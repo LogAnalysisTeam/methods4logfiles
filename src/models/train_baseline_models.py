@@ -11,7 +11,7 @@ from src.features.hdfs import check_order
 from src.data.logparser import load_drain3
 from src.data.hdfs import load_labels
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import save_experiment, create_experiment_report
+from src.models.utils import save_experiment, create_experiment_report, convert_predictions
 
 SEED = 160121
 np.random.seed(SEED)
@@ -20,13 +20,6 @@ np.random.seed(SEED)
 def get_labels_from_csv(df: pd.DataFrame, keys: Iterable) -> np.array:
     check_order(keys, df['BlockId'])
     return df['Label'].to_numpy(dtype=np.int8)
-
-
-def convert_predictions(y_pred: np.array) -> np.array:
-    # LocalOutlierFactor and IsolationForest returns: 1 inlier, -1 outlier
-    y_pred[y_pred == 1] = 0
-    y_pred[y_pred == -1] = 1
-    return y_pred
 
 
 def train_lof(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:

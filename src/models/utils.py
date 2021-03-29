@@ -205,3 +205,9 @@ def get_bottleneck_dim(layers: List) -> List:
         n_channels = config[n_encoder_layers - 1]
         ret.append(int(np.random.randint(1, n_channels + 1)))
     return ret
+
+def convert_predictions(y_pred: np.array) -> np.array:
+    # LocalOutlierFactor and IsolationForest returns: 1 inlier, -1 outlier
+    y_pred[y_pred == 1] = 0
+    y_pred[y_pred == -1] = 1
+    return y_pred

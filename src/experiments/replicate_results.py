@@ -149,7 +149,7 @@ def train_hybrid_model_if(x_train: List, x_test: List, y_train: np.array, y_test
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
-    model = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
+    model = IsolationForest(bootstrap=True, n_jobs=1, random_state=SEED)
 
     experiments = load_experiment('../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json')
     evaluated_hyperparams = random_search_unsupervised((x_train, x_test, None, y_test), model, experiments)

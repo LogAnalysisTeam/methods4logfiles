@@ -5,6 +5,7 @@ import numpy as np
 import uuid
 import os
 from typing import List, Dict, Union
+from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 from src.models.autoencoder import AutoEncoder
@@ -18,12 +19,12 @@ from src.models.sa_cnn2d import SACNN2D
 from src.models.train_hybrid_model import get_extracted_features
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, create_checkpoint, save_experiment, load_pickle_file, \
-    find_optimal_threshold, convert_predictions, load_experiment, create_model_path
+    find_optimal_threshold, classify, load_experiment, create_model_path, convert_predictions
 
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/hybrid_ae_relu'
+DIR_TO_EXPERIMENTS = '../../models/hybrid_if_relu'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -143,6 +144,18 @@ def train_hybrid_model_ae(x_train: List, x_test: List, y_train: np.array, y_test
     return evaluated_hyperparams
 
 
+def train_hybrid_model_if(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = StandardScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
+
+    experiments = load_experiment('../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json')
+    evaluated_hyperparams = random_search_unsupervised((x_train, x_test, None, y_test), model, experiments)
+    return evaluated_hyperparams
+
+
 def random_search(data_and_labels: tuple, model: Union[AutoEncoder, VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D, SACNN1D,
                                                        SACNN2D], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
@@ -157,13 +170,39 @@ def random_search(data_and_labels: tuple, model: Union[AutoEncoder, VanillaTCN, 
         y_pred = model.predict(x_test)  # return reconstruction errors
 
         theta, f1 = find_optimal_threshold(y_test, y_pred)
-        y_pred = convert_predictions(y_pred, theta)
+        y_pred = classify(y_pred, theta)
         metrics_report(y_test, y_pred)
 
         model_path = create_model_path(DIR_TO_EXPERIMENTS, str(uuid.uuid4()))
         torch.save(model, model_path)
 
         res = create_experiment_report(get_metrics(y_test, y_pred), experiment['hyperparameters'], theta, model_path)
+        scores.append(res)
+        create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
+    return {
+        'experiments': scores
+    }
+
+
+def random_search_unsupervised(data_and_labels: tuple, model: IsolationForest, params: Dict) -> Dict:
+    x_train, x_test, _, y_test = data_and_labels
+
+    scores = []
+    for experiment in params['experiments']:
+        model.set_params(**experiment['hyperparameters'])
+
+        print(f'Model current hyperparameters are: {experiment["hyperparameters"]}.')
+
+        model.fit(x_train)
+        y_pred = model.predict(x_test)  # return labels
+
+        y_pred = convert_predictions(y_pred)
+        metrics_report(y_test, y_pred)
+
+        model_path = create_model_path(DIR_TO_EXPERIMENTS, str(uuid.uuid4()))
+        torch.save(model, model_path)
+
+        res = create_experiment_report(get_metrics(y_test, y_pred), experiment['hyperparameters'], file_path=model_path)
         scores.append(res)
         create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
     return {
@@ -220,5 +259,5 @@ if __name__ == '__main__':
     X_train[X_train < 0] = 0
     X_val[X_val < 0] = 0
 
-    results = train_hybrid_model_ae(X_train, X_val, y_train, y_val)
+    results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

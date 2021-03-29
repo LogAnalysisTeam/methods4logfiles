@@ -129,5 +129,5 @@ if __name__ == '__main__':
         np.save(train_path, X_train)
         np.save(val_path, X_val)
 
-    results = train_hybrid_model_ae(X_train, X_val, y_train, y_val)
+    results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

@@ -3,7 +3,8 @@ from __future__ import annotations
 import numpy as np
 import torch
 import os
-from typing import List, Dict
+from typing import List, Dict, Union
+from sklearn.ensemble import IsolationForest
 
 from src.models.metrics import metrics_report, get_metrics
 from src.models.autoencoder import AutoEncoder
@@ -14,7 +15,7 @@ from src.models.utils import load_pickle_file, find_optimal_threshold, convert_p
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/AE-AETCN-hybrid-hyperparameters-HDFS1.json'
+EXPERIMENT_PATH = '../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json'
 
 
 def generate_layer_settings(n_experiments: int) -> List:
@@ -54,7 +55,22 @@ def train_hybrid_model_ae(x_train: np.ndarray, x_test: np.ndarray, y_train: np.a
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: AutoEncoder, params: Dict) -> Dict:
+def train_hybrid_model_if(x_train: np.ndarray, x_test: np.ndarray, y_train: np.array, y_test: np.array) -> Dict:
+    clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
+
+    n_experiments = 100
+    embeddings_dim = x_train.shape[1]
+
+    params = {
+        'n_estimators': np.random.randint(100, 2000, size=n_experiments).tolist(),
+        'max_samples': np.random.uniform(0.001, 1, size=n_experiments).tolist(),
+        'max_features': np.random.randint(1, embeddings_dim + 1, size=n_experiments).tolist()
+    }
+    evaluated_hyperparams = random_search((x_train, x_test, None, y_test), clf, params)
+    return evaluated_hyperparams
+
+
+def random_search(data_and_labels: tuple, model: Union[AutoEncoder, IsolationForest], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
     scores = []

@@ -14,7 +14,7 @@ from src.models.sa_cnn2d import SACNN2D
 from src.visualization.visualization import visualize_distribution_with_labels
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import create_experiment_report, create_checkpoint, save_experiment, load_pickle_file, \
-    find_optimal_threshold, convert_predictions, get_encoder_size, generate_layer_settings, get_1d_window_size, \
+    find_optimal_threshold, classify, get_encoder_size, generate_layer_settings, get_1d_window_size, \
     get_2d_kernels, get_2d_window_size, get_encoder_heads, get_decoder_heads, get_bottleneck_dim
 
 SEED = 160121
@@ -267,7 +267,7 @@ def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D,
         y_pred = model.predict(x_test)  # return reconstruction errors
 
         theta, f1 = find_optimal_threshold(y_test, y_pred)
-        y_pred = convert_predictions(y_pred, theta)
+        y_pred = classify(y_pred, theta)
         metrics_report(y_test, y_pred)
         scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
         create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
@@ -290,7 +290,7 @@ def train_window(x_train: List, x_test: List, y_train: np.array, y_test: np.arra
         y_pred = model.predict(x_test)  # return reconstruction errors
 
         theta, f1 = find_optimal_threshold(y_test, y_pred)
-        y_pred = convert_predictions(y_pred, theta)
+        y_pred = classify(y_pred, theta)
         metrics_report(y_test, y_pred)
         scores.append(create_experiment_report(get_metrics(y_test, y_pred), {'window': w}))
         create_checkpoint({'experiments': scores}, '../../models/TCN-cropped-window-embeddings-HDFS1.json')

@@ -11,7 +11,7 @@ from src.visualization.visualization import visualize_distribution_with_labels
 from src.data.hdfs import load_labels
 from src.features.feature_extractor import FeatureExtractor
 from src.models.train_baseline_models import get_labels_from_csv
-from src.models.utils import load_pickle_file, find_optimal_threshold, convert_predictions, create_checkpoint, \
+from src.models.utils import load_pickle_file, find_optimal_threshold, classify, create_checkpoint, \
     create_experiment_report, save_experiment
 
 SEED = 160121
@@ -75,7 +75,7 @@ def random_search(data_and_labels: tuple, model: AutoEncoder, params: Dict) -> D
         y_pred = model.predict(x_test)  # return reconstruction errors
 
         theta, f1 = find_optimal_threshold(y_test, y_pred)
-        y_pred = convert_predictions(y_pred, theta)
+        y_pred = classify(y_pred, theta)
         metrics_report(y_test, y_pred)
         scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
         create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)

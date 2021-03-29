@@ -30,13 +30,17 @@ def load_experiment(file_path: str) -> Dict:
         return json.load(f)
 
 
-def create_experiment_report(metrics: Dict, hyperparameters: Dict, theta: float, file_path: str) -> Dict:
-    return {
+def create_experiment_report(metrics: Dict, hyperparameters: Dict, theta: float = None, file_path: str = None) -> Dict:
+    ret = {
         'metrics': metrics,
         'hyperparameters': hyperparameters,
-        'threshold': theta,
-        'model_path': file_path
     }
+
+    if theta:
+        ret['threshold'] = theta
+    if file_path:
+        ret['model_path'] = file_path
+    return ret
 
 
 def create_model_path(dir_path: str, unique_name: str) -> str:
@@ -56,13 +60,13 @@ def load_pickle_file(file_path: str) -> Union[List, Dict]:
 def find_optimal_threshold(y_true: np.array, y_pred: np.array) -> tuple:
     ret = {}
     for th in set(y_pred[y_true == 1]):
-        tmp = convert_predictions(y_pred, th)
+        tmp = classify(y_pred, th)
         f1 = get_metrics(y_true, tmp)['f1_score']
         ret[th] = f1
     return max(ret.items(), key=lambda x: x[1])
 
 
-def convert_predictions(y_pred: np.array, theta: float) -> np.array:
+def classify(y_pred: np.array, theta: float) -> np.array:
     ret = np.zeros(shape=y_pred.shape)
     ret[y_pred >= theta] = 1
     return ret
@@ -205,6 +209,7 @@ def get_bottleneck_dim(layers: List) -> List:
         n_channels = config[n_encoder_layers - 1]
         ret.append(int(np.random.randint(1, n_channels + 1)))
     return ret
+
 
 def convert_predictions(y_pred: np.array) -> np.array:
     # LocalOutlierFactor and IsolationForest returns: 1 inlier, -1 outlier

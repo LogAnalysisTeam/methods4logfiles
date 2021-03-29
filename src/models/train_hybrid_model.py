@@ -9,7 +9,7 @@ from sklearn.ensemble import IsolationForest
 from src.models.metrics import metrics_report, get_metrics
 from src.models.autoencoder import AutoEncoder
 from src.models.train_conv_models import CustomMinMaxScaler
-from src.models.utils import load_pickle_file, find_optimal_threshold, convert_predictions, create_checkpoint, \
+from src.models.utils import load_pickle_file, find_optimal_threshold, classify, create_checkpoint, \
     create_experiment_report, save_experiment
 
 SEED = 160121
@@ -107,7 +107,7 @@ def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_tes
     test_features = model.extract_features(x_test).astype(dtype=np.float32)
 
     theta, f1 = find_optimal_threshold(y_test, y_pred)
-    y_pred = convert_predictions(y_pred, theta)
+    y_pred = classify(y_pred, theta)
     metrics_report(y_test, y_pred)
     return train_features, test_features
 

@@ -1,6 +1,6 @@
 import argparse
 
-from src.features.hdfs import create_embeddings
+from src.features.hdfs import create_embeddings, create_contextual_embeddings
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert HDFS1 logs to numerical representation using fastText.')
@@ -22,4 +22,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    create_embeddings(args.input, args.output, args.model, args.per_block, args.timedelta)
+    if 'fasttext' in args.model:
+        create_embeddings(args.input, args.output, args.model, args.per_block, args.timedelta)
+    else:
+        create_contextual_embeddings(args.input, args.output, args.model)

@@ -5,7 +5,7 @@ import re
 import pandas as pd
 import pickle
 from datetime import datetime
-from typing import Generator, Iterable, List
+from typing import Generator, Iterable, List, Dict
 from collections import defaultdict
 
 from src.data.hdfs import load_data, load_labels
@@ -14,6 +14,11 @@ from src.data.hdfs import load_data, load_labels
 def save_to_file(data: List, file_path: str):
     with open(file_path, 'wb') as f:
         pickle.dump(data, f)
+
+
+def load_from_file(file_path: str) -> Dict:
+    with open(file_path, 'rb') as f:
+        return pickle.load(f)
 
 
 def load_fold_pairs(data_dir: str, n_folds: int, fold: str) -> Generator:
@@ -27,11 +32,11 @@ def get_number_of_splits(filename: str) -> int:
     return int(os.path.splitext(filename)[0][-1])
 
 
-def extract_datetime_from_line(regex: re.Pattern, line: str) -> str:
+def search(regex: re.Pattern, line: str) -> str:
     res = regex.search(line)
     if not res:  # temporal check!!
         raise AssertionError('Nothing find!!!!!')
-    return res.group()
+    return res.group(1)
 
 
 def get_datetime(timestamp: str) -> datetime:
@@ -57,11 +62,11 @@ def calculate_timedeltas_from_timestamps(timestamps: np.array) -> np.array:
 
 
 def get_timedeltas(block_of_logs: List) -> np.array:
-    regex = re.compile(r'(^\d{6} \d{6})')
+    datetime_from_line = re.compile(r'(^\d{6} \d{6})')
 
     timestamps = np.empty(shape=(len(block_of_logs),), dtype=np.object)
     for i, log in enumerate(block_of_logs):
-        str_timestamp = extract_datetime_from_line(regex, log)
+        str_timestamp = search(datetime_from_line, log)
         timestamps[i] = get_datetime(str_timestamp)
 
     timedeltas = calculate_timedeltas_from_timestamps(timestamps)
@@ -93,6 +98,16 @@ def get_embeddings_per_block(data: defaultdict, model: fasttext.FastText, with_t
         embeddings = get_embeddings_with_timedeltas_per_block(data, model)
     else:
         embeddings = [np.asarray([model.get_sentence_vector(log.rstrip()) for log in logs]) for logs in data.values()]
+    return embeddings
+
+
+def get_contextual_embeddings_per_block(data: defaultdict, embedding_mapping: Dict) -> List:
+    # create embeddings per block but at first remove '\n' (newline character) from the end, a timestamp and a PID from
+    # the beginning
+    log_without_timestamp_and_pid = re.compile(r'^\d{6} \d{6} \d+ (.*)')
+
+    embeddings = [np.asarray([embedding_mapping[search(log_without_timestamp_and_pid, log.rstrip())] for log in logs])
+                  for logs in data.values()]
     return embeddings
 
 
@@ -138,3 +153,19 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
                 ground_truth = get_labels_from_keys_per_log(data, labels)
                 np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-log.npy'), embeddings)
                 np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-log.npy'), ground_truth)
+
+
+def create_contextual_embeddings(data_dir: str, output_dir: str, model_path: str):
+    print('Currently works only for train, val split and --per-block argument!')
+    n_folds = 1  # hardcoded (currently only train-val split)
+    model = load_from_file(model_path)
+
+    for fold in ['train', 'val']:
+        for idx, (data, labels) in enumerate(load_fold_pairs(data_dir, n_folds, fold), start=1):
+            # check data.keys() and labels['BlockId'] are in the same order
+            check_order(data.keys(), labels['BlockId'])
+
+            embeddings = get_contextual_embeddings_per_block(data, model)
+            ground_truth = get_labels_from_keys_per_block(labels)
+            save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-context-block.pickle'))
+            np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-context-block.npy'), ground_truth)

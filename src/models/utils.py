@@ -121,12 +121,12 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
         layers = []
 
         n_encoder = np.random.randint(1, 4)
-        layers_encoder = np.random.randint(10, 501, size=n_encoder)
+        layers_encoder = np.random.randint(50, 501, size=n_encoder)
         layers_encoder.sort(kind='mergesort')
         layers.extend(layers_encoder.tolist())  # ascending
 
         n_decoder = np.random.randint(0, 3)  # one layer is already included in the architecture itself
-        layers_decoder = np.random.randint(10, layers[-1], size=n_decoder)
+        layers_decoder = np.random.randint(50, layers[-1], size=n_decoder)
         layers_decoder.sort(kind='mergesort')
         layers.extend(layers_decoder.tolist()[::-1])  # descending
 
@@ -134,16 +134,21 @@ def generate_layer_settings(input_dim: int, size: int) -> List:
     return ret
 
 
-def get_min_window_size(kernel: int, maxpool: int, n_encoder_layers: int):
+def get_min_window_size(kernel: int, maxpool: int, n_encoder_layers: int) -> int:
     # time complexity might be improved with binary search O(log(n)) instead of O(n)
     for input_dim in range(1, 500):
-        output_dim = input_dim
-        for _ in range(n_encoder_layers):
-            output_dim = output_dim - kernel + 1  # Conv1d
-            output_dim //= maxpool  # MaxPool1d
+        output_dim = get_window_size(input_dim, kernel, maxpool, n_encoder_layers)
 
         if output_dim > 0:
             return input_dim
+
+
+def get_window_size(input_dim: int, kernel: int, maxpool: int, n_encoder_layers: int) -> int:
+    output_dim = input_dim
+    for _ in range(n_encoder_layers):
+        output_dim = output_dim - kernel + 1  # Conv1d
+        output_dim //= maxpool  # MaxPool1d
+    return output_dim
 
 
 def get_1d_window_size(encoder_kernels: List, layers: List, get_number_of_encoder_layers: Callable) -> List:

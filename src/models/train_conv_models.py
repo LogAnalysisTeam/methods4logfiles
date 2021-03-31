@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from src.models.vanilla_tcnn import VanillaTCN
 from src.models.autoencoder_tcnn import AETCN
+from src.models.autoencoder_cnn1d import AECNN1D
 from src.models.cnn1d import CNN1D
 from src.models.cnn2d import CNN2D
 from src.models.tcnn_cnn1d import TCNCNN1D
@@ -20,7 +21,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/SACNN2D-hyperparameters-embeddings-clipping-HDFS1.json'
+EXPERIMENT_PATH = '../../models/AECNN1D-hyperparameters-embeddings-clipping-HDFS1.json'
 
 
 class CustomMinMaxScaler(MinMaxScaler):
@@ -131,6 +132,32 @@ def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array
         'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
         'input_shape': [embeddings_dim] * n_experiments,
         'layers': layers,
+        'encoder_kernel_size': encoder_kernel_sizes,
+        'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
+        'window': get_1d_window_size(encoder_kernel_sizes, layers, get_encoder_size)
+    }
+    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, params)
+    return evaluated_hyperparams
+
+
+def train_aecnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_train = sc.fit_transform(x_train)
+    x_test = sc.transform(x_test)
+
+    model = AECNN1D()
+    n_experiments = 100
+    embeddings_dim = x_train[0].shape[1]
+
+    encoder_kernel_sizes = np.random.choice([2 * i + 1 for i in range(1, 4)], size=n_experiments).tolist()
+    layers = generate_layer_settings(embeddings_dim, n_experiments)
+    params = {
+        'epochs': np.random.choice(np.arange(1, 10), size=n_experiments).tolist(),
+        'learning_rate': np.random.choice(10 ** np.linspace(-4, -0.5), size=n_experiments).tolist(),
+        'batch_size': np.random.choice([2 ** i for i in range(3, 8)], size=n_experiments).tolist(),
+        'input_shape': [embeddings_dim] * n_experiments,
+        'layers': layers,
+        'bottleneck_dim': np.random.randint(100, 2001, size=n_experiments).tolist(),
         'encoder_kernel_size': encoder_kernel_sizes,
         'decoder_kernel_size': np.random.choice([2 * i + 1 for i in range(2, 7)], size=n_experiments).tolist(),
         'window': get_1d_window_size(encoder_kernel_sizes, layers, get_encoder_size)
@@ -251,8 +278,8 @@ def train_sa_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.ar
     return evaluated_hyperparams
 
 
-def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, CNN2D, TCNCNN1D, SACNN1D, SACNN2D],
-                  params: Dict) -> Dict:
+def random_search(data_and_labels: tuple, model: Union[VanillaTCN, AETCN, CNN1D, AECNN1D, CNN2D, TCNCNN1D, SACNN1D,
+                                                       SACNN2D], params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
     scores = []
@@ -307,7 +334,7 @@ if __name__ == '__main__':
 
         # train_window(X_val[:45000], X_val[45000:], y_val[:45000], y_val[45000:])
 
-        train_sa_cnn2d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
+        train_aecnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
         # exit()
 
         sc = CustomMinMaxScaler()
@@ -375,5 +402,8 @@ if __name__ == '__main__':
     # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_sa_cnn2d(X_train, X_val, y_train, y_val)
+    # results = train_sa_cnn2d(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_aecnn1d(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

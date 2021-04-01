@@ -106,8 +106,8 @@ def get_contextual_embeddings_per_block(data: defaultdict, embedding_mapping: Di
     # the beginning
     log_without_timestamp_and_pid = re.compile(r'^\d{6} \d{6} \d+ (.*)')
 
-    embeddings = [np.asarray([embedding_mapping[search(log_without_timestamp_and_pid, log.rstrip())] for log in logs])
-                  for logs in data.values()]
+    embeddings = [np.asarray([embedding_mapping[search(log_without_timestamp_and_pid, log.rstrip())] for log in logs],
+                             dtype=np.float32) for logs in data.values()]
     return embeddings
 
 

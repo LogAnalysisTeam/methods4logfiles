@@ -24,7 +24,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/hybrid_if_small'
+DIR_TO_EXPERIMENTS = '../../models/hybrid_ae_small'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -259,5 +259,5 @@ if __name__ == '__main__':
     # X_train[X_train < 0] = 0
     # X_val[X_val < 0] = 0
 
-    results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
+    results = train_hybrid_model_ae(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

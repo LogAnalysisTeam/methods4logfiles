@@ -100,7 +100,8 @@ def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_tes
     x_train = sc.fit_transform(x_train)
     x_test = sc.transform(x_test)
 
-    model = torch.load('../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt')
+    # model = torch.load('../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt')
+    model = torch.load('../../models/aetcn/5d9ad591-6d3c-428f-894f-02af96ca1930.pt')
 
     y_pred = model.predict(x_test)  # return reconstruction errors
     train_features = model.extract_features(x_train).astype(dtype=np.float32)

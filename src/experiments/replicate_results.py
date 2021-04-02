@@ -24,7 +24,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 SEED = 160121
 np.random.seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/aetcn_contextual'
+DIR_TO_EXPERIMENTS = '../../models/hybrid_if_small'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -235,8 +235,8 @@ if __name__ == '__main__':
     # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
 
-    results = train_aetcnn(X_train, X_val, y_train, y_val)
-    save_experiment(results, EXPERIMENT_PATH)
+    # results = train_aetcnn(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)
@@ -246,18 +246,18 @@ if __name__ == '__main__':
 
     ################################ HYBRID MODELS #####################################################################
 
-    # train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
-    # val_path = '../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy'
-    #
-    # if os.path.exists(train_path) and os.path.exists(val_path):
-    #     X_train = np.load(train_path)
-    #     X_val = np.load(val_path)
-    # else:
-    #     X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
-    #
+    train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
+    val_path = '../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy'
+
+    if os.path.exists(train_path) and os.path.exists(val_path):
+        X_train = np.load(train_path)
+        X_val = np.load(val_path)
+    else:
+        X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+
     # # apply ReLU
     # X_train[X_train < 0] = 0
     # X_val[X_val < 0] = 0
-    #
-    # results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
+    save_experiment(results, EXPERIMENT_PATH)

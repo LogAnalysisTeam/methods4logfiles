@@ -231,10 +231,10 @@ if __name__ == '__main__':
 
         train_tcnn_cnn1d(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
 
-    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-context-block.pickle')
-    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-context-block.pickle')
-    y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-context-block.npy')
-    y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-context-block.npy')
+    X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
+    X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
+    y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
+    y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
 
     # results = train_tcnn(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)

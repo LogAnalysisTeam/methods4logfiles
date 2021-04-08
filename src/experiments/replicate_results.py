@@ -23,6 +23,7 @@ from src.models.utils import create_experiment_report, create_checkpoint, save_e
 
 SEED = 160121
 np.random.seed(SEED)
+torch.manual_seed(SEED)
 
 DIR_TO_EXPERIMENTS = '../../models/aetcn_contextual'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')

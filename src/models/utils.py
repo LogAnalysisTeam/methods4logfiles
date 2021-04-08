@@ -9,6 +9,9 @@ from scipy import stats
 
 from src.models.metrics import get_metrics
 
+SEED = 160121
+np.random.seed(SEED)
+
 
 def time_decorator(function: Callable):
     def wrapper(*arg, **kw):

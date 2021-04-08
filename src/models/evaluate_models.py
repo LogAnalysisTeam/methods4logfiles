@@ -45,88 +45,67 @@ def evaluate_tcnn(x_train: List, x_test: List, y_test: np.array) -> Dict:
     return score
 
 
-def train_aetcnn(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_aetcnn(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = AETCN()
-
-    experiments = load_experiment('../../models/AETCN-hyperparameters-embeddings-clipping-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/aetcn/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_aecnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_aecnn1d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = AECNN1D()
-
-    experiments = load_experiment('../../models/AECNN1D-hyperparameters-embeddings-clipping-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/aecnn1d/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_cnn1d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = CNN1D()
-
-    experiments = load_experiment('../../models/CNN1D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/cnn1d/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_cnn2d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = CNN2D()
-
-    experiments = load_experiment('../../models/CNN2D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/cnn2d/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_tcnn_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_tcnn_cnn1d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = TCNCNN1D()
-
-    experiments = load_experiment('../../models/TCNCNN1D-inverse-bottleneck-hyperparameters-embeddings-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/cnn1d_tcn/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_sa_cnn1d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_sa_cnn1d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = SACNN1D()
-
-    experiments = load_experiment('../../models/SACNN1D-hyperparameters-embeddings-clipping-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/sa_cnn1d/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_sa_cnn2d(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
+def evaluate_sa_cnn2d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     sc = CustomMinMaxScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = SACNN2D()
-
-    experiments = load_experiment('../../models/SACNN2D-hyperparameters-embeddings-clipping-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/sa_cnn2d/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
 def train_hybrid_model_ae(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
@@ -181,26 +160,26 @@ if __name__ == '__main__':
     results = evaluate_tcnn(X_train, X_test, y_test)
     print(results)
 
-    # results = train_cnn1d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_cnn1d(X_train, X_test, y_test)
+    print(results)
 
-    # results = train_cnn2d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_cnn2d(X_train, X_test, y_test)
+    print(results)
 
-    # results = train_tcnn_cnn1d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_tcnn_cnn1d(X_train, X_test, y_test)
+    print(results)
 
-    # results = train_aetcnn(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_aetcnn(X_train, X_test, y_test)
+    print(results)
 
-    # results = train_aecnn1d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_aecnn1d(X_train, X_test, y_test)
+    print(results)
 
-    # results = train_sa_cnn1d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_sa_cnn1d(X_train, X_test, y_test)
+    print(results)
 
-    # results = train_sa_cnn2d(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_sa_cnn2d(X_train, X_test, y_test)
+    print(results)
 
     ################################ HYBRID MODELS #####################################################################
 

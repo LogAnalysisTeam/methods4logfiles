@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import torch
 import numpy as np
-import os
+import json
 from typing import List, Dict
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -158,28 +158,28 @@ if __name__ == '__main__':
     y_test = np.load('../../data/processed/HDFS1/y-test-HDFS1-block.npy')
 
     results = evaluate_tcnn(X_train, X_test, y_test)
-    print(results)
+    print('TCN model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_cnn1d(X_train, X_test, y_test)
-    print(results)
+    print('CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_cnn2d(X_train, X_test, y_test)
-    print(results)
+    print('CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_tcnn_cnn1d(X_train, X_test, y_test)
-    print(results)
+    print('TCN + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_aetcnn(X_train, X_test, y_test)
-    print(results)
+    print('AETCN model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_aecnn1d(X_train, X_test, y_test)
-    print(results)
+    print('AECNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_sa_cnn1d(X_train, X_test, y_test)
-    print(results)
+    print('SA + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_sa_cnn2d(X_train, X_test, y_test)
-    print(results)
+    print('SA + CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
 
     ################################ HYBRID MODELS #####################################################################
 

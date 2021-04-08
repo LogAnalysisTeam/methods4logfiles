@@ -154,6 +154,20 @@ def create_embeddings(data_dir: str, output_dir: str, fasttext_model_path: str, 
                 np.save(os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-log.npy'), embeddings)
                 np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-log.npy'), ground_truth)
 
+    data = load_data(os.path.join(data_dir, 'test-data-HDFS1.log'))
+    labels = load_labels(os.path.join(data_dir, 'test-labels-HDFS1.csv'))
+
+    if per_block:
+        embeddings = get_embeddings_per_block(data, model, with_timedelta)
+        ground_truth = get_labels_from_keys_per_block(labels)
+        save_to_file(embeddings, os.path.join(output_dir, 'X-test-HDFS1-block.pickle'))
+        np.save(os.path.join(output_dir, 'y-test-HDFS1-block.npy'), ground_truth)
+    else:
+        embeddings = get_embeddings_per_log(data, model)
+        ground_truth = get_labels_from_keys_per_log(data, labels)
+        np.save(os.path.join(output_dir, 'X-test-HDFS1-log.npy'), embeddings)
+        np.save(os.path.join(output_dir, 'y-test-HDFS1-log.npy'), ground_truth)
+
 
 def create_contextual_embeddings(data_dir: str, output_dir: str, model_path: str):
     print('Currently works only for train, val split and --per-block argument!')
@@ -169,3 +183,11 @@ def create_contextual_embeddings(data_dir: str, output_dir: str, model_path: str
             ground_truth = get_labels_from_keys_per_block(labels)
             save_to_file(embeddings, os.path.join(output_dir, f'X-{fold}-HDFS1-cv{idx}-{n_folds}-context-block.pickle'))
             np.save(os.path.join(output_dir, f'y-{fold}-HDFS1-cv{idx}-{n_folds}-context-block.npy'), ground_truth)
+
+    data = load_data(os.path.join(data_dir, 'test-data-HDFS1.log'))
+    labels = load_labels(os.path.join(data_dir, 'test-labels-HDFS1.csv'))
+
+    embeddings = get_contextual_embeddings_per_block(data, model)
+    ground_truth = get_labels_from_keys_per_block(labels)
+    save_to_file(embeddings, os.path.join(output_dir, 'X-test-HDFS1-context-block.pickle'))
+    np.save(os.path.join(output_dir, 'y-test-HDFS1-context-block.npy'), ground_truth)

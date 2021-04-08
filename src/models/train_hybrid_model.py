@@ -95,40 +95,46 @@ def random_search(data_and_labels: tuple, model: Union[AutoEncoder, IsolationFor
     }
 
 
-def get_extracted_features(x_train: List, x_test: List, y_train: np.array, y_test: np.array):
+def get_extracted_features(x_train: List, x_val: List, x_test: List, y_val: np.array):
     sc = CustomMinMaxScaler()
     x_train = sc.fit_transform(x_train)
+    x_val = sc.transform(x_val)
     x_test = sc.transform(x_test)
 
     # model = torch.load('../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt')
     model = torch.load('../../models/aetcn/5d9ad591-6d3c-428f-894f-02af96ca1930.pt')
 
-    y_pred = model.predict(x_test)  # return reconstruction errors
+    y_pred = model.predict(x_val)  # return reconstruction errors
     train_features = model.extract_features(x_train).astype(dtype=np.float32)
+    val_features = model.extract_features(x_val).astype(dtype=np.float32)
     test_features = model.extract_features(x_test).astype(dtype=np.float32)
 
-    theta, f1 = find_optimal_threshold(y_test, y_pred)
+    theta, f1 = find_optimal_threshold(y_val, y_pred)
     y_pred = classify(y_pred, theta)
-    metrics_report(y_test, y_pred)
-    return train_features, test_features
+    metrics_report(y_val, y_pred)
+    return train_features, val_features, test_features
 
 
 if __name__ == '__main__':
     X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
     X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
+    X_test = load_pickle_file('../../data/processed/HDFS1/X-test-HDFS1-block.pickle')
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')
     y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
+    y_test = np.load('../../data/processed/HDFS1/y-test-HDFS1-block.npy')
 
     train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
     val_path = '../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy'
+    test_path = '../../data/processed/HDFS1/X-test-HDFS1-interim-features.npy'
 
-    if os.path.exists(train_path) and os.path.exists(val_path):
+    if os.path.exists(train_path) and os.path.exists(val_path) and os.path.exists(test_path):
         X_train = np.load(train_path)
         X_val = np.load(val_path)
     else:
-        X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+        X_train, X_val, X_test = get_extracted_features(X_train, X_val, X_test, y_val)
         np.save(train_path, X_train)
         np.save(val_path, X_val)
+        np.save(test_path, X_test)
 
     results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)

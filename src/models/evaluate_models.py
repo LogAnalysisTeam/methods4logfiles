@@ -108,7 +108,7 @@ def evaluate_sa_cnn2d(x_train: List, x_test: List, y_test: np.array) -> Dict:
 
 
 def evaluate_hybrid_model_ae(x_train: List, x_test: List, y_test: np.array) -> Dict:
-    sc = CustomMinMaxScaler()
+    sc = StandardScaler()
     x_test = sc.fit(x_train).transform(x_test)
 
     training_stats = load_experiment('../../models/hybrid_ae_small/experiments.json')
@@ -117,7 +117,7 @@ def evaluate_hybrid_model_ae(x_train: List, x_test: List, y_test: np.array) -> D
 
 
 def evaluate_hybrid_model_if(x_train: List, x_test: List, y_test: np.array) -> Dict:
-    sc = CustomMinMaxScaler()
+    sc = StandardScaler()
     x_test = sc.fit(x_train).transform(x_test)
 
     training_stats = load_experiment('../../models/hybrid_if_small/experiments.json')
@@ -165,29 +165,29 @@ if __name__ == '__main__':
     X_test = load_pickle_file('../../data/processed/HDFS1/X-test-HDFS1-block.pickle')
     y_test = np.load('../../data/processed/HDFS1/y-test-HDFS1-block.npy')
 
-    results = evaluate_tcnn(X_train, X_test, y_test)
-    print('TCN model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_cnn1d(X_train, X_test, y_test)
-    print('CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_cnn2d(X_train, X_test, y_test)
-    print('CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_tcnn_cnn1d(X_train, X_test, y_test)
-    print('TCN + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_aetcnn(X_train, X_test, y_test)
-    print('AETCN model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_aecnn1d(X_train, X_test, y_test)
-    print('AECNN1D model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_sa_cnn1d(X_train, X_test, y_test)
-    print('SA + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
-
-    results = evaluate_sa_cnn2d(X_train, X_test, y_test)
-    print('SA + CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
+    # results = evaluate_tcnn(X_train, X_test, y_test)
+    # print('TCN model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_cnn1d(X_train, X_test, y_test)
+    # print('CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_cnn2d(X_train, X_test, y_test)
+    # print('CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_tcnn_cnn1d(X_train, X_test, y_test)
+    # print('TCN + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_aetcnn(X_train, X_test, y_test)
+    # print('AETCN model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_aecnn1d(X_train, X_test, y_test)
+    # print('AECNN1D model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_sa_cnn1d(X_train, X_test, y_test)
+    # print('SA + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
+    #
+    # results = evaluate_sa_cnn2d(X_train, X_test, y_test)
+    # print('SA + CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
 
     ################################ HYBRID MODELS #####################################################################
 

@@ -3,11 +3,10 @@ from __future__ import annotations
 import torch
 import numpy as np
 import json
+import os
 from typing import List, Dict
-from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
-from src.models.train_hybrid_model import get_extracted_features
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions
 
@@ -108,27 +107,21 @@ def evaluate_sa_cnn2d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     return score
 
 
-def train_hybrid_model_ae(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    sc = StandardScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+def evaluate_hybrid_model_ae(x_train: List, x_test: List, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = AutoEncoder()
-
-    experiments = load_experiment('../../models/AE-AETCN-hybrid-hyperparameters-HDFS1.json')
-    evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
-    return evaluated_hyperparams
+    training_stats = load_experiment('../../models/hybrid_ae_small/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
 
 
-def train_hybrid_model_if(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    sc = StandardScaler()
-    x_train = sc.fit_transform(x_train)
-    x_test = sc.transform(x_test)
+def evaluate_hybrid_model_if(x_train: List, x_test: List, y_test: np.array) -> Dict:
+    sc = CustomMinMaxScaler()
+    x_test = sc.fit(x_train).transform(x_test)
 
-    model = IsolationForest(bootstrap=True, n_jobs=1, random_state=SEED)
-
-    experiments = load_experiment('../../models/IF-AETCN-hybrid-hyperparameters-HDFS1.json')
-    evaluated_hyperparams = random_search_unsupervised((x_train, x_test, None, y_test), model, experiments)
+    training_stats = load_experiment('../../models/hybrid_if_small/experiments.json')
+    evaluated_hyperparams = evaluate_unsupervised(x_test, y_test, training_stats['experiments'])
     return evaluated_hyperparams
 
 
@@ -145,6 +138,21 @@ def evaluate(x_test: np.ndarray, y_test: np.array, experiments: Dict) -> Dict:
     y_pred = model.predict(x_test)  # return reconstruction errors
 
     y_pred = classify(y_pred, theta)
+    metrics_report(y_test, y_pred)
+    return {
+        'val_metrics': model_config['metrics'],
+        'test_metrics': get_metrics(y_test, y_pred)
+    }
+
+
+def evaluate_unsupervised(x_test: np.ndarray, y_test: np.array, experiments: Dict) -> Dict:
+    model_config = find_best_model(experiments)
+
+    model = torch.load(model_config['model_path'])
+
+    y_pred = model.predict(x_test)  # return labels
+
+    y_pred = convert_predictions(y_pred)
     metrics_report(y_test, y_pred)
     return {
         'val_metrics': model_config['metrics'],
@@ -183,18 +191,20 @@ if __name__ == '__main__':
 
     ################################ HYBRID MODELS #####################################################################
 
-    # train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
-    # val_path = '../../data/processed/HDFS1/X-val-HDFS1-interim-features.npy'
-    #
-    # if os.path.exists(train_path) and os.path.exists(val_path):
-    #     X_train = np.load(train_path)
-    #     X_val = np.load(val_path)
-    # else:
-    #     X_train, X_val = get_extracted_features(X_train, X_val, y_train, y_val)
+    train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
+    test_path = '../../data/processed/HDFS1/X-test-HDFS1-interim-features.npy'
+
+    if os.path.exists(train_path) and os.path.exists(test_path):
+        X_train = np.load(train_path)
+        X_test = np.load(test_path)
+
     #
     # # # apply ReLU
     # # X_train[X_train < 0] = 0
     # # X_val[X_val < 0] = 0
     #
-    # results = train_hybrid_model_if(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
+    results = evaluate_hybrid_model_if(X_train, X_test, y_test)
+    print('AETCN + IF model:', json.dumps(results, indent=4, sort_keys=True))
+
+    results = evaluate_hybrid_model_ae(X_train, X_test, y_test)
+    print('AETCN + AE model:', json.dumps(results, indent=4, sort_keys=True))

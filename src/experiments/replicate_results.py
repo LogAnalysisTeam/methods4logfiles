@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import torch
 import numpy as np
+import pandas as pd
 import uuid
 import os
 from typing import List, Dict, Union
 from sklearn.ensemble import IsolationForest
+from sklearn.neighbors import LocalOutlierFactor
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 from src.data.hdfs import load_labels
@@ -29,7 +31,7 @@ SEED = 160121
 np.random.seed(SEED)
 torch.manual_seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/ae_baseline'
+DIR_TO_EXPERIMENTS = '../../models/lof_baseline'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -173,7 +175,7 @@ def train_hybrid_model_if(x_train: List, x_test: List, y_train: np.array, y_test
     return evaluated_hyperparams
 
 
-def train_autoencoder(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np.array) -> Dict:
+def train_autoencoder(x_train: Dict, x_test: Dict, y_train: pd.DataFrame, y_test: pd.DataFrame) -> Dict:
     fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
     y_train = get_labels_from_csv(y_train, x_train.keys())
     y_test = get_labels_from_csv(y_test, x_test.keys())
@@ -184,6 +186,32 @@ def train_autoencoder(x_train: Dict, x_test: Dict, y_train: np.array, y_test: np
 
     experiments = load_experiment('../../models/AE-hyperparameters-Drain3-HDFS1.json')
     evaluated_hyperparams = random_search((x_train[y_train == 0], x_test, None, y_test), model, experiments)
+    return evaluated_hyperparams
+
+
+def train_lof(x_train: Dict, x_test: Dict,  y_train: pd.DataFrame, y_test: pd.DataFrame) -> Dict:
+    fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
+    y_test = get_labels_from_csv(y_test, x_test.keys())
+    fe.fit_transform(x_train)
+    x_test = fe.transform(x_test)
+
+    clf = LocalOutlierFactor(n_jobs=os.cpu_count())
+
+    experiments = load_experiment('../../models/LOF-hyperparameters-Drain3-HDFS1.json')
+    evaluated_hyperparams = random_search_unsupervised((None, x_test, None, y_test), clf, experiments)
+    return evaluated_hyperparams
+
+
+def train_iso_forest(x_train: Dict, x_test: Dict,  y_train: pd.DataFrame, y_test: pd.DataFrame) -> Dict:
+    fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
+    y_test = get_labels_from_csv(y_test, x_test.keys())
+    x_train = fe.fit_transform(x_train)
+    x_test = fe.transform(x_test)
+
+    clf = IsolationForest(bootstrap=True, n_jobs=os.cpu_count(), random_state=SEED)
+
+    experiments = load_experiment('../../models/IF-hyperparameters-Drain3-HDFS1.json')
+    evaluated_hyperparams = random_search_unsupervised((x_train, x_test, None, y_test), clf, experiments)
     return evaluated_hyperparams
 
 
@@ -215,7 +243,8 @@ def random_search(data_and_labels: tuple, model: Union[AutoEncoder, VanillaTCN, 
     }
 
 
-def random_search_unsupervised(data_and_labels: tuple, model: IsolationForest, params: Dict) -> Dict:
+def random_search_unsupervised(data_and_labels: tuple, model: Union[LocalOutlierFactor, IsolationForest],
+                               params: Dict) -> Dict:
     x_train, x_test, _, y_test = data_and_labels
 
     scores = []
@@ -224,8 +253,11 @@ def random_search_unsupervised(data_and_labels: tuple, model: IsolationForest, p
 
         print(f'Model current hyperparameters are: {experiment["hyperparameters"]}.')
 
-        model.fit(x_train)
-        y_pred = model.predict(x_test)  # return labels
+        if isinstance(model, LocalOutlierFactor):
+            y_pred = model.fit_predict(x_test)  # return labels
+        else:
+            model.fit(x_train)
+            y_pred = model.predict(x_test)  # return labels
 
         y_pred = convert_predictions(y_pred)
         metrics_report(y_test, y_pred)
@@ -296,5 +328,11 @@ if __name__ == '__main__':
     X_val = load_pickle_file('../../data/interim/HDFS1/val-data-Drain3-HDFS1-cv1-1.binlog')
     y_val = load_labels('../../data/interim/HDFS1/val-labels-HDFS1-cv1-1.csv')
 
-    results = train_autoencoder(X_train, X_val, y_train, y_val)
+    # results = train_autoencoder(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
+
+    results = train_lof(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)
+
+    # results = train_iso_forest(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)

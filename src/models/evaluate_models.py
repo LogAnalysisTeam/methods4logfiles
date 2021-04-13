@@ -13,7 +13,7 @@ from src.features.feature_extractor import FeatureExtractor
 from src.models.datasets import CustomMinMaxScaler
 from src.models.train_baseline_models import get_labels_from_csv
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions
+from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions, print_report
 
 SEED = 160121
 np.random.seed(SEED)
@@ -189,28 +189,38 @@ if __name__ == '__main__':
     X_test = load_pickle_file('../../data/processed/HDFS1/X-test-HDFS1-block.pickle')
     y_test = np.load('../../data/processed/HDFS1/y-test-HDFS1-block.npy')
 
+    experiment_reports = {}
+
     results = evaluate_tcnn(X_train, X_test, y_test)
+    experiment_reports['TCN model'] = results
     print('TCN model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_cnn1d(X_train, X_test, y_test)
+    experiment_reports['CNN1D model'] = results
     print('CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_cnn2d(X_train, X_test, y_test)
+    experiment_reports['CNN2D model'] = results
     print('CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_tcnn_cnn1d(X_train, X_test, y_test)
+    experiment_reports['TCN + CNN1D model'] = results
     print('TCN + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_aetcnn(X_train, X_test, y_test)
+    experiment_reports['AETCN model'] = results
     print('AETCN model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_aecnn1d(X_train, X_test, y_test)
+    experiment_reports['AECNN1D model'] = results
     print('AECNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_sa_cnn1d(X_train, X_test, y_test)
+    experiment_reports['SA + CNN1D model'] = results
     print('SA + CNN1D model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_sa_cnn2d(X_train, X_test, y_test)
+    experiment_reports['SA + CNN2D model'] = results
     print('SA + CNN2D model:', json.dumps(results, indent=4, sort_keys=True))
 
     ################################ HYBRID MODELS #####################################################################
@@ -219,9 +229,11 @@ if __name__ == '__main__':
     X_test = np.load('../../data/processed/HDFS1/X-test-HDFS1-interim-features.npy')
 
     results = evaluate_hybrid_model_if(X_train, X_test, y_test)
+    experiment_reports['AETCN + IF model'] = results
     print('AETCN + IF model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_hybrid_model_ae(X_train, X_test, y_test)
+    experiment_reports['AETCN + AE model'] = results
     print('AETCN + AE model:', json.dumps(results, indent=4, sort_keys=True))
 
     ############################### BASELINE METHODS ###################################################################
@@ -232,10 +244,15 @@ if __name__ == '__main__':
     y_test = load_labels('../../data/interim/HDFS1/test-labels-HDFS1.csv')
 
     results = evaluate_autoencoder(X_train, X_test, y_test)
+    experiment_reports['AE model'] = results
     print('AE model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_iso_forest(X_train, X_test, y_test)
+    experiment_reports['IF model'] = results
     print('IF model:', json.dumps(results, indent=4, sort_keys=True))
 
     results = evaluate_lof(X_train, X_test, y_test)
+    experiment_reports['LOF model'] = results
     print('LOF model:', json.dumps(results, indent=4, sort_keys=True))
+
+    print_report(experiment_reports)

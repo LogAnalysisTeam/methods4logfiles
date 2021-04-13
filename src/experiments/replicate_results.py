@@ -31,7 +31,7 @@ SEED = 160121
 np.random.seed(SEED)
 torch.manual_seed(SEED)
 
-DIR_TO_EXPERIMENTS = '../../models/lof_baseline'
+DIR_TO_EXPERIMENTS = '../../models/ae_baseline'
 EXPERIMENT_PATH = os.path.join(DIR_TO_EXPERIMENTS, 'experiments.json')
 
 
@@ -328,11 +328,11 @@ if __name__ == '__main__':
     X_val = load_pickle_file('../../data/interim/HDFS1/val-data-Drain3-HDFS1-cv1-1.binlog')
     y_val = load_labels('../../data/interim/HDFS1/val-labels-HDFS1-cv1-1.csv')
 
-    # results = train_autoencoder(X_train, X_val, y_train, y_val)
-    # save_experiment(results, EXPERIMENT_PATH)
-
-    results = train_lof(X_train, X_val, y_train, y_val)
+    results = train_autoencoder(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)
+
+    # results = train_lof(X_train, X_val, y_train, y_val)
+    # save_experiment(results, EXPERIMENT_PATH)
 
     # results = train_iso_forest(X_train, X_val, y_train, y_val)
     # save_experiment(results, EXPERIMENT_PATH)

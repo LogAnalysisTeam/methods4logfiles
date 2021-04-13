@@ -5,8 +5,12 @@ import numpy as np
 import json
 import os
 from typing import List, Dict
+from sklearn.neighbors import LocalOutlierFactor
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
+from src.data.hdfs import load_labels
+from src.features.feature_extractor import FeatureExtractor
+from src.models.train_baseline_models import get_labels_from_csv
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions
 
@@ -125,6 +129,39 @@ def evaluate_hybrid_model_if(x_train: List, x_test: List, y_test: np.array) -> D
     return evaluated_hyperparams
 
 
+def evaluate_autoencoder(x_train: Dict, x_test: Dict, y_test: np.array) -> Dict:
+    fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
+    y_test = get_labels_from_csv(y_test, x_test.keys())
+    fe.fit_transform(x_train)
+    x_test = fe.transform(x_test)
+
+    training_stats = load_experiment('../../models/ae_baseline/experiments.json')
+    score = evaluate(x_test, y_test, training_stats['experiments'])
+    return score
+
+
+def evaluate_iso_forest(x_train: Dict, x_test: Dict, y_test: np.array) -> Dict:
+    fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
+    y_test = get_labels_from_csv(y_test, x_test.keys())
+    fe.fit_transform(x_train)
+    x_test = fe.transform(x_test)
+
+    training_stats = load_experiment('../../models/if_baseline/experiments.json')
+    score = evaluate_unsupervised(x_test, y_test, training_stats['experiments'])
+    return score
+
+
+def evaluate_lof(x_train: Dict, x_test: Dict, y_test: np.array) -> Dict:
+    fe = FeatureExtractor(method='tf-idf', preprocessing='mean')
+    y_test = get_labels_from_csv(y_test, x_test.keys())
+    fe.fit_transform(x_train)
+    x_test = fe.transform(x_test)
+
+    training_stats = load_experiment('../../models/lof_baseline/experiments.json')
+    score = evaluate_unsupervised(x_test, y_test, training_stats['experiments'])
+    return score
+
+
 def find_best_model(experiments: Dict, metric: str = 'f1_score') -> Dict:
     return max(experiments, key=lambda x: x['metrics'][metric])
 
@@ -150,7 +187,10 @@ def evaluate_unsupervised(x_test: np.ndarray, y_test: np.array, experiments: Dic
 
     model = torch.load(model_config['model_path'])
 
-    y_pred = model.predict(x_test)  # return labels
+    if isinstance(model, LocalOutlierFactor):
+        y_pred = model.fit_predict(x_test)  # return labels
+    else:
+        y_pred = model.predict(x_test)  # return labels
 
     y_pred = convert_predictions(y_pred)
     metrics_report(y_test, y_pred)
@@ -208,3 +248,19 @@ if __name__ == '__main__':
 
     results = evaluate_hybrid_model_ae(X_train, X_test, y_test)
     print('AETCN + AE model:', json.dumps(results, indent=4, sort_keys=True))
+
+    ############################### BASELINE METHODS ###################################################################
+
+    X_train = load_pickle_file('../../data/interim/HDFS1/train-data-Drain3-HDFS1-cv1-1.binlog')
+    y_train = load_labels('../../data/interim/HDFS1/train-labels-HDFS1-cv1-1.csv')
+    X_test = load_pickle_file('../../data/interim/HDFS1/test-data-Drain3-HDFS1.binlog')
+    y_test = load_labels('../../data/interim/HDFS1/test-labels-HDFS1.csv')
+
+    results = evaluate_autoencoder(X_train, X_test, y_test)
+    print('AE model:', json.dumps(results, indent=4, sort_keys=True))
+
+    results = evaluate_iso_forest(X_train, X_test, y_test)
+    print('IF model:', json.dumps(results, indent=4, sort_keys=True))
+
+    results = evaluate_lof(X_train, X_test, y_test)
+    print('LOF model:', json.dumps(results, indent=4, sort_keys=True))

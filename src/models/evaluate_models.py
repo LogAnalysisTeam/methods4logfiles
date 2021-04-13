@@ -111,7 +111,7 @@ def evaluate_sa_cnn2d(x_train: List, x_test: List, y_test: np.array) -> Dict:
     return score
 
 
-def evaluate_hybrid_model_ae(x_train: List, x_test: List, y_test: np.array) -> Dict:
+def evaluate_hybrid_model_ae(x_train: np.ndarray, x_test: np.ndarray, y_test: np.array) -> Dict:
     sc = StandardScaler()
     x_test = sc.fit(x_train).transform(x_test)
 
@@ -120,7 +120,7 @@ def evaluate_hybrid_model_ae(x_train: List, x_test: List, y_test: np.array) -> D
     return score
 
 
-def evaluate_hybrid_model_if(x_train: List, x_test: List, y_test: np.array) -> Dict:
+def evaluate_hybrid_model_if(x_train: np.ndarray, x_test: np.ndarray, y_test: np.array) -> Dict:
     sc = StandardScaler()
     x_test = sc.fit(x_train).transform(x_test)
 
@@ -166,6 +166,15 @@ def find_best_model(experiments: Dict, metric: str = 'f1_score') -> Dict:
     return max(experiments, key=lambda x: x['metrics'][metric])
 
 
+def create_report(model_config: Dict, test_metrics: Dict) -> Dict:
+    val_metrics = model_config.pop('metrics')
+    return {
+        'model_configuration': model_config,
+        'val_metrics': val_metrics,
+        'test_metrics': test_metrics
+    }
+
+
 def evaluate(x_test: np.ndarray, y_test: np.array, experiments: Dict) -> Dict:
     model_config = find_best_model(experiments)
 
@@ -176,10 +185,7 @@ def evaluate(x_test: np.ndarray, y_test: np.array, experiments: Dict) -> Dict:
 
     y_pred = classify(y_pred, theta)
     metrics_report(y_test, y_pred)
-    return {
-        'val_metrics': model_config['metrics'],
-        'test_metrics': get_metrics(y_test, y_pred)
-    }
+    return create_report(model_config, get_metrics(y_test, y_pred))
 
 
 def evaluate_unsupervised(x_test: np.ndarray, y_test: np.array, experiments: Dict) -> Dict:
@@ -194,10 +200,7 @@ def evaluate_unsupervised(x_test: np.ndarray, y_test: np.array, experiments: Dic
 
     y_pred = convert_predictions(y_pred)
     metrics_report(y_test, y_pred)
-    return {
-        'val_metrics': model_config['metrics'],
-        'test_metrics': get_metrics(y_test, y_pred)
-    }
+    return create_report(model_config, get_metrics(y_test, y_pred))
 
 
 if __name__ == '__main__':
@@ -231,18 +234,9 @@ if __name__ == '__main__':
 
     ################################ HYBRID MODELS #####################################################################
 
-    train_path = '../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy'
-    test_path = '../../data/processed/HDFS1/X-test-HDFS1-interim-features.npy'
+    X_train = np.load('../../data/processed/HDFS1/X-train-HDFS1-interim-features.npy')
+    X_test = np.load('../../data/processed/HDFS1/X-test-HDFS1-interim-features.npy')
 
-    if os.path.exists(train_path) and os.path.exists(test_path):
-        X_train = np.load(train_path)
-        X_test = np.load(test_path)
-
-    #
-    # # # apply ReLU
-    # # X_train[X_train < 0] = 0
-    # # X_val[X_val < 0] = 0
-    #
     results = evaluate_hybrid_model_if(X_train, X_test, y_test)
     print('AETCN + IF model:', json.dumps(results, indent=4, sort_keys=True))
 

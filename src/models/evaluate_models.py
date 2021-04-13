@@ -6,10 +6,11 @@ import json
 import os
 from typing import List, Dict
 from sklearn.neighbors import LocalOutlierFactor
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import StandardScaler
 
 from src.data.hdfs import load_labels
 from src.features.feature_extractor import FeatureExtractor
+from src.models.datasets import CustomMinMaxScaler
 from src.models.train_baseline_models import get_labels_from_csv
 from src.models.metrics import metrics_report, get_metrics
 from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions
@@ -17,26 +18,6 @@ from src.models.utils import load_pickle_file, classify, load_experiment, conver
 SEED = 160121
 np.random.seed(SEED)
 torch.manual_seed(SEED)
-
-
-class CustomMinMaxScaler(MinMaxScaler):
-    def __init__(self):
-        super().__init__()
-        self.x_min = None
-        self.x_max = None
-
-    def fit(self, X: List, y=None) -> CustomMinMaxScaler:
-        self.x_min = np.min([x.min(axis=0) for x in X], axis=0)
-        self.x_max = np.max([x.max(axis=0) for x in X], axis=0)
-        return self
-
-    def fit_transform(self, X: List, y: np.array = None, **fit_params) -> np.array:
-        return self.fit(X).transform(X)
-
-    def transform(self, X: List) -> np.array:
-        # (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
-        diff = self.x_max - self.x_min
-        return np.asarray([(x - self.x_min) / diff for x in X], dtype='object')
 
 
 def evaluate_tcnn(x_train: List, x_test: List, y_test: np.array) -> Dict:

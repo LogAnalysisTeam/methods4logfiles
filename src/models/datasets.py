@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 import torch
 from torch.utils.data import Dataset
 import numpy as np
 from typing import List, DefaultDict
 from collections import defaultdict
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 
 class EmbeddingDataset(Dataset):
@@ -98,3 +101,48 @@ class CroppedDataset2D(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
         return [self.tensor[idx]]
+
+
+class CustomMinMaxScaler(MinMaxScaler):
+    def __init__(self):
+        super().__init__()
+        self.x_min = None
+        self.x_max = None
+
+    def fit(self, X: List, y=None) -> CustomMinMaxScaler:
+        self.x_min = np.min([x.min(axis=0) for x in X], axis=0)
+        self.x_max = np.max([x.max(axis=0) for x in X], axis=0)
+        return self
+
+    def fit_transform(self, X: List, y: np.array = None, **fit_params) -> np.array:
+        return self.fit(X).transform(X)
+
+    def transform(self, X: List) -> np.array:
+        # (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
+        diff = self.x_max - self.x_min
+        return np.asarray([(x - self.x_min) / diff for x in X], dtype='object')
+
+
+class CustomStandardScaler(StandardScaler):
+    def __init__(self):
+        super().__init__()
+        self.std = None
+        self.mean = None
+
+    @staticmethod
+    def _flatten_dataset(dataset: List) -> np.array:
+        ret = np.array([embedding for block in dataset for embedding in block])
+        return ret
+
+    def fit(self, X: List, y=None) -> CustomStandardScaler:
+        data = self._flatten_dataset(X)
+        self.std = data.std(axis=0)
+        self.mean = data.mean(axis=0)
+        return self
+
+    def fit_transform(self, X: List, y: np.array = None, **fit_params) -> np.array:
+        return self.fit(X).transform(X)
+
+    def transform(self, X: List, copy=None) -> np.array:
+        # (X - X.mean(axis=0)) / X.std(axis=0)
+        return np.asarray([(x - self.mean) / self.std for x in X], dtype='object')

@@ -8,7 +8,7 @@ from sklearn.ensemble import IsolationForest
 
 from src.models.metrics import metrics_report, get_metrics
 from src.models.autoencoder import AutoEncoder
-from src.models.train_conv_models import CustomMinMaxScaler
+from src.models.datasets import CustomMinMaxScaler
 from src.models.utils import load_pickle_file, find_optimal_threshold, classify, create_checkpoint, \
     create_experiment_report, save_experiment
 

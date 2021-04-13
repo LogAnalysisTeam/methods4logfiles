@@ -77,8 +77,8 @@ def process_raw_hdfs(data_dir: str, output_dir: str = None, save_to_file: bool =
     if save_to_file and output_dir:
         save_logs_to_file(train_data, os.path.join(output_dir, 'train-data-HDFS1.log'))
         save_logs_to_file(test_data, os.path.join(output_dir, 'test-data-HDFS1.log'))
-        save_drain3_to_file(train_data_drain3, os.path.join(output_dir, 'train-data-Drain3-HDFS1.log'))
-        save_drain3_to_file(test_data_drain3, os.path.join(output_dir, 'test-data-Drain3-HDFS1.log'))
+        save_drain3_to_file(train_data_drain3, os.path.join(output_dir, 'train-data-Drain3-HDFS1.binlog'))
+        save_drain3_to_file(test_data_drain3, os.path.join(output_dir, 'test-data-Drain3-HDFS1.binlog'))
         save_labels_to_file(train_labels, os.path.join(output_dir, 'train-labels-HDFS1.csv'))
         save_labels_to_file(test_labels, os.path.join(output_dir, 'test-labels-HDFS1.csv'))
     return (train_data, test_data, train_labels, test_labels), (train_data_drain3,)

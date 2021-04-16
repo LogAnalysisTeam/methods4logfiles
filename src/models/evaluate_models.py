@@ -182,9 +182,8 @@ def evaluate_unsupervised(x_test: np.ndarray, y_test: np.array, experiments: Dic
     else:
         y_pred = model.predict(x_test)  # return labels
 
-    auc_score = roc_auc_score(y_test, y_pred)
-
     y_pred = convert_predictions(y_pred)
+    auc_score = roc_auc_score(y_test, y_pred)
     metrics_report(y_test, y_pred)
     return create_report(model_config, {**get_metrics(y_test, y_pred), 'auc_score': float(auc_score)})
 

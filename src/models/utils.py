@@ -227,13 +227,13 @@ def convert_predictions(y_pred: np.array) -> np.array:
 
 
 def print_report(experiment_reports: Dict):
-    print('+--------------------+-----------+-----------+-----------+')
-    print('| Model              | Precision | Recall    | F1 Score  |')
-    print('+--------------------+-----------+-----------+-----------+')
+    print('+--------------------+-----------+-----------+-----------+-----------+')
+    print('| Model              | Precision | Recall    | F1 Score  | AUROC     |')
+    print('+--------------------+-----------+-----------+-----------+-----------+')
     for model_name, report in experiment_reports.items():
         metrics = report['test_metrics']
         n_spaces = 20 - len(model_name) - 1
         print(f'| {model_name}{" " * n_spaces}| {metrics["precision"]:.5f}   | {metrics["recall"]:.5f}   '
-              f'| {metrics["f1_score"]:.5f}   |')
-        print('+--------------------+-----------+-----------+-----------+')
+              f'| {metrics["f1_score"]:.5f}   | {metrics["auc_score"]:.5f}   |')
+        print('+--------------------+-----------+-----------+-----------+-----------+')
 

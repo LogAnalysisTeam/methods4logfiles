@@ -233,7 +233,7 @@ def print_report(experiment_reports: Dict):
     for model_name, report in experiment_reports.items():
         metrics = report['test_metrics']
         n_spaces = 20 - len(model_name) - 1
-        print(f'| {model_name}{" " * n_spaces}| {metrics["precision"]:.5f}   | {metrics["precision"]:.5f}   '
+        print(f'| {model_name}{" " * n_spaces}| {metrics["precision"]:.5f}   | {metrics["recall"]:.5f}   '
               f'| {metrics["f1_score"]:.5f}   |')
         print('+--------------------+-----------+-----------+-----------+')
 

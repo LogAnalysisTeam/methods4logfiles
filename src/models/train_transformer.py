@@ -69,13 +69,6 @@ def random_search(data_and_labels: tuple, model: TransformerAutoEncoder, params:
 
 
 if __name__ == '__main__':
-    if False:
-        X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.npy')
-        y_val = np.load('../../data/processed/HDFS1/y-val-HDFS1-cv1-1-block.npy')
-
-        results = train_transformer(X_val[:1000], X_val[:500], y_val[:1000], y_val[:500])
-        exit()
-
     X_train = load_pickle_file('../../data/processed/HDFS1/X-train-HDFS1-cv1-1-block.pickle')
     X_val = load_pickle_file('../../data/processed/HDFS1/X-val-HDFS1-cv1-1-block.pickle')
     y_train = np.load('../../data/processed/HDFS1/y-train-HDFS1-cv1-1-block.npy')

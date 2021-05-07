@@ -49,12 +49,6 @@ def to_seconds(timedelta: np.array) -> np.array:
 
 
 def calculate_timedeltas_from_timestamps(timestamps: np.array) -> np.array:
-    # timedeltas = np.zeros(shape=timestamps.shape, dtype=np.int32)
-    # timedeltas[1:] = to_seconds(timestamps[1:] - timestamps[:-1])
-    # timedeltas[timedeltas == 0] = 1  # due to undefined behaviour of log10
-    # # timedeltas += 1 # we don't lose the information about difference 1
-    # timedeltas = np.log10(timedeltas)  # decrease importance of large time differences
-    # return timedeltas
     timedeltas = np.ones(shape=timestamps.shape, dtype=np.int32)  # init as 1 since log10(0) is undefined
     timedeltas[1:] += to_seconds(timestamps[1:] - timestamps[:-1])  # we don't lose the information if the delta is 1
     timedeltas = np.log10(timedeltas)  # decrease importance of large time differences

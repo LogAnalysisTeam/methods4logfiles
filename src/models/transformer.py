@@ -156,7 +156,6 @@ class TransformerAutoEncoder(sklearn.base.OutlierMixin):
             batch_loss.backward()
             optimizer.step()
             scheduler.step()
-            # print(scheduler.state_dict())
 
             loss += batch_loss.item() * batch.size(0)
             n_seen_examples += batch.size(0)

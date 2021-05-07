@@ -114,11 +114,3 @@ def visualize_shapes(to_file: bool = False):
         plt.show()
     else:
         plt.savefig('../../reports/figures/shapes.pdf')
-
-
-if __name__ == '__main__':
-    import json
-    with open('../../models/TCN-cropped-window-embeddings-HDFS1.json', 'r') as f:
-        d = json.load(f)
-    visualize_windows(d['experiments'])
-    visualize_shapes()

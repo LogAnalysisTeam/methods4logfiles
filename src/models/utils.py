@@ -236,4 +236,3 @@ def print_report(experiment_reports: Dict):
         print(f'| {model_name}{" " * n_spaces}| {metrics["precision"]:.5f}   | {metrics["recall"]:.5f}   '
               f'| {metrics["f1_score"]:.5f}   | {metrics["auc_score"]:.5f}   |')
         print('+--------------------+-----------+-----------+-----------+-----------+')
-

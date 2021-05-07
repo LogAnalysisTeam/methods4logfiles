@@ -3,7 +3,6 @@ from __future__ import annotations
 import torch
 import numpy as np
 import json
-import os
 from typing import List, Dict
 from sklearn.metrics import roc_auc_score
 from sklearn.neighbors import LocalOutlierFactor
@@ -14,7 +13,8 @@ from src.features.feature_extractor import FeatureExtractor
 from src.models.datasets import CustomMinMaxScaler
 from src.models.train_baseline_models import get_labels_from_csv
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions, print_report, save_experiment
+from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions, print_report, \
+    save_experiment
 
 SEED = 160121
 np.random.seed(SEED)

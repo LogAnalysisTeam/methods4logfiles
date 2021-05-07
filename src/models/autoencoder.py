@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import torch
 import torch.nn as nn
-from torch.nn import functional as F
 from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
 import sklearn

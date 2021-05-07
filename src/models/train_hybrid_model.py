@@ -81,14 +81,13 @@ def random_search(data_and_labels: tuple, model: Union[AutoEncoder, IsolationFor
 
         print(f'Model current hyperparameters are: {kwargs}.')
 
-        # model.fit(x_train)
-        # y_pred = model.predict(x_test)  # return reconstruction errors
-        #
-        # theta, f1 = find_optimal_threshold(y_test, y_pred)
-        # y_pred = convert_predictions(y_pred, theta)
-        # metrics_report(y_test, y_pred)
-        scores.append({'hyperparameters': kwargs})
-        # scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
+        model.fit(x_train)
+        y_pred = model.predict(x_test)  # return reconstruction errors
+
+        theta, f1 = find_optimal_threshold(y_test, y_pred)
+        y_pred = classify(y_pred, theta)
+        metrics_report(y_test, y_pred)
+        scores.append(create_experiment_report(get_metrics(y_test, y_pred), kwargs))
         create_checkpoint({'experiments': scores}, EXPERIMENT_PATH)
     return {
         'experiments': scores
@@ -101,7 +100,6 @@ def get_extracted_features(x_train: List, x_val: List, x_test: List, y_val: np.a
     x_val = sc.transform(x_val)
     x_test = sc.transform(x_test)
 
-    # model = torch.load('../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt')
     model = torch.load('../../models/aetcn/5d9ad591-6d3c-428f-894f-02af96ca1930.pt')
 
     y_pred = model.predict(x_val)  # return reconstruction errors

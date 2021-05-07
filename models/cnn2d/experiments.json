@@ -1,0 +1,2989 @@
+{
+    "experiments": [
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    61,
+                    20
+                ],
+                "learning_rate": 0.00016378937069540646,
+                "window": 39
+            },
+            "metrics": {
+                "f1_score": 0.7274749721913238,
+                "mcc_score": 0.7261524988556871,
+                "precision": 0.8299492385786802,
+                "recall": 0.6475247524752475
+            },
+            "model_path": "../../models/cnn2d/456cd9f0-e2cd-4d73-8ea6-98f2b3b57f8b.pt",
+            "threshold": 0.010930592194199562
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    13,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    122,
+                    131,
+                    57
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 21
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/7a1c32a2-bd1a-47cc-a295-519c6336670a.pt",
+            "threshold": 0.16667909920215607
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    176,
+                    167,
+                    54
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.7412801839785358,
+                "mcc_score": 0.7450340193365519,
+                "precision": 0.8839122486288848,
+                "recall": 0.6382838283828383
+            },
+            "model_path": "../../models/cnn2d/76f82199-b96f-4af9-a04b-2a5416583feb.pt",
+            "threshold": 0.0073767914436757565
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    11,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    85
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 8
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/38dc302f-c6f0-40da-8f78-8ea0a7a4d8a7.pt",
+            "threshold": 0.12979243695735931
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    15,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    275,
+                    274
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 21
+            },
+            "metrics": {
+                "f1_score": 0.6841029832447896,
+                "mcc_score": 0.6979381668635147,
+                "precision": 0.898068669527897,
+                "recall": 0.5524752475247525
+            },
+            "model_path": "../../models/cnn2d/f54289b3-3741-4821-a14a-bdb5e10a6e75.pt",
+            "threshold": 0.008080568164587021
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    55,
+                    207,
+                    281,
+                    273,
+                    213
+                ],
+                "learning_rate": 0.05179474679231207,
+                "window": 80
+            },
+            "metrics": {
+                "f1_score": 0.13789473684210526,
+                "mcc_score": 0.1137282953318985,
+                "precision": 0.0939068100358423,
+                "recall": 0.2594059405940594
+            },
+            "model_path": "../../models/cnn2d/3d1edb9b-b818-4e7d-b15e-7da7b3faec1d.pt",
+            "threshold": 0.07090894877910614
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    213,
+                    247,
+                    251,
+                    141
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 33
+            },
+            "metrics": {
+                "f1_score": 0.15164628410159922,
+                "mcc_score": 0.12821753739138148,
+                "precision": 0.10605263157894737,
+                "recall": 0.266006600660066
+            },
+            "model_path": "../../models/cnn2d/0f1729ef-a2a6-47c2-a6ce-81e5e0c7cbfc.pt",
+            "threshold": 2.813857078552246
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    7,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    132,
+                    165,
+                    285,
+                    199,
+                    150
+                ],
+                "learning_rate": 0.00031622776601683794,
+                "window": 81
+            },
+            "metrics": {
+                "f1_score": 0.680266771282856,
+                "mcc_score": 0.6854149640042143,
+                "precision": 0.8384912959381045,
+                "recall": 0.5722772277227722
+            },
+            "model_path": "../../models/cnn2d/e40ba986-24f7-40f5-b01b-eba83563df68.pt",
+            "threshold": 0.006849028170108795
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    234
+                ],
+                "learning_rate": 0.07196856730011514,
+                "window": 4
+            },
+            "metrics": {
+                "f1_score": 0.3082077051926298,
+                "mcc_score": 0.42165581404315744,
+                "precision": 1.0,
+                "recall": 0.18217821782178217
+            },
+            "model_path": "../../models/cnn2d/3b385722-8d2e-49bf-81e0-47305e1bf27e.pt",
+            "threshold": 0.0771644115447998
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    11,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    199
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 14
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/debd10b1-f01b-4e0d-b332-3eba163effd4.pt",
+            "threshold": 1.3639763593673706
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    11,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    95,
+                    178,
+                    31
+                ],
+                "learning_rate": 0.22758459260747863,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/79088ff2-e830-4bdf-b03e-fc2164449b2e.pt",
+            "threshold": 0.16245338320732117
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    269,
+                    156,
+                    60
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 37
+            },
+            "metrics": {
+                "f1_score": 0.0994991652754591,
+                "mcc_score": 0.07267691928898495,
+                "precision": 0.10067567567567567,
+                "recall": 0.09834983498349835
+            },
+            "model_path": "../../models/cnn2d/9983bb9d-06f7-424c-b2fc-fbfe4c2b58e7.pt",
+            "threshold": 0.072071373462677
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    7
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    191,
+                    294,
+                    232,
+                    137
+                ],
+                "learning_rate": 0.1637893706954063,
+                "window": 29
+            },
+            "metrics": {
+                "f1_score": 0.15173192771084337,
+                "mcc_score": 0.1283027726517837,
+                "precision": 0.10613642349223071,
+                "recall": 0.266006600660066
+            },
+            "model_path": "../../models/cnn2d/bca8a8b9-2d51-4a95-ac97-b0353bc6304b.pt",
+            "threshold": 1.5111674070358276
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    11,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    122
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 16
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/733b4663-566b-4eb9-b5c9-9705c8418596.pt",
+            "threshold": 0.19121962785720825
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    259,
+                    294
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 34
+            },
+            "metrics": {
+                "f1_score": 0.29849564528899447,
+                "mcc_score": 0.2877334868749235,
+                "precision": 0.37289812067260136,
+                "recall": 0.24884488448844885
+            },
+            "model_path": "../../models/cnn2d/5862a1c2-298b-4e22-820d-d53b392a8f2f.pt",
+            "threshold": 0.02506549470126629
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    64,
+                    144,
+                    244,
+                    26
+                ],
+                "learning_rate": 0.01,
+                "window": 60
+            },
+            "metrics": {
+                "f1_score": 0.5848275862068966,
+                "mcc_score": 0.6299702597435347,
+                "precision": 0.9636363636363636,
+                "recall": 0.4198019801980198
+            },
+            "model_path": "../../models/cnn2d/ba3174d5-3155-47d3-890c-f77314b8cd5b.pt",
+            "threshold": 0.0218854621052742
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    186,
+                    115,
+                    24
+                ],
+                "learning_rate": 0.08483428982440717,
+                "window": 38
+            },
+            "metrics": {
+                "f1_score": 0.3289930555555556,
+                "mcc_score": 0.3329473716796485,
+                "precision": 0.4803548795944233,
+                "recall": 0.2501650165016502
+            },
+            "model_path": "../../models/cnn2d/95a099d6-8953-45d9-9db9-daa0a3f1ae30.pt",
+            "threshold": 0.09310638159513474
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    26,
+                    226,
+                    217,
+                    141
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 21
+            },
+            "metrics": {
+                "f1_score": 0.10513753803926247,
+                "mcc_score": 0.10932654961433011,
+                "precision": 0.05779323012332721,
+                "recall": 0.5815181518151815
+            },
+            "model_path": "../../models/cnn2d/616ed173-70c0-4f4a-bd25-d3c08f74a2da.pt",
+            "threshold": 0.31925538182258606
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    13,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    299
+                ],
+                "learning_rate": 0.0005179474679231213,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.2799339388934765,
+                "mcc_score": 0.2729363495442642,
+                "precision": 0.3737596471885336,
+                "recall": 0.22376237623762377
+            },
+            "model_path": "../../models/cnn2d/1c829d7f-7076-42ea-bc5d-d9b5c4ee9732.pt",
+            "threshold": 0.026565268635749817
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    54,
+                    31
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 33
+            },
+            "metrics": {
+                "f1_score": 0.2014773126978544,
+                "mcc_score": 0.28241395420204474,
+                "precision": 0.11275590551181103,
+                "recall": 0.9452145214521452
+            },
+            "model_path": "../../models/cnn2d/d414611e-5dc6-4002-8ebb-3fb6fa561b71.pt",
+            "threshold": 0.009590450674295425
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    83,
+                    207,
+                    60
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 42
+            },
+            "metrics": {
+                "f1_score": 0.29835902536051717,
+                "mcc_score": 0.33587097741506644,
+                "precision": 0.6048387096774194,
+                "recall": 0.19801980198019803
+            },
+            "model_path": "../../models/cnn2d/3178372b-03f3-4316-8c0d-c8b5846250f1.pt",
+            "threshold": 0.013130714185535908
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    13,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    18,
+                    17,
+                    16
+                ],
+                "learning_rate": 0.0022758459260747866,
+                "window": 6
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/565e82fe-4966-4ed0-8536-b85238c9b705.pt",
+            "threshold": 0.050363317131996155
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    11,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    174
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 11
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/6c98c374-175d-4db6-8796-8136688f26fd.pt",
+            "threshold": 0.09170176833868027
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    11,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    246,
+                    52
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 32
+            },
+            "metrics": {
+                "f1_score": 0.697530864197531,
+                "mcc_score": 0.70057707003384,
+                "precision": 0.8393686165273909,
+                "recall": 0.5966996699669967
+            },
+            "model_path": "../../models/cnn2d/8dc20db6-2593-4929-86f0-ea97e9889b9b.pt",
+            "threshold": 0.018826564773917198
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    136,
+                    171
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 24
+            },
+            "metrics": {
+                "f1_score": 0.5546372819100092,
+                "mcc_score": 0.5958557860120463,
+                "precision": 0.9110105580693816,
+                "recall": 0.39867986798679866
+            },
+            "model_path": "../../models/cnn2d/636b21ea-538b-4345-8cb1-678952d9c15e.pt",
+            "threshold": 0.04385750740766525
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    11,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    103,
+                    181,
+                    268
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 52
+            },
+            "metrics": {
+                "f1_score": 0.42864835756596664,
+                "mcc_score": 0.41576908673335944,
+                "precision": 0.3619827194179172,
+                "recall": 0.5254125412541254
+            },
+            "model_path": "../../models/cnn2d/69ef669b-ed58-4b5d-ac89-e963a71221db.pt",
+            "threshold": 0.02433374524116516
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    214,
+                    256,
+                    270,
+                    146,
+                    119
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 67
+            },
+            "metrics": {
+                "f1_score": 0.14118975903614459,
+                "mcc_score": 0.1159936266345617,
+                "precision": 0.09876218066894916,
+                "recall": 0.24752475247524752
+            },
+            "model_path": "../../models/cnn2d/7b40117e-8bb6-4d27-b23e-7dfad46b91a1.pt",
+            "threshold": 0.06246419996023178
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    26,
+                    151,
+                    270,
+                    124,
+                    55
+                ],
+                "learning_rate": 0.01,
+                "window": 34
+            },
+            "metrics": {
+                "f1_score": 0.5369946605644547,
+                "mcc_score": 0.5320764758978306,
+                "precision": 0.6359530261969286,
+                "recall": 0.4646864686468647
+            },
+            "model_path": "../../models/cnn2d/78164b27-793f-4b96-a106-b6000ad525c0.pt",
+            "threshold": 0.09727653861045837
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    29,
+                    260,
+                    296,
+                    279,
+                    211
+                ],
+                "learning_rate": 0.008483428982440717,
+                "window": 37
+            },
+            "metrics": {
+                "f1_score": 0.3244657653728739,
+                "mcc_score": 0.3289660899937504,
+                "precision": 0.4781491002570694,
+                "recall": 0.24554455445544554
+            },
+            "model_path": "../../models/cnn2d/cc30168b-c3e7-4f21-806c-6c94938031ec.pt",
+            "threshold": 0.06983733177185059
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    11,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    106,
+                    234,
+                    297,
+                    296
+                ],
+                "learning_rate": 0.008483428982440717,
+                "window": 38
+            },
+            "metrics": {
+                "f1_score": 0.1043548063415613,
+                "mcc_score": 0.07265303305015991,
+                "precision": 0.07497116493656286,
+                "recall": 0.1716171617161716
+            },
+            "model_path": "../../models/cnn2d/729af2b6-274d-44a7-84cd-c0f6fb433b1f.pt",
+            "threshold": 0.07987869530916214
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    7,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    21,
+                    142,
+                    255,
+                    249,
+                    210
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 62
+            },
+            "metrics": {
+                "f1_score": 0.13735691987513007,
+                "mcc_score": 0.11336620592293115,
+                "precision": 0.0931545518701482,
+                "recall": 0.2613861386138614
+            },
+            "model_path": "../../models/cnn2d/a3be2d4a-bc32-47c4-92de-a9329d08e38d.pt",
+            "threshold": 0.07337619364261627
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    11,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    105,
+                    210
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.20600162206001624,
+                "mcc_score": 0.1930199005089867,
+                "precision": 0.26708727655099895,
+                "recall": 0.16765676567656765
+            },
+            "model_path": "../../models/cnn2d/95ce8c3d-8d16-4d87-80b6-269db86c9d21.pt",
+            "threshold": 0.02155010960996151
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    86
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 29
+            },
+            "metrics": {
+                "f1_score": 0.6759983532317826,
+                "mcc_score": 0.6911869961839505,
+                "precision": 0.8982494529540481,
+                "recall": 0.5419141914191419
+            },
+            "model_path": "../../models/cnn2d/9483c40c-688f-4cd5-8ae8-e1e8e6ce2435.pt",
+            "threshold": 0.025991693139076233
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    92,
+                    149
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 17
+            },
+            "metrics": {
+                "f1_score": 0.5573925366084082,
+                "mcc_score": 0.6118857603229108,
+                "precision": 0.9800664451827242,
+                "recall": 0.38943894389438943
+            },
+            "model_path": "../../models/cnn2d/8b91bfda-920e-4001-b51f-92ad79048439.pt",
+            "threshold": 0.055801864713430405
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    9,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    91,
+                    117,
+                    184
+                ],
+                "learning_rate": 0.011787686347935866,
+                "window": 61
+            },
+            "metrics": {
+                "f1_score": 0.5246022937476877,
+                "mcc_score": 0.5160406691990621,
+                "precision": 0.5968013468013468,
+                "recall": 0.467986798679868
+            },
+            "model_path": "../../models/cnn2d/31803013-b495-4eb9-be04-94416fb43e0a.pt",
+            "threshold": 0.055934347212314606
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    50,
+                    41
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 25
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/560aadf8-08dc-47ee-825e-c972fc9096a9.pt",
+            "threshold": 0.14071355760097504
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    52
+                ],
+                "learning_rate": 0.00031622776601683794,
+                "window": 35
+            },
+            "metrics": {
+                "f1_score": 0.1383071553228621,
+                "mcc_score": 0.11024538905542686,
+                "precision": 0.1032909742587162,
+                "recall": 0.20924092409240924
+            },
+            "model_path": "../../models/cnn2d/e6d1ea84-148e-423b-9ba6-3d2f2b4f1c80.pt",
+            "threshold": 0.018666477873921394
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    7,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    45,
+                    145,
+                    268,
+                    34
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.14878827728724406,
+                "mcc_score": 0.12491746830364346,
+                "precision": 0.10399159663865547,
+                "recall": 0.2613861386138614
+            },
+            "model_path": "../../models/cnn2d/62648d79-086b-4dd9-91a1-edf1c9c3c5d4.pt",
+            "threshold": 0.21070510149002075
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    31,
+                    91,
+                    216
+                ],
+                "learning_rate": 0.00043939705607607906,
+                "window": 73
+            },
+            "metrics": {
+                "f1_score": 0.12903225806451615,
+                "mcc_score": 0.12574916636106664,
+                "precision": 0.22115384615384615,
+                "recall": 0.09108910891089109
+            },
+            "model_path": "../../models/cnn2d/c7864aee-b6bd-4ee9-af25-dc505804167f.pt",
+            "threshold": 0.01556361559778452
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    11,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    62,
+                    75,
+                    123,
+                    54,
+                    53
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 74
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/2a149436-18c5-4e40-800f-ae5866e0a09c.pt",
+            "threshold": 1.073928740976722e+19
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    145,
+                    152,
+                    296,
+                    252,
+                    234
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.38393917795200766,
+                "mcc_score": 0.3762404964715461,
+                "precision": 0.29992576095025986,
+                "recall": 0.5333333333333333
+            },
+            "model_path": "../../models/cnn2d/7d0e83af-fbd2-4bc0-8705-b59a1c891005.pt",
+            "threshold": 0.04279990866780281
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    83,
+                    121,
+                    93
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 32
+            },
+            "metrics": {
+                "f1_score": 0.2151329243353783,
+                "mcc_score": 0.20344282372899786,
+                "precision": 0.28279569892473116,
+                "recall": 0.1735973597359736
+            },
+            "model_path": "../../models/cnn2d/8c7868d4-ed9b-4f4e-b2bd-03629c52c730.pt",
+            "threshold": 0.03374646231532097
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    11,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    47,
+                    225,
+                    234,
+                    78
+                ],
+                "learning_rate": 0.01637893706954063,
+                "window": 40
+            },
+            "metrics": {
+                "f1_score": 0.12390619530976549,
+                "mcc_score": 0.0993255606468641,
+                "precision": 0.13189269746646795,
+                "recall": 0.11683168316831684
+            },
+            "model_path": "../../models/cnn2d/30a38254-56bb-4d03-9cd2-a05c53f2f519.pt",
+            "threshold": 0.084798663854599
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    86
+                ],
+                "learning_rate": 0.0019306977288832496,
+                "window": 29
+            },
+            "metrics": {
+                "f1_score": 0.15341922695738355,
+                "mcc_score": 0.12897650693711493,
+                "precision": 0.10963172804532578,
+                "recall": 0.25544554455445545
+            },
+            "model_path": "../../models/cnn2d/62f35557-8ab6-415d-b0ac-a518afcf67d9.pt",
+            "threshold": 0.024082385003566742
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    13,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    108,
+                    170,
+                    179,
+                    34
+                ],
+                "learning_rate": 0.07196856730011514,
+                "window": 48
+            },
+            "metrics": {
+                "f1_score": 0.12930103379108163,
+                "mcc_score": 0.10649216548276078,
+                "precision": 0.08437374144180428,
+                "recall": 0.2765676567656766
+            },
+            "model_path": "../../models/cnn2d/71cc4b89-3c15-41c5-af38-8894695d26c1.pt",
+            "threshold": 0.07950550317764282
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    81,
+                    80,
+                    64
+                ],
+                "learning_rate": 0.07196856730011514,
+                "window": 30
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/69be637f-dbce-4289-a36d-bf37261e9851.pt",
+            "threshold": 0.1043291836977005
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    157,
+                    218,
+                    241
+                ],
+                "learning_rate": 0.005179474679231213,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.14202643171806167,
+                "mcc_score": 0.11856400449150208,
+                "precision": 0.096875,
+                "recall": 0.266006600660066
+            },
+            "model_path": "../../models/cnn2d/592f4f62-efa8-4f52-af64-03ddd77c33a6.pt",
+            "threshold": 0.06515234708786011
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    30,
+                    132,
+                    255
+                ],
+                "learning_rate": 0.31622776601683794,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.13791868171234103,
+                "mcc_score": 0.11326191273855914,
+                "precision": 0.09464110127826943,
+                "recall": 0.25412541254125415
+            },
+            "model_path": "../../models/cnn2d/ab1a84c0-504e-4b58-8e0d-1d55d9424812.pt",
+            "threshold": 0.07903610914945602
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    9,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    300
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 34
+            },
+            "metrics": {
+                "f1_score": 0.37066402378592667,
+                "mcc_score": 0.3781362275037152,
+                "precision": 0.26487252124645894,
+                "recall": 0.6171617161716172
+            },
+            "model_path": "../../models/cnn2d/fc0f3c60-1273-4e8a-b6b1-c2d9768988ce.pt",
+            "threshold": 0.027787066996097565
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    116,
+                    185,
+                    236,
+                    204,
+                    116
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 65
+            },
+            "metrics": {
+                "f1_score": 0.6855753646677473,
+                "mcc_score": 0.6974973113827312,
+                "precision": 0.887722980062959,
+                "recall": 0.5584158415841585
+            },
+            "model_path": "../../models/cnn2d/0e285e71-a9da-4059-9d89-8d1cc8d03b7e.pt",
+            "threshold": 0.008223234675824642
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    123,
+                    142,
+                    189,
+                    142
+                ],
+                "learning_rate": 0.03727593720314938,
+                "window": 64
+            },
+            "metrics": {
+                "f1_score": 0.14967012252591894,
+                "mcc_score": 0.12586207096058544,
+                "precision": 0.10474934036939314,
+                "recall": 0.262046204620462
+            },
+            "model_path": "../../models/cnn2d/eb55179e-5dbf-4988-8d18-9542073f08c5.pt",
+            "threshold": 0.17484839260578156
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    61,
+                    141,
+                    191
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 69
+            },
+            "metrics": {
+                "f1_score": 0.14906832298136646,
+                "mcc_score": 0.15170044792125295,
+                "precision": 0.2698961937716263,
+                "recall": 0.10297029702970296
+            },
+            "model_path": "../../models/cnn2d/eac058ae-6d2d-4930-bacc-448b05744c61.pt",
+            "threshold": 0.020904650911688805
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    13,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    148,
+                    262,
+                    181
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 16
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/60c8ee47-6dc8-42b5-afa1-0c7e267cbee0.pt",
+            "threshold": 0.046395983546972275
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    274,
+                    279,
+                    149,
+                    27
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 53
+            },
+            "metrics": {
+                "f1_score": 0.3427398665982555,
+                "mcc_score": 0.4038628184264024,
+                "precision": 0.7695852534562212,
+                "recall": 0.22046204620462045
+            },
+            "model_path": "../../models/cnn2d/eff443f8-b8c2-4a54-8729-88516a81dd9e.pt",
+            "threshold": 0.0928376317024231
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    47,
+                    62,
+                    262,
+                    206
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 65
+            },
+            "metrics": {
+                "f1_score": 0.5385790679908327,
+                "mcc_score": 0.5339059249965512,
+                "precision": 0.6391659111514053,
+                "recall": 0.46534653465346537
+            },
+            "model_path": "../../models/cnn2d/0b2fb67e-3487-4a31-904f-67b42dd4e9de.pt",
+            "threshold": 0.04960809648036957
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    84,
+                    214,
+                    299,
+                    250,
+                    235
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 76
+            },
+            "metrics": {
+                "f1_score": 0.6275805119735756,
+                "mcc_score": 0.6406946589818412,
+                "precision": 0.8379272326350606,
+                "recall": 0.5016501650165016
+            },
+            "model_path": "../../models/cnn2d/54c662bb-e00b-4118-89b4-523eac7a5af5.pt",
+            "threshold": 0.009253742173314095
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    11,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    39,
+                    284
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.5527446300715991,
+                "mcc_score": 0.6119720680413139,
+                "precision": 0.9982758620689656,
+                "recall": 0.3821782178217822
+            },
+            "model_path": "../../models/cnn2d/588b71cc-12d6-4f8b-ad5a-6371db1bbdc2.pt",
+            "threshold": 0.03685345500707626
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    11,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    45,
+                    66
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 29
+            },
+            "metrics": {
+                "f1_score": 0.7155378486055777,
+                "mcc_score": 0.7252798678726545,
+                "precision": 0.9025125628140703,
+                "recall": 0.5927392739273928
+            },
+            "model_path": "../../models/cnn2d/b96f804b-72fc-472b-b281-8955902d7eb3.pt",
+            "threshold": 0.03291564807295799
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    21,
+                    108
+                ],
+                "learning_rate": 0.00022758459260747887,
+                "window": 12
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/b543e016-a773-416c-8517-b17e81e1b4e4.pt",
+            "threshold": 0.057736437767744064
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    43,
+                    44,
+                    175
+                ],
+                "learning_rate": 0.00043939705607607906,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.17444444444444443,
+                "mcc_score": 0.23025459722270528,
+                "precision": 0.5508771929824562,
+                "recall": 0.10363036303630363
+            },
+            "model_path": "../../models/cnn2d/1fb2a52d-ef29-4641-8191-b0becd97b25a.pt",
+            "threshold": 0.029322197660803795
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    7,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    126
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 17
+            },
+            "metrics": {
+                "f1_score": 0.5550786838340487,
+                "mcc_score": 0.6141290356220966,
+                "precision": 1.0,
+                "recall": 0.38415841584158417
+            },
+            "model_path": "../../models/cnn2d/b016c53a-0f03-4fbc-83a1-3fa8f80e61d7.pt",
+            "threshold": 0.033954281359910965
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    148,
+                    166
+                ],
+                "learning_rate": 0.00022758459260747887,
+                "window": 28
+            },
+            "metrics": {
+                "f1_score": 0.08493150684931507,
+                "mcc_score": 0.05283085283327715,
+                "precision": 0.05134575569358178,
+                "recall": 0.24554455445544554
+            },
+            "model_path": "../../models/cnn2d/90d22a79-ca2e-41f4-9de6-024eea27abb0.pt",
+            "threshold": 3117463371776.0
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    13,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    69,
+                    230,
+                    200
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 38
+            },
+            "metrics": {
+                "f1_score": 0.6055889635656173,
+                "mcc_score": 0.5961998951427205,
+                "precision": 0.6524390243902439,
+                "recall": 0.565016501650165
+            },
+            "model_path": "../../models/cnn2d/f4ed4171-6a2e-4df0-878c-3fa5c43fc5a8.pt",
+            "threshold": 0.015436763875186443
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    11,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    41,
+                    195,
+                    220,
+                    174,
+                    30
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 47
+            },
+            "metrics": {
+                "f1_score": 0.13639387890884896,
+                "mcc_score": 0.11327512375080516,
+                "precision": 0.09117189237269291,
+                "recall": 0.2706270627062706
+            },
+            "model_path": "../../models/cnn2d/178a8969-fadc-4cd3-8fa4-816b0ef0ab0b.pt",
+            "threshold": 0.08692359179258347
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    97,
+                    121,
+                    293,
+                    275,
+                    83
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 36
+            },
+            "metrics": {
+                "f1_score": 0.13744985173556604,
+                "mcc_score": 0.11333610561301767,
+                "precision": 0.09340919867235657,
+                "recall": 0.2600660066006601
+            },
+            "model_path": "../../models/cnn2d/0a500ff2-e954-4a64-8738-b933363fcfc1.pt",
+            "threshold": 0.10786963254213333
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    15,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    28,
+                    199,
+                    250,
+                    236,
+                    131
+                ],
+                "learning_rate": 0.0005179474679231213,
+                "window": 41
+            },
+            "metrics": {
+                "f1_score": 0.8088560885608858,
+                "mcc_score": 0.809761341721418,
+                "precision": 0.9171548117154812,
+                "recall": 0.7234323432343235
+            },
+            "model_path": "../../models/cnn2d/cefc2174-983d-45fc-bde0-f4868f0a2476.pt",
+            "threshold": 0.0046456484124064445
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    274,
+                    105,
+                    44
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 12
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/b3263230-6359-4e34-bc26-b4f2f20804ed.pt",
+            "threshold": 0.17615604400634766
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    94,
+                    274,
+                    244,
+                    20
+                ],
+                "learning_rate": 0.00016378937069540646,
+                "window": 29
+            },
+            "metrics": {
+                "f1_score": 0.7896164277411855,
+                "mcc_score": 0.7971734047577707,
+                "precision": 0.9559099437148217,
+                "recall": 0.6726072607260726
+            },
+            "model_path": "../../models/cnn2d/37eb77cf-1227-4ce7-82ef-e4c956bcebfa.pt",
+            "threshold": 0.007060231175273657
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    170,
+                    250,
+                    126
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 49
+            },
+            "metrics": {
+                "f1_score": 0.13474590299619268,
+                "mcc_score": 0.11138461155179664,
+                "precision": 0.08992487847989394,
+                "recall": 0.26864686468646864
+            },
+            "model_path": "../../models/cnn2d/d24d44f6-4442-4638-b0bb-72b3846a8b55.pt",
+            "threshold": 0.08248000591993332
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    131,
+                    117
+                ],
+                "learning_rate": 0.01637893706954063,
+                "window": 19
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/d6f08e1e-8a69-46e3-bd14-015a35eab974.pt",
+            "threshold": 0.4693569839000702
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    94,
+                    99,
+                    168
+                ],
+                "learning_rate": 0.1,
+                "window": 54
+            },
+            "metrics": {
+                "f1_score": 0.33544749823819586,
+                "mcc_score": 0.34996781831518303,
+                "precision": 0.22879115597212207,
+                "recall": 0.6283828382838283
+            },
+            "model_path": "../../models/cnn2d/50050ed7-7f05-4576-b6be-7b28e59d3c8f.pt",
+            "threshold": 0.043819691985845566
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    13,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    125,
+                    105
+                ],
+                "learning_rate": 0.03727593720314938,
+                "window": 21
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/25e768f9-7cd7-40ac-af05-8ed7066eb49b.pt",
+            "threshold": 0.15899930894374847
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    156,
+                    211,
+                    161
+                ],
+                "learning_rate": 0.1637893706954063,
+                "window": 19
+            },
+            "metrics": {
+                "f1_score": 0.056878977304724895,
+                "mcc_score": 0.0,
+                "precision": 0.029271968467424067,
+                "recall": 1.0
+            },
+            "model_path": "../../models/cnn2d/63b0d937-3b6d-4aa9-b7bc-c8c33fe92fc7.pt",
+            "threshold": 0.10146210342645645
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    13,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    51,
+                    74,
+                    60
+                ],
+                "learning_rate": 0.0026826957952797246,
+                "window": 34
+            },
+            "metrics": {
+                "f1_score": 0.5888324873096447,
+                "mcc_score": 0.5769547398873437,
+                "precision": 0.6041666666666666,
+                "recall": 0.5742574257425742
+            },
+            "model_path": "../../models/cnn2d/30e4e9d2-1987-445f-af60-ebc922761750.pt",
+            "threshold": 0.0216263048350811
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    15,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    111,
+                    75,
+                    21
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 25
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/88410259-73ee-45e4-b184-2329deef78ff.pt",
+            "threshold": 0.13237622380256653
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    13,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    172,
+                    213
+                ],
+                "learning_rate": 0.31622776601683794,
+                "window": 15
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/3289a4c6-e8ac-411b-bcc7-75592c15d8b1.pt",
+            "threshold": 0.1769324392080307
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    84
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 18
+            },
+            "metrics": {
+                "f1_score": 0.36182445381372175,
+                "mcc_score": 0.350594316534771,
+                "precision": 0.43144424131627057,
+                "recall": 0.31155115511551157
+            },
+            "model_path": "../../models/cnn2d/d6ccc080-77fc-4865-9dbf-4a56c8a5deb6.pt",
+            "threshold": 0.02342933416366577
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    11,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    91,
+                    262,
+                    286,
+                    109,
+                    17
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 38
+            },
+            "metrics": {
+                "f1_score": 0.32177777777777783,
+                "mcc_score": 0.3298414363551403,
+                "precision": 0.4925170068027211,
+                "recall": 0.23894389438943894
+            },
+            "model_path": "../../models/cnn2d/9a0bd44e-614b-43c7-b998-de743fcf9fd6.pt",
+            "threshold": 0.07067817449569702
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    15,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    138,
+                    219
+                ],
+                "learning_rate": 0.0019306977288832496,
+                "window": 51
+            },
+            "metrics": {
+                "f1_score": 0.1936295054484493,
+                "mcc_score": 0.18312254139182288,
+                "precision": 0.26521239954075776,
+                "recall": 0.15247524752475247
+            },
+            "model_path": "../../models/cnn2d/111793da-855b-4040-8230-e4cb98a4848b.pt",
+            "threshold": 0.016939453780651093
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    74,
+                    263,
+                    140
+                ],
+                "learning_rate": 0.00019306977288832496,
+                "window": 35
+            },
+            "metrics": {
+                "f1_score": 0.6480593109463585,
+                "mcc_score": 0.6784425797603537,
+                "precision": 0.9550128534704371,
+                "recall": 0.4904290429042904
+            },
+            "model_path": "../../models/cnn2d/1159da70-5685-464b-9862-ddac161ba116.pt",
+            "threshold": 0.017074985429644585
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "decoder_kernel_size": [
+                    9,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    271,
+                    141,
+                    89
+                ],
+                "learning_rate": 0.05179474679231207,
+                "window": 26
+            },
+            "metrics": {
+                "f1_score": 0.13033575784292115,
+                "mcc_score": 0.14434280298779192,
+                "precision": 0.07333002645502645,
+                "recall": 0.5854785478547855
+            },
+            "model_path": "../../models/cnn2d/db7dffe4-249a-4650-bd65-b516314bcbc6.pt",
+            "threshold": 7903322832896.0
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    9,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    101,
+                    264,
+                    44
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 38
+            },
+            "metrics": {
+                "f1_score": 0.68,
+                "mcc_score": 0.6818557604203035,
+                "precision": 0.8147465437788018,
+                "recall": 0.5834983498349835
+            },
+            "model_path": "../../models/cnn2d/f0e8c7c8-dc6b-42d7-b4ec-7f4e84ff9f2c.pt",
+            "threshold": 0.014279668219387531
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    48
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 22
+            },
+            "metrics": {
+                "f1_score": 0.5548141086749285,
+                "mcc_score": 0.6135763152883819,
+                "precision": 0.9982847341337907,
+                "recall": 0.38415841584158417
+            },
+            "model_path": "../../models/cnn2d/db72f6bc-1fa7-4fa7-80f1-96de64ea9eb9.pt",
+            "threshold": 0.03292239084839821
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    119
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 23
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/03399fe7-be86-440c-ab8e-311343ed909a.pt",
+            "threshold": 0.15135498344898224
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    138
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 37
+            },
+            "metrics": {
+                "f1_score": 0.22118380062305293,
+                "mcc_score": 0.2055501647505252,
+                "precision": 0.26970560303893637,
+                "recall": 0.18745874587458747
+            },
+            "model_path": "../../models/cnn2d/d8c649fa-00e8-4ac9-9031-46fb049a41bd.pt",
+            "threshold": 0.028765058144927025
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    128
+                ],
+                "learning_rate": 0.07196856730011514,
+                "window": 33
+            },
+            "metrics": {
+                "f1_score": 0.1374415786740523,
+                "mcc_score": 0.11351563128747627,
+                "precision": 0.09314875645236978,
+                "recall": 0.262046204620462
+            },
+            "model_path": "../../models/cnn2d/6aad9aaf-a231-4e30-a2b9-eefc854d8867.pt",
+            "threshold": 0.0784451961517334
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    37,
+                    30
+                ],
+                "learning_rate": 0.0026826957952797246,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.6908366533864542,
+                "mcc_score": 0.6994030827731721,
+                "precision": 0.871356783919598,
+                "recall": 0.5722772277227722
+            },
+            "model_path": "../../models/cnn2d/5006ce79-60c9-48ee-9864-ca4430a244fc.pt",
+            "threshold": 0.01588168740272522
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    60,
+                    181
+                ],
+                "learning_rate": 0.026826957952797246,
+                "window": 40
+            },
+            "metrics": {
+                "f1_score": 0.14914514368861403,
+                "mcc_score": 0.12688242941214214,
+                "precision": 0.16612641815235007,
+                "recall": 0.1353135313531353
+            },
+            "model_path": "../../models/cnn2d/833b3169-81d7-43e0-98ad-3f7b860597f3.pt",
+            "threshold": 0.037897445261478424
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    11,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    7
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    44,
+                    155,
+                    191,
+                    105
+                ],
+                "learning_rate": 0.05179474679231207,
+                "window": 81
+            },
+            "metrics": {
+                "f1_score": 0.5182508131550415,
+                "mcc_score": 0.5075671907037387,
+                "precision": 0.5726837060702875,
+                "recall": 0.47326732673267324
+            },
+            "model_path": "../../models/cnn2d/f0a7c51b-307f-4767-92c1-d18ddab70a7e.pt",
+            "threshold": 0.0438176654279232
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    13,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    251
+                ],
+                "learning_rate": 0.1637893706954063,
+                "window": 7
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/860b2dd3-33da-4409-a19c-77e73ca7f870.pt",
+            "threshold": 0.1189226508140564
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    13,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    7,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    234,
+                    209
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 34
+            },
+            "metrics": {
+                "f1_score": 0.4668741662961316,
+                "mcc_score": 0.48810173915800265,
+                "precision": 0.715258855585831,
+                "recall": 0.3465346534653465
+            },
+            "model_path": "../../models/cnn2d/23dd69ea-3053-48b2-acbd-cf15258a3e94.pt",
+            "threshold": 0.01808004267513752
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    249
+                ],
+                "learning_rate": 0.00031622776601683794,
+                "window": 7
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/968e63ab-8dcc-44b4-a16c-8870e3aeb8b7.pt",
+            "threshold": 0.07108276337385178
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    7,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    7
+                ],
+                "epochs": 5,
+                "input_shape": 100,
+                "layers": [
+                    43,
+                    83,
+                    183
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 57
+            },
+            "metrics": {
+                "f1_score": 0.3890214797136038,
+                "mcc_score": 0.38141330845416993,
+                "precision": 0.30467289719626167,
+                "recall": 0.5379537953795379
+            },
+            "model_path": "../../models/cnn2d/cdbfd2c8-4238-4f92-a970-2c1593b7eb45.pt",
+            "threshold": 0.04389890655875206
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    7
+                ],
+                "epochs": 1,
+                "input_shape": 100,
+                "layers": [
+                    230,
+                    298,
+                    192
+                ],
+                "learning_rate": 0.026826957952797246,
+                "window": 47
+            },
+            "metrics": {
+                "f1_score": 0.5720680393912265,
+                "mcc_score": 0.605165275888585,
+                "precision": 0.8887343532684284,
+                "recall": 0.42178217821782177
+            },
+            "model_path": "../../models/cnn2d/b9fba66c-c2fd-42cb-a4ea-95c3064cb066.pt",
+            "threshold": 0.05184464529156685
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    13,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    7
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    162,
+                    174
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 48
+            },
+            "metrics": {
+                "f1_score": 0.45146894756415024,
+                "mcc_score": 0.4408297253264582,
+                "precision": 0.5170357751277683,
+                "recall": 0.40066006600660065
+            },
+            "model_path": "../../models/cnn2d/02a64cc9-964b-4fe3-aed2-26bf0adbb06b.pt",
+            "threshold": 0.020970335230231285
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    5,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    42,
+                    139,
+                    296,
+                    187
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.1273184533165671,
+                "mcc_score": 0.10351719164527338,
+                "precision": 0.08355683928203012,
+                "recall": 0.26732673267326734
+            },
+            "model_path": "../../models/cnn2d/acec9402-347e-4379-b952-33b73d364dae.pt",
+            "threshold": 0.08139635622501373
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "decoder_kernel_size": [
+                    7,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    25,
+                    187,
+                    261
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 42
+            },
+            "metrics": {
+                "f1_score": 0.3890214797136038,
+                "mcc_score": 0.38141330845416993,
+                "precision": 0.30467289719626167,
+                "recall": 0.5379537953795379
+            },
+            "model_path": "../../models/cnn2d/300aa563-d0d7-49bf-bff3-c9ad22d169f4.pt",
+            "threshold": 0.06185503304004669
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    15,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    5
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    29,
+                    175,
+                    154,
+                    88
+                ],
+                "learning_rate": 0.0001,
+                "window": 17
+            },
+            "metrics": {
+                "f1_score": 0.6188841201716738,
+                "mcc_score": 0.641851852730603,
+                "precision": 0.8846625766871166,
+                "recall": 0.4759075907590759
+            },
+            "model_path": "../../models/cnn2d/d37192ec-dadd-4a51-8493-5b11268b77c2.pt",
+            "threshold": 0.004722695332020521
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    15,
+                    3
+                ],
+                "encoder_kernel_size": [
+                    3,
+                    3
+                ],
+                "epochs": 2,
+                "input_shape": 100,
+                "layers": [
+                    295,
+                    217,
+                    72
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 17
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/cnn2d/260ba0e4-d483-4caa-838b-f200af5d87a2.pt",
+            "threshold": 0.17475245893001556
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": [
+                    9,
+                    5
+                ],
+                "encoder_kernel_size": [
+                    9,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    77,
+                    70
+                ],
+                "learning_rate": 0.0022758459260747866,
+                "window": 26
+            },
+            "metrics": {
+                "f1_score": 0.609765780071457,
+                "mcc_score": 0.6138292102122479,
+                "precision": 0.7649402390438247,
+                "recall": 0.5069306930693069
+            },
+            "model_path": "../../models/cnn2d/6fb790d7-034c-47d5-9b0f-e339a84ef39c.pt",
+            "threshold": 0.01937459595501423
+        }
+    ]
+}

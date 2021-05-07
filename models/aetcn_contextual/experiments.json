@@ -1,0 +1,2709 @@
+{
+    "experiments": [
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.22706100139620689,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        500,
+                        450,
+                        397
+                    ],
+                    1003,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.1,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.4107496463932107,
+                "mcc_score": 0.39468963828723874,
+                "precision": 0.3594059405940594,
+                "recall": 0.4792079207920792
+            },
+            "model_path": "../../models/aetcn_contextual/f20fa338-1fce-4331-a521-a1ece11fecb0.pt",
+            "threshold": 0.06261025369167328
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.0425239272244593,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        498,
+                        350,
+                        315
+                    ],
+                    775,
+                    [
+                        135,
+                        290,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 98
+            },
+            "metrics": {
+                "f1_score": 0.21787709497206706,
+                "mcc_score": 0.29475512864594694,
+                "precision": 0.7090909090909091,
+                "recall": 0.12871287128712872
+            },
+            "model_path": "../../models/aetcn_contextual/f6b8d036-bf9c-4ec9-b4c5-47298e17f30c.pt",
+            "threshold": 0.07763956487178802
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.40714611467198747,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        95
+                    ],
+                    1769,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00019306977288832496,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.5909299129638113,
+                "mcc_score": 0.6351372926847925,
+                "precision": 0.9655688622754491,
+                "recall": 0.42574257425742573
+            },
+            "model_path": "../../models/aetcn_contextual/bdbbbfd5-6f13-4d84-b020-8981d595589b.pt",
+            "threshold": 0.004169038031250238
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.12693048068691942,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        492,
+                        386
+                    ],
+                    1494,
+                    [
+                        105,
+                        165,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.5550786838340487,
+                "mcc_score": 0.6141290356220966,
+                "precision": 1.0,
+                "recall": 0.38415841584158417
+            },
+            "model_path": "../../models/aetcn_contextual/37965aea-988c-4169-95c7-df9cd8e8784e.pt",
+            "threshold": 0.03410199657082558
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.0365720375813296,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        210,
+                        186
+                    ],
+                    106,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 85
+            },
+            "metrics": {
+                "f1_score": 0.5912408759124087,
+                "mcc_score": 0.6337176707125031,
+                "precision": 0.9571639586410635,
+                "recall": 0.4277227722772277
+            },
+            "model_path": "../../models/aetcn_contextual/16f0f90c-effa-40ea-a5ad-abf41e5ab5a9.pt",
+            "threshold": 0.0038385270163416862
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.16252248899976424,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        457,
+                        429,
+                        266
+                    ],
+                    1060,
+                    [
+                        119,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 46
+            },
+            "metrics": {
+                "f1_score": 0.5859519408502772,
+                "mcc_score": 0.6334897371692323,
+                "precision": 0.9768875192604006,
+                "recall": 0.4184818481848185
+            },
+            "model_path": "../../models/aetcn_contextual/98de4b6b-0f18-42f9-8236-58b7f8d2374e.pt",
+            "threshold": 0.019542349502444267
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.43342268035018017,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        441
+                    ],
+                    204,
+                    [
+                        103,
+                        308,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 75
+            },
+            "metrics": {
+                "f1_score": 0.5882352941176471,
+                "mcc_score": 0.6302026159922914,
+                "precision": 0.9513274336283186,
+                "recall": 0.42574257425742573
+            },
+            "model_path": "../../models/aetcn_contextual/71a35a20-8227-47ba-9a55-9f5062c7dcb3.pt",
+            "threshold": 0.0046171690337359905
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.1558297858540056,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        392,
+                        315,
+                        89
+                    ],
+                    519,
+                    [
+                        247,
+                        307,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.022758459260747887,
+                "window": 18
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/f6b27095-3373-4e25-8837-4157bb6bb86f.pt",
+            "threshold": 0.17847828567028046
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.43559881037295345,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        285,
+                        281,
+                        247
+                    ],
+                    825,
+                    [
+                        277,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 42
+            },
+            "metrics": {
+                "f1_score": 0.11674150096215521,
+                "mcc_score": 0.08635564073076238,
+                "precision": 0.08633776091081594,
+                "recall": 0.1801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/03019a33-937a-42a2-ae8b-5af5aa61ae9b.pt",
+            "threshold": 0.07564587891101837
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.006041685440418665,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        319,
+                        199,
+                        166
+                    ],
+                    518,
+                    [
+                        130,
+                        233,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.22758459260747863,
+                "window": 21
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/ce928cbf-56d1-4e23-ac44-b63e57647cc3.pt",
+            "threshold": 0.17268072068691254
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.14411015710412528,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        358
+                    ],
+                    283,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.005179474679231213,
+                "window": 89
+            },
+            "metrics": {
+                "f1_score": 0.5977426636568848,
+                "mcc_score": 0.6365844292049386,
+                "precision": 0.9457142857142857,
+                "recall": 0.43696369636963694
+            },
+            "model_path": "../../models/aetcn_contextual/63b1d12c-8871-4dd8-8560-05278a7c3051.pt",
+            "threshold": 0.007948914542794228
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.056256040753854986,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        212,
+                        129
+                    ],
+                    1061,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03727593720314938,
+                "window": 87
+            },
+            "metrics": {
+                "f1_score": 0.33007712082262214,
+                "mcc_score": 0.3466719508410507,
+                "precision": 0.22291666666666668,
+                "recall": 0.6356435643564357
+            },
+            "model_path": "../../models/aetcn_contextual/b3f4c39f-7095-48f2-a988-1548aee26567.pt",
+            "threshold": 0.029649581760168076
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3870935730718018,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        195,
+                        190,
+                        94
+                    ],
+                    1914,
+                    [
+                        225,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 96
+            },
+            "metrics": {
+                "f1_score": 0.5865561694290976,
+                "mcc_score": 0.6325021351723612,
+                "precision": 0.969558599695586,
+                "recall": 0.42046204620462047
+            },
+            "model_path": "../../models/aetcn_contextual/e4e106f5-fb88-401c-ae54-d7baf1fb80c0.pt",
+            "threshold": 0.003369100857526064
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.3442357964262249,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        462,
+                        266,
+                        171
+                    ],
+                    1969,
+                    [
+                        59,
+                        202,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 79
+            },
+            "metrics": {
+                "f1_score": 0.587206626783249,
+                "mcc_score": 0.633020646243111,
+                "precision": 0.9696048632218845,
+                "recall": 0.42112211221122114
+            },
+            "model_path": "../../models/aetcn_contextual/397bbb2d-b721-4867-bb5f-0f25a1e6e90a.pt",
+            "threshold": 0.003919603768736124
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.4174576024777737,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        460,
+                        334,
+                        69
+                    ],
+                    228,
+                    [
+                        366,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.01,
+                "window": 83
+            },
+            "metrics": {
+                "f1_score": 0.588604755495738,
+                "mcc_score": 0.6241001524580023,
+                "precision": 0.9187675070028011,
+                "recall": 0.433003300330033
+            },
+            "model_path": "../../models/aetcn_contextual/3e351be1-c9ef-4d7f-9ae2-ea95c943688d.pt",
+            "threshold": 0.018739335238933563
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.43428284162665465,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        278
+                    ],
+                    1877,
+                    [
+                        150,
+                        220,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 61
+            },
+            "metrics": {
+                "f1_score": 0.3635555555555556,
+                "mcc_score": 0.3592242903262056,
+                "precision": 0.27403685092127306,
+                "recall": 0.5399339933993399
+            },
+            "model_path": "../../models/aetcn_contextual/9ba69d34-c0e0-4c60-ae33-49d21e54f84b.pt",
+            "threshold": 0.042237572371959686
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.18192295292811622,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        405,
+                        260,
+                        58
+                    ],
+                    1134,
+                    [
+                        251,
+                        422,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00013894954943731373,
+                "window": 87
+            },
+            "metrics": {
+                "f1_score": 0.5879650895728066,
+                "mcc_score": 0.6330506223134997,
+                "precision": 0.9667673716012085,
+                "recall": 0.42244224422442245
+            },
+            "model_path": "../../models/aetcn_contextual/5fe7b9ed-85ed-4b3c-9459-8ec3fb55c56f.pt",
+            "threshold": 0.003285034094005823
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.1615444866690796,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        286
+                    ],
+                    1511,
+                    [
+                        88,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 79
+            },
+            "metrics": {
+                "f1_score": 0.5871056241426611,
+                "mcc_score": 0.6301128993293544,
+                "precision": 0.9553571428571429,
+                "recall": 0.42376237623762375
+            },
+            "model_path": "../../models/aetcn_contextual/b1d3b851-25a6-4352-a604-abd64e659f01.pt",
+            "threshold": 0.0046645342372357845
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.06905397960484189,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        195,
+                        65
+                    ],
+                    1516,
+                    [
+                        150,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 26
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/ed9510ac-dcbe-402f-81af-65994dcf910b.pt",
+            "threshold": 0.09623230248689651
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.017426534630370805,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        474,
+                        447,
+                        52
+                    ],
+                    1840,
+                    [
+                        258,
+                        489,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.011787686347935866,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.5895020188425303,
+                "mcc_score": 0.6250828328779853,
+                "precision": 0.9201680672268907,
+                "recall": 0.43366336633663366
+            },
+            "model_path": "../../models/aetcn_contextual/b8b44051-0765-47a9-be33-cfec1a65d4a2.pt",
+            "threshold": 0.014740304090082645
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.39964273975024944,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        241,
+                        147,
+                        86
+                    ],
+                    1089,
+                    [
+                        170,
+                        196,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.5873161764705882,
+                "mcc_score": 0.6325321930627077,
+                "precision": 0.9667170953101362,
+                "recall": 0.42178217821782177
+            },
+            "model_path": "../../models/aetcn_contextual/e6165434-947e-48d3-b37f-136f2b5af72e.pt",
+            "threshold": 0.006483289413154125
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.1517185890017908,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        498
+                    ],
+                    424,
+                    [
+                        302,
+                        353,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.01637893706954063,
+                "window": 84
+            },
+            "metrics": {
+                "f1_score": 0.5279034690799397,
+                "mcc_score": 0.521351069767286,
+                "precision": 0.6156552330694811,
+                "recall": 0.46204620462046203
+            },
+            "model_path": "../../models/aetcn_contextual/1a272c95-fd56-4663-b8f7-bba99302949e.pt",
+            "threshold": 0.035860225558280945
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.39878975916082954,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        379,
+                        378
+                    ],
+                    1579,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0026826957952797246,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.5968397291196389,
+                "mcc_score": 0.6355921067092167,
+                "precision": 0.9442857142857143,
+                "recall": 0.4363036303630363
+            },
+            "model_path": "../../models/aetcn_contextual/bacfd917-2938-4b31-9e5e-f00050a8f2c2.pt",
+            "threshold": 0.007330750115215778
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.35434891416550796,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        304,
+                        290,
+                        248
+                    ],
+                    282,
+                    [
+                        185,
+                        304,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03727593720314938,
+                "window": 13
+            },
+            "metrics": {
+                "f1_score": 0.5520534861509073,
+                "mcc_score": 0.611436425498614,
+                "precision": 0.998272884283247,
+                "recall": 0.3815181518151815
+            },
+            "model_path": "../../models/aetcn_contextual/d877a36b-6527-4f00-bf12-eb358e76e48f.pt",
+            "threshold": 0.012747136875987053
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.016214300588604458,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        414,
+                        89,
+                        60
+                    ],
+                    1826,
+                    [
+                        294,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.1301035358468451,
+                "mcc_score": 0.10245057447428046,
+                "precision": 0.09239733629300777,
+                "recall": 0.2198019801980198
+            },
+            "model_path": "../../models/aetcn_contextual/8195127f-ae1e-47ec-8da0-e67789c458ca.pt",
+            "threshold": 0.0675925761461258
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.3352404888632035,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        330,
+                        228
+                    ],
+                    583,
+                    [
+                        245,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 46
+            },
+            "metrics": {
+                "f1_score": 0.12449714164725811,
+                "mcc_score": 0.09511735722831824,
+                "precision": 0.09164588528678304,
+                "recall": 0.19405940594059407
+            },
+            "model_path": "../../models/aetcn_contextual/50e992cf-5333-4af6-93ac-42d7f367309c.pt",
+            "threshold": 0.07645978033542633
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.44711617566981415,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        391,
+                        331,
+                        268
+                    ],
+                    1726,
+                    [
+                        362,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 55
+            },
+            "metrics": {
+                "f1_score": 0.592762253779203,
+                "mcc_score": 0.6371682816513359,
+                "precision": 0.968562874251497,
+                "recall": 0.4270627062706271
+            },
+            "model_path": "../../models/aetcn_contextual/4f840123-8d27-456f-9e14-b9a9d4474f83.pt",
+            "threshold": 0.005041807424277067
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.19743020257439886,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        456,
+                        330
+                    ],
+                    962,
+                    [
+                        55,
+                        212,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.022758459260747887,
+                "window": 94
+            },
+            "metrics": {
+                "f1_score": 0.39967373572593795,
+                "mcc_score": 0.384726655279789,
+                "precision": 0.33980582524271846,
+                "recall": 0.48514851485148514
+            },
+            "model_path": "../../models/aetcn_contextual/631dccc2-aa22-4bb9-b58d-90b7af987522.pt",
+            "threshold": 0.03144645690917969
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.21731902975316597,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        500,
+                        279
+                    ],
+                    294,
+                    [
+                        139,
+                        394,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 42
+            },
+            "metrics": {
+                "f1_score": 0.09891328454202705,
+                "mcc_score": 0.06645812206500967,
+                "precision": 0.07448229792919171,
+                "recall": 0.1471947194719472
+            },
+            "model_path": "../../models/aetcn_contextual/f878d94e-45f7-496e-9cc7-bd0c6cc60d8d.pt",
+            "threshold": 0.07324644923210144
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.37274920366184394,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        497,
+                        446,
+                        91
+                    ],
+                    505,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.38574632444555196,
+                "mcc_score": 0.3748292379436157,
+                "precision": 0.3098478783026421,
+                "recall": 0.5108910891089109
+            },
+            "model_path": "../../models/aetcn_contextual/95129e79-6985-4e88-9ecb-dc2cd40cf938.pt",
+            "threshold": 0.046580780297517776
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.4058225041007246,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        183
+                    ],
+                    503,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00043939705607607906,
+                "window": 22
+            },
+            "metrics": {
+                "f1_score": 0.6666666666666666,
+                "mcc_score": 0.6688191712407648,
+                "precision": 0.8048552754435108,
+                "recall": 0.568976897689769
+            },
+            "model_path": "../../models/aetcn_contextual/5d8e6a0b-d4a5-40ea-996b-1a9c563f4efa.pt",
+            "threshold": 0.000550193537492305
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.40200207308661884,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        388
+                    ],
+                    201,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0005179474679231213,
+                "window": 47
+            },
+            "metrics": {
+                "f1_score": 0.5940774487471526,
+                "mcc_score": 0.6362748422509656,
+                "precision": 0.9588235294117647,
+                "recall": 0.4303630363036304
+            },
+            "model_path": "../../models/aetcn_contextual/6bdd3840-2deb-44bc-b8be-5184f7dedbc2.pt",
+            "threshold": 0.004639917053282261
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.12431477419127285,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        427,
+                        395,
+                        61
+                    ],
+                    572,
+                    [
+                        86,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 92
+            },
+            "metrics": {
+                "f1_score": 0.5833333333333333,
+                "mcc_score": 0.6314142844124307,
+                "precision": 0.9767441860465116,
+                "recall": 0.4158415841584158
+            },
+            "model_path": "../../models/aetcn_contextual/871c40cd-00a6-47c1-962f-3af574f9e21f.pt",
+            "threshold": 0.0037020286545157433
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2197581803950009,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        406,
+                        179,
+                        79
+                    ],
+                    1888,
+                    [
+                        68,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.5916780978509374,
+                "mcc_score": 0.6351754358588497,
+                "precision": 0.9627976190476191,
+                "recall": 0.4270627062706271
+            },
+            "model_path": "../../models/aetcn_contextual/d698dae0-f50e-4d16-9fe6-0fd2938e30c8.pt",
+            "threshold": 0.005376570858061314
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.10476397782253988,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        486,
+                        389,
+                        65
+                    ],
+                    1199,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 48
+            },
+            "metrics": {
+                "f1_score": 0.5945705384957721,
+                "mcc_score": 0.6276246172571586,
+                "precision": 0.912568306010929,
+                "recall": 0.4409240924092409
+            },
+            "model_path": "../../models/aetcn_contextual/9bca5961-08b4-4cac-95fe-d85918221efb.pt",
+            "threshold": 0.009044224396348
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3417501988425409,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        448,
+                        157,
+                        109
+                    ],
+                    658,
+                    [
+                        179,
+                        471,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00019306977288832496,
+                "window": 68
+            },
+            "metrics": {
+                "f1_score": 0.5874886672710788,
+                "mcc_score": 0.6269418193235587,
+                "precision": 0.9377713458755427,
+                "recall": 0.4277227722772277
+            },
+            "model_path": "../../models/aetcn_contextual/321983e0-acdb-4426-81e1-bdf12c6814c9.pt",
+            "threshold": 0.00504603236913681
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3793000483025081,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        330
+                    ],
+                    1187,
+                    [
+                        432,
+                        433,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 64
+            },
+            "metrics": {
+                "f1_score": 0.5841766329346826,
+                "mcc_score": 0.6294494937200922,
+                "precision": 0.9635811836115327,
+                "recall": 0.41914191419141916
+            },
+            "model_path": "../../models/aetcn_contextual/c6592930-e907-468d-bd83-0ce883b8300c.pt",
+            "threshold": 0.008154700510203838
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4287299551907942,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        357
+                    ],
+                    1989,
+                    [
+                        83,
+                        333,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 75
+            },
+            "metrics": {
+                "f1_score": 0.5877513711151737,
+                "mcc_score": 0.6306328992079223,
+                "precision": 0.9554234769687965,
+                "recall": 0.42442244224422443
+            },
+            "model_path": "../../models/aetcn_contextual/56bef4c3-b910-465b-a449-9409afe698d1.pt",
+            "threshold": 0.029357073828577995
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.12778385412604998,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        440,
+                        117
+                    ],
+                    1213,
+                    [
+                        212,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00016378937069540646,
+                "window": 75
+            },
+            "metrics": {
+                "f1_score": 0.5916515426497279,
+                "mcc_score": 0.631897764102024,
+                "precision": 0.9462989840348331,
+                "recall": 0.4303630363036304
+            },
+            "model_path": "../../models/aetcn_contextual/93d7c7c9-ae91-47ba-864a-9d6633b32de0.pt",
+            "threshold": 0.0015982736367732286
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.18332233343325227,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        268,
+                        81
+                    ],
+                    1633,
+                    [
+                        120,
+                        242,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.19306977288832497,
+                "window": 85
+            },
+            "metrics": {
+                "f1_score": 0.13282350573556048,
+                "mcc_score": 0.10512768805254542,
+                "precision": 0.09554140127388536,
+                "recall": 0.21782178217821782
+            },
+            "model_path": "../../models/aetcn_contextual/853ed04a-eade-430f-a44e-ee3de9d17b8c.pt",
+            "threshold": 0.05802185833454132
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.21241775466381807,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        142
+                    ],
+                    1790,
+                    [
+                        324,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00016378937069540646,
+                "window": 30
+            },
+            "metrics": {
+                "f1_score": 0.6045321637426901,
+                "mcc_score": 0.5975715402941596,
+                "precision": 0.6773136773136773,
+                "recall": 0.5458745874587458
+            },
+            "model_path": "../../models/aetcn_contextual/81bbe754-7bfd-4587-99db-6f2af2a23ec1.pt",
+            "threshold": 0.0007475754246115685
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4159815366105356,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        392,
+                        68
+                    ],
+                    1684,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0019306977288832496,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.5840546697038724,
+                "mcc_score": 0.6252021038422965,
+                "precision": 0.9426470588235294,
+                "recall": 0.4231023102310231
+            },
+            "model_path": "../../models/aetcn_contextual/9ea6e44b-5239-43e8-b8ca-801c6400cd75.pt",
+            "threshold": 0.009026872925460339
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.3636633253729377,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        497,
+                        275,
+                        252
+                    ],
+                    466,
+                    [
+                        126,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.008483428982440717,
+                "window": 48
+            },
+            "metrics": {
+                "f1_score": 0.5276724791508719,
+                "mcc_score": 0.5216937486009628,
+                "precision": 0.6197684772929652,
+                "recall": 0.4594059405940594
+            },
+            "model_path": "../../models/aetcn_contextual/c7081726-ddfa-41cf-96ac-0a3e67660bc4.pt",
+            "threshold": 0.06686793267726898
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.2859684003146276,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        289,
+                        166,
+                        93
+                    ],
+                    883,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 55
+            },
+            "metrics": {
+                "f1_score": 0.5873674504379898,
+                "mcc_score": 0.6340226732862666,
+                "precision": 0.9740061162079511,
+                "recall": 0.42046204620462047
+            },
+            "model_path": "../../models/aetcn_contextual/920d9fe5-bf38-4d93-8d8d-92b43789156d.pt",
+            "threshold": 0.008552568033337593
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.24905094172960812,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        160
+                    ],
+                    1609,
+                    [
+                        150,
+                        219,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.31622776601683794,
+                "window": 32
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/517151d3-45d6-4905-bf0d-5ccd78662c95.pt",
+            "threshold": 0.08920492976903915
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.12027945564102421,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        356
+                    ],
+                    200,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 17
+            },
+            "metrics": {
+                "f1_score": 0.5550786838340487,
+                "mcc_score": 0.6141290356220966,
+                "precision": 1.0,
+                "recall": 0.38415841584158417
+            },
+            "model_path": "../../models/aetcn_contextual/0b9dff6d-cfa0-4290-8427-1b0af010e695.pt",
+            "threshold": 0.018678346648812294
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.08168805245863647,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        407,
+                        176
+                    ],
+                    1743,
+                    [
+                        176,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 36
+            },
+            "metrics": {
+                "f1_score": 0.5640569395017795,
+                "mcc_score": 0.5941926943723069,
+                "precision": 0.8649386084583902,
+                "recall": 0.4184818481848185
+            },
+            "model_path": "../../models/aetcn_contextual/4c3d63b4-16bb-4070-9948-6af36789a6e7.pt",
+            "threshold": 0.0106421560049057
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.15285515466872013,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        471,
+                        468,
+                        225
+                    ],
+                    225,
+                    [
+                        410,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.34224049331963,
+                "mcc_score": 0.4041035441029028,
+                "precision": 0.7726218097447796,
+                "recall": 0.2198019801980198
+            },
+            "model_path": "../../models/aetcn_contextual/8bcf1f3c-32c2-468e-b0d6-702de140f621.pt",
+            "threshold": 0.08682949095964432
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.49477890560351595,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        379,
+                        349
+                    ],
+                    922,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0001,
+                "window": 25
+            },
+            "metrics": {
+                "f1_score": 0.5557673975214491,
+                "mcc_score": 0.6146624170893266,
+                "precision": 1.0,
+                "recall": 0.38481848184818485
+            },
+            "model_path": "../../models/aetcn_contextual/4ef0561c-a76b-4e7e-b140-7d51daefc74f.pt",
+            "threshold": 0.009193883277475834
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.25086422740964465,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        471,
+                        243
+                    ],
+                    870,
+                    [
+                        61,
+                        183,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 35
+            },
+            "metrics": {
+                "f1_score": 0.5730337078651686,
+                "mcc_score": 0.6251391271984378,
+                "precision": 0.9855072463768116,
+                "recall": 0.403960396039604
+            },
+            "model_path": "../../models/aetcn_contextual/1b219a0a-7a76-4c23-8881-d4e3781ca2c1.pt",
+            "threshold": 0.01452238205820322
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.09234722936034595,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        373,
+                        296,
+                        96
+                    ],
+                    131,
+                    [
+                        180,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 60
+            },
+            "metrics": {
+                "f1_score": 0.5275560623337134,
+                "mcc_score": 0.5218745991675897,
+                "precision": 0.6218637992831542,
+                "recall": 0.45808580858085807
+            },
+            "model_path": "../../models/aetcn_contextual/7e3a3abf-acc5-4c36-a15a-156961bc7e72.pt",
+            "threshold": 0.05208350718021393
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.28809272959144017,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        333
+                    ],
+                    810,
+                    [
+                        284,
+                        409,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00022758459260747887,
+                "window": 74
+            },
+            "metrics": {
+                "f1_score": 0.6001780943900267,
+                "mcc_score": 0.633904131971108,
+                "precision": 0.9220246238030095,
+                "recall": 0.4448844884488449
+            },
+            "model_path": "../../models/aetcn_contextual/307f19db-3ebf-4448-ae98-511b0e200bae.pt",
+            "threshold": 0.0005828736466355622
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.002715960566697262,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        323,
+                        269,
+                        73
+                    ],
+                    407,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 95
+            },
+            "metrics": {
+                "f1_score": 0.13547169811320756,
+                "mcc_score": 0.10927341028861877,
+                "precision": 0.09484808454425363,
+                "recall": 0.23696369636963696
+            },
+            "model_path": "../../models/aetcn_contextual/09f7d712-c8dd-4ab5-9c55-48b94d5f90f1.pt",
+            "threshold": 0.049083057790994644
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.03277999070594939,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        413,
+                        100
+                    ],
+                    538,
+                    [
+                        62,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.022758459260747887,
+                "window": 93
+            },
+            "metrics": {
+                "f1_score": 0.5274725274725275,
+                "mcc_score": 0.5214437575523981,
+                "precision": 0.6192170818505338,
+                "recall": 0.4594059405940594
+            },
+            "model_path": "../../models/aetcn_contextual/4ee5ad56-a73d-49bb-a393-ff1ce45acd3b.pt",
+            "threshold": 0.033196307718753815
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.1733364535030163,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        497,
+                        476
+                    ],
+                    1621,
+                    [
+                        90,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.19306977288832497,
+                "window": 57
+            },
+            "metrics": {
+                "f1_score": 0.13145204500803714,
+                "mcc_score": 0.10563198311649112,
+                "precision": 0.0901077375122429,
+                "recall": 0.2429042904290429
+            },
+            "model_path": "../../models/aetcn_contextual/20d8c562-39c8-48cc-ba1e-fac0f9a000cd.pt",
+            "threshold": 0.07409816980361938
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.1348155721602477,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        400,
+                        209,
+                        77
+                    ],
+                    588,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 24
+            },
+            "metrics": {
+                "f1_score": 0.5557673975214491,
+                "mcc_score": 0.6146624170893266,
+                "precision": 1.0,
+                "recall": 0.38481848184818485
+            },
+            "model_path": "../../models/aetcn_contextual/b91b0749-7c8e-46d7-90c2-e2e1c14d85bd.pt",
+            "threshold": 0.02102557383477688
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.43673412317740373,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        467
+                    ],
+                    1982,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.6783582089552239,
+                "mcc_score": 0.6760567560042055,
+                "precision": 0.7802575107296137,
+                "recall": 0.6
+            },
+            "model_path": "../../models/aetcn_contextual/b7a0a176-c563-4a8a-b731-c448f9188d4a.pt",
+            "threshold": 0.0003213543677702546
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.00771496670672317,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        391
+                    ],
+                    1934,
+                    [
+                        200,
+                        402,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 82
+            },
+            "metrics": {
+                "f1_score": 0.5923937360178971,
+                "mcc_score": 0.6272307563805021,
+                "precision": 0.9194444444444444,
+                "recall": 0.43696369636963694
+            },
+            "model_path": "../../models/aetcn_contextual/883ade75-cb2c-4dfa-8217-9807e0a40d87.pt",
+            "threshold": 0.0007334921392612159
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.37334029839650096,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        345
+                    ],
+                    1768,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 37
+            },
+            "metrics": {
+                "f1_score": 0.5267958950969213,
+                "mcc_score": 0.5210854732552347,
+                "precision": 0.6209677419354839,
+                "recall": 0.45742574257425744
+            },
+            "model_path": "../../models/aetcn_contextual/7d2c2399-357c-44f1-a10b-813e35010d3c.pt",
+            "threshold": 0.08386708796024323
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4579183342385922,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        264,
+                        103
+                    ],
+                    1285,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0022758459260747866,
+                "window": 49
+            },
+            "metrics": {
+                "f1_score": 0.5826771653543308,
+                "mcc_score": 0.6308944075691922,
+                "precision": 0.9767080745341615,
+                "recall": 0.4151815181518152
+            },
+            "model_path": "../../models/aetcn_contextual/dd3a5950-e004-40b0-9d0c-6c4e2d0e5b10.pt",
+            "threshold": 0.009601136669516563
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.20928167723801672,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        229
+                    ],
+                    499,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 52
+            },
+            "metrics": {
+                "f1_score": 0.589418452120682,
+                "mcc_score": 0.6159546836448366,
+                "precision": 0.8730569948186528,
+                "recall": 0.4448844884488449
+            },
+            "model_path": "../../models/aetcn_contextual/86a965d7-9be3-4390-bc72-ba76b6e08235.pt",
+            "threshold": 0.00894230604171753
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.33436954387993884,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        464,
+                        448,
+                        320
+                    ],
+                    1205,
+                    [
+                        155,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.19306977288832497,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.12991311543235415,
+                "mcc_score": 0.10145771927686958,
+                "precision": 0.09460680927990359,
+                "recall": 0.20726072607260726
+            },
+            "model_path": "../../models/aetcn_contextual/3c7e5b63-26ee-4d0d-b50f-068a027e7edc.pt",
+            "threshold": 0.07017529755830765
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.46925064244867026,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        347,
+                        117
+                    ],
+                    1555,
+                    [
+                        62,
+                        284,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 71
+            },
+            "metrics": {
+                "f1_score": 0.5859697386519945,
+                "mcc_score": 0.6300353367651083,
+                "precision": 0.9594594594594594,
+                "recall": 0.42178217821782177
+            },
+            "model_path": "../../models/aetcn_contextual/0bd0e1ec-92a5-4ac6-88a3-927d4af65c97.pt",
+            "threshold": 0.0036489395424723625
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.10356654473697863,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        400,
+                        398,
+                        165
+                    ],
+                    1894,
+                    [
+                        78,
+                        139,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 93
+            },
+            "metrics": {
+                "f1_score": 0.5915363385464582,
+                "mcc_score": 0.6376280157646989,
+                "precision": 0.9757207890743551,
+                "recall": 0.42442244224422443
+            },
+            "model_path": "../../models/aetcn_contextual/4d815924-fa3c-41b7-9dfa-18fef6cc3088.pt",
+            "threshold": 0.005606791004538536
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.05360284781729158,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        440,
+                        308
+                    ],
+                    1062,
+                    [
+                        278,
+                        403,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.013894954943731374,
+                "window": 54
+            },
+            "metrics": {
+                "f1_score": 0.5999185999185999,
+                "mcc_score": 0.6082961802138445,
+                "precision": 0.7823779193205945,
+                "recall": 0.4864686468646865
+            },
+            "model_path": "../../models/aetcn_contextual/2ea324a0-90f8-44aa-b1b8-c794e4bff166.pt",
+            "threshold": 0.0077081723138689995
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.259105986341964,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        391
+                    ],
+                    1434,
+                    [
+                        179,
+                        284,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.07196856730011514,
+                "window": 71
+            },
+            "metrics": {
+                "f1_score": 0.13347685683530677,
+                "mcc_score": 0.10794643449230709,
+                "precision": 0.09164818920916482,
+                "recall": 0.24554455445544554
+            },
+            "model_path": "../../models/aetcn_contextual/3506f735-397f-4e1a-9ce9-8b8009253799.pt",
+            "threshold": 0.06285425275564194
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.14072703994000973,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        165
+                    ],
+                    1443,
+                    [
+                        407,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.026826957952797246,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.12138293874483277,
+                "mcc_score": 0.09289255548641644,
+                "precision": 0.08484370895718414,
+                "recall": 0.2132013201320132
+            },
+            "model_path": "../../models/aetcn_contextual/53cd52e0-4328-4556-9c6a-3df300ef932f.pt",
+            "threshold": 0.07480111718177795
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.2756560917548616,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        457,
+                        348,
+                        202
+                    ],
+                    183,
+                    [
+                        161,
+                        301,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 31
+            },
+            "metrics": {
+                "f1_score": 0.5557673975214491,
+                "mcc_score": 0.6146624170893266,
+                "precision": 1.0,
+                "recall": 0.38481848184818485
+            },
+            "model_path": "../../models/aetcn_contextual/bf8eccc1-775c-4f94-942d-efb47016febc.pt",
+            "threshold": 0.012146232649683952
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.055929800659678675,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        159
+                    ],
+                    1853,
+                    [
+                        190,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.026826957952797246,
+                "window": 51
+            },
+            "metrics": {
+                "f1_score": 0.5263157894736842,
+                "mcc_score": 0.5201590586200938,
+                "precision": 0.6172291296625222,
+                "recall": 0.45874587458745875
+            },
+            "model_path": "../../models/aetcn_contextual/9378aab6-4ba2-426a-8301-d481c5bd990d.pt",
+            "threshold": 0.06466181576251984
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.029460018381867015,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        451,
+                        161
+                    ],
+                    1023,
+                    [
+                        108,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.589941096511101,
+                "mcc_score": 0.6294594762556496,
+                "precision": 0.9407514450867052,
+                "recall": 0.4297029702970297
+            },
+            "model_path": "../../models/aetcn_contextual/16c0ec90-53b2-4a1f-a678-b5f523aee096.pt",
+            "threshold": 0.0029837770853191614
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.05144872023219843,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        266,
+                        222
+                    ],
+                    1219,
+                    [
+                        109,
+                        307,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 32
+            },
+            "metrics": {
+                "f1_score": 0.5543893129770993,
+                "mcc_score": 0.613595211373752,
+                "precision": 1.0,
+                "recall": 0.3834983498349835
+            },
+            "model_path": "../../models/aetcn_contextual/ff37aed8-bfa4-44fb-b085-2e4c438ea04a.pt",
+            "threshold": 0.018213359639048576
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.29505989587163245,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        206
+                    ],
+                    1946,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 98
+            },
+            "metrics": {
+                "f1_score": 0.5966651644885083,
+                "mcc_score": 0.6346823788409954,
+                "precision": 0.9403409090909091,
+                "recall": 0.43696369636963694
+            },
+            "model_path": "../../models/aetcn_contextual/a37a55a3-f240-4dd6-938a-7b48bbbb728e.pt",
+            "threshold": 0.0011368037667125463
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.16747827172481056,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        441,
+                        358
+                    ],
+                    532,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 77
+            },
+            "metrics": {
+                "f1_score": 0.5874769797421732,
+                "mcc_score": 0.63352598524375,
+                "precision": 0.9710806697108066,
+                "recall": 0.42112211221122114
+            },
+            "model_path": "../../models/aetcn_contextual/b8597eb7-a5b3-4e0b-b7bf-02b720cb55be.pt",
+            "threshold": 0.005974112078547478
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.06876059347584401,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        390,
+                        320,
+                        125
+                    ],
+                    1882,
+                    [
+                        51,
+                        143,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.14013452914798205,
+                "mcc_score": 0.1149233297381118,
+                "precision": 0.09773260359655982,
+                "recall": 0.24752475247524752
+            },
+            "model_path": "../../models/aetcn_contextual/b8653fd6-bebd-41a6-8424-dfbb7476ce8a.pt",
+            "threshold": 0.04834631457924843
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.06427199037457787,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        253,
+                        172
+                    ],
+                    1431,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 12
+            },
+            "metrics": {
+                "f1_score": 0.5516252390057362,
+                "mcc_score": 0.6114554633363383,
+                "precision": 1.0,
+                "recall": 0.3808580858085809
+            },
+            "model_path": "../../models/aetcn_contextual/39133fd9-3179-4c92-96ca-28f13f0c7847.pt",
+            "threshold": 0.018401414155960083
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2561367697710069,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        297,
+                        108
+                    ],
+                    1945,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.1308974101586027,
+                "mcc_score": 0.10296333005515382,
+                "precision": 0.09405654933641085,
+                "recall": 0.2151815181518152
+            },
+            "model_path": "../../models/aetcn_contextual/78340286-35f0-4c57-9307-d0a565ce1f58.pt",
+            "threshold": 0.07092899829149246
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.27459679398660447,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        376
+                    ],
+                    355,
+                    [
+                        175,
+                        379,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 36
+            },
+            "metrics": {
+                "f1_score": 0.5516252390057362,
+                "mcc_score": 0.6114554633363383,
+                "precision": 1.0,
+                "recall": 0.3808580858085809
+            },
+            "model_path": "../../models/aetcn_contextual/e3464167-258d-4224-a521-b878302976da.pt",
+            "threshold": 0.01431663054972887
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.4230055925676631,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        135
+                    ],
+                    939,
+                    [
+                        334,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.001,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.5976491862567812,
+                "mcc_score": 0.6370270970588785,
+                "precision": 0.9483500717360115,
+                "recall": 0.4363036303630363
+            },
+            "model_path": "../../models/aetcn_contextual/30b39f9e-c2df-4754-bed9-843dbf151c1d.pt",
+            "threshold": 0.005285543389618397
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.174530531550265,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        170
+                    ],
+                    103,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 30
+            },
+            "metrics": {
+                "f1_score": 0.5557673975214491,
+                "mcc_score": 0.6146624170893266,
+                "precision": 1.0,
+                "recall": 0.38481848184818485
+            },
+            "model_path": "../../models/aetcn_contextual/4733d315-9e99-4e43-87c3-9db9df7c1bea.pt",
+            "threshold": 0.020251065492630005
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3238513794447296,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        142
+                    ],
+                    1246,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.5909295015716209,
+                "mcc_score": 0.6269895292185644,
+                "precision": 0.9241573033707865,
+                "recall": 0.43432343234323434
+            },
+            "model_path": "../../models/aetcn_contextual/3b98dff2-536d-47ef-a712-10405ac635c9.pt",
+            "threshold": 0.009798928163945675
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.10699613669291597,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        162
+                    ],
+                    1099,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0001,
+                "window": 12
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/0faa68a9-1fcf-4603-ba99-0dc5c4abf5a7.pt",
+            "threshold": 0.038264695554971695
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2399857790452164,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        486,
+                        439,
+                        71
+                    ],
+                    1538,
+                    [
+                        94,
+                        411,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 22
+            },
+            "metrics": {
+                "f1_score": 0.5557673975214491,
+                "mcc_score": 0.6146624170893266,
+                "precision": 1.0,
+                "recall": 0.38481848184818485
+            },
+            "model_path": "../../models/aetcn_contextual/d77a2111-00c9-4118-b6ad-cb85a9427742.pt",
+            "threshold": 0.0120598915964365
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2852433507125902,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        154,
+                        72
+                    ],
+                    239,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual/295ae018-9626-49d3-9413-f5c67cd3bcfa.pt",
+            "threshold": 0.10684292018413544
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.3616507045924791,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        465
+                    ],
+                    347,
+                    [
+                        139,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 33
+            },
+            "metrics": {
+                "f1_score": 0.5598872710192578,
+                "mcc_score": 0.6119280262960741,
+                "precision": 0.9706840390879479,
+                "recall": 0.3933993399339934
+            },
+            "model_path": "../../models/aetcn_contextual/45dfe061-ac12-4d0e-8636-d6937a0574ef.pt",
+            "threshold": 0.011051864363253117
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.34910165833028184,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        457
+                    ],
+                    1359,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 98
+            },
+            "metrics": {
+                "f1_score": 0.588613406795225,
+                "mcc_score": 0.6335686494324756,
+                "precision": 0.9668174962292609,
+                "recall": 0.4231023102310231
+            },
+            "model_path": "../../models/aetcn_contextual/3b2cfba6-be98-4396-9519-25003271935b.pt",
+            "threshold": 0.0056884209625422955
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.056443265073737814,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        243,
+                        186,
+                        127
+                    ],
+                    333,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 61
+            },
+            "metrics": {
+                "f1_score": 0.13341493268053856,
+                "mcc_score": 0.10560737967233859,
+                "precision": 0.09654561558901682,
+                "recall": 0.21584158415841584
+            },
+            "model_path": "../../models/aetcn_contextual/2977210a-416b-4a25-80d7-c3b64e43ae32.pt",
+            "threshold": 0.06543134152889252
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.0348296396518642,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        217,
+                        210,
+                        117
+                    ],
+                    1233,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 71
+            },
+            "metrics": {
+                "f1_score": 0.5275056518462697,
+                "mcc_score": 0.5208576923138305,
+                "precision": 0.6145741878841089,
+                "recall": 0.46204620462046203
+            },
+            "model_path": "../../models/aetcn_contextual/3736b72d-a1b1-4c3e-90fd-87cb924c1ea0.pt",
+            "threshold": 0.04556887596845627
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3230341173719405,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        327,
+                        229,
+                        205
+                    ],
+                    963,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0001,
+                "window": 66
+            },
+            "metrics": {
+                "f1_score": 0.5880746472462449,
+                "mcc_score": 0.6292638654609892,
+                "precision": 0.9472140762463344,
+                "recall": 0.4264026402640264
+            },
+            "model_path": "../../models/aetcn_contextual/fb499c7d-29b8-45b3-8ce7-4b0c92c7bb82.pt",
+            "threshold": 0.005656908731907606
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.4226139997899455,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        495,
+                        208
+                    ],
+                    1602,
+                    [
+                        76,
+                        178,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 29
+            },
+            "metrics": {
+                "f1_score": 0.5615348619560131,
+                "mcc_score": 0.6119888973116906,
+                "precision": 0.9646302250803859,
+                "recall": 0.39603960396039606
+            },
+            "model_path": "../../models/aetcn_contextual/c537686f-f66a-4ab5-a883-bd829725daef.pt",
+            "threshold": 0.011876430362462997
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.13204853910991726,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        399
+                    ],
+                    1633,
+                    [
+                        59,
+                        358,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.08483428982440717,
+                "window": 70
+            },
+            "metrics": {
+                "f1_score": 0.13387755102040816,
+                "mcc_score": 0.10612714197059504,
+                "precision": 0.09689807976366321,
+                "recall": 0.2165016501650165
+            },
+            "model_path": "../../models/aetcn_contextual/50f5f0c5-feb1-46bb-876b-5b531f13daed.pt",
+            "threshold": 0.06908681988716125
+        }
+    ]
+}

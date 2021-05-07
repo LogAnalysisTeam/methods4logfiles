@@ -14,7 +14,7 @@ from src.features.feature_extractor import FeatureExtractor
 from src.models.datasets import CustomMinMaxScaler
 from src.models.train_baseline_models import get_labels_from_csv
 from src.models.metrics import metrics_report, get_metrics
-from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions, print_report
+from src.models.utils import load_pickle_file, classify, load_experiment, convert_predictions, print_report, save_experiment
 
 SEED = 160121
 np.random.seed(SEED)
@@ -165,10 +165,12 @@ def evaluate(x_test: np.ndarray, y_test: np.array, experiments: Dict) -> Dict:
 
     y_pred = model.predict(x_test)  # return reconstruction errors
 
+    np.savez('preds', y_pred=y_pred, y_test=y_test)
     auc_score = roc_auc_score(y_test, y_pred)
 
     y_pred = classify(y_pred, theta)
     metrics_report(y_test, y_pred)
+    # print('# trainable params:', sum(p.numel() for p in model._model.parameters() if p.requires_grad), ',# params:', sum(p.numel() for p in model._model.parameters()))
     return create_report(model_config, {**get_metrics(y_test, y_pred), 'auc_score': float(auc_score)})
 
 
@@ -260,3 +262,4 @@ if __name__ == '__main__':
     print('LOF model:', json.dumps(results, indent=4, sort_keys=True))
 
     print_report(experiment_reports)
+    save_experiment(experiment_reports, '../../reports/results/evalution.json')

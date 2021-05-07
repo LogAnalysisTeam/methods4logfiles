@@ -11,7 +11,7 @@ from src.models.utils import load_pickle_file, find_optimal_threshold, classify,
 SEED = 160121
 np.random.seed(SEED)
 
-EXPERIMENT_PATH = '../../models/AE-hyperparameters-mean-agg-HDFS1.json'
+EXPERIMENT_PATH = '../../models/AE-hyperparameters-max-agg-HDFS1.json'
 
 
 # train autoencoder on aggregated data set (inspired by MIL)
@@ -37,8 +37,8 @@ def generate_layer_settings(size: int) -> List:
 
 
 def train_autoencoder(x_train: List, x_test: List, y_train: np.array, y_test: np.array) -> Dict:
-    x_train = np.asarray([block.mean(axis=0) for block in x_train])
-    x_test = np.asarray([block.mean(axis=0) for block in x_test])
+    x_train = np.asarray([block.max(axis=0) for block in x_train])
+    x_test = np.asarray([block.max(axis=0) for block in x_test])
 
     print(x_train.shape, x_test.shape)
 

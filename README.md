@@ -10,39 +10,27 @@ This is Martin's repo of his diploma thesis.
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details.
-    │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │   └── embeddings     <- Log message embedding models, e.g., fastText.
     │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   ├── figures        <- Generated graphics and figures to be used in reporting.
+    │   ├── figures        <- Generated graphics and figures to be used in reporting.
     │   └── results        <- All kinds of results in machine-friendly formats (human-readable reports can be generated out of these).
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`.
     │
-    ├── scripts            <- Scripts running the code to reproduce published results The scripts are meant for a batching system (METACENTRUM, RCI).
+    ├── scripts            <- Scripts running the code to reproduce published results. The scripts are meant for a batching system (METACENTRUM, RCI).
     │
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     └── src                <- Source code for use in this project.
-        ├── __init__.py    <- Makes src a Python module.
-        │
         ├── data           <- Scripts to download or generate data.
-        │   └── make_dataset.py
         │
         ├── features       <- Scripts to turn raw data into features for modeling.
-        │   └── build_features.py
         │
-        ├── models         <- Scripts to train models and then use trained models to make
-        │   │                 predictions.
-        │   ├── predict_model.py **FIX**
-        │   └── train_model.py   **FIX**
+        ├── models         <- Scripts to train models with their definitions.
         │
         └── visualization  <- Scripts to create exploratory and results oriented visualizations
-            └── visualize.py     **FIX** 
 
 ```
 
@@ -75,3 +63,20 @@ python build_features_hdfs.py <model> --per-block
 ```
 
 where model is a path to a trained fastText model. The current implementation allows you to use either `--per-block` or `--per-log`. This controls the method of creating the embeddings and labels and saving them as NumPy arrays. One can access other options using `-h` or `--help`.
+
+Once the data are prepared and saved in corresponding folders, one can experiment with the implemented models. The implementation follows scikit-learn recommendation, see an example below.
+
+```python
+model = AETCN()
+model.set_params(**config['hyperparameters'])
+
+model.fit(x_train[y_train == 0])  # train on normal data examples
+y_pred = model.predict(x_val)  # return MSE per example
+
+theta, f1_score = find_optimal_threshold(y_val, y_pred)
+y_pred = classify(y_pred, theta)
+metrics_report(y_val, y_pred)
+confusion_matrix(y_val, y_pred)
+```
+
+The hyperparameter tuning of the provided models is located in files starting with `train_`. The final evaluation of all models is provided in `evaluate models.py`.

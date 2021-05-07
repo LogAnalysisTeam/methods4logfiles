@@ -14,6 +14,9 @@ np.random.seed(SEED)
 EXPERIMENT_PATH = '../../models/AE-hyperparameters-max-agg-HDFS1.json'
 
 
+# train autoencoder on aggregated data set (inspired by MIL)
+
+
 def generate_layer_settings(size: int) -> List:
     ret = []
     for i in range(size):

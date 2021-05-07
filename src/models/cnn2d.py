@@ -43,45 +43,7 @@ class CNN2DPyTorch(nn.Module):
 
         self.net = nn.Sequential(*layers)
 
-        # encoder = [
-        #     nn.Conv2d(1, 32, kernel_size=(5, 3)),
-        #     nn.ReLU(),
-        #     nn.MaxPool2d(maxpool),
-        #     nn.Conv2d(32, 64, kernel_size=(5, 5)),
-        #     nn.ReLU(),
-        #     nn.MaxPool2d(maxpool)
-        # ]
-        #
-        # decoder = [
-        #     nn.ConvTranspose2d(64, 32, kernel_size=(9, 5)),
-        #     nn.ReLU(),
-        #     nn.Upsample(scale_factor=upsampling_factor),
-        #     nn.ConvTranspose2d(32, 1, kernel_size=(7, 7)),
-        #     nn.ReLU(),
-        #     nn.Upsample((input_dim, window))
-        # ]
-        #
-        # self.encoder = nn.Sequential(*encoder)
-        # self.decoder = nn.Sequential(*decoder)
-
     def forward(self, x: torch.Tensor):
-        # # relu = nn.ReLU()
-        #
-        # x = self.encoder(x)
-        #
-        # # this bottleneck does not have positive impact on F1 score!!!
-        # # org_shape = x.size()
-        # # x = torch.flatten(x, start_dim=1)
-        # # flat_shape = x.size()
-        # # min_dim = 2048
-        # # bottleneck = nn.Linear(flat_shape[1], min_dim)
-        # # x = relu(bottleneck(x))
-        # # fc = nn.Linear(min_dim, flat_shape[1])
-        # # x = relu(fc(x))
-        # # x = torch.reshape(x, shape=org_shape)
-        #
-        # x = self.decoder(x)
-        # return x
         x = self.net(x)
         return x
 

@@ -1,0 +1,676 @@
+{
+    "experiments": [
+        {
+            "hyperparameters": {
+                "max_features": 408,
+                "max_samples": 0.07906277254665409,
+                "n_estimators": 1078
+            },
+            "metrics": {
+                "f1_score": 0.003952569169960474,
+                "mcc_score": 0.04384455671102971,
+                "precision": 1.0,
+                "recall": 0.0019801980198019802
+            },
+            "model_path": "../../models/hybrid_if_relu/4a0df927-bad5-40ee-9eee-7403722354f1.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 518,
+                "max_samples": 0.6997694032723081,
+                "n_estimators": 272
+            },
+            "metrics": {
+                "f1_score": 0.0013192612137203166,
+                "mcc_score": 0.025313177509165955,
+                "precision": 1.0,
+                "recall": 0.0006600660066006601
+            },
+            "model_path": "../../models/hybrid_if_relu/734dfe31-ea32-41b1-8c61-8a6fd99ccd02.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 889,
+                "max_samples": 0.7782840382792887,
+                "n_estimators": 834
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/eb34b370-931a-470e-a848-5f486c9b8659.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1021,
+                "max_samples": 0.2526562667174545,
+                "n_estimators": 1485
+            },
+            "metrics": {
+                "f1_score": 0.0013192612137203166,
+                "mcc_score": 0.025313177509165955,
+                "precision": 1.0,
+                "recall": 0.0006600660066006601
+            },
+            "model_path": "../../models/hybrid_if_relu/cf4205a0-17a3-472d-831d-bc96e4532a76.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 416,
+                "max_samples": 0.028366622291557668,
+                "n_estimators": 645
+            },
+            "metrics": {
+                "f1_score": 0.006578947368421053,
+                "mcc_score": 0.056604173068829394,
+                "precision": 1.0,
+                "recall": 0.0033003300330033004
+            },
+            "model_path": "../../models/hybrid_if_relu/8d0994ad-ec10-4edf-b028-009ef1c6fb05.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 382,
+                "max_samples": 0.9569204285357552,
+                "n_estimators": 699
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/b2a8872e-db80-4dc0-8779-efd7838029d7.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 408,
+                "max_samples": 0.7976494200431857,
+                "n_estimators": 1007
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/954fc9ab-8789-4486-b85f-1e2c42f80cdc.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1224,
+                "max_samples": 0.10595092165982142,
+                "n_estimators": 1931
+            },
+            "metrics": {
+                "f1_score": 0.003952569169960474,
+                "mcc_score": 0.04384455671102971,
+                "precision": 1.0,
+                "recall": 0.0019801980198019802
+            },
+            "model_path": "../../models/hybrid_if_relu/2a23983b-0447-4796-b9c1-08baa728217e.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 396,
+                "max_samples": 0.6052795450349648,
+                "n_estimators": 346
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/eeefe9de-ba8b-43c7-9a18-27239e7aac44.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1066,
+                "max_samples": 0.6451039498309193,
+                "n_estimators": 411
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/fe210f0e-267b-4a6b-ac01-3345992a305a.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1008,
+                "max_samples": 0.35491197662395213,
+                "n_estimators": 1112
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/46c47c20-7b8c-4a4a-9884-f699f7469ee3.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 537,
+                "max_samples": 0.7997177335791537,
+                "n_estimators": 1865
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/a8232767-522f-40a6-83c4-c6f2219baf13.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1079,
+                "max_samples": 0.7899085238015977,
+                "n_estimators": 1491
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/c6f00af1-8ecf-4d0c-85ba-ed7ca99ec594.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1216,
+                "max_samples": 0.2643929544027001,
+                "n_estimators": 1698
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/e9ed8098-4a1d-463b-9071-30e8f44165c8.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 616,
+                "max_samples": 0.6671064761938958,
+                "n_estimators": 594
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/e271009a-2132-4e16-bb57-d95030bb083d.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 583,
+                "max_samples": 0.1240252964944482,
+                "n_estimators": 934
+            },
+            "metrics": {
+                "f1_score": 0.003952569169960474,
+                "mcc_score": 0.04384455671102971,
+                "precision": 1.0,
+                "recall": 0.0019801980198019802
+            },
+            "model_path": "../../models/hybrid_if_relu/5fa775bd-d2c8-4c7b-89e4-345f5563c88e.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1204,
+                "max_samples": 0.7321947747946523,
+                "n_estimators": 441
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/1b202220-730a-454f-b4b3-a3d7854dbf70.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 963,
+                "max_samples": 0.8065736512239234,
+                "n_estimators": 1799
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/7af3aa22-a527-48ca-aa8a-0d21c5685da8.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 962,
+                "max_samples": 0.16321084809293246,
+                "n_estimators": 1974
+            },
+            "metrics": {
+                "f1_score": 0.002636783124588003,
+                "mcc_score": 0.03579858478852184,
+                "precision": 1.0,
+                "recall": 0.0013201320132013201
+            },
+            "model_path": "../../models/hybrid_if_relu/6ea6c74e-c2eb-40fe-a77f-7a2728b5acc5.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 873,
+                "max_samples": 0.3015235844628524,
+                "n_estimators": 583
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/e6bb2fe6-5a31-44d3-a23e-eed90486a44f.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 818,
+                "max_samples": 0.6523668695656352,
+                "n_estimators": 1832
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/eb5e7849-ab44-42c9-972e-071ce2506333.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1031,
+                "max_samples": 0.6546827988707968,
+                "n_estimators": 557
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/c069026a-9e8d-4031-8a0d-54ec4db15965.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1158,
+                "max_samples": 0.31175104211230087,
+                "n_estimators": 1827
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/37a9fe7a-0b3d-48b1-a7bc-b17df388ce3c.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1102,
+                "max_samples": 0.36916133115057975,
+                "n_estimators": 1488
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/e237ba4d-95d2-4a4e-b311-10585757bf95.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1181,
+                "max_samples": 0.48364083324975005,
+                "n_estimators": 160
+            },
+            "metrics": {
+                "f1_score": 0.0013192612137203166,
+                "mcc_score": 0.025313177509165955,
+                "precision": 1.0,
+                "recall": 0.0006600660066006601
+            },
+            "model_path": "../../models/hybrid_if_relu/9ca3231d-682b-4591-9ebe-6f3fd948311c.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 908,
+                "max_samples": 0.7407326567226793,
+                "n_estimators": 1298
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/4ebe68a4-7971-4c3b-8a75-4c7af8282ffa.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 462,
+                "max_samples": 0.9319795293350686,
+                "n_estimators": 1177
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/f30b041e-7265-4d6a-a58d-ef61840b06a2.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 626,
+                "max_samples": 0.39102955122985406,
+                "n_estimators": 888
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/e8ac6e64-a2a5-42d4-af71-c804599a2ea7.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 795,
+                "max_samples": 0.34611008325998477,
+                "n_estimators": 1661
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/250f78fc-8c02-4651-8776-bc74e3d8e3a6.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 959,
+                "max_samples": 0.3618483321644589,
+                "n_estimators": 260
+            },
+            "metrics": {
+                "f1_score": 0.002636783124588003,
+                "mcc_score": 0.03579858478852184,
+                "precision": 1.0,
+                "recall": 0.0013201320132013201
+            },
+            "model_path": "../../models/hybrid_if_relu/624ef2f0-ad7c-4141-b130-f0b483d79099.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 966,
+                "max_samples": 0.9092922054805718,
+                "n_estimators": 1995
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/b676ad24-2891-49e4-94e1-75392e417e34.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 606,
+                "max_samples": 0.8488151207410646,
+                "n_estimators": 749
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/eaa50f1f-f2d5-40d5-8ff6-4856ccdb55d6.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 969,
+                "max_samples": 0.9417946252614952,
+                "n_estimators": 1577
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/c737789b-2876-45db-bd3e-505925c3fa5c.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 683,
+                "max_samples": 0.11931874087513812,
+                "n_estimators": 855
+            },
+            "metrics": {
+                "f1_score": 0.005266622778143515,
+                "mcc_score": 0.0506278223709372,
+                "precision": 1.0,
+                "recall": 0.0026402640264026403
+            },
+            "model_path": "../../models/hybrid_if_relu/e66ce7e1-ffed-41a6-bafe-cf1f418b2fcb.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 309,
+                "max_samples": 0.6314860767956854,
+                "n_estimators": 1083
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/1b1dc0ef-2d37-45c8-b38d-392cf983b822.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1118,
+                "max_samples": 0.9231994011877267,
+                "n_estimators": 1872
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/f9ea0aa1-434c-4ceb-8d46-e6cd9ba34f44.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 569,
+                "max_samples": 0.7785433356178303,
+                "n_estimators": 1550
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/f7cecc3d-7cef-4ad4-a169-f31e888f2af1.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1073,
+                "max_samples": 0.5649441572938582,
+                "n_estimators": 1222
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/a4d711c0-f1e4-469a-90ae-5acde4380f77.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 263,
+                "max_samples": 0.9988198443229789,
+                "n_estimators": 1930
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/ead02a2b-3a25-4eae-9672-c8405d8b1d95.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 146,
+                "max_samples": 0.23454619524464984,
+                "n_estimators": 1727
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/3ba7aaf1-12e4-4938-97a1-51558a94b276.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 486,
+                "max_samples": 0.4005753212855661,
+                "n_estimators": 101
+            },
+            "metrics": {
+                "f1_score": 0.0013192612137203166,
+                "mcc_score": 0.025313177509165955,
+                "precision": 1.0,
+                "recall": 0.0006600660066006601
+            },
+            "model_path": "../../models/hybrid_if_relu/94898065-ea4c-4fb6-a0ba-f6f190fe86ba.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 707,
+                "max_samples": 0.4708988524160673,
+                "n_estimators": 1978
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/cd640c4c-49f1-4421-ab45-84292158dc42.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1054,
+                "max_samples": 0.8964624570713354,
+                "n_estimators": 1361
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/fd6ac294-717f-4078-a8f6-1aa7a2157ed8.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 355,
+                "max_samples": 0.4414542245987546,
+                "n_estimators": 1054
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/cd288776-0e20-419a-8fe5-884915e43af2.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 230,
+                "max_samples": 0.5999493922168064,
+                "n_estimators": 653
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/9bfcdfff-77ad-4c66-84c4-8f17e500b4f2.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1053,
+                "max_samples": 0.6831990365168262,
+                "n_estimators": 109
+            },
+            "metrics": {
+                "f1_score": 0.0,
+                "mcc_score": 0.0,
+                "precision": 0.0,
+                "recall": 0.0
+            },
+            "model_path": "../../models/hybrid_if_relu/773584d3-15d1-4286-841c-eee7c03c848b.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 1194,
+                "max_samples": 0.1607282162036802,
+                "n_estimators": 1691
+            },
+            "metrics": {
+                "f1_score": 0.0013192612137203166,
+                "mcc_score": 0.025313177509165955,
+                "precision": 1.0,
+                "recall": 0.0006600660066006601
+            },
+            "model_path": "../../models/hybrid_if_relu/205af1ea-e2d9-4281-a6ca-8e08e593fd78.pt"
+        },
+        {
+            "hyperparameters": {
+                "max_features": 516,
+                "max_samples": 0.1612376727974933,
+                "n_estimators": 355
+            },
+            "metrics": {
+                "f1_score": 0.0013192612137203166,
+                "mcc_score": 0.025313177509165955,
+                "precision": 1.0,
+                "recall": 0.0006600660066006601
+            },
+            "model_path": "../../models/hybrid_if_relu/5ec447fd-cf7e-4559-99c9-f67c87d0ec0c.pt"
+        }
+    ]
+}

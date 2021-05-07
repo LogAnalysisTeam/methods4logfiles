@@ -1,0 +1,1004 @@
+{
+    "experiments": [
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 50,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.25666516041572524,
+                "mcc_score": 0.26191392813324876,
+                "precision": 0.4068767908309456,
+                "recall": 0.18745874587458747
+            },
+            "model_path": "../../models/lof_baseline/2cde823f-80a9-41a5-8e0f-2fa8cb5abb0b.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 50,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.236159169550173,
+                "mcc_score": 0.23240872159122045,
+                "precision": 0.342534504391468,
+                "recall": 0.1801980198019802
+            },
+            "model_path": "../../models/lof_baseline/6f1da710-34b2-4b74-b560-8f91bc97b5be.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 50,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.3002952340784479,
+                "mcc_score": 0.2974287405452414,
+                "precision": 0.4158878504672897,
+                "recall": 0.23498349834983498
+            },
+            "model_path": "../../models/lof_baseline/a5cdff0a-ade5-4436-8270-b7e0d17ff305.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 50,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.21887461231723526,
+                "mcc_score": 0.21722091090683532,
+                "precision": 0.3328840970350404,
+                "recall": 0.16303630363036303
+            },
+            "model_path": "../../models/lof_baseline/25c808d9-e8c7-497a-b6f9-9acf1e77135b.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 50,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.236159169550173,
+                "mcc_score": 0.23240872159122045,
+                "precision": 0.342534504391468,
+                "recall": 0.1801980198019802
+            },
+            "model_path": "../../models/lof_baseline/6edf50a5-59e0-4ee6-8d80-f78c992bff80.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 116,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.39715302491103205,
+                "mcc_score": 0.3816746200402645,
+                "precision": 0.4308880308880309,
+                "recall": 0.3683168316831683
+            },
+            "model_path": "../../models/lof_baseline/7dba99e9-dbf1-40a4-8c76-d15472ecaa63.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 116,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.38318401102687805,
+                "mcc_score": 0.3658049550709009,
+                "precision": 0.4008651766402307,
+                "recall": 0.366996699669967
+            },
+            "model_path": "../../models/lof_baseline/1b613d04-cf72-45e1-8658-dabb51ad9637.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 116,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.3771899690827894,
+                "mcc_score": 0.3595174119177263,
+                "precision": 0.39326647564469913,
+                "recall": 0.36237623762376237
+            },
+            "model_path": "../../models/lof_baseline/057e4fae-8930-41bb-a772-701d7522c8df.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 116,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.3512128459173215,
+                "mcc_score": 0.33257547945212423,
+                "precision": 0.3640226628895184,
+                "recall": 0.33927392739273926
+            },
+            "model_path": "../../models/lof_baseline/305d6a3d-5a2e-4c6a-bab3-93ba91acd825.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 116,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.38318401102687805,
+                "mcc_score": 0.3658049550709009,
+                "precision": 0.4008651766402307,
+                "recall": 0.366996699669967
+            },
+            "model_path": "../../models/lof_baseline/09172fc7-c1bf-4fd6-a233-22d582bc021d.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 183,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.3702720637027207,
+                "mcc_score": 0.351391916626926,
+                "precision": 0.3722481654436291,
+                "recall": 0.3683168316831683
+            },
+            "model_path": "../../models/lof_baseline/613e78cd-6053-4934-a70a-f3e524e1c517.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 183,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.326530612244898,
+                "mcc_score": 0.30600598572014454,
+                "precision": 0.2924281984334204,
+                "recall": 0.3696369636963696
+            },
+            "model_path": "../../models/lof_baseline/fd4b5f77-d21c-42e6-b7e8-ffbd5d2f585a.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 183,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.327810650887574,
+                "mcc_score": 0.3071355095432202,
+                "precision": 0.2970509383378016,
+                "recall": 0.36567656765676565
+            },
+            "model_path": "../../models/lof_baseline/644382cc-d2ab-486f-93a0-a914a54b3fb5.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 183,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.32854209445585214,
+                "mcc_score": 0.30800820074323193,
+                "precision": 0.29567053854276665,
+                "recall": 0.3696369636963696
+            },
+            "model_path": "../../models/lof_baseline/f8d3a7ff-2582-4546-b27b-30f4c7ab7a90.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 183,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.326530612244898,
+                "mcc_score": 0.30600598572014454,
+                "precision": 0.2924281984334204,
+                "recall": 0.3696369636963696
+            },
+            "model_path": "../../models/lof_baseline/531b9070-c21e-495c-b1b3-8908a2cb2227.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 250,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.31924327519952705,
+                "mcc_score": 0.29824070911705963,
+                "precision": 0.2890792291220557,
+                "recall": 0.3564356435643564
+            },
+            "model_path": "../../models/lof_baseline/8247ed9f-dadb-416b-93e7-59c32965bea2.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 250,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.27189619581244473,
+                "mcc_score": 0.24903672729335,
+                "precision": 0.2457356076759062,
+                "recall": 0.30429042904290426
+            },
+            "model_path": "../../models/lof_baseline/465b1097-b25d-499d-89e8-013fa03fa63d.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 250,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.2717889908256881,
+                "mcc_score": 0.2491561849531273,
+                "precision": 0.2402432843385707,
+                "recall": 0.31287128712871287
+            },
+            "model_path": "../../models/lof_baseline/435dc284-69f2-4c9c-9742-558ae5b41417.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 250,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.2227234282492247,
+                "mcc_score": 0.19801493810550413,
+                "precision": 0.19438976377952755,
+                "recall": 0.2607260726072607
+            },
+            "model_path": "../../models/lof_baseline/a658ccda-feec-4608-a04c-7e06aa7e48b6.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 250,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.27189619581244473,
+                "mcc_score": 0.24903672729335,
+                "precision": 0.2457356076759062,
+                "recall": 0.30429042904290426
+            },
+            "model_path": "../../models/lof_baseline/91e224d3-cf78-4e90-930b-b3201140d8cf.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 316,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.4742798353909465,
+                "mcc_score": 0.4671982399000138,
+                "precision": 0.3885377159713443,
+                "recall": 0.6085808580858085
+            },
+            "model_path": "../../models/lof_baseline/94727a9d-05ba-4e4e-8d3b-7da6caa3d4c6.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 316,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.4355426074289876,
+                "mcc_score": 0.4303865624139401,
+                "precision": 0.3444700460829493,
+                "recall": 0.592079207920792
+            },
+            "model_path": "../../models/lof_baseline/6bb3e6bb-a150-48ff-b70d-6f0fcec77773.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 316,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.572882105728821,
+                "mcc_score": 0.5914986628876514,
+                "precision": 0.43080505655355955,
+                "recall": 0.8547854785478548
+            },
+            "model_path": "../../models/lof_baseline/f5a99983-cce1-452f-9bf1-c95a3f0086c2.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 316,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.43739404214095423,
+                "mcc_score": 0.4325935192368975,
+                "precision": 0.3454475899005356,
+                "recall": 0.596039603960396
+            },
+            "model_path": "../../models/lof_baseline/bfd0a4c5-aa6a-4551-ac35-83a965317d14.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 316,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.4355426074289876,
+                "mcc_score": 0.4303865624139401,
+                "precision": 0.3444700460829493,
+                "recall": 0.592079207920792
+            },
+            "model_path": "../../models/lof_baseline/b98d94ed-2376-4e3d-a285-ec4567cb5dc8.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 383,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.41720331186752535,
+                "mcc_score": 0.4152511571887002,
+                "precision": 0.3201553123896929,
+                "recall": 0.5986798679867987
+            },
+            "model_path": "../../models/lof_baseline/0bdc723f-529b-44c9-9d7c-9271c4a9f64e.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 383,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5851584095258345,
+                "mcc_score": 0.6115185472551413,
+                "precision": 0.4316185696361355,
+                "recall": 0.9082508250825082
+            },
+            "model_path": "../../models/lof_baseline/13de1206-36db-4012-a899-24d66b985d17.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 383,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5490506329113923,
+                "mcc_score": 0.5831145812643447,
+                "precision": 0.39197966676080204,
+                "recall": 0.9161716171617161
+            },
+            "model_path": "../../models/lof_baseline/8cadee5b-0f91-459a-9a8e-26c9723728f0.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 383,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.551805802249852,
+                "mcc_score": 0.5866650610324374,
+                "precision": 0.3935810810810811,
+                "recall": 0.9227722772277228
+            },
+            "model_path": "../../models/lof_baseline/8132fec7-d281-4226-bb2d-bd5deb7e64e7.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 383,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5851584095258345,
+                "mcc_score": 0.6115185472551413,
+                "precision": 0.4316185696361355,
+                "recall": 0.9082508250825082
+            },
+            "model_path": "../../models/lof_baseline/2648e7c6-a626-439c-bf7e-cfad6e2534db.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 450,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5170569795316245,
+                "mcc_score": 0.5585972356320301,
+                "precision": 0.3587512794268168,
+                "recall": 0.9254125412541254
+            },
+            "model_path": "../../models/lof_baseline/625d41f1-05fe-4a11-aad3-5717d9821984.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 450,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5890879806724382,
+                "mcc_score": 0.6256918269992308,
+                "precision": 0.4238122827346466,
+                "recall": 0.9656765676567657
+            },
+            "model_path": "../../models/lof_baseline/f3a8ba9a-ffa6-4969-ab45-c0841baa4603.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 450,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.6019920318725099,
+                "mcc_score": 0.6424726374495817,
+                "precision": 0.4310984308131241,
+                "recall": 0.9973597359735974
+            },
+            "model_path": "../../models/lof_baseline/7aba5d9d-645e-4a7c-8ddb-f86b9117d141.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 450,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.6062424969987995,
+                "mcc_score": 0.6464762676929715,
+                "precision": 0.43496985357450474,
+                "recall": 1.0
+            },
+            "model_path": "../../models/lof_baseline/9b070a1f-bc00-4737-b9d2-2d6f441e3d58.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 450,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5890879806724382,
+                "mcc_score": 0.6256918269992308,
+                "precision": 0.4238122827346466,
+                "recall": 0.9656765676567657
+            },
+            "model_path": "../../models/lof_baseline/44e34ca3-0b42-4b2c-8e91-c8ddbd28fe0c.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 516,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.4988107373428475,
+                "mcc_score": 0.5523776892966462,
+                "precision": 0.3358499199267902,
+                "recall": 0.968976897689769
+            },
+            "model_path": "../../models/lof_baseline/3d087153-9dfd-487e-8453-178956f283a9.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 516,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5005086469989827,
+                "mcc_score": 0.5548398034815072,
+                "precision": 0.33675564681724846,
+                "recall": 0.9742574257425742
+            },
+            "model_path": "../../models/lof_baseline/ce5ae2e8-1390-4000-a695-7318f8fa0e07.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 516,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5175183729277046,
+                "mcc_score": 0.5738525676894747,
+                "precision": 0.349169741697417,
+                "recall": 0.9993399339933994
+            },
+            "model_path": "../../models/lof_baseline/c28e4bbe-3d0a-44b7-b95c-38f35a907336.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 516,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5167121418826739,
+                "mcc_score": 0.5733287385819528,
+                "precision": 0.3483559438951483,
+                "recall": 1.0
+            },
+            "model_path": "../../models/lof_baseline/533ef630-7892-40db-8b62-8ec964b69f44.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 516,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5005086469989827,
+                "mcc_score": 0.5548398034815072,
+                "precision": 0.33675564681724846,
+                "recall": 0.9742574257425742
+            },
+            "model_path": "../../models/lof_baseline/eef33e2c-0ffb-4c8d-b739-68cef5de8772.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 583,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5123650296064088,
+                "mcc_score": 0.563875967998553,
+                "precision": 0.3480009462976106,
+                "recall": 0.970957095709571
+            },
+            "model_path": "../../models/lof_baseline/91672e40-b28c-4186-942f-0e3e5fd454bf.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 583,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.4696343402225755,
+                "mcc_score": 0.5296419306086501,
+                "precision": 0.3093193717277487,
+                "recall": 0.974917491749175
+            },
+            "model_path": "../../models/lof_baseline/2de07589-96e0-45c2-89bd-fbaec81abb27.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 583,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5104588394062078,
+                "mcc_score": 0.5679510176546746,
+                "precision": 0.3428506684794924,
+                "recall": 0.9986798679867986
+            },
+            "model_path": "../../models/lof_baseline/3e11f9a9-d1bd-4b2d-9ded-05ed96d5e7ba.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 583,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5033222591362126,
+                "mcc_score": 0.562387013262265,
+                "precision": 0.3362930077691454,
+                "recall": 1.0
+            },
+            "model_path": "../../models/lof_baseline/948b5621-45e0-48ab-bb14-b582520dfc89.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 583,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.4696343402225755,
+                "mcc_score": 0.5296419306086501,
+                "precision": 0.3093193717277487,
+                "recall": 0.974917491749175
+            },
+            "model_path": "../../models/lof_baseline/cdc5b1b9-3701-4161-9291-6d288ecf7e5b.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "cosine",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 650,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5115632063988872,
+                "mcc_score": 0.5632198143518815,
+                "precision": 0.34726156751652504,
+                "recall": 0.970957095709571
+            },
+            "model_path": "../../models/lof_baseline/bc0615d0-68da-492e-a3bd-59e0aeba15ea.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "euclidean",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 650,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.47521957340025095,
+                "mcc_score": 0.539358637964336,
+                "precision": 0.3116642666118083,
+                "recall": 1.0
+            },
+            "model_path": "../../models/lof_baseline/7d31c541-7b76-4d8c-99fc-83af0111b49b.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "manhattan",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 650,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.5044174029004834,
+                "mcc_score": 0.5630127140685706,
+                "precision": 0.3374219446922391,
+                "recall": 0.9986798679867986
+            },
+            "model_path": "../../models/lof_baseline/68b3cc25-f875-4520-b0be-7aa1181b4d5e.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 650,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.47056996428016773,
+                "mcc_score": 0.5355370344141169,
+                "precision": 0.30767668562144596,
+                "recall": 1.0
+            },
+            "model_path": "../../models/lof_baseline/e4b2fec6-399a-40c6-9c6c-88eddb1b288a.pt"
+        },
+        {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "minkowski",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 650,
+                "novelty": false,
+                "p": 2
+            },
+            "metrics": {
+                "f1_score": 0.47521957340025095,
+                "mcc_score": 0.539358637964336,
+                "precision": 0.3116642666118083,
+                "recall": 1.0
+            },
+            "model_path": "../../models/lof_baseline/10365218-c4f5-4cad-9823-f35a82bee565.pt"
+        }
+    ]
+}

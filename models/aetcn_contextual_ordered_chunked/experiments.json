@@ -1,0 +1,2588 @@
+{
+    "experiments": [
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.22706100139620689,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        500,
+                        450,
+                        397
+                    ],
+                    1003,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.1,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.31156622460970285,
+                "mcc_score": 0.32653507327257386,
+                "precision": 0.2089149031967582,
+                "recall": 0.6125412541254125
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/2e987fb4-9f3c-4c64-a60a-18006e179183.pt",
+            "threshold": 0.05553756654262543
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.0425239272244593,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        498,
+                        350,
+                        315
+                    ],
+                    775,
+                    [
+                        135,
+                        290,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 98
+            },
+            "metrics": {
+                "f1_score": 0.13101406365655072,
+                "mcc_score": 0.10442181224416486,
+                "precision": 0.09102597068655181,
+                "recall": 0.23366336633663368
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/c71fd389-d4d8-49dd-bb3c-adf6a2398f78.pt",
+            "threshold": 0.053185075521469116
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.40714611467198747,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        95
+                    ],
+                    1769,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00019306977288832496,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.6310606060606061,
+                "mcc_score": 0.6288806020116186,
+                "precision": 0.7404444444444445,
+                "recall": 0.5498349834983498
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/d0bff37e-f59a-40c3-a76f-6f9f9bf47e33.pt",
+            "threshold": 0.00203120824880898
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.12693048068691942,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        492,
+                        386
+                    ],
+                    1494,
+                    [
+                        105,
+                        165,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.6466101694915255,
+                "mcc_score": 0.6677339708703774,
+                "precision": 0.9029585798816568,
+                "recall": 0.5036303630363036
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/6e429d67-3c3a-4869-a695-8abefe62e4e0.pt",
+            "threshold": 0.01168770994991064
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.0365720375813296,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        210,
+                        186
+                    ],
+                    106,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 85
+            },
+            "metrics": {
+                "f1_score": 0.715311004784689,
+                "mcc_score": 0.7252089491559743,
+                "precision": 0.9033232628398792,
+                "recall": 0.592079207920792
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/0c26e3fa-0971-42f2-b37a-49b7f713fc1f.pt",
+            "threshold": 0.001946890028193593
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.16252248899976424,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        457,
+                        429,
+                        266
+                    ],
+                    1060,
+                    [
+                        119,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 46
+            },
+            "metrics": {
+                "f1_score": 0.5251771726967549,
+                "mcc_score": 0.5174083590533728,
+                "precision": 0.6037735849056604,
+                "recall": 0.4646864686468647
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/244fa437-8449-4a5c-ac2a-ed12b7072437.pt",
+            "threshold": 0.06931984424591064
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.43342268035018017,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        441
+                    ],
+                    204,
+                    [
+                        103,
+                        308,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 75
+            },
+            "metrics": {
+                "f1_score": 0.7648766328011611,
+                "mcc_score": 0.7624961252415305,
+                "precision": 0.8493150684931506,
+                "recall": 0.6957095709570957
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/e71703d2-6e62-43b8-ad2a-d9a59d4a32a8.pt",
+            "threshold": 0.0008729362743906677
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.1558297858540056,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        392,
+                        315,
+                        89
+                    ],
+                    519,
+                    [
+                        247,
+                        307,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.022758459260747887,
+                "window": 18
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/5be961f1-0118-43c0-933a-cae4ebd80b60.pt",
+            "threshold": 0.17835628986358643
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.43559881037295345,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        285,
+                        281,
+                        247
+                    ],
+                    825,
+                    [
+                        277,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 42
+            },
+            "metrics": {
+                "f1_score": 0.5322061191626409,
+                "mcc_score": 0.5349837795642901,
+                "precision": 0.6821465428276574,
+                "recall": 0.4363036303630363
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/1edc3bda-fcf4-4925-b0bf-5c8baa2e79fa.pt",
+            "threshold": 0.08381085097789764
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.006041685440418665,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        319,
+                        199,
+                        166
+                    ],
+                    518,
+                    [
+                        130,
+                        233,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.22758459260747863,
+                "window": 21
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/1a991f25-d5c4-40d3-81a0-3799c36419ad.pt",
+            "threshold": 0.17397160828113556
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.14411015710412528,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        358
+                    ],
+                    283,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.005179474679231213,
+                "window": 89
+            },
+            "metrics": {
+                "f1_score": 0.6278339727938611,
+                "mcc_score": 0.6183253749139114,
+                "precision": 0.665680473372781,
+                "recall": 0.594059405940594
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/12f24210-4bee-4e9b-ac09-8586f8ca68dd.pt",
+            "threshold": 0.003499467857182026
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.056256040753854986,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        212,
+                        129
+                    ],
+                    1061,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03727593720314938,
+                "window": 87
+            },
+            "metrics": {
+                "f1_score": 0.5284025924513915,
+                "mcc_score": 0.5231074068387289,
+                "precision": 0.6254512635379061,
+                "recall": 0.45742574257425744
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/1bd6cd85-3dcb-4fac-a362-0105968fb924.pt",
+            "threshold": 0.040389809757471085
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3870935730718018,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        195,
+                        190,
+                        94
+                    ],
+                    1914,
+                    [
+                        225,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 96
+            },
+            "metrics": {
+                "f1_score": 0.6573816155988859,
+                "mcc_score": 0.6641248598143935,
+                "precision": 0.8276553106212425,
+                "recall": 0.5452145214521452
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/612d9750-4278-4bf7-8523-b061c9387290.pt",
+            "threshold": 0.0017093635397031903
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.3442357964262249,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        462,
+                        266,
+                        171
+                    ],
+                    1969,
+                    [
+                        59,
+                        202,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 79
+            },
+            "metrics": {
+                "f1_score": 0.6716300940438871,
+                "mcc_score": 0.6761912673035738,
+                "precision": 0.8264223722275795,
+                "recall": 0.5656765676567657
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/9c544cf3-e802-48b9-9803-cf3a8718441f.pt",
+            "threshold": 0.002328424481675029
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.4174576024777737,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        460,
+                        334,
+                        69
+                    ],
+                    228,
+                    [
+                        366,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.01,
+                "window": 83
+            },
+            "metrics": {
+                "f1_score": 0.5309597523219814,
+                "mcc_score": 0.5276378327661746,
+                "precision": 0.6417212347988774,
+                "recall": 0.4528052805280528
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/c3028619-cfb7-49c1-921b-168c7e377b34.pt",
+            "threshold": 0.04034723341464996
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.43428284162665465,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        278
+                    ],
+                    1877,
+                    [
+                        150,
+                        220,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 61
+            },
+            "metrics": {
+                "f1_score": 0.15873445105462414,
+                "mcc_score": 0.20612467858696426,
+                "precision": 0.08842358966634029,
+                "recall": 0.7749174917491749
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/e0611c26-2f5c-4c6f-beef-c932611b916e.pt",
+            "threshold": 0.03957454487681389
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.18192295292811622,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        405,
+                        260,
+                        58
+                    ],
+                    1134,
+                    [
+                        251,
+                        422,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00013894954943731373,
+                "window": 87
+            },
+            "metrics": {
+                "f1_score": 0.7139165743816906,
+                "mcc_score": 0.7116227688575639,
+                "precision": 0.8098827470686767,
+                "recall": 0.6382838283828383
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/5761780b-feec-4f7f-8383-05365a6a692d.pt",
+            "threshold": 0.0007818951853550971
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.1615444866690796,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        286
+                    ],
+                    1511,
+                    [
+                        88,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 79
+            },
+            "metrics": {
+                "f1_score": 0.6650563607085346,
+                "mcc_score": 0.6745148821547088,
+                "precision": 0.8524251805985552,
+                "recall": 0.5452145214521452
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/d01c89a1-e13b-46eb-bf8b-19f040f2ef1d.pt",
+            "threshold": 0.0030773126054555178
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.06905397960484189,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        195,
+                        65
+                    ],
+                    1516,
+                    [
+                        150,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.019306977288832496,
+                "window": 26
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/5b3643d9-dd00-430e-a02a-daedceae2167.pt",
+            "threshold": 0.0933544784784317
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.017426534630370805,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        474,
+                        447,
+                        52
+                    ],
+                    1840,
+                    [
+                        258,
+                        489,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.011787686347935866,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.6304498269896194,
+                "mcc_score": 0.6206324983998209,
+                "precision": 0.6625454545454545,
+                "recall": 0.6013201320132013
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/e2a60897-5b0c-48a9-9c3b-321d527e00be.pt",
+            "threshold": 0.0066954391077160835
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.39964273975024944,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        241,
+                        147,
+                        86
+                    ],
+                    1089,
+                    [
+                        170,
+                        196,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.6645792563600783,
+                "mcc_score": 0.6686288196217832,
+                "precision": 0.8163461538461538,
+                "recall": 0.5603960396039604
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/61722910-49e6-44ea-ab62-a63008c093ae.pt",
+            "threshold": 0.004227024968713522
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.1517185890017908,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        498
+                    ],
+                    424,
+                    [
+                        302,
+                        353,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.01637893706954063,
+                "window": 84
+            },
+            "metrics": {
+                "f1_score": 0.5294567712318287,
+                "mcc_score": 0.5246126981449325,
+                "precision": 0.629663330300273,
+                "recall": 0.45676567656765676
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/57240102-0919-4159-bf31-40bff6ae1259.pt",
+            "threshold": 0.03937912732362747
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.39878975916082954,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        379,
+                        378
+                    ],
+                    1579,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0026826957952797246,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.6541471048513301,
+                "mcc_score": 0.6576763839363241,
+                "precision": 0.803073967339097,
+                "recall": 0.5518151815181518
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/b75d3a3c-6c2f-49f7-ba03-7b3896facc6a.pt",
+            "threshold": 0.004772103391587734
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.35434891416550796,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        304,
+                        290,
+                        248
+                    ],
+                    282,
+                    [
+                        185,
+                        304,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03727593720314938,
+                "window": 13
+            },
+            "metrics": {
+                "f1_score": 0.5517899761336515,
+                "mcc_score": 0.6108831928962182,
+                "precision": 0.996551724137931,
+                "recall": 0.3815181518151815
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/12d60d4a-3f4e-43b1-98ea-3ba2d391722f.pt",
+            "threshold": 0.013959060423076153
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.016214300588604458,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        414,
+                        89,
+                        60
+                    ],
+                    1826,
+                    [
+                        294,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.043939705607607904,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.09359870898332438,
+                "mcc_score": 0.1085205564488369,
+                "precision": 0.25290697674418605,
+                "recall": 0.05742574257425743
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/6311195f-d88b-4533-b107-79e4d4667418.pt",
+            "threshold": 0.06904245167970657
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.3352404888632035,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        330,
+                        228
+                    ],
+                    583,
+                    [
+                        245,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.2682695795279725,
+                "window": 46
+            },
+            "metrics": {
+                "f1_score": 0.108703130374957,
+                "mcc_score": 0.07897872466169928,
+                "precision": 0.07350546638753198,
+                "recall": 0.2085808580858086
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/16c4b0ed-442c-4906-b1b0-2870b0567c94.pt",
+            "threshold": 0.07584860175848007
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.44711617566981415,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        391,
+                        331,
+                        268
+                    ],
+                    1726,
+                    [
+                        362,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 55
+            },
+            "metrics": {
+                "f1_score": 0.6754047802621433,
+                "mcc_score": 0.677431363264623,
+                "precision": 0.8118628359592215,
+                "recall": 0.5782178217821782
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/4c507126-c345-4773-a2ae-3b4c25fd950f.pt",
+            "threshold": 0.0017514650244265795
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.19743020257439886,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        456,
+                        330
+                    ],
+                    962,
+                    [
+                        55,
+                        212,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.022758459260747887,
+                "window": 94
+            },
+            "metrics": {
+                "f1_score": 0.13068286397938525,
+                "mcc_score": 0.1041316518565281,
+                "precision": 0.09060745278203165,
+                "recall": 0.23432343234323433
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/09e3ef8d-f9a4-451c-be66-b7515355986b.pt",
+            "threshold": 0.05148531123995781
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.21731902975316597,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        500,
+                        279
+                    ],
+                    294,
+                    [
+                        139,
+                        394,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 42
+            },
+            "metrics": {
+                "f1_score": 0.3605720122574055,
+                "mcc_score": 0.4230874425519112,
+                "precision": 0.7968397291196389,
+                "recall": 0.233003300330033
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/05b47075-a31a-42ea-b3cf-c7da3431ebc4.pt",
+            "threshold": 0.09835997223854065
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.37274920366184394,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        497,
+                        446,
+                        91
+                    ],
+                    505,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.29931558935361213,
+                "mcc_score": 0.3225938477543572,
+                "precision": 0.19446640316205532,
+                "recall": 0.6495049504950495
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/26d40f7f-4867-41bf-b9fa-b62a7d4512ea.pt",
+            "threshold": 0.04682384431362152
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.4058225041007246,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        183
+                    ],
+                    503,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00043939705607607906,
+                "window": 22
+            },
+            "metrics": {
+                "f1_score": 0.7482148401117664,
+                "mcc_score": 0.7415475433950828,
+                "precision": 0.7063305978898007,
+                "recall": 0.7953795379537953
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/84211d8a-aee1-41b5-b38b-3df5e5156811.pt",
+            "threshold": 0.0008763548685237765
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.40200207308661884,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        388
+                    ],
+                    201,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0005179474679231213,
+                "window": 47
+            },
+            "metrics": {
+                "f1_score": 0.7481681450057849,
+                "mcc_score": 0.7532079178730641,
+                "precision": 0.8998144712430427,
+                "recall": 0.6402640264026402
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/c8d6d85d-c7c9-40d7-916a-a4f76c60c82c.pt",
+            "threshold": 0.0025774671230465174
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.12431477419127285,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        427,
+                        395,
+                        61
+                    ],
+                    572,
+                    [
+                        86,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 92
+            },
+            "metrics": {
+                "f1_score": 0.6549844236760124,
+                "mcc_score": 0.6577698169069447,
+                "precision": 0.798670465337132,
+                "recall": 0.5551155115511551
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/2a2d38c6-c301-4206-a781-10aeac928c05.pt",
+            "threshold": 0.001552926260046661
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2197581803950009,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        406,
+                        179,
+                        79
+                    ],
+                    1888,
+                    [
+                        68,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.6669329073482428,
+                "mcc_score": 0.6748361656992846,
+                "precision": 0.8442871587462083,
+                "recall": 0.5511551155115512
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/ff8dabdf-0ffe-4545-b946-4d138278a43e.pt",
+            "threshold": 0.00391627149656415
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.10476397782253988,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        486,
+                        389,
+                        65
+                    ],
+                    1199,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 48
+            },
+            "metrics": {
+                "f1_score": 0.6620100892510672,
+                "mcc_score": 0.6645239697779909,
+                "precision": 0.803201506591337,
+                "recall": 0.563036303630363
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/08a26703-1be0-49a2-a2dd-733fd32ac377.pt",
+            "threshold": 0.0054774172604084015
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3417501988425409,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        448,
+                        157,
+                        109
+                    ],
+                    658,
+                    [
+                        179,
+                        471,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00019306977288832496,
+                "window": 68
+            },
+            "metrics": {
+                "f1_score": 0.6661417322834646,
+                "mcc_score": 0.6712970821535481,
+                "precision": 0.8253658536585365,
+                "recall": 0.5584158415841585
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/b7dffdce-5702-4b37-aac1-bd178c182de2.pt",
+            "threshold": 0.0019421068718656898
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3793000483025081,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        330
+                    ],
+                    1187,
+                    [
+                        432,
+                        433,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 64
+            },
+            "metrics": {
+                "f1_score": 0.6902794175521448,
+                "mcc_score": 0.696443048424615,
+                "precision": 0.854775828460039,
+                "recall": 0.5788778877887789
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/72b85a2c-5379-47e8-a149-f583e0922c11.pt",
+            "threshold": 0.003151114098727703
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4287299551907942,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        357
+                    ],
+                    1989,
+                    [
+                        83,
+                        333,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 75
+            },
+            "metrics": {
+                "f1_score": 0.5895020188425303,
+                "mcc_score": 0.6250828328779853,
+                "precision": 0.9201680672268907,
+                "recall": 0.43366336633663366
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/b0c3ffdc-9c5a-4dd4-aa90-832c1006c708.pt",
+            "threshold": 0.0208660326898098
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.12778385412604998,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        440,
+                        117
+                    ],
+                    1213,
+                    [
+                        212,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00016378937069540646,
+                "window": 75
+            },
+            "metrics": {
+                "f1_score": 0.762114537444934,
+                "mcc_score": 0.7608455793170055,
+                "precision": 0.858560794044665,
+                "recall": 0.6851485148514852
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/05b60b6e-2f96-48ba-93d5-f4ca7fcd478f.pt",
+            "threshold": 0.0006595315644517541
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.18332233343325227,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        268,
+                        81
+                    ],
+                    1633,
+                    [
+                        120,
+                        242,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.19306977288832497,
+                "window": 85
+            },
+            "metrics": {
+                "f1_score": 0.12670176075512798,
+                "mcc_score": 0.09968554806693543,
+                "precision": 0.08738107160741111,
+                "recall": 0.23036303630363036
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/aea64f78-0d36-4ecc-ac4d-e6cd5efb7f38.pt",
+            "threshold": 0.058786243200302124
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.21241775466381807,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        142
+                    ],
+                    1790,
+                    [
+                        324,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00016378937069540646,
+                "window": 30
+            },
+            "metrics": {
+                "f1_score": 0.790487658037327,
+                "mcc_score": 0.7868459257929155,
+                "precision": 0.7266187050359713,
+                "recall": 0.8666666666666667
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/3f0df8c2-f94c-48bf-929d-676d5859356d.pt",
+            "threshold": 0.000451378378784284
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4159815366105356,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        392,
+                        68
+                    ],
+                    1684,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0019306977288832496,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.6117330944917152,
+                "mcc_score": 0.6487283265977457,
+                "precision": 0.9512534818941504,
+                "recall": 0.4508250825082508
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/4ce04791-cad7-4301-a420-cc9ae7ff80b0.pt",
+            "threshold": 0.007557353004813194
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.3636633253729377,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        497,
+                        275,
+                        252
+                    ],
+                    466,
+                    [
+                        126,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.008483428982440717,
+                "window": 48
+            },
+            "metrics": {
+                "f1_score": 0.5269961977186312,
+                "mcc_score": 0.5213370536695835,
+                "precision": 0.62152466367713,
+                "recall": 0.45742574257425744
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/b539b578-170a-428c-bf1c-604e12528f63.pt",
+            "threshold": 0.06904639303684235
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.2859684003146276,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        289,
+                        166,
+                        93
+                    ],
+                    883,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 55
+            },
+            "metrics": {
+                "f1_score": 0.615453327378294,
+                "mcc_score": 0.6517569955400984,
+                "precision": 0.9516574585635359,
+                "recall": 0.4547854785478548
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/9a462f52-84b8-4879-9d78-3828be691761.pt",
+            "threshold": 0.005394443869590759
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.24905094172960812,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        160
+                    ],
+                    1609,
+                    [
+                        150,
+                        219,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.31622776601683794,
+                "window": 32
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/aeb92074-9cc6-496a-90b2-1176535448f6.pt",
+            "threshold": 0.09111780673265457
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.12027945564102421,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        356
+                    ],
+                    200,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 17
+            },
+            "metrics": {
+                "f1_score": 0.555871212121212,
+                "mcc_score": 0.6113495200020612,
+                "precision": 0.983249581239531,
+                "recall": 0.38745874587458745
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/f3f2f52d-bf28-4c18-bcae-4378faba5944.pt",
+            "threshold": 0.010579986497759819
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.08168805245863647,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        407,
+                        176
+                    ],
+                    1743,
+                    [
+                        176,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 36
+            },
+            "metrics": {
+                "f1_score": 0.6182833217027216,
+                "mcc_score": 0.6085046586888441,
+                "precision": 0.6558105107327905,
+                "recall": 0.5848184818481849
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/46d49d2a-454a-44df-8243-b2007e26ed01.pt",
+            "threshold": 0.0075339218601584435
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.15285515466872013,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        471,
+                        468,
+                        225
+                    ],
+                    225,
+                    [
+                        410,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 44
+            },
+            "metrics": {
+                "f1_score": 0.5151404596862459,
+                "mcc_score": 0.5050718086764849,
+                "precision": 0.5758564437194127,
+                "recall": 0.466006600660066
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/e012b0c1-628a-4c83-aeb4-d13710299516.pt",
+            "threshold": 0.07237078994512558
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.49477890560351595,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        379,
+                        349
+                    ],
+                    922,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0001,
+                "window": 25
+            },
+            "metrics": {
+                "f1_score": 0.7303675048355899,
+                "mcc_score": 0.7352032305173877,
+                "precision": 0.8822429906542056,
+                "recall": 0.6231023102310231
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/23d82f0f-9ade-41e9-bc20-731c5ba9f4eb.pt",
+            "threshold": 0.0036086230538785458
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.25086422740964465,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        471,
+                        243
+                    ],
+                    870,
+                    [
+                        61,
+                        183,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 35
+            },
+            "metrics": {
+                "f1_score": 0.6533628972653364,
+                "mcc_score": 0.6491157883953084,
+                "precision": 0.7422334172963896,
+                "recall": 0.5834983498349835
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/a749368c-f9f4-4642-94d9-f24ac3c1abf7.pt",
+            "threshold": 0.007158996537327766
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.09234722936034595,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        373,
+                        296,
+                        96
+                    ],
+                    131,
+                    [
+                        180,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 60
+            },
+            "metrics": {
+                "f1_score": 0.5302971825549981,
+                "mcc_score": 0.5265937919997131,
+                "precision": 0.6384758364312267,
+                "recall": 0.4534653465346535
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/1d8e06ef-7fee-49c0-9bf5-31ca1f157dac.pt",
+            "threshold": 0.05508141592144966
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.28809272959144017,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        333
+                    ],
+                    810,
+                    [
+                        284,
+                        409,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00022758459260747887,
+                "window": 74
+            },
+            "metrics": {
+                "f1_score": 0.7934545454545455,
+                "mcc_score": 0.7922206285891401,
+                "precision": 0.8834008097165992,
+                "recall": 0.7201320132013201
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/643cb145-9dc4-485f-a977-fb68bb623201.pt",
+            "threshold": 0.0003262193931732327
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.002715960566697262,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        323,
+                        269,
+                        73
+                    ],
+                    407,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.061054022965853265,
+                "window": 95
+            },
+            "metrics": {
+                "f1_score": 0.43698504729935916,
+                "mcc_score": 0.4199599514401025,
+                "precision": 0.40635641316685583,
+                "recall": 0.4726072607260726
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/e1617011-ed27-40c9-a0a6-ae3b23621f88.pt",
+            "threshold": 0.03298245742917061
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.03277999070594939,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        413,
+                        100
+                    ],
+                    538,
+                    [
+                        62,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.022758459260747887,
+                "window": 93
+            },
+            "metrics": {
+                "f1_score": 0.12588191607872262,
+                "mcc_score": 0.09833832142403864,
+                "precision": 0.08757427021441488,
+                "recall": 0.22376237623762377
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/d8bb7234-67e4-4c43-863e-a9c07ff2f51c.pt",
+            "threshold": 0.0509851910173893
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.1733364535030163,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        497,
+                        476
+                    ],
+                    1621,
+                    [
+                        90,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.19306977288832497,
+                "window": 57
+            },
+            "metrics": {
+                "f1_score": 0.11571454645008213,
+                "mcc_score": 0.08661701915375795,
+                "precision": 0.07996972754793139,
+                "recall": 0.20924092409240924
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/97b4e601-6783-48b8-b4a8-e96cc66c7b78.pt",
+            "threshold": 0.07201185077428818
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.1348155721602477,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        400,
+                        209,
+                        77
+                    ],
+                    588,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.004393970560760791,
+                "window": 24
+            },
+            "metrics": {
+                "f1_score": 0.6386907259756609,
+                "mcc_score": 0.6565905884054415,
+                "precision": 0.8767281105990783,
+                "recall": 0.5023102310231023
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/6f4e5b4f-a146-4894-8f97-30f21f3f19ae.pt",
+            "threshold": 0.011763593181967735
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.43673412317740373,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        467
+                    ],
+                    1982,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.8060381657647394,
+                "mcc_score": 0.8075101934492122,
+                "precision": 0.7089178356713427,
+                "recall": 0.933993399339934
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/40193ecb-9a5c-49a2-8bcc-c7631b335498.pt",
+            "threshold": 0.0004122495010960847
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.00771496670672317,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        391
+                    ],
+                    1934,
+                    [
+                        200,
+                        402,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 82
+            },
+            "metrics": {
+                "f1_score": 0.7840459935321595,
+                "mcc_score": 0.7813830718260809,
+                "precision": 0.860410094637224,
+                "recall": 0.7201320132013201
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/94b2815e-07b8-4f4a-94a9-dcb4a947a27d.pt",
+            "threshold": 0.00031030940590426326
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.37334029839650096,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        345
+                    ],
+                    1768,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 37
+            },
+            "metrics": {
+                "f1_score": 0.5274894271434064,
+                "mcc_score": 0.5231816342559832,
+                "precision": 0.6316758747697975,
+                "recall": 0.4528052805280528
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/be0d109c-e530-4687-a5ed-ff517998c594.pt",
+            "threshold": 0.08462448418140411
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4579183342385922,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        264,
+                        103
+                    ],
+                    1285,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0022758459260747866,
+                "window": 49
+            },
+            "metrics": {
+                "f1_score": 0.6265346534653465,
+                "mcc_score": 0.6309525055673479,
+                "precision": 0.7831683168316832,
+                "recall": 0.5221122112211221
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/8f48f0e4-c074-4517-8f1a-fb9ec08ebb09.pt",
+            "threshold": 0.0059988973662257195
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.20928167723801672,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        229
+                    ],
+                    499,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 52
+            },
+            "metrics": {
+                "f1_score": 0.6,
+                "mcc_score": 0.638164739142082,
+                "precision": 0.9446808510638298,
+                "recall": 0.4396039603960396
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/f87146c0-d533-47d2-8818-b7b3fc4dc845.pt",
+            "threshold": 0.007564933504909277
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.33436954387993884,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        464,
+                        448,
+                        320
+                    ],
+                    1205,
+                    [
+                        155,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.19306977288832497,
+                "window": 58
+            },
+            "metrics": {
+                "f1_score": 0.11775666107695175,
+                "mcc_score": 0.08875948257516478,
+                "precision": 0.08203530633437175,
+                "recall": 0.2085808580858086
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/8630f816-ffab-4162-a80c-94c0538c247f.pt",
+            "threshold": 0.07085578888654709
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.46925064244867026,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        347,
+                        117
+                    ],
+                    1555,
+                    [
+                        62,
+                        284,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 71
+            },
+            "metrics": {
+                "f1_score": 0.7034323177786348,
+                "mcc_score": 0.7066563696103673,
+                "precision": 0.8460111317254174,
+                "recall": 0.601980198019802
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/1d07b683-f81d-427f-a48d-650e9f023c43.pt",
+            "threshold": 0.0015950865345075727
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.10356654473697863,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        400,
+                        398,
+                        165
+                    ],
+                    1894,
+                    [
+                        78,
+                        139,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 93
+            },
+            "metrics": {
+                "f1_score": 0.6123720516243881,
+                "mcc_score": 0.647038502334449,
+                "precision": 0.9398907103825137,
+                "recall": 0.4541254125412541
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/bdb84d34-455a-497d-961e-15ef8f2ea1a5.pt",
+            "threshold": 0.004491888917982578
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.05360284781729158,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        440,
+                        308
+                    ],
+                    1062,
+                    [
+                        278,
+                        403,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.013894954943731374,
+                "window": 54
+            },
+            "metrics": {
+                "f1_score": 0.1245650661099513,
+                "mcc_score": 0.09791186294230517,
+                "precision": 0.08457358847153319,
+                "recall": 0.2363036303630363
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/c52aa541-fc20-4258-8c3d-345ad1a1d852.pt",
+            "threshold": 0.06463150680065155
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.259105986341964,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        391
+                    ],
+                    1434,
+                    [
+                        179,
+                        284,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.07196856730011514,
+                "window": 71
+            },
+            "metrics": {
+                "f1_score": 0.5300925925925926,
+                "mcc_score": 0.5263309509264963,
+                "precision": 0.637883008356546,
+                "recall": 0.4534653465346535
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/b57f218b-6217-4f5a-804c-934c961d6b8c.pt",
+            "threshold": 0.0483534038066864
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.14072703994000973,
+                "epochs": 1,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        165
+                    ],
+                    1443,
+                    [
+                        407,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.026826957952797246,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.586582048957389,
+                "mcc_score": 0.6259431434492746,
+                "precision": 0.9363241678726484,
+                "recall": 0.4270627062706271
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/204cff41-65f1-48c9-887d-15e9275c42eb.pt",
+            "threshold": 0.08307196199893951
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.2756560917548616,
+                "epochs": 5,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        457,
+                        348,
+                        202
+                    ],
+                    183,
+                    [
+                        161,
+                        301,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0013894954943731374,
+                "window": 31
+            },
+            "metrics": {
+                "f1_score": 0.6915963007639726,
+                "mcc_score": 0.7021272103171632,
+                "precision": 0.8847736625514403,
+                "recall": 0.5676567656765676
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/5835a206-565b-4c7f-81f8-eb3c72241458.pt",
+            "threshold": 0.008712556213140488
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.055929800659678675,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        159
+                    ],
+                    1853,
+                    [
+                        190,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.026826957952797246,
+                "window": 51
+            },
+            "metrics": {
+                "f1_score": 0.5300925925925926,
+                "mcc_score": 0.5263309509264963,
+                "precision": 0.637883008356546,
+                "recall": 0.4534653465346535
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/4985c97c-d155-4adb-8bd5-8c53def7c2e5.pt",
+            "threshold": 0.06096717342734337
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.029460018381867015,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        451,
+                        161
+                    ],
+                    1023,
+                    [
+                        108,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.00026826957952797245,
+                "window": 50
+            },
+            "metrics": {
+                "f1_score": 0.7612712490761271,
+                "mcc_score": 0.7607242750788679,
+                "precision": 0.8648194794290512,
+                "recall": 0.6798679867986799
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/0a4ee60d-5902-42a8-bfd9-8997dd324455.pt",
+            "threshold": 0.0012796137016266584
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.05144872023219843,
+                "epochs": 8,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        266,
+                        222
+                    ],
+                    1219,
+                    [
+                        109,
+                        307,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 32
+            },
+            "metrics": {
+                "f1_score": 0.7008945935433684,
+                "mcc_score": 0.7054283194989992,
+                "precision": 0.853219696969697,
+                "recall": 0.5947194719471948
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/772df05d-5490-4e0d-85b9-31d1e9517c3d.pt",
+            "threshold": 0.004408565815538168
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.29505989587163245,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        206
+                    ],
+                    1946,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0003727593720314938,
+                "window": 98
+            },
+            "metrics": {
+                "f1_score": 0.7267441860465116,
+                "mcc_score": 0.7232620912450802,
+                "precision": 0.8084074373484236,
+                "recall": 0.6600660066006601
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/08aa74c5-7457-4e8d-bfcb-78fa4586c16d.pt",
+            "threshold": 0.0005234865238890052
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.16747827172481056,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        441,
+                        358
+                    ],
+                    532,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0031622776601683794,
+                "window": 77
+            },
+            "metrics": {
+                "f1_score": 0.637883008356546,
+                "mcc_score": 0.628588229892172,
+                "precision": 0.6750184229918939,
+                "recall": 0.6046204620462046
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/71137b6c-a0b4-426c-8f27-c53b18b5d2e8.pt",
+            "threshold": 0.0038461836520582438
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.06876059347584401,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        390,
+                        320,
+                        125
+                    ],
+                    1882,
+                    [
+                        51,
+                        143,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.12861035422343325,
+                "mcc_score": 0.10193021075232629,
+                "precision": 0.0887218045112782,
+                "recall": 0.23366336633663368
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/3585df1d-a958-4ffd-888d-8316723cad2c.pt",
+            "threshold": 0.06177012622356415
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.06427199037457787,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        253,
+                        172
+                    ],
+                    1431,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 12
+            },
+            "metrics": {
+                "f1_score": 0.5544639043143955,
+                "mcc_score": 0.5714842320535738,
+                "precision": 0.7857142857142857,
+                "recall": 0.4283828382838284
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/1f9af142-52eb-448a-92e5-5bf42f29b564.pt",
+            "threshold": 0.0008544984739273787
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2561367697710069,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        297,
+                        108
+                    ],
+                    1945,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.03162277660168379,
+                "window": 59
+            },
+            "metrics": {
+                "f1_score": 0.11909262759924387,
+                "mcc_score": 0.09014089528551997,
+                "precision": 0.08344370860927153,
+                "recall": 0.2079207920792079
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/42cc172f-0f75-4c02-ab76-7deaa509c6c9.pt",
+            "threshold": 0.07144367694854736
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.27459679398660447,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 11,
+                "layers": [
+                    [
+                        376
+                    ],
+                    355,
+                    [
+                        175,
+                        379,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.006105402296585327,
+                "window": 36
+            },
+            "metrics": {
+                "f1_score": 0.6149122807017544,
+                "mcc_score": 0.6445640323158321,
+                "precision": 0.9163398692810457,
+                "recall": 0.4627062706270627
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/4daae4be-a279-4e5f-9833-e96fee2edf4e.pt",
+            "threshold": 0.01029347162693739
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.4230055925676631,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        135
+                    ],
+                    939,
+                    [
+                        334,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.001,
+                "window": 78
+            },
+            "metrics": {
+                "f1_score": 0.6658374792703151,
+                "mcc_score": 0.6822169307667685,
+                "precision": 0.89520624303233,
+                "recall": 0.53003300330033
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/a547bc5a-f029-415b-acc4-7fcab48ee99c.pt",
+            "threshold": 0.0032956062350422144
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.174530531550265,
+                "epochs": 2,
+                "input_shape": 100,
+                "kernel_size": 5,
+                "layers": [
+                    [
+                        170
+                    ],
+                    103,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0006105402296585327,
+                "window": 30
+            },
+            "metrics": {
+                "f1_score": 0.7191100516487883,
+                "mcc_score": 0.7284445006116154,
+                "precision": 0.9031936127744511,
+                "recall": 0.5973597359735974
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/51280336-b10f-47b8-9c07-d7c42d068b52.pt",
+            "threshold": 0.00578540051355958
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3238513794447296,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        142
+                    ],
+                    1246,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 45
+            },
+            "metrics": {
+                "f1_score": 0.7069840031213422,
+                "mcc_score": 0.7123192759292364,
+                "precision": 0.8645038167938931,
+                "recall": 0.598019801980198
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/7c787384-e3be-4033-b60a-6b14a395d009.pt",
+            "threshold": 0.006223876029253006
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.10699613669291597,
+                "epochs": 3,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        162
+                    ],
+                    1099,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0001,
+                "window": 12
+            },
+            "metrics": {
+                "f1_score": 0.5513616817964644,
+                "mcc_score": 0.6109003342660764,
+                "precision": 0.9982698961937716,
+                "recall": 0.3808580858085809
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/f5a7fc59-b333-4d53-8cfe-e5e8720d34f4.pt",
+            "threshold": 0.008515909314155579
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2399857790452164,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 7,
+                "layers": [
+                    [
+                        486,
+                        439,
+                        71
+                    ],
+                    1538,
+                    [
+                        94,
+                        411,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0008483428982440717,
+                "window": 22
+            },
+            "metrics": {
+                "f1_score": 0.6086956521739131,
+                "mcc_score": 0.6262377105875023,
+                "precision": 0.8442622950819673,
+                "recall": 0.4759075907590759
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/a6c5a9b3-3d43-4c19-b6df-a17699c70f27.pt",
+            "threshold": 0.007412884384393692
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.2852433507125902,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        154,
+                        72
+                    ],
+                    239,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.11787686347935866,
+                "window": 27
+            },
+            "metrics": {
+                "f1_score": 0.550932568149211,
+                "mcc_score": 0.6109194077136568,
+                "precision": 1.0,
+                "recall": 0.3801980198019802
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/3282c19b-4a4e-4f64-9f31-e7c5424e9260.pt",
+            "threshold": 0.1058821827173233
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.3616507045924791,
+                "epochs": 6,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        465
+                    ],
+                    347,
+                    [
+                        139,
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 33
+            },
+            "metrics": {
+                "f1_score": 0.6879744306831801,
+                "mcc_score": 0.6969738212793412,
+                "precision": 0.8714574898785425,
+                "recall": 0.5683168316831683
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/6bc56f6f-d8ee-4db4-aa13-73fc4f07f082.pt",
+            "threshold": 0.007628974504768848
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.34910165833028184,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        457
+                    ],
+                    1359,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.003727593720314938,
+                "window": 98
+            },
+            "metrics": {
+                "f1_score": 0.6310820624546114,
+                "mcc_score": 0.624418974036629,
+                "precision": 0.7013720742534302,
+                "recall": 0.5735973597359736
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/289c156c-557d-496c-abaa-4cf04fc38a9a.pt",
+            "threshold": 0.0031172665767371655
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.056443265073737814,
+                "epochs": 9,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    [
+                        243,
+                        186,
+                        127
+                    ],
+                    333,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.007196856730011514,
+                "window": 61
+            },
+            "metrics": {
+                "f1_score": 0.12293226536653318,
+                "mcc_score": 0.09593339726263111,
+                "precision": 0.08349101229895932,
+                "recall": 0.233003300330033
+            },
+            "model_path": "../../models/aetcn_contextual_ordered_chunked/d03a8008-eac4-4545-bb81-d93a02d0dbd4.pt",
+            "threshold": 0.06400886923074722
+        }
+    ]
+}

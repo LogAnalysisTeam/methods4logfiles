@@ -1,0 +1,2530 @@
+{
+    "experiments": [
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.32474349230634486,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    460,
+                    410,
+                    357,
+                    164,
+                    240,
+                    275,
+                    458,
+                    489
+                ],
+                "learning_rate": 0.03727593720314938
+            },
+            "metrics": {
+                "f1_score": 0.6265256305939788,
+                "mcc_score": 0.6362355342925784,
+                "precision": 0.8165429480381761,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/89573d6e-db57-40c6-add9-2cd973db2206.pt",
+            "threshold": 3.2849795818328857
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.17097784755394158,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    309,
+                    250,
+                    173,
+                    95,
+                    12,
+                    55
+                ],
+                "learning_rate": 0.08685113737513521
+            },
+            "metrics": {
+                "f1_score": 0.6265256305939788,
+                "mcc_score": 0.6362355342925784,
+                "precision": 0.8165429480381761,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/6fa5099b-e040-47d8-8d4f-0213dfd3d8be.pt",
+            "threshold": 3.306096315383911
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.0217834191523949,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    453,
+                    452,
+                    447,
+                    346,
+                    201,
+                    116,
+                    125,
+                    478
+                ],
+                "learning_rate": 0.00017575106248547912
+            },
+            "metrics": {
+                "f1_score": 0.7890595728737354,
+                "mcc_score": 0.7912368496205929,
+                "precision": 0.912478336221837,
+                "recall": 0.695049504950495
+            },
+            "model_path": "../../models/hybrid_ae_small/8f62ec6b-7c43-47f8-8d69-d9e3ca16614f.pt",
+            "threshold": 0.20523139834403992
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4126254376640768,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    170,
+                    146,
+                    221,
+                    226,
+                    228,
+                    304,
+                    417
+                ],
+                "learning_rate": 0.002559547922699536
+            },
+            "metrics": {
+                "f1_score": 0.6224066390041494,
+                "mcc_score": 0.6364156004259365,
+                "precision": 0.8379888268156425,
+                "recall": 0.49504950495049505
+            },
+            "model_path": "../../models/hybrid_ae_small/8847f2ae-091d-4a83-a9cc-9e715756bd10.pt",
+            "threshold": 3.196350336074829
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3029400688852688,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    458,
+                    325,
+                    325,
+                    303,
+                    473
+                ],
+                "learning_rate": 0.0005428675439323859
+            },
+            "metrics": {
+                "f1_score": 0.7502734232592053,
+                "mcc_score": 0.7478816675340658,
+                "precision": 0.8379478827361564,
+                "recall": 0.6792079207920793
+            },
+            "model_path": "../../models/hybrid_ae_small/7c915f7e-b0f8-40bb-b1eb-60722caff496.pt",
+            "threshold": 0.25759047269821167
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.2767554017573922,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    413,
+                    63,
+                    268,
+                    269
+                ],
+                "learning_rate": 0.00339322177189533
+            },
+            "metrics": {
+                "f1_score": 0.6132550335570469,
+                "mcc_score": 0.6294301274817647,
+                "precision": 0.8411967779056386,
+                "recall": 0.48250825082508253
+            },
+            "model_path": "../../models/hybrid_ae_small/f0493201-936c-4cae-ac84-39c3dba92d70.pt",
+            "threshold": 2.6653287410736084
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3543100981538238,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    352,
+                    275,
+                    49,
+                    201,
+                    207,
+                    267,
+                    460
+                ],
+                "learning_rate": 0.00030888435964774815
+            },
+            "metrics": {
+                "f1_score": 0.6634421604191858,
+                "mcc_score": 0.6730750852456115,
+                "precision": 0.8519668737060041,
+                "recall": 0.5432343234323432
+            },
+            "model_path": "../../models/hybrid_ae_small/29725bd2-eaf7-49f9-853f-205d344cc279.pt",
+            "threshold": 0.8691998720169067
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.12345260994474244,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    480,
+                    332,
+                    245,
+                    159,
+                    172,
+                    237,
+                    279
+                ],
+                "learning_rate": 0.010481131341546853
+            },
+            "metrics": {
+                "f1_score": 0.6229376257545272,
+                "mcc_score": 0.6301978020670659,
+                "precision": 0.797938144329897,
+                "recall": 0.5108910891089109
+            },
+            "model_path": "../../models/hybrid_ae_small/ba11dd91-2a4f-46b4-9208-46ec0ae82373.pt",
+            "threshold": 2.701127052307129
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.22817581940084752,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    428,
+                    228,
+                    193,
+                    144,
+                    90,
+                    193,
+                    233,
+                    318,
+                    361,
+                    450
+                ],
+                "learning_rate": 0.013894954943731374
+            },
+            "metrics": {
+                "f1_score": 0.6273393002441008,
+                "mcc_score": 0.6370925365890351,
+                "precision": 0.8176033934252386,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/b06538b4-e73d-4fe1-817f-6abcd6093555.pt",
+            "threshold": 3.27384090423584
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.06748116350515515,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    459,
+                    172,
+                    89,
+                    19,
+                    54,
+                    150,
+                    155,
+                    216,
+                    263
+                ],
+                "learning_rate": 0.07543120063354615
+            },
+            "metrics": {
+                "f1_score": 0.6287816843826657,
+                "mcc_score": 0.6396876724896788,
+                "precision": 0.8259935553168636,
+                "recall": 0.5075907590759076
+            },
+            "model_path": "../../models/hybrid_ae_small/952b561c-6993-4b53-b63e-c3f7e1c6c62e.pt",
+            "threshold": 3.627972364425659
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.36507488389892156,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    386,
+                    185,
+                    131,
+                    226,
+                    478
+                ],
+                "learning_rate": 0.0029470517025518097
+            },
+            "metrics": {
+                "f1_score": 0.6232821341956346,
+                "mcc_score": 0.6314569502434646,
+                "precision": 0.8039624608967675,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/04305579-a4d4-433e-9fc8-46e7d9191613.pt",
+            "threshold": 2.685060739517212
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.3031206079380548,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    343,
+                    253,
+                    162,
+                    116,
+                    19,
+                    138,
+                    294,
+                    415,
+                    420
+                ],
+                "learning_rate": 0.015998587196060572
+            },
+            "metrics": {
+                "f1_score": 0.6264765784114052,
+                "mcc_score": 0.6364482169860234,
+                "precision": 0.8180851063829787,
+                "recall": 0.5075907590759076
+            },
+            "model_path": "../../models/hybrid_ae_small/94ccddfd-c80c-41b8-87d0-184fa1a27a2f.pt",
+            "threshold": 3.2366507053375244
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.1922572014948472,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    326,
+                    238
+                ],
+                "learning_rate": 0.0006250551925273976
+            },
+            "metrics": {
+                "f1_score": 0.7388581952117863,
+                "mcc_score": 0.7371687828291852,
+                "precision": 0.8358333333333333,
+                "recall": 0.662046204620462
+            },
+            "model_path": "../../models/hybrid_ae_small/7e13a165-e550-4e7b-bdba-9517cc09d87c.pt",
+            "threshold": 0.11378117650747299
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.26224398196915866,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    110,
+                    20,
+                    180,
+                    365,
+                    369,
+                    404,
+                    495
+                ],
+                "learning_rate": 0.00047148663634573947
+            },
+            "metrics": {
+                "f1_score": 0.6726986624704957,
+                "mcc_score": 0.6780051975737637,
+                "precision": 0.8325219084712756,
+                "recall": 0.5643564356435643
+            },
+            "model_path": "../../models/hybrid_ae_small/e7857132-aac3-41fe-886f-2195a2617833.pt",
+            "threshold": 0.8567038774490356
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.382504186510376,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    499,
+                    20,
+                    128,
+                    391
+                ],
+                "learning_rate": 0.005179474679231213
+            },
+            "metrics": {
+                "f1_score": 0.6211329851345923,
+                "mcc_score": 0.6279849221419628,
+                "precision": 0.7936344969199178,
+                "recall": 0.5102310231023103
+            },
+            "model_path": "../../models/hybrid_ae_small/63169803-ae98-49b3-8b50-4dbb08779164.pt",
+            "threshold": 2.3871548175811768
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.2662212478169498,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    382,
+                    293,
+                    48,
+                    227,
+                    246,
+                    379,
+                    397
+                ],
+                "learning_rate": 0.024420530945486497
+            },
+            "metrics": {
+                "f1_score": 0.6265745631856968,
+                "mcc_score": 0.6360251821525202,
+                "precision": 0.8150105708245243,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/409caf5a-0605-4c22-99dd-3c2f4a6dcfff.pt",
+            "threshold": 3.205364942550659
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.24540302249361645,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    402,
+                    77,
+                    110,
+                    407,
+                    408,
+                    469,
+                    492
+                ],
+                "learning_rate": 0.00013257113655901095
+            },
+            "metrics": {
+                "f1_score": 0.6961538461538461,
+                "mcc_score": 0.6986573332286503,
+                "precision": 0.8341013824884793,
+                "recall": 0.5973597359735974
+            },
+            "model_path": "../../models/hybrid_ae_small/d82e5610-d6f1-4e9d-a389-3dde0760d5b5.pt",
+            "threshold": 0.5246402025222778
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.40188858831634794,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    480,
+                    434,
+                    214,
+                    218
+                ],
+                "learning_rate": 0.0006250551925273976
+            },
+            "metrics": {
+                "f1_score": 0.682850430696946,
+                "mcc_score": 0.6877639686350866,
+                "precision": 0.8392685274302214,
+                "recall": 0.5755775577557756
+            },
+            "model_path": "../../models/hybrid_ae_small/fe99e37b-513e-40a1-972b-b59731338d2d.pt",
+            "threshold": 0.6627768874168396
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.17494416721800476,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    201,
+                    46,
+                    130,
+                    156,
+                    178,
+                    388
+                ],
+                "learning_rate": 0.009102981779915217
+            },
+            "metrics": {
+                "f1_score": 0.6189111747851003,
+                "mcc_score": 0.6295487080775721,
+                "precision": 0.8146551724137931,
+                "recall": 0.499009900990099
+            },
+            "model_path": "../../models/hybrid_ae_small/b94ea207-c359-43fb-9091-a061dcecaa17.pt",
+            "threshold": 2.6139564514160156
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.1826561643542361,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    458,
+                    456,
+                    373,
+                    334,
+                    262,
+                    175,
+                    313,
+                    483
+                ],
+                "learning_rate": 0.005963623316594642
+            },
+            "metrics": {
+                "f1_score": 0.6207719856744925,
+                "mcc_score": 0.6257836722341931,
+                "precision": 0.781563126252505,
+                "recall": 0.5148514851485149
+            },
+            "model_path": "../../models/hybrid_ae_small/9cac5fb8-6662-49b5-b1e7-7dcdcddb0208.pt",
+            "threshold": 2.55039381980896
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3630727449525146,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    465,
+                    339,
+                    338,
+                    17,
+                    41,
+                    53,
+                    208,
+                    432
+                ],
+                "learning_rate": 0.0010985411419875584
+            },
+            "metrics": {
+                "f1_score": 0.6245290916701549,
+                "mcc_score": 0.6408715276573899,
+                "precision": 0.8535469107551488,
+                "recall": 0.4924092409240924
+            },
+            "model_path": "../../models/hybrid_ae_small/c8382fa3-2c23-4e4b-95b4-948cb4935f10.pt",
+            "threshold": 1.9992189407348633
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3279848126174675,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    192,
+                    145,
+                    264,
+                    388
+                ],
+                "learning_rate": 0.0079060432109077
+            },
+            "metrics": {
+                "f1_score": 0.6288573811509591,
+                "mcc_score": 0.6445012719725113,
+                "precision": 0.853907134767837,
+                "recall": 0.4976897689768977
+            },
+            "model_path": "../../models/hybrid_ae_small/2c16020d-1a8b-4251-bac0-cc0a788cd1e8.pt",
+            "threshold": 2.5626320838928223
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.17892074071570957,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    473,
+                    374,
+                    20,
+                    188,
+                    254,
+                    290,
+                    307,
+                    411
+                ],
+                "learning_rate": 0.0016768329368110084
+            },
+            "metrics": {
+                "f1_score": 0.6030562802832649,
+                "mcc_score": 0.5979646111050897,
+                "precision": 0.6926369863013698,
+                "recall": 0.533993399339934
+            },
+            "model_path": "../../models/hybrid_ae_small/34d9b29e-0a63-4558-a143-3781b1274215.pt",
+            "threshold": 1.3419650793075562
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.491663401897858,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    371,
+                    293,
+                    273,
+                    205,
+                    228,
+                    351
+                ],
+                "learning_rate": 0.015998587196060572
+            },
+            "metrics": {
+                "f1_score": 0.6266233766233766,
+                "mcc_score": 0.6358171402807066,
+                "precision": 0.8134878819810326,
+                "recall": 0.5095709570957095
+            },
+            "model_path": "../../models/hybrid_ae_small/a109c79a-c849-4b3c-86e8-cc2b47d78693.pt",
+            "threshold": 3.27435564994812
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.10838176872419325,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    458,
+                    322,
+                    175,
+                    290,
+                    416
+                ],
+                "learning_rate": 0.018420699693267165
+            },
+            "metrics": {
+                "f1_score": 0.6278026905829597,
+                "mcc_score": 0.6380233788383521,
+                "precision": 0.8208955223880597,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/565a63c1-b245-4019-8aea-f4e31ab3fa5f.pt",
+            "threshold": 3.488734722137451
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.2608282806520696,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    460,
+                    243,
+                    239,
+                    99,
+                    328,
+                    354
+                ],
+                "learning_rate": 0.08685113737513521
+            },
+            "metrics": {
+                "f1_score": 0.6278026905829597,
+                "mcc_score": 0.6380233788383521,
+                "precision": 0.8208955223880597,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/5d4da332-6051-4fc8-9629-e164475666f4.pt",
+            "threshold": 3.209134101867676
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.23829483764283116,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    457,
+                    415,
+                    406,
+                    80,
+                    51,
+                    143,
+                    318,
+                    371,
+                    413,
+                    466
+                ],
+                "learning_rate": 0.00023299518105153718
+            },
+            "metrics": {
+                "f1_score": 0.660961695191524,
+                "mcc_score": 0.67287515669009,
+                "precision": 0.8636847710330139,
+                "recall": 0.5353135313531353
+            },
+            "model_path": "../../models/hybrid_ae_small/c873eeab-3763-4faa-b1c5-3d834509b0af.pt",
+            "threshold": 0.9526894092559814
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.43722024537781434,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    481,
+                    85,
+                    111,
+                    426
+                ],
+                "learning_rate": 0.010481131341546853
+            },
+            "metrics": {
+                "f1_score": 0.6254125412541255,
+                "mcc_score": 0.6382057561480009,
+                "precision": 0.8338833883388339,
+                "recall": 0.5003300330033004
+            },
+            "model_path": "../../models/hybrid_ae_small/2cd734e4-1335-4f92-865f-ba5bfc67e449.pt",
+            "threshold": 3.436098575592041
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4672241861499461,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    482,
+                    387,
+                    355,
+                    44,
+                    21,
+                    46,
+                    296,
+                    335,
+                    366
+                ],
+                "learning_rate": 0.024420530945486497
+            },
+            "metrics": {
+                "f1_score": 0.6293420514916225,
+                "mcc_score": 0.6401874106270469,
+                "precision": 0.8261802575107297,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/1e294887-7364-496c-b8f9-96ebe930b67e.pt",
+            "threshold": 3.385068655014038
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3221388944155469,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    455,
+                    262,
+                    145,
+                    139,
+                    28,
+                    25,
+                    349,
+                    485
+                ],
+                "learning_rate": 0.013894954943731374
+            },
+            "metrics": {
+                "f1_score": 0.6272912423625254,
+                "mcc_score": 0.6373065604120101,
+                "precision": 0.8191489361702128,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/846417bb-48b1-477f-a0b7-293afa792c16.pt",
+            "threshold": 3.313732385635376
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.12323743121714736,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    362,
+                    210,
+                    200,
+                    129,
+                    85,
+                    56,
+                    117,
+                    408,
+                    450
+                ],
+                "learning_rate": 0.00035564803062231287
+            },
+            "metrics": {
+                "f1_score": 0.7118380062305296,
+                "mcc_score": 0.7170373835270859,
+                "precision": 0.8679962013295347,
+                "recall": 0.6033003300330033
+            },
+            "model_path": "../../models/hybrid_ae_small/4e0f4bb4-50b5-4862-81b4-0aff0f0b53cd.pt",
+            "threshold": 0.5972261428833008
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.14486551821332694,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    290,
+                    146,
+                    139,
+                    392,
+                    393,
+                    414
+                ],
+                "learning_rate": 0.00040949150623804275
+            },
+            "metrics": {
+                "f1_score": 0.778021978021978,
+                "mcc_score": 0.7770455212073333,
+                "precision": 0.8740740740740741,
+                "recall": 0.700990099009901
+            },
+            "model_path": "../../models/hybrid_ae_small/790c1467-4368-48bd-b9bf-e0efdcb05bbe.pt",
+            "threshold": 0.22126257419586182
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.23347799227842103,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    377,
+                    363,
+                    317,
+                    293,
+                    228,
+                    327,
+                    466
+                ],
+                "learning_rate": 0.00030888435964774815
+            },
+            "metrics": {
+                "f1_score": 0.7485380116959065,
+                "mcc_score": 0.746349126865576,
+                "precision": 0.8386568386568387,
+                "recall": 0.6759075907590759
+            },
+            "model_path": "../../models/hybrid_ae_small/752eb89c-ab23-455e-a508-e69216c1eeb2.pt",
+            "threshold": 0.32128989696502686
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4854289805324065,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    488,
+                    400,
+                    87,
+                    99,
+                    172,
+                    368
+                ],
+                "learning_rate": 0.0019306977288832496
+            },
+            "metrics": {
+                "f1_score": 0.626926196269262,
+                "mcc_score": 0.6359642050148226,
+                "precision": 0.8128286014721346,
+                "recall": 0.5102310231023103
+            },
+            "model_path": "../../models/hybrid_ae_small/431b5b27-542b-4096-b5b8-d129415a3188.pt",
+            "threshold": 1.3912159204483032
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.05281585022191454,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    228,
+                    41,
+                    80
+                ],
+                "learning_rate": 0.0019306977288832496
+            },
+            "metrics": {
+                "f1_score": 0.7204301075268816,
+                "mcc_score": 0.7155453412885828,
+                "precision": 0.788235294117647,
+                "recall": 0.6633663366336634
+            },
+            "model_path": "../../models/hybrid_ae_small/3e6bb419-1141-4077-94af-cdaab4d5bce2.pt",
+            "threshold": 0.34553593397140503
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4683002743371382,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    464,
+                    164,
+                    173,
+                    284,
+                    431,
+                    446
+                ],
+                "learning_rate": 0.00017575106248547912
+            },
+            "metrics": {
+                "f1_score": 0.6561901111536987,
+                "mcc_score": 0.6565839041628192,
+                "precision": 0.7824497257769653,
+                "recall": 0.565016501650165
+            },
+            "model_path": "../../models/hybrid_ae_small/19280391-ab04-4dd3-b47e-c3ff6368f6cf.pt",
+            "threshold": 0.7581557631492615
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.24463167952644038,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    352,
+                    28,
+                    354
+                ],
+                "learning_rate": 0.0005428675439323859
+            },
+            "metrics": {
+                "f1_score": 0.7098302408211606,
+                "mcc_score": 0.7174720289011589,
+                "precision": 0.8831041257367387,
+                "recall": 0.5933993399339934
+            },
+            "model_path": "../../models/hybrid_ae_small/bcff15db-dc2b-486f-b002-7d7ab66d33bb.pt",
+            "threshold": 0.6133942604064941
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.47717871608260476,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    328,
+                    212,
+                    376
+                ],
+                "learning_rate": 0.003906939937054617
+            },
+            "metrics": {
+                "f1_score": 0.6243862520458265,
+                "mcc_score": 0.6352339212533272,
+                "precision": 0.8213132400430571,
+                "recall": 0.5036303630363036
+            },
+            "model_path": "../../models/hybrid_ae_small/7ac08d8c-3c29-4aa6-a41d-f9af08c22d36.pt",
+            "threshold": 2.975722551345825
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.18343024439930722,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    288,
+                    249,
+                    126,
+                    53,
+                    24,
+                    494
+                ],
+                "learning_rate": 0.00015264179671752333
+            },
+            "metrics": {
+                "f1_score": 0.6830233478432923,
+                "mcc_score": 0.6898966470495675,
+                "precision": 0.8527667984189723,
+                "recall": 0.5696369636963696
+            },
+            "model_path": "../../models/hybrid_ae_small/5a794d57-93b6-47e6-a626-e48595f3b463.pt",
+            "threshold": 0.76191246509552
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.3941227759617939,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    495,
+                    452,
+                    405,
+                    190,
+                    120,
+                    110,
+                    179,
+                    230,
+                    316,
+                    454
+                ],
+                "learning_rate": 0.0655128556859551
+            },
+            "metrics": {
+                "f1_score": 0.549785612196284,
+                "mcc_score": 0.6075990820604645,
+                "precision": 0.988013698630137,
+                "recall": 0.3808580858085809
+            },
+            "model_path": "../../models/hybrid_ae_small/bf1fc226-47da-4924-8c28-8504d0b832d6.pt",
+            "threshold": 21.881105422973633
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.26936971164174245,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    457,
+                    209,
+                    136,
+                    92,
+                    55,
+                    135,
+                    370
+                ],
+                "learning_rate": 0.00015264179671752333
+            },
+            "metrics": {
+                "f1_score": 0.6915520628683693,
+                "mcc_score": 0.6974828649978603,
+                "precision": 0.8543689320388349,
+                "recall": 0.5808580858085809
+            },
+            "model_path": "../../models/hybrid_ae_small/7ed5844f-b533-4f4a-a798-b903a6b3f473.pt",
+            "threshold": 0.7243865728378296
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.11473440500796123,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    426,
+                    339,
+                    309,
+                    239,
+                    123,
+                    203,
+                    256,
+                    268,
+                    431
+                ],
+                "learning_rate": 0.0012648552168552957
+            },
+            "metrics": {
+                "f1_score": 0.7044844768110387,
+                "mcc_score": 0.7067853208830459,
+                "precision": 0.840036563071298,
+                "recall": 0.6066006600660065
+            },
+            "model_path": "../../models/hybrid_ae_small/c607985b-5820-40e8-8bfc-09ba52dcff56.pt",
+            "threshold": 0.6114771366119385
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.3854395784484365,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    308,
+                    292,
+                    256,
+                    143,
+                    25,
+                    41,
+                    56,
+                    447
+                ],
+                "learning_rate": 0.004498432668969444
+            },
+            "metrics": {
+                "f1_score": 0.6241308793456033,
+                "mcc_score": 0.6348732938573566,
+                "precision": 0.8204301075268817,
+                "recall": 0.5036303630363036
+            },
+            "model_path": "../../models/hybrid_ae_small/45e2c2e5-8530-4a6d-8917-7a0369a590c6.pt",
+            "threshold": 3.007967948913574
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.04661593317699819,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    293,
+                    208,
+                    78,
+                    244,
+                    369
+                ],
+                "learning_rate": 0.0009540954763499944
+            },
+            "metrics": {
+                "f1_score": 0.7323213624583488,
+                "mcc_score": 0.7309940109960275,
+                "precision": 0.8338954468802698,
+                "recall": 0.6528052805280528
+            },
+            "model_path": "../../models/hybrid_ae_small/36ebc4a4-846a-4e98-a8c4-9a63acb33871.pt",
+            "threshold": 0.24529144167900085
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.14401877001023122,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    283,
+                    229,
+                    33,
+                    90,
+                    278,
+                    317
+                ],
+                "learning_rate": 0.1
+            },
+            "metrics": {
+                "f1_score": 0.6299019607843137,
+                "mcc_score": 0.6406868136467166,
+                "precision": 0.8263665594855305,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/cdc881ed-168e-42b7-9506-cb9ccf889047.pt",
+            "threshold": 3.6453397274017334
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.19403185471416018,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    459,
+                    449,
+                    413,
+                    373,
+                    39,
+                    117,
+                    448
+                ],
+                "learning_rate": 0.0009540954763499944
+            },
+            "metrics": {
+                "f1_score": 0.6559220389805097,
+                "mcc_score": 0.6533520260940072,
+                "precision": 0.7588898525585429,
+                "recall": 0.5775577557755776
+            },
+            "model_path": "../../models/hybrid_ae_small/f7672ed9-d5d2-4954-ad23-d08e6d67a796.pt",
+            "threshold": 0.8234293460845947
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.1815416002328502,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    468,
+                    457,
+                    436,
+                    91,
+                    15,
+                    50,
+                    169,
+                    360,
+                    396,
+                    429
+                ],
+                "learning_rate": 0.00339322177189533
+            },
+            "metrics": {
+                "f1_score": 0.6137610806247361,
+                "mcc_score": 0.631636298052683,
+                "precision": 0.8512880562060889,
+                "recall": 0.47986798679867987
+            },
+            "model_path": "../../models/hybrid_ae_small/d2a33512-1bc6-42a9-9f9f-29f17b4e7fa2.pt",
+            "threshold": 2.8207530975341797
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.33991054691710343,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    498,
+                    325,
+                    134,
+                    38,
+                    138,
+                    356,
+                    427,
+                    474
+                ],
+                "learning_rate": 0.024420530945486497
+            },
+            "metrics": {
+                "f1_score": 0.6281059063136456,
+                "mcc_score": 0.6381649038379967,
+                "precision": 0.8202127659574469,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/c4f9e972-8555-4a72-980f-28272e75c8ec.pt",
+            "threshold": 3.374833822250366
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.37958254472737785,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    373,
+                    351,
+                    120,
+                    110,
+                    160,
+                    344,
+                    362
+                ],
+                "learning_rate": 0.0001
+            },
+            "metrics": {
+                "f1_score": 0.6144781144781145,
+                "mcc_score": 0.6316115460028948,
+                "precision": 0.8478513356562137,
+                "recall": 0.48184818481848185
+            },
+            "model_path": "../../models/hybrid_ae_small/a1963726-4e51-4d41-b754-324cf899e6cf.pt",
+            "threshold": 1.302215576171875
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.10664486423725283,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    305,
+                    23,
+                    63,
+                    157,
+                    202,
+                    224
+                ],
+                "learning_rate": 0.00047148663634573947
+            },
+            "metrics": {
+                "f1_score": 0.6830233478432923,
+                "mcc_score": 0.6898966470495675,
+                "precision": 0.8527667984189723,
+                "recall": 0.5696369636963696
+            },
+            "model_path": "../../models/hybrid_ae_small/f483ccff-8f30-4f3e-8b6f-1e02c2e33d71.pt",
+            "threshold": 0.602917492389679
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.4037092904339236,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    352,
+                    194,
+                    35,
+                    189,
+                    280,
+                    409,
+                    490
+                ],
+                "learning_rate": 0.002559547922699536
+            },
+            "metrics": {
+                "f1_score": 0.615830915872358,
+                "mcc_score": 0.6291485399824259,
+                "precision": 0.8273942093541202,
+                "recall": 0.4904290429042904
+            },
+            "model_path": "../../models/hybrid_ae_small/57a08f85-49ff-441a-a9a2-1e5a57c93981.pt",
+            "threshold": 2.497911214828491
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.4830226641482559,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    287,
+                    115,
+                    77,
+                    307,
+                    441,
+                    461
+                ],
+                "learning_rate": 0.00020235896477251576
+            },
+            "metrics": {
+                "f1_score": 0.6603630862329803,
+                "mcc_score": 0.6590852980645691,
+                "precision": 0.7732506643046945,
+                "recall": 0.5762376237623762
+            },
+            "model_path": "../../models/hybrid_ae_small/d8545e2f-5b3f-4567-be1b-f4502dbe35e3.pt",
+            "threshold": 0.8567885756492615
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.05790293049929024,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    469,
+                    448,
+                    22,
+                    125,
+                    358,
+                    486
+                ],
+                "learning_rate": 0.024420530945486497
+            },
+            "metrics": {
+                "f1_score": 0.6247464503042597,
+                "mcc_score": 0.6337558744764599,
+                "precision": 0.8105263157894737,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/ceb046d7-2820-4a78-aae0-ea9b222c9e15.pt",
+            "threshold": 3.196185350418091
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.25563769097595096,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    441,
+                    381,
+                    84,
+                    38,
+                    359
+                ],
+                "learning_rate": 0.010481131341546853
+            },
+            "metrics": {
+                "f1_score": 0.6231114740710493,
+                "mcc_score": 0.6334364756695224,
+                "precision": 0.816916488222698,
+                "recall": 0.5036303630363036
+            },
+            "model_path": "../../models/hybrid_ae_small/27caa35c-7c7e-4019-92dc-ba3f308fee7a.pt",
+            "threshold": 2.8214566707611084
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.39036552269152514,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    476,
+                    460,
+                    88,
+                    238,
+                    363
+                ],
+                "learning_rate": 0.0655128556859551
+            },
+            "metrics": {
+                "f1_score": 0.6268777913114089,
+                "mcc_score": 0.6361711592299488,
+                "precision": 0.8143459915611815,
+                "recall": 0.5095709570957095
+            },
+            "model_path": "../../models/hybrid_ae_small/ddea6bdb-1334-4669-8983-1bacda3edd92.pt",
+            "threshold": 3.290818691253662
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.4192290020510962,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    351,
+                    320,
+                    244,
+                    164,
+                    139,
+                    125,
+                    183,
+                    329,
+                    367,
+                    396
+                ],
+                "learning_rate": 0.002559547922699536
+            },
+            "metrics": {
+                "f1_score": 0.6275468622656887,
+                "mcc_score": 0.6376646885330248,
+                "precision": 0.820021299254526,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/f145dd36-33fa-4926-b4d4-33e897c965ed.pt",
+            "threshold": 3.3261475563049316
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.31543109517399953,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    417,
+                    316,
+                    308,
+                    162,
+                    88,
+                    121,
+                    261,
+                    406
+                ],
+                "learning_rate": 0.00011513953993264469
+            },
+            "metrics": {
+                "f1_score": 0.6669170108899737,
+                "mcc_score": 0.664972696435362,
+                "precision": 0.7735191637630662,
+                "recall": 0.5861386138613861
+            },
+            "model_path": "../../models/hybrid_ae_small/1a35052c-6695-4b25-86c4-fb97a4a7662f.pt",
+            "threshold": 0.7664791941642761
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.04570058615384753,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    119,
+                    19,
+                    150
+                ],
+                "learning_rate": 0.00011513953993264469
+            },
+            "metrics": {
+                "f1_score": 0.6886094674556212,
+                "mcc_score": 0.685651688950872,
+                "precision": 0.7830109335576114,
+                "recall": 0.6145214521452145
+            },
+            "model_path": "../../models/hybrid_ae_small/331f3a59-8ea7-45e7-99fd-56b0fc9d477a.pt",
+            "threshold": 0.3228127956390381
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.08819578904927672,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    500,
+                    411,
+                    121,
+                    19,
+                    45,
+                    68,
+                    163,
+                    372
+                ],
+                "learning_rate": 0.04291934260128778
+            },
+            "metrics": {
+                "f1_score": 0.6275468622656887,
+                "mcc_score": 0.6376646885330248,
+                "precision": 0.820021299254526,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/a10799b7-4ec3-4e99-8675-88e8574721ed.pt",
+            "threshold": 3.3367137908935547
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.1774925436179705,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    292,
+                    271,
+                    226,
+                    105,
+                    69,
+                    166,
+                    306
+                ],
+                "learning_rate": 0.0014563484775012444
+            },
+            "metrics": {
+                "f1_score": 0.6901081916537868,
+                "mcc_score": 0.6930993250576821,
+                "precision": 0.8322460391425909,
+                "recall": 0.5894389438943894
+            },
+            "model_path": "../../models/hybrid_ae_small/699f7e75-e87e-4024-82e9-d0b9baca6900.pt",
+            "threshold": 0.6230014562606812
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.21125014209807208,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    442,
+                    442,
+                    401,
+                    318,
+                    207,
+                    85,
+                    206,
+                    280,
+                    350,
+                    452
+                ],
+                "learning_rate": 0.00339322177189533
+            },
+            "metrics": {
+                "f1_score": 0.621501014198783,
+                "mcc_score": 0.6303402828750614,
+                "precision": 0.8063157894736842,
+                "recall": 0.5056105610561056
+            },
+            "model_path": "../../models/hybrid_ae_small/feb53248-4a39-4fd4-ad13-ec2561b5c44d.pt",
+            "threshold": 3.0434181690216064
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.2562654831705764,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    344,
+                    103,
+                    11,
+                    132,
+                    213
+                ],
+                "learning_rate": 0.0655128556859551
+            },
+            "metrics": {
+                "f1_score": 0.6272912423625254,
+                "mcc_score": 0.6373065604120101,
+                "precision": 0.8191489361702128,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/8a621d19-a375-4c4b-8b7d-0f6b884bc3c2.pt",
+            "threshold": 3.275460958480835
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3309363332686205,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    367,
+                    342,
+                    257,
+                    39,
+                    153,
+                    319,
+                    390
+                ],
+                "learning_rate": 0.00023299518105153718
+            },
+            "metrics": {
+                "f1_score": 0.6754281162883312,
+                "mcc_score": 0.6831821947692162,
+                "precision": 0.8514056224899599,
+                "recall": 0.5597359735973597
+            },
+            "model_path": "../../models/hybrid_ae_small/9305708a-5130-4fbe-9c46-39e3fb0e6a2c.pt",
+            "threshold": 0.8302990794181824
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.21312143762248087,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    418,
+                    336,
+                    265,
+                    135,
+                    258,
+                    395
+                ],
+                "learning_rate": 0.0022229964825261957
+            },
+            "metrics": {
+                "f1_score": 0.6727480045610034,
+                "mcc_score": 0.6725976484273957,
+                "precision": 0.793010752688172,
+                "recall": 0.5841584158415841
+            },
+            "model_path": "../../models/hybrid_ae_small/590fbf44-6a54-4d6f-a879-779a18d720c9.pt",
+            "threshold": 0.8266932964324951
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.13859823887840655,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    426,
+                    294,
+                    130,
+                    42,
+                    13,
+                    102
+                ],
+                "learning_rate": 0.006866488450042998
+            },
+            "metrics": {
+                "f1_score": 0.6278317152103561,
+                "mcc_score": 0.636407941972827,
+                "precision": 0.8108672936259144,
+                "recall": 0.5122112211221123
+            },
+            "model_path": "../../models/hybrid_ae_small/3ef7cbe8-49dd-44b2-b34c-c02faab127ee.pt",
+            "threshold": 2.6812126636505127
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.22480371626111806,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    441,
+                    298,
+                    38,
+                    497
+                ],
+                "learning_rate": 0.028117686979742307
+            },
+            "metrics": {
+                "f1_score": 0.6275468622656887,
+                "mcc_score": 0.6376646885330248,
+                "precision": 0.820021299254526,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/b4a1f5d7-984f-497e-8664-5cbc1a96689b.pt",
+            "threshold": 3.3109822273254395
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.39770428022106075,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    74,
+                    31,
+                    399,
+                    446
+                ],
+                "learning_rate": 0.012067926406393288
+            },
+            "metrics": {
+                "f1_score": 0.6268057784911717,
+                "mcc_score": 0.633702508160145,
+                "precision": 0.7993858751279427,
+                "recall": 0.5155115511551155
+            },
+            "model_path": "../../models/hybrid_ae_small/2b2a7772-e5ea-4eef-a2ad-64e773c5f2dd.pt",
+            "threshold": 3.1883773803710938
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.4753016242901271,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    175,
+                    54,
+                    32
+                ],
+                "learning_rate": 0.0009540954763499944
+            },
+            "metrics": {
+                "f1_score": 0.5918508287292819,
+                "mcc_score": 0.5807873918800798,
+                "precision": 0.6205648081100652,
+                "recall": 0.5656765676567657
+            },
+            "model_path": "../../models/hybrid_ae_small/8d91b1f1-8244-4fb1-bd39-3d87c13b5084.pt",
+            "threshold": 0.9187350273132324
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.23174620819517994,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    490,
+                    467,
+                    432,
+                    185,
+                    38,
+                    257,
+                    415,
+                    425
+                ],
+                "learning_rate": 0.012067926406393288
+            },
+            "metrics": {
+                "f1_score": 0.6269873624133714,
+                "mcc_score": 0.6371641377300514,
+                "precision": 0.8198294243070362,
+                "recall": 0.5075907590759076
+            },
+            "model_path": "../../models/hybrid_ae_small/1fe1d73d-0ee8-42b8-82f5-cde4b72aefbb.pt",
+            "threshold": 3.355844259262085
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.2924966786989755,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    498,
+                    417,
+                    87,
+                    203,
+                    228,
+                    443
+                ],
+                "learning_rate": 0.00023299518105153718
+            },
+            "metrics": {
+                "f1_score": 0.7139087825103657,
+                "mcc_score": 0.7141670141707521,
+                "precision": 0.8321616871704746,
+                "recall": 0.6250825082508251
+            },
+            "model_path": "../../models/hybrid_ae_small/ec8f2fa4-c878-4c05-88d5-bde11dfeb119.pt",
+            "threshold": 0.42496198415756226
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.22245335529314486,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    243,
+                    124
+                ],
+                "learning_rate": 0.0008286427728546842
+            },
+            "metrics": {
+                "f1_score": 0.7125658389766742,
+                "mcc_score": 0.7125243003235492,
+                "precision": 0.8285214348206474,
+                "recall": 0.6250825082508251
+            },
+            "model_path": "../../models/hybrid_ae_small/a9174135-63c2-43a5-8ea5-49d2183e647d.pt",
+            "threshold": 0.19106951355934143
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4202714276003076,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    479,
+                    400,
+                    177,
+                    77,
+                    119
+                ],
+                "learning_rate": 0.00030888435964774815
+            },
+            "metrics": {
+                "f1_score": 0.6561264822134387,
+                "mcc_score": 0.6615452258371763,
+                "precision": 0.8177339901477833,
+                "recall": 0.5478547854785478
+            },
+            "model_path": "../../models/hybrid_ae_small/7c195a3a-155d-40a1-9e9e-1abc02c555f6.pt",
+            "threshold": 0.7758784890174866
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3120511728197247,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    292,
+                    186,
+                    189,
+                    287,
+                    361
+                ],
+                "learning_rate": 0.0019306977288832496
+            },
+            "metrics": {
+                "f1_score": 0.681153694192019,
+                "mcc_score": 0.6876414065541594,
+                "precision": 0.8484251968503937,
+                "recall": 0.568976897689769
+            },
+            "model_path": "../../models/hybrid_ae_small/99da5d07-26e9-403e-9d6a-ba34816b9d2e.pt",
+            "threshold": 0.6719780564308167
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.1477606483253962,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    488,
+                    455,
+                    383,
+                    168,
+                    36,
+                    138,
+                    416
+                ],
+                "learning_rate": 0.04291934260128778
+            },
+            "metrics": {
+                "f1_score": 0.6268292682926829,
+                "mcc_score": 0.6363804124337709,
+                "precision": 0.8158730158730159,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/c71341cd-37c6-426d-94e6-4f275bb5be09.pt",
+            "threshold": 3.3833532333374023
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.2931036773630243,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    359,
+                    290,
+                    181,
+                    13,
+                    19,
+                    318,
+                    361
+                ],
+                "learning_rate": 0.0008286427728546842
+            },
+            "metrics": {
+                "f1_score": 0.6465306122448979,
+                "mcc_score": 0.658035885245634,
+                "precision": 0.8470588235294118,
+                "recall": 0.5227722772277228
+            },
+            "model_path": "../../models/hybrid_ae_small/e19d1268-0bcb-437c-8ca8-db6813632d56.pt",
+            "threshold": 1.2106736898422241
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.3682387549896243,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    255,
+                    181
+                ],
+                "learning_rate": 0.013894954943731374
+            },
+            "metrics": {
+                "f1_score": 0.6121768140116763,
+                "mcc_score": 0.6267989098835348,
+                "precision": 0.8312570781426953,
+                "recall": 0.4844884488448845
+            },
+            "model_path": "../../models/hybrid_ae_small/d3ff8fc5-af2d-4c6c-8599-29e231f8fedd.pt",
+            "threshold": 2.217134475708008
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4762578262917218,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    363,
+                    175,
+                    169,
+                    149,
+                    23,
+                    82,
+                    413,
+                    446
+                ],
+                "learning_rate": 0.00339322177189533
+            },
+            "metrics": {
+                "f1_score": 0.6254045307443366,
+                "mcc_score": 0.6338554584071393,
+                "precision": 0.8077324973876698,
+                "recall": 0.5102310231023103
+            },
+            "model_path": "../../models/hybrid_ae_small/83a1c9a9-b9f5-46b8-b0d0-4d2160bd1f2a.pt",
+            "threshold": 2.497451066970825
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.40109922248300756,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    436,
+                    328,
+                    426
+                ],
+                "learning_rate": 0.0007196856730011522
+            },
+            "metrics": {
+                "f1_score": 0.699404761904762,
+                "mcc_score": 0.697494919314744,
+                "precision": 0.8013640238704177,
+                "recall": 0.6204620462046204
+            },
+            "model_path": "../../models/hybrid_ae_small/894a594a-42a0-4974-a593-03a98bfd6d71.pt",
+            "threshold": 0.36331236362457275
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4925984361578345,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    352,
+                    140,
+                    301,
+                    410
+                ],
+                "learning_rate": 0.00047148663634573947
+            },
+            "metrics": {
+                "f1_score": 0.6772151898734178,
+                "mcc_score": 0.6837465894812602,
+                "precision": 0.8450148075024679,
+                "recall": 0.565016501650165
+            },
+            "model_path": "../../models/hybrid_ae_small/986039aa-6626-445e-b91b-d620f2379fe0.pt",
+            "threshold": 0.7934580445289612
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.4408939587643954,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    481,
+                    22,
+                    184,
+                    244,
+                    447,
+                    498
+                ],
+                "learning_rate": 0.0010985411419875584
+            },
+            "metrics": {
+                "f1_score": 0.6063505872118313,
+                "mcc_score": 0.6325487402777743,
+                "precision": 0.889030612244898,
+                "recall": 0.46006600660066005
+            },
+            "model_path": "../../models/hybrid_ae_small/4ff838ba-d269-4c17-a225-24744f440c01.pt",
+            "threshold": 2.940666913986206
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.31251341612579636,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    372,
+                    335,
+                    127,
+                    69,
+                    47,
+                    133,
+                    259,
+                    279
+                ],
+                "learning_rate": 0.0001
+            },
+            "metrics": {
+                "f1_score": 0.6339181286549708,
+                "mcc_score": 0.6359961834291047,
+                "precision": 0.7742857142857142,
+                "recall": 0.5366336633663367
+            },
+            "model_path": "../../models/hybrid_ae_small/f4fd354c-cc52-47b7-a420-d46f45cd5281.pt",
+            "threshold": 0.9944124221801758
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.41306270779329896,
+                "epochs": 4,
+                "input_dim": 106,
+                "layers": [
+                    414,
+                    98,
+                    99,
+                    228
+                ],
+                "learning_rate": 0.0006250551925273976
+            },
+            "metrics": {
+                "f1_score": 0.6696320258794985,
+                "mcc_score": 0.6802774552765095,
+                "precision": 0.8643006263048016,
+                "recall": 0.5465346534653466
+            },
+            "model_path": "../../models/hybrid_ae_small/dece37a6-cdcf-4272-9401-5ed2fec05953.pt",
+            "threshold": 0.7045369744300842
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.4716501576382963,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    442,
+                    390,
+                    152,
+                    156,
+                    190,
+                    255,
+                    311,
+                    424
+                ],
+                "learning_rate": 0.04291934260128778
+            },
+            "metrics": {
+                "f1_score": 0.6278501628664496,
+                "mcc_score": 0.6378068886518522,
+                "precision": 0.8193411264612115,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/c3ebd5a7-61b4-4f9f-a617-6db4b0e5ed04.pt",
+            "threshold": 3.39401912689209
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.25192021591534114,
+                "epochs": 6,
+                "input_dim": 106,
+                "layers": [
+                    424,
+                    282,
+                    184,
+                    127,
+                    85,
+                    361,
+                    383
+                ],
+                "learning_rate": 0.0010985411419875584
+            },
+            "metrics": {
+                "f1_score": 0.6837881219903692,
+                "mcc_score": 0.6935015527235708,
+                "precision": 0.872057318321392,
+                "recall": 0.5623762376237624
+            },
+            "model_path": "../../models/hybrid_ae_small/164efd93-e037-48e0-857e-95d865739011.pt",
+            "threshold": 0.8210895657539368
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.38500169217320335,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    404,
+                    295,
+                    77,
+                    211
+                ],
+                "learning_rate": 0.0022229964825261957
+            },
+            "metrics": {
+                "f1_score": 0.6526145115524928,
+                "mcc_score": 0.6629079411707118,
+                "precision": 0.8455882352941176,
+                "recall": 0.5313531353135313
+            },
+            "model_path": "../../models/hybrid_ae_small/fe748e78-d995-4e75-b528-5403596fa749.pt",
+            "threshold": 1.2809207439422607
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.04097377249388834,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    249,
+                    61,
+                    153
+                ],
+                "learning_rate": 0.003906939937054617
+            },
+            "metrics": {
+                "f1_score": 0.6736311239193083,
+                "mcc_score": 0.6676708801664419,
+                "precision": 0.7414750198255353,
+                "recall": 0.6171617161716172
+            },
+            "model_path": "../../models/hybrid_ae_small/5226dc16-a5d6-4545-92e0-43b40b201e90.pt",
+            "threshold": 0.6011778116226196
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3111861526875925,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    389,
+                    218,
+                    52,
+                    186,
+                    432
+                ],
+                "learning_rate": 0.003906939937054617
+            },
+            "metrics": {
+                "f1_score": 0.6243862520458265,
+                "mcc_score": 0.6352339212533272,
+                "precision": 0.8213132400430571,
+                "recall": 0.5036303630363036
+            },
+            "model_path": "../../models/hybrid_ae_small/6c723bfd-fbae-4d54-88e0-c030f324e8b6.pt",
+            "threshold": 3.037038564682007
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 128,
+                "dropout": 0.42423373352251137,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    431,
+                    381,
+                    69,
+                    164
+                ],
+                "learning_rate": 0.0001
+            },
+            "metrics": {
+                "f1_score": 0.6559871846215458,
+                "mcc_score": 0.6639204244334804,
+                "precision": 0.8340122199592668,
+                "recall": 0.5405940594059406
+            },
+            "model_path": "../../models/hybrid_ae_small/b2ebd46f-110b-4c5e-8c82-01e22a0686f5.pt",
+            "threshold": 0.7954645752906799
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.17856149387519282,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    440,
+                    319,
+                    208,
+                    97,
+                    75,
+                    185
+                ],
+                "learning_rate": 0.0022229964825261957
+            },
+            "metrics": {
+                "f1_score": 0.6180008295313149,
+                "mcc_score": 0.6316469585007907,
+                "precision": 0.8314732142857143,
+                "recall": 0.49174917491749176
+            },
+            "model_path": "../../models/hybrid_ae_small/8b7eb568-acdb-43e0-8f66-874483fe9235.pt",
+            "threshold": 1.8321568965911865
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.08611155551106098,
+                "epochs": 1,
+                "input_dim": 106,
+                "layers": [
+                    450,
+                    211,
+                    173,
+                    153,
+                    117,
+                    71,
+                    185,
+                    343
+                ],
+                "learning_rate": 0.032374575428176434
+            },
+            "metrics": {
+                "f1_score": 0.6272912423625254,
+                "mcc_score": 0.6373065604120101,
+                "precision": 0.8191489361702128,
+                "recall": 0.5082508250825083
+            },
+            "model_path": "../../models/hybrid_ae_small/66be12b0-04e3-4882-97fb-5c0ad185b456.pt",
+            "threshold": 3.408367872238159
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.24882848148879538,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    466,
+                    353,
+                    293,
+                    148,
+                    58,
+                    96,
+                    123,
+                    126,
+                    232
+                ],
+                "learning_rate": 0.0007196856730011522
+            },
+            "metrics": {
+                "f1_score": 0.6701030927835051,
+                "mcc_score": 0.6767574609557555,
+                "precision": 0.8391261171797418,
+                "recall": 0.5577557755775577
+            },
+            "model_path": "../../models/hybrid_ae_small/ac8a2cc8-89f2-4127-b43b-7f3d56fcd17f.pt",
+            "threshold": 0.9345967173576355
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.2504513390170798,
+                "epochs": 5,
+                "input_dim": 106,
+                "layers": [
+                    447,
+                    76,
+                    46,
+                    86,
+                    98,
+                    177,
+                    374
+                ],
+                "learning_rate": 0.018420699693267165
+            },
+            "metrics": {
+                "f1_score": 0.6264765784114052,
+                "mcc_score": 0.6364482169860234,
+                "precision": 0.8180851063829787,
+                "recall": 0.5075907590759076
+            },
+            "model_path": "../../models/hybrid_ae_small/59dcb757-11b5-4ca9-b22e-29dc09460cd5.pt",
+            "threshold": 3.324849843978882
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.2281155714192914,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    354,
+                    233,
+                    231,
+                    221,
+                    73,
+                    35,
+                    237,
+                    464
+                ],
+                "learning_rate": 0.00011513953993264469
+            },
+            "metrics": {
+                "f1_score": 0.6768268855021493,
+                "mcc_score": 0.6811377184370561,
+                "precision": 0.8295019157088123,
+                "recall": 0.5716171617161716
+            },
+            "model_path": "../../models/hybrid_ae_small/c6a25c41-3d80-4ade-bfce-c6f7e07fe4b9.pt",
+            "threshold": 0.766069233417511
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.4246343402024299,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    363,
+                    173,
+                    213,
+                    221,
+                    369,
+                    482
+                ],
+                "learning_rate": 0.04291934260128778
+            },
+            "metrics": {
+                "f1_score": 0.6253081347576006,
+                "mcc_score": 0.6371360901633317,
+                "precision": 0.8280739934711643,
+                "recall": 0.5023102310231023
+            },
+            "model_path": "../../models/hybrid_ae_small/e65d8cdd-5bf5-4b39-adf9-2fcfed9e7143.pt",
+            "threshold": 3.27178955078125
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.22930197720097378,
+                "epochs": 9,
+                "input_dim": 106,
+                "layers": [
+                    313,
+                    248,
+                    238,
+                    90,
+                    213,
+                    307,
+                    325
+                ],
+                "learning_rate": 0.028117686979742307
+            },
+            "metrics": {
+                "f1_score": 0.6278501628664496,
+                "mcc_score": 0.6378068886518522,
+                "precision": 0.8193411264612115,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/7671a96b-20ed-4e70-96c1-c0afaef86ca2.pt",
+            "threshold": 3.3675904273986816
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 64,
+                "dropout": 0.471669945135728,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    239,
+                    82,
+                    47,
+                    13,
+                    457
+                ],
+                "learning_rate": 0.00017575106248547912
+            },
+            "metrics": {
+                "f1_score": 0.6001727115716753,
+                "mcc_score": 0.6235854623271616,
+                "precision": 0.867665418227216,
+                "recall": 0.45874587458745875
+            },
+            "model_path": "../../models/hybrid_ae_small/05c796a4-2f7e-45a3-b9e4-c66afeb5b3da.pt",
+            "threshold": 2.2834577560424805
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.40097592863675036,
+                "epochs": 2,
+                "input_dim": 106,
+                "layers": [
+                    483,
+                    75,
+                    119,
+                    225,
+                    442
+                ],
+                "learning_rate": 0.00040949150623804275
+            },
+            "metrics": {
+                "f1_score": 0.6658653846153846,
+                "mcc_score": 0.674363443051659,
+                "precision": 0.8470948012232415,
+                "recall": 0.5485148514851486
+            },
+            "model_path": "../../models/hybrid_ae_small/eb0f7c7b-0c6f-4bf8-bb20-9e3a8ca28b0e.pt",
+            "threshold": 0.8614172339439392
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.04878568067966532,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    468,
+                    298,
+                    124,
+                    72,
+                    51,
+                    16,
+                    320,
+                    349
+                ],
+                "learning_rate": 0.0008286427728546842
+            },
+            "metrics": {
+                "f1_score": 0.6845534687619778,
+                "mcc_score": 0.6860672758873968,
+                "precision": 0.8162705667276051,
+                "recall": 0.5894389438943894
+            },
+            "model_path": "../../models/hybrid_ae_small/347b36b8-17e3-42da-be1c-0f51418e9363.pt",
+            "threshold": 0.8028824329376221
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.1820311665889917,
+                "epochs": 3,
+                "input_dim": 106,
+                "layers": [
+                    341,
+                    106,
+                    160,
+                    358,
+                    469
+                ],
+                "learning_rate": 0.032374575428176434
+            },
+            "metrics": {
+                "f1_score": 0.6261151662611517,
+                "mcc_score": 0.6351107477807074,
+                "precision": 0.8117770767613038,
+                "recall": 0.5095709570957095
+            },
+            "model_path": "../../models/hybrid_ae_small/18431708-ceeb-45b2-a965-d6011e77ca24.pt",
+            "threshold": 3.289654016494751
+        },
+        {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.07958369584195463,
+                "epochs": 7,
+                "input_dim": 106,
+                "layers": [
+                    485,
+                    480,
+                    464,
+                    170,
+                    17,
+                    437
+                ],
+                "learning_rate": 0.0655128556859551
+            },
+            "metrics": {
+                "f1_score": 0.6291309669522643,
+                "mcc_score": 0.6396025936709979,
+                "precision": 0.8237179487179487,
+                "recall": 0.5089108910891089
+            },
+            "model_path": "../../models/hybrid_ae_small/96613e40-991a-4e78-b775-5b67c392efc8.pt",
+            "threshold": 3.487544298171997
+        }
+    ]
+}

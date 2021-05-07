@@ -17,8 +17,7 @@ This is Martin's repo of his diploma thesis.
     │   ├── figures        <- Generated graphics and figures to be used in reporting.
     │   └── results        <- All kinds of results in machine-friendly formats (human-readable reports can be generated out of these).
     │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`.
+    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g. generated with `pip freeze > requirements.txt`.
     │
     ├── scripts            <- Scripts running the code to reproduce published results. The scripts are meant for a batching system (METACENTRUM, RCI).
     │

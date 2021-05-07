@@ -1,0 +1,455 @@
+{
+    "AE model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 16,
+                "dropout": 0.07293204905819095,
+                "epochs": 2,
+                "input_dim": 48,
+                "layers": [
+                    183,
+                    66,
+                    115,
+                    151,
+                    171,
+                    192
+                ],
+                "learning_rate": 0.0013010252169108315
+            },
+            "model_path": "../../models/ae_baseline/061a4999-ae54-4132-a164-fdeca1fccc8e.pt",
+            "threshold": 0.15303899347782135
+        },
+        "test_metrics": {
+            "auc_score": 0.9511612362930458,
+            "f1_score": 0.8778649921507065,
+            "mcc_score": 0.8759287030596965,
+            "precision": 0.9313790806129247,
+            "recall": 0.830166270783848
+        },
+        "val_metrics": {
+            "f1_score": 0.8695957820738137,
+            "mcc_score": 0.867868130531937,
+            "precision": 0.9300751879699248,
+            "recall": 0.8165016501650165
+        }
+    },
+    "AECNN1D model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 8,
+                "bottleneck_dim": 945,
+                "decoder_kernel_size": 5,
+                "encoder_kernel_size": 7,
+                "epochs": 8,
+                "input_shape": 100,
+                "layers": [
+                    220,
+                    409,
+                    405,
+                    58
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 28
+            },
+            "model_path": "../../models/aecnn1d/b5d79bb0-2789-4abc-808c-adab715d8fc2.pt",
+            "threshold": 0.00747229577973485
+        },
+        "test_metrics": {
+            "auc_score": 0.9941437791393846,
+            "f1_score": 0.8597258675998835,
+            "mcc_score": 0.8555604930022404,
+            "precision": 0.8446991404011461,
+            "recall": 0.8752969121140143
+        },
+        "val_metrics": {
+            "f1_score": 0.8528470889315417,
+            "mcc_score": 0.8486948356516191,
+            "precision": 0.8274363749224084,
+            "recall": 0.8798679867986798
+        }
+    },
+    "AETCN + AE model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.0217834191523949,
+                "epochs": 8,
+                "input_dim": 106,
+                "layers": [
+                    453,
+                    452,
+                    447,
+                    346,
+                    201,
+                    116,
+                    125,
+                    478
+                ],
+                "learning_rate": 0.00017575106248547912
+            },
+            "model_path": "../../models/hybrid_ae_small/8f62ec6b-7c43-47f8-8d69-d9e3ca16614f.pt",
+            "threshold": 0.20523139834403992
+        },
+        "test_metrics": {
+            "auc_score": 0.9921860888523503,
+            "f1_score": 0.777027027027027,
+            "mcc_score": 0.7790804776461935,
+            "precision": 0.9012539184952978,
+            "recall": 0.6828978622327792
+        },
+        "val_metrics": {
+            "f1_score": 0.7890595728737354,
+            "mcc_score": 0.7912368496205929,
+            "precision": 0.912478336221837,
+            "recall": 0.695049504950495
+        }
+    },
+    "AETCN + IF model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "max_features": 97,
+                "max_samples": 0.028366622291557668,
+                "n_estimators": 645
+            },
+            "model_path": "../../models/hybrid_if_small/112d5ae7-0ae8-49a0-be93-71b6be32b16a.pt"
+        },
+        "test_metrics": {
+            "auc_score": 0.7489560499224666,
+            "f1_score": 0.6156648451730419,
+            "mcc_score": 0.6238153144733594,
+            "precision": 0.7964184731385485,
+            "recall": 0.5017814726840855
+        },
+        "val_metrics": {
+            "f1_score": 0.6296146044624747,
+            "mcc_score": 0.6388792618785577,
+            "precision": 0.8168421052631579,
+            "recall": 0.5122112211221123
+        }
+    },
+    "AETCN model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 8,
+                "dropout": 0.3238513794447296,
+                "epochs": 4,
+                "input_shape": 100,
+                "kernel_size": 3,
+                "layers": [
+                    [
+                        142
+                    ],
+                    1246,
+                    [
+                        100
+                    ]
+                ],
+                "learning_rate": 0.0016378937069540646,
+                "window": 45
+            },
+            "model_path": "../../models/aetcn/4f5f4682-1ca5-400a-a340-6243716690c0.pt",
+            "threshold": 0.00331703620031476
+        },
+        "test_metrics": {
+            "auc_score": 0.9936884195776071,
+            "f1_score": 0.816796267496112,
+            "mcc_score": 0.8125143653284423,
+            "precision": 0.8576094056172436,
+            "recall": 0.7796912114014252
+        },
+        "val_metrics": {
+            "f1_score": 0.8400000000000001,
+            "mcc_score": 0.8362875305149474,
+            "precision": 0.8794223826714801,
+            "recall": 0.803960396039604
+        }
+    },
+    "CNN1D model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 128,
+                "decoder_kernel_size": 11,
+                "encoder_kernel_size": 3,
+                "epochs": 3,
+                "input_shape": 100,
+                "layers": [
+                    195,
+                    170,
+                    164
+                ],
+                "learning_rate": 0.0006250551925273976,
+                "window": 32
+            },
+            "model_path": "../../models/cnn1d/83e6cfa6-cd5c-4d63-abda-22072c53e6cc.pt",
+            "threshold": 0.003557284362614155
+        },
+        "test_metrics": {
+            "auc_score": 0.9904933392926736,
+            "f1_score": 0.8043112158976087,
+            "mcc_score": 0.8069293375451776,
+            "precision": 0.9291828793774319,
+            "recall": 0.7090261282660333
+        },
+        "val_metrics": {
+            "f1_score": 0.8273032450578142,
+            "mcc_score": 0.8302313460316512,
+            "precision": 0.951114922813036,
+            "recall": 0.732013201320132
+        }
+    },
+    "CNN2D model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 32,
+                "decoder_kernel_size": [
+                    15,
+                    7
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    28,
+                    199,
+                    250,
+                    236,
+                    131
+                ],
+                "learning_rate": 0.0005179474679231213,
+                "window": 41
+            },
+            "model_path": "../../models/cnn2d/cefc2174-983d-45fc-bde0-f4868f0a2476.pt",
+            "threshold": 0.0046456484124064445
+        },
+        "test_metrics": {
+            "auc_score": 0.989802111636955,
+            "f1_score": 0.7905897945659377,
+            "mcc_score": 0.7906477949373648,
+            "precision": 0.8943028485757122,
+            "recall": 0.7084323040380047
+        },
+        "val_metrics": {
+            "f1_score": 0.8088560885608858,
+            "mcc_score": 0.809761341721418,
+            "precision": 0.9171548117154812,
+            "recall": 0.7234323432343235
+        }
+    },
+    "IF model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "bootstrap": true,
+                "contamination": "auto",
+                "max_features": 32,
+                "max_samples": 0.009999999776482582,
+                "n_estimators": 115,
+                "n_jobs": 48,
+                "random_state": 160121,
+                "verbose": 0,
+                "warm_start": false
+            },
+            "model_path": "../../models/if_baseline/3b10a1eb-4eda-41ca-ba31-9a0641145245.pt"
+        },
+        "test_metrics": {
+            "auc_score": 0.9009342729563066,
+            "f1_score": 0.8085612366230678,
+            "mcc_score": 0.8027938221808024,
+            "precision": 0.8095238095238095,
+            "recall": 0.8076009501187649
+        },
+        "val_metrics": {
+            "f1_score": 0.8154506437768241,
+            "mcc_score": 0.809887561157103,
+            "precision": 0.8157199471598415,
+            "recall": 0.8151815181518152
+        }
+    },
+    "LOF model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "algorithm": "auto",
+                "contamination": "auto",
+                "leaf_size": 30,
+                "metric": "chebyshev",
+                "metric_params": null,
+                "n_jobs": 48,
+                "n_neighbors": 450,
+                "novelty": false,
+                "p": 2
+            },
+            "model_path": "../../models/lof_baseline/9b070a1f-bc00-4737-b9d2-2d6f441e3d58.pt"
+        },
+        "test_metrics": {
+            "auc_score": 0.9454254067711386,
+            "f1_score": 0.5866016138112216,
+            "mcc_score": 0.6164425475557379,
+            "precision": 0.4288065843621399,
+            "recall": 0.9281472684085511
+        },
+        "val_metrics": {
+            "f1_score": 0.6062424969987995,
+            "mcc_score": 0.6464762676929715,
+            "precision": 0.43496985357450474,
+            "recall": 1.0
+        }
+    },
+    "SA + CNN1D model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_heads": 1,
+                "decoder_kernel_size": 9,
+                "dropout": 0.2890659469843691,
+                "encoder_heads": 269,
+                "encoder_kernel_size": 7,
+                "epochs": 6,
+                "input_shape": 100,
+                "layers": [
+                    128,
+                    269,
+                    158,
+                    103
+                ],
+                "learning_rate": 0.0007196856730011522,
+                "window": 35
+            },
+            "model_path": "../../models/sa_cnn1d/9211a576-71bb-4685-a67b-40b854966e78.pt",
+            "threshold": 0.0026204364839941263
+        },
+        "test_metrics": {
+            "auc_score": 0.9907471530626386,
+            "f1_score": 0.8103217158176943,
+            "mcc_score": 0.8124707343919089,
+            "precision": 0.93,
+            "recall": 0.7179334916864608
+        },
+        "val_metrics": {
+            "f1_score": 0.8280207561156412,
+            "mcc_score": 0.8301370016059191,
+            "precision": 0.9442096365173288,
+            "recall": 0.7372937293729372
+        }
+    },
+    "SA + CNN2D model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 8,
+                "bottleneck_dim": 81,
+                "decoder_kernel_size": [
+                    7,
+                    9
+                ],
+                "encoder_kernel_size": [
+                    5,
+                    3
+                ],
+                "epochs": 4,
+                "input_shape": 100,
+                "layers": [
+                    204,
+                    328,
+                    80
+                ],
+                "learning_rate": 0.0011787686347935866,
+                "window": 29
+            },
+            "model_path": "../../models/sa_cnn2d/9e84d70f-fa59-4a7b-b9a7-f04741131f73.pt",
+            "threshold": 0.015030212700366974
+        },
+        "test_metrics": {
+            "auc_score": 0.9529675744292392,
+            "f1_score": 0.7693935119887166,
+            "mcc_score": 0.7782778851341294,
+            "precision": 0.9470486111111112,
+            "recall": 0.6478622327790974
+        },
+        "val_metrics": {
+            "f1_score": 0.7877838684416602,
+            "mcc_score": 0.7972718802237586,
+            "precision": 0.9682386910490857,
+            "recall": 0.664026402640264
+        }
+    },
+    "TCN + CNN1D model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 64,
+                "decoder_kernel_size": 13,
+                "dropout": 0.3087155718637558,
+                "encoder_kernel_size": 3,
+                "epochs": 6,
+                "input_shape": 100,
+                "layers": [
+                    [
+                        68,
+                        115,
+                        486
+                    ],
+                    [
+                        98,
+                        394,
+                        498
+                    ],
+                    [
+                        497,
+                        275
+                    ]
+                ],
+                "learning_rate": 0.0005179474679231213,
+                "tcn_kernel_size": 3,
+                "window": 49
+            },
+            "model_path": "../../models/cnn1d_tcn/5ed2a88c-c14e-4a99-ad11-1bb0c96eb34e.pt",
+            "threshold": 0.002864742185920477
+        },
+        "test_metrics": {
+            "auc_score": 0.9931950039067748,
+            "f1_score": 0.8172623061362104,
+            "mcc_score": 0.8204877174105455,
+            "precision": 0.9453978159126365,
+            "recall": 0.7197149643705463
+        },
+        "val_metrics": {
+            "f1_score": 0.8342007434944237,
+            "mcc_score": 0.836920067383272,
+            "precision": 0.9548936170212766,
+            "recall": 0.7405940594059406
+        }
+    },
+    "TCN model": {
+        "model_configuration": {
+            "hyperparameters": {
+                "batch_size": 32,
+                "dropout": 0.19419877386474893,
+                "epochs": 7,
+                "input_shape": 100,
+                "kernel_size": 9,
+                "layers": [
+                    895,
+                    250,
+                    100
+                ],
+                "learning_rate": 0.00011787686347935878,
+                "window": 12
+            },
+            "model_path": "../../models/tcn/90320d1a-1ed0-48f5-8cbc-ed3d581a0c15",
+            "threshold": 9.819379556574859e-06
+        },
+        "test_metrics": {
+            "auc_score": 0.709773363025644,
+            "f1_score": 0.5334491746307558,
+            "mcc_score": 0.5960877098751163,
+            "precision": 0.9935275080906149,
+            "recall": 0.3646080760095012
+        },
+        "val_metrics": {
+            "f1_score": 0.5545497856121963,
+            "mcc_score": 0.6130249926803834,
+            "precision": 0.9965753424657534,
+            "recall": 0.38415841584158417
+        }
+    }
+}

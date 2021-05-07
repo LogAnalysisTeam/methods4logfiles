@@ -14,6 +14,7 @@ This is Martin's repo of his diploma thesis.
     │   └── embeddings     <- Log message embedding models, e.g., fastText.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    │   ├── figures        <- Generated graphics and figures to be used in reporting.
     │   └── results        <- All kinds of results in machine-friendly formats (human-readable reports can be generated out of these).
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
@@ -62,3 +63,20 @@ python build_features_hdfs.py <model> --per-block
 ```
 
 where model is a path to a trained fastText model. The current implementation allows you to use either `--per-block` or `--per-log`. This controls the method of creating the embeddings and labels and saving them as NumPy arrays. One can access other options using `-h` or `--help`.
+
+Once the data are prepared and saved in corresponding folders, one can experiment with the implemented models. The implementation follows scikit-learn recommendation, see an example below.
+
+```python
+model = AETCN()
+model.set_params(**config['hyperparameters'])
+
+model.fit(x_train[y_train == 0])  # train on normal data examples
+y_pred = model.predict(x_val)  # return MSE per example
+
+theta, f1_score = find_optimal_threshold(y_val, y_pred)
+y_pred = classify(y_pred, theta)
+metrics_report(y_val, y_pred)
+confusion_matrix(y_val, y_pred)
+```
+
+The hyperparameter tuning of the provided models is located in files starting with `train_`. The final evaluation of all models is provided in `evaluate models.py`.

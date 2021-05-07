@@ -14,6 +14,9 @@ np.random.seed(SEED)
 EXPERIMENT_PATH = '../../models/AE-hyperparameters-mean-agg-HDFS1.json'
 
 
+# train autoencoder on aggregated data set (inspired by MIL)
+
+
 def generate_layer_settings(size: int) -> List:
     ret = []
     for i in range(size):
@@ -85,4 +88,3 @@ if __name__ == '__main__':
 
     results = train_autoencoder(X_train, X_val, y_train, y_val)
     save_experiment(results, EXPERIMENT_PATH)
-

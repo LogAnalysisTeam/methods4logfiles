@@ -63,7 +63,7 @@ python build_features_hdfs.py <model> --per-block
 
 where model is a path to a trained fastText model. The current implementation allows you to use either `--per-block` or `--per-log`. This controls the method of creating the embeddings and labels and saving them as NumPy arrays. One can access other options using `-h` or `--help`.
 
-Once the data are prepared and saved in corresponding folders, one can experiment with the implemented models. The implementation follows scikit-learn recommendation, see an example below.
+Once the data are prepared and saved in corresponding folders, one can experiment with the implemented models. The implementation follows scikit-learn recommendations, see an example below.
 
 ```python
 model = AETCN()

@@ -78,4 +78,4 @@ metrics_report(y_val, y_pred)
 confusion_matrix(y_val, y_pred)
 ```
 
-The hyperparameter tuning of the provided models is located in files starting with `train_`. The final evaluation of all models is provided in `evaluate models.py`.
+The hyperparameter tuning of the provided models is located in files starting with `train_`. The final evaluation of all models is provided in `evaluate_models.py`.
